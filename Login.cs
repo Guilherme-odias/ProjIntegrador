@@ -54,5 +54,6 @@ namespace Projeto_integrador
                     MessageBox.Show("Erro ao fazer login: " + ex.Message);
                 }
             }
+        }
     }
 }
