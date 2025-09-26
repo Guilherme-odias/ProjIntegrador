@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using SisVendas;
 
 namespace Projeto_integrador
 {
@@ -26,6 +28,21 @@ namespace Projeto_integrador
                     cmd.Parameters.AddWithValue("@preco", Preco);
                     conn.Open();
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static DataTable ListarTodos()
+        {
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                string sql = "SELECT * FROM jogos";
+                using (MySqlDataAdapter da = new MySqlDataAdapter(sql, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
                 }
             }
         }
