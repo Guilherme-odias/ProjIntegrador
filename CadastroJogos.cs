@@ -16,17 +16,17 @@ namespace Projeto_integrador
         public CadastroJogos()
         {
             InitializeComponent();
-            CarregarJogos();
+            AtualizarGrid();
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             string nome = txtNomeJogo.Text;
             string genero = txtGenero.Text;
-            string preco = txtPreco.Text;
+            string precoTexto = txtPreco.Text;
             decimal preco;
 
-            if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(genero) || string.IsNullOrWhiteSpace(precoText) || !decimal.TryParse(precoText, out preco))
+            if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(genero) || !decimal.TryParse(precoTexto, out preco))
             {
                 MessageBox.Show("Por favor, preencha todos os campos corretamente.");
                 return;
