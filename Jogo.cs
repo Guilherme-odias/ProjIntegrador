@@ -15,7 +15,11 @@ namespace Projeto_integrador
 
         public void Inserir()
         {
-
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                string sql = "INSERT INTO jogos (nome, genero, preco) VALUES (@nome, @genero, @preco)";
+            }
         }
     }
 }
