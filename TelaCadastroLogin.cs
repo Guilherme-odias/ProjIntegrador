@@ -35,7 +35,7 @@ namespace Projeto_integrador
             if (x.ShowDialog() == DialogResult.OK)
             {
                 // Exibe a imagem escolhida em um PictureBox
-                pictureBox1.Image = Image.FromFile(ofd.FileName);
+                pictureBox1.Image = Image.FromFile(x.FileName);
             }
         }
     }
