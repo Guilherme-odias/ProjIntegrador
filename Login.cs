@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using SisVendas;
+using Projeto_integrador;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +31,7 @@ namespace Projeto_integrador
                 try
                 {
                     conn.Open();
-                    string query = "SELECT COUNT(*) FROM usuarios WHERE email = @email OR @user AND senha = @senha";
+                    string query = "SELECT COUNT(*) FROM usuarios WHERE email = @email OR @nome_user AND senha = @senha";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@senha", senha);
@@ -41,7 +41,7 @@ namespace Projeto_integrador
                     if (count > 0)
                     {
                         MessageBox.Show("Login realizado com sucesso!");
-                        new MDIprinc().Show();
+                        // new Sorteador.();
                         this.Hide();
                     }
                     else
@@ -54,5 +54,6 @@ namespace Projeto_integrador
                     MessageBox.Show("Erro ao fazer login: " + ex.Message);
                 }
             }
+        }
     }
 }

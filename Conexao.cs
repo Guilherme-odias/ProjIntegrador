@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Projeto_integrador;
 using MySql.Data.MySqlClient;
 
-namespace SisVendas
+namespace Projeto_integrador
 {
     public class Conexao
     {
