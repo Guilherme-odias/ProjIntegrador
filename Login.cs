@@ -41,7 +41,7 @@ namespace Projeto_integrador
                     if (count > 0)
                     {
                         MessageBox.Show("Login realizado com sucesso!");
-                        new Sorteador.Show();
+                        // new Sorteador.();
                         this.Hide();
                     }
                     else
@@ -54,5 +54,6 @@ namespace Projeto_integrador
                     MessageBox.Show("Erro ao fazer login: " + ex.Message);
                 }
             }
+        }
     }
 }
