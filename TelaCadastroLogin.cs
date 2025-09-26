@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Projeto_integrador
 {
-    public partial class TelaCadastroLogin: Form
+    public partial class TelaCadastroLogin : Form
     {
         public TelaCadastroLogin()
         {
             InitializeComponent();
+        }
+
+        private void TelaCadastroLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
