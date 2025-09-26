@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using SisVendas;
+using Projeto_integrador;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
