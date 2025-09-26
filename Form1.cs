@@ -5,7 +5,7 @@ namespace Projeto_integrador
         public Form1()
         {
             InitializeComponent();
-            //vai tomar no cu seu merda
+
         }
     }
 }
