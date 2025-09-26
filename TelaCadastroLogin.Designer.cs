@@ -159,6 +159,7 @@
             Controls.Add(button1);
             Name = "TelaCadastroLogin";
             Text = "TelaCadastroLogin";
+            Load += TelaCadastroLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
