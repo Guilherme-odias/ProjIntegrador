@@ -31,7 +31,7 @@ namespace Projeto_integrador
                 try
                 {
                     conn.Open();
-                    string query = "SELECT COUNT(*) FROM usuarios WHERE email = @email OR @nome_user AND senha = @senha";
+                    string query = "SELECT COUNT(*) FROM cadastro WHERE (email = @login OR nome_user = @login) AND senha = @senha";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@senha", senha);
