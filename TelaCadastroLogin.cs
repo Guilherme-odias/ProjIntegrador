@@ -43,6 +43,14 @@ namespace Projeto_integrador
         {
             Conexao conexao = new Conexao();
 
+            string varemail = email.Text;
+            string varnome = nome.Text;
+            string varnick = nome_user.Text;
+            string varcpf = cpf.Text;
+            string vartipouser = tipo_user.Text;
+            string varsenha = senha.Text;
+            string varsenha2 = confsenha.Text;
+
 
         }
     }
