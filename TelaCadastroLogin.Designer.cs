@@ -28,154 +28,255 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            url_foto = new Button();
             lb1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            label1 = new Label();
+            email1 = new Label();
+            tipo_user1 = new Label();
+            nome1 = new Label();
+            nome_user1 = new Label();
+            senha1 = new Label();
+            url_foto1 = new Label();
+            cpf1 = new Label();
             label9 = new Label();
+            email = new TextBox();
+            tipo_user = new TextBox();
+            nome = new TextBox();
+            nome_user = new TextBox();
+            cpf = new TextBox();
+            openFileDialog1 = new OpenFileDialog();
+            senha = new TextBox();
+            confsenha = new TextBox();
+            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // url_foto
             // 
-            button1.Location = new Point(355, 183);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            url_foto.Location = new Point(328, 260);
+            url_foto.Name = "url_foto";
+            url_foto.Size = new Size(75, 23);
+            url_foto.TabIndex = 0;
+            url_foto.Text = "Escolher";
+            url_foto.UseVisualStyleBackColor = true;
+            url_foto.Click += url_foto_Click;
             // 
             // lb1
             // 
             lb1.AutoSize = true;
-            lb1.Font = new Font("SansSerif", 23.9999962F, FontStyle.Bold, GraphicsUnit.Point, 2);
-            lb1.Location = new Point(297, 25);
+            lb1.Font = new Font("SansSerif", 27.7499962F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            lb1.Location = new Point(313, 30);
             lb1.Name = "lb1";
-            lb1.Size = new Size(147, 37);
+            lb1.Size = new Size(170, 43);
             lb1.TabIndex = 1;
             lb1.Text = "Quimera";
             // 
-            // label2
+            // email1
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(25, 407);
-            label2.Name = "label2";
-            label2.Size = new Size(53, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Quimera";
+            email1.AutoSize = true;
+            email1.Font = new Font("Century Gothic", 9.75F);
+            email1.Location = new Point(74, 138);
+            email1.Name = "email1";
+            email1.Size = new Size(43, 17);
+            email1.TabIndex = 2;
+            email1.Text = "Email";
             // 
-            // label3
+            // tipo_user1
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(111, 407);
-            label3.Name = "label3";
-            label3.Size = new Size(53, 15);
-            label3.TabIndex = 3;
-            label3.Text = "Quimera";
+            tipo_user1.AutoSize = true;
+            tipo_user1.Font = new Font("Century Gothic", 9.75F);
+            tipo_user1.Location = new Point(464, 233);
+            tipo_user1.Name = "tipo_user1";
+            tipo_user1.Size = new Size(105, 17);
+            tipo_user1.TabIndex = 3;
+            tipo_user1.Text = "Tipo de usuário";
             // 
-            // label4
+            // nome1
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(205, 407);
-            label4.Name = "label4";
-            label4.Size = new Size(53, 15);
-            label4.TabIndex = 4;
-            label4.Text = "Quimera";
+            nome1.AutoSize = true;
+            nome1.Font = new Font("Century Gothic", 9.75F);
+            nome1.Location = new Point(301, 138);
+            nome1.Name = "nome1";
+            nome1.Size = new Size(72, 17);
+            nome1.TabIndex = 4;
+            nome1.Text = "Seu nome";
             // 
-            // label5
+            // nome_user1
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(297, 407);
-            label5.Name = "label5";
-            label5.Size = new Size(53, 15);
-            label5.TabIndex = 5;
-            label5.Text = "Quimera";
+            nome_user1.AutoSize = true;
+            nome_user1.Font = new Font("Century Gothic", 9.75F);
+            nome_user1.Location = new Point(526, 138);
+            nome_user1.Name = "nome_user1";
+            nome_user1.Size = new Size(58, 17);
+            nome_user1.TabIndex = 5;
+            nome_user1.Text = "Apelido";
             // 
-            // label6
+            // senha1
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(377, 407);
-            label6.Name = "label6";
-            label6.Size = new Size(53, 15);
-            label6.TabIndex = 6;
-            label6.Text = "Quimera";
+            senha1.AutoSize = true;
+            senha1.Font = new Font("Century Gothic", 9.75F);
+            senha1.Location = new Point(74, 328);
+            senha1.Name = "senha1";
+            senha1.Size = new Size(46, 17);
+            senha1.TabIndex = 6;
+            senha1.Text = "senha";
             // 
-            // label7
+            // url_foto1
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(436, 407);
-            label7.Name = "label7";
-            label7.Size = new Size(53, 15);
-            label7.TabIndex = 7;
-            label7.Text = "Quimera";
+            url_foto1.AutoSize = true;
+            url_foto1.Font = new Font("Century Gothic", 9.75F);
+            url_foto1.Location = new Point(311, 235);
+            url_foto1.Name = "url_foto1";
+            url_foto1.Size = new Size(119, 17);
+            url_foto1.TabIndex = 7;
+            url_foto1.Text = "Imagem de perfil";
             // 
-            // label8
+            // cpf1
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(517, 407);
-            label8.Name = "label8";
-            label8.Size = new Size(53, 15);
-            label8.TabIndex = 8;
-            label8.Text = "Quimera";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(601, 407);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 15);
-            label1.TabIndex = 9;
-            label1.Text = "Quimera";
+            cpf1.AutoSize = true;
+            cpf1.Font = new Font("Century Gothic", 9.75F);
+            cpf1.Location = new Point(74, 235);
+            cpf1.Name = "cpf1";
+            cpf1.Size = new Size(33, 17);
+            cpf1.TabIndex = 8;
+            cpf1.Text = "CPF";
+            cpf1.Click += label8_Click;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(355, 62);
+            label9.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = SystemColors.ActiveCaption;
+            label9.Location = new Point(333, 73);
             label9.Name = "label9";
-            label9.Size = new Size(53, 15);
+            label9.Size = new Size(129, 23);
             label9.TabIndex = 10;
-            label9.Text = "Quimera";
+            label9.Text = "Cadastre-se:";
+            // 
+            // email
+            // 
+            email.Location = new Point(74, 166);
+            email.Name = "email";
+            email.Size = new Size(192, 23);
+            email.TabIndex = 12;
+            // 
+            // tipo_user
+            // 
+            tipo_user.Location = new Point(464, 261);
+            tipo_user.Name = "tipo_user";
+            tipo_user.Size = new Size(98, 23);
+            tipo_user.TabIndex = 13;
+            // 
+            // nome
+            // 
+            nome.Location = new Point(301, 166);
+            nome.Name = "nome";
+            nome.Size = new Size(197, 23);
+            nome.TabIndex = 14;
+            // 
+            // nome_user
+            // 
+            nome_user.Location = new Point(526, 166);
+            nome_user.Name = "nome_user";
+            nome_user.Size = new Size(199, 23);
+            nome_user.TabIndex = 15;
+            // 
+            // cpf
+            // 
+            cpf.Location = new Point(74, 261);
+            cpf.Name = "cpf";
+            cpf.Size = new Size(183, 23);
+            cpf.TabIndex = 16;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // senha
+            // 
+            senha.Location = new Point(74, 363);
+            senha.Name = "senha";
+            senha.Size = new Size(168, 23);
+            senha.TabIndex = 17;
+            // 
+            // confsenha
+            // 
+            confsenha.Location = new Point(288, 363);
+            confsenha.Name = "confsenha";
+            confsenha.Size = new Size(174, 23);
+            confsenha.TabIndex = 18;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 9.75F);
+            label1.Location = new Point(288, 328);
+            label1.Name = "label1";
+            label1.Size = new Size(115, 17);
+            label1.TabIndex = 19;
+            label1.Text = "Confirmar senha";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(624, 307);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(101, 79);
+            pictureBox1.TabIndex = 20;
+            pictureBox1.TabStop = false;
             // 
             // TelaCadastroLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(label9);
+            Controls.Add(pictureBox1);
             Controls.Add(label1);
-            Controls.Add(label8);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
+            Controls.Add(confsenha);
+            Controls.Add(senha);
+            Controls.Add(cpf);
+            Controls.Add(nome_user);
+            Controls.Add(nome);
+            Controls.Add(tipo_user);
+            Controls.Add(email);
+            Controls.Add(label9);
+            Controls.Add(cpf1);
+            Controls.Add(url_foto1);
+            Controls.Add(senha1);
+            Controls.Add(nome_user1);
+            Controls.Add(nome1);
+            Controls.Add(tipo_user1);
+            Controls.Add(email1);
             Controls.Add(lb1);
-            Controls.Add(button1);
+            Controls.Add(url_foto);
             Name = "TelaCadastroLogin";
             Text = "TelaCadastroLogin";
             Load += TelaCadastroLogin_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private Button url_foto;
         private Label lb1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private Label label8;
-        private Label label1;
+        private Label email1;
+        private Label tipo_user1;
+        private Label nome1;
+        private Label nome_user1;
+        private Label senha1;
+        private Label url_foto1;
+        private Label cpf1;
         private Label label9;
+        private TextBox email;
+        private TextBox tipo_user;
+        private TextBox nome;
+        private TextBox nome_user;
+        private TextBox cpf;
+        private OpenFileDialog openFileDialog1;
+        private TextBox senha;
+        private TextBox confsenha;
+        private Label label1;
+        private PictureBox pictureBox1;
     }
 }

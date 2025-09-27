@@ -35,6 +35,8 @@
             txtGenero = new TextBox();
             lblPreco = new Label();
             txtPreco = new TextBox();
+            dgvJogos = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvJogos).BeginInit();
             SuspendLayout();
             // 
             // btnCadastrar
@@ -95,11 +97,20 @@
             txtPreco.Size = new Size(66, 23);
             txtPreco.TabIndex = 6;
             // 
+            // dgvJogos
+            // 
+            dgvJogos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJogos.Location = new Point(38, 84);
+            dgvJogos.Name = "dgvJogos";
+            dgvJogos.Size = new Size(713, 326);
+            dgvJogos.TabIndex = 7;
+            // 
             // CadastroJogos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dgvJogos);
             Controls.Add(txtPreco);
             Controls.Add(lblPreco);
             Controls.Add(txtGenero);
@@ -109,6 +120,7 @@
             Controls.Add(btnCadastrar);
             Name = "CadastroJogos";
             Text = "CadastroJogos";
+            ((System.ComponentModel.ISupportInitialize)dgvJogos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -122,5 +134,6 @@
         private TextBox txtGenero;
         private Label lblPreco;
         private TextBox txtPreco;
+        private DataGridView dgvJogos;
     }
 }

@@ -21,5 +21,22 @@ namespace Projeto_integrador
         {
 
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void url_foto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog x = new OpenFileDialog();
+            x.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*";
+
+            if (x.ShowDialog() == DialogResult.OK)
+            {
+                // Exibe a imagem escolhida em um PictureBox
+                pictureBox1.Image = Image.FromFile(x.FileName);
+            }
+        }
     }
 }
