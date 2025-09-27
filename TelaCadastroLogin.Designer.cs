@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastroLogin));
+            Button cad;
             url_foto = new Button();
             lb1 = new Label();
             email1 = new Label();
@@ -49,12 +50,13 @@
             confsenha = new TextBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            cad = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // url_foto
             // 
-            url_foto.Location = new Point(303, 242);
+            url_foto.Location = new Point(289, 224);
             url_foto.Name = "url_foto";
             url_foto.Size = new Size(75, 23);
             url_foto.TabIndex = 0;
@@ -76,7 +78,7 @@
             // 
             email1.AutoSize = true;
             email1.Font = new Font("Century Gothic", 9.75F);
-            email1.Location = new Point(76, 119);
+            email1.Location = new Point(62, 101);
             email1.Name = "email1";
             email1.Size = new Size(43, 17);
             email1.TabIndex = 2;
@@ -86,7 +88,7 @@
             // 
             tipo_user1.AutoSize = true;
             tipo_user1.Font = new Font("Century Gothic", 9.75F);
-            tipo_user1.Location = new Point(432, 214);
+            tipo_user1.Location = new Point(418, 196);
             tipo_user1.Name = "tipo_user1";
             tipo_user1.Size = new Size(105, 17);
             tipo_user1.TabIndex = 3;
@@ -96,7 +98,7 @@
             // 
             nome1.AutoSize = true;
             nome1.Font = new Font("Century Gothic", 9.75F);
-            nome1.Location = new Point(303, 119);
+            nome1.Location = new Point(289, 101);
             nome1.Name = "nome1";
             nome1.Size = new Size(72, 17);
             nome1.TabIndex = 4;
@@ -106,7 +108,7 @@
             // 
             nome_user1.AutoSize = true;
             nome_user1.Font = new Font("Century Gothic", 9.75F);
-            nome_user1.Location = new Point(528, 119);
+            nome_user1.Location = new Point(514, 101);
             nome_user1.Name = "nome_user1";
             nome_user1.Size = new Size(58, 17);
             nome_user1.TabIndex = 5;
@@ -116,7 +118,7 @@
             // 
             senha1.AutoSize = true;
             senha1.Font = new Font("Century Gothic", 9.75F);
-            senha1.Location = new Point(76, 309);
+            senha1.Location = new Point(62, 291);
             senha1.Name = "senha1";
             senha1.Size = new Size(46, 17);
             senha1.TabIndex = 6;
@@ -126,7 +128,7 @@
             // 
             url_foto1.AutoSize = true;
             url_foto1.Font = new Font("Century Gothic", 9.75F);
-            url_foto1.Location = new Point(286, 217);
+            url_foto1.Location = new Point(272, 199);
             url_foto1.Name = "url_foto1";
             url_foto1.Size = new Size(119, 17);
             url_foto1.TabIndex = 7;
@@ -136,7 +138,7 @@
             // 
             cpf1.AutoSize = true;
             cpf1.Font = new Font("Century Gothic", 9.75F);
-            cpf1.Location = new Point(76, 216);
+            cpf1.Location = new Point(62, 198);
             cpf1.Name = "cpf1";
             cpf1.Size = new Size(33, 17);
             cpf1.TabIndex = 8;
@@ -156,35 +158,35 @@
             // 
             // email
             // 
-            email.Location = new Point(76, 147);
+            email.Location = new Point(62, 129);
             email.Name = "email";
             email.Size = new Size(192, 23);
             email.TabIndex = 12;
             // 
             // tipo_user
             // 
-            tipo_user.Location = new Point(432, 242);
+            tipo_user.Location = new Point(418, 224);
             tipo_user.Name = "tipo_user";
             tipo_user.Size = new Size(98, 23);
             tipo_user.TabIndex = 13;
             // 
             // nome
             // 
-            nome.Location = new Point(303, 147);
+            nome.Location = new Point(289, 129);
             nome.Name = "nome";
             nome.Size = new Size(197, 23);
             nome.TabIndex = 14;
             // 
             // nome_user
             // 
-            nome_user.Location = new Point(528, 147);
+            nome_user.Location = new Point(514, 129);
             nome_user.Name = "nome_user";
             nome_user.Size = new Size(199, 23);
             nome_user.TabIndex = 15;
             // 
             // cpf
             // 
-            cpf.Location = new Point(76, 242);
+            cpf.Location = new Point(62, 224);
             cpf.Name = "cpf";
             cpf.Size = new Size(183, 23);
             cpf.TabIndex = 16;
@@ -195,14 +197,14 @@
             // 
             // senha
             // 
-            senha.Location = new Point(76, 344);
+            senha.Location = new Point(62, 326);
             senha.Name = "senha";
             senha.Size = new Size(168, 23);
             senha.TabIndex = 17;
             // 
             // confsenha
             // 
-            confsenha.Location = new Point(290, 344);
+            confsenha.Location = new Point(276, 326);
             confsenha.Name = "confsenha";
             confsenha.Size = new Size(174, 23);
             confsenha.TabIndex = 18;
@@ -211,7 +213,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 9.75F);
-            label1.Location = new Point(290, 309);
+            label1.Location = new Point(276, 291);
             label1.Name = "label1";
             label1.Size = new Size(115, 17);
             label1.TabIndex = 19;
@@ -220,18 +222,29 @@
             // pictureBox1
             // 
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(577, 242);
+            pictureBox1.Location = new Point(563, 224);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(150, 122);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 20;
             pictureBox1.TabStop = false;
             // 
+            // cad
+            // 
+            cad.Location = new Point(328, 379);
+            cad.Name = "cad";
+            cad.Size = new Size(116, 40);
+            cad.TabIndex = 21;
+            cad.Text = "Cadastrar";
+            cad.UseVisualStyleBackColor = true;
+            cad.Click += button1_Click;
+            // 
             // TelaCadastroLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cad);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(confsenha);
@@ -281,5 +294,6 @@
         private TextBox confsenha;
         private Label label1;
         private PictureBox pictureBox1;
+        private Button cad;
     }
 }

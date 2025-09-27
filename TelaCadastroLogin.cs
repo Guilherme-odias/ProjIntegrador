@@ -17,6 +17,8 @@ namespace Projeto_integrador
             InitializeComponent();
         }
 
+        private Conexao conexao = new Conexao();
+
         private void TelaCadastroLogin_Load(object sender, EventArgs e)
         {
 
@@ -37,6 +39,11 @@ namespace Projeto_integrador
                 // Exibe a imagem escolhida em um PictureBox
                 pictureBox1.Image = Image.FromFile(x.FileName);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
