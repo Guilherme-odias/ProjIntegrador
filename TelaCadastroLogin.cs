@@ -43,6 +43,7 @@ namespace Projeto_integrador
         private void button1_Click(object sender, EventArgs e)
         {
             Conexao conexao = new Conexao();
+            Buscas busca = new Buscas();
 
             string varemail = email.Text;
             string varnome = nome.Text;
@@ -52,7 +53,9 @@ namespace Projeto_integrador
             string varsenha = senha.Text;
             string varsenha2 = confsenha.Text;
 
-            varemail = 
+            DataTable imail = busca.busca_email(varemail);
+            //repete issai de cima
+            
 
             if 
 
