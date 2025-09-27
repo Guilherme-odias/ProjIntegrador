@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastroLogin));
             Button cad;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastroLogin));
             url_foto = new Button();
             lb1 = new Label();
             email1 = new Label();
@@ -54,20 +54,35 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
+            // cad
+            // 
+            cad.BackColor = Color.FromArgb(168, 3, 12);
+            cad.ForeColor = Color.FromArgb(234, 234, 234);
+            cad.Location = new Point(328, 379);
+            cad.Name = "cad";
+            cad.Size = new Size(116, 40);
+            cad.TabIndex = 21;
+            cad.Text = "Cadastrar";
+            cad.UseVisualStyleBackColor = false;
+            cad.Click += button1_Click;
+            // 
             // url_foto
             // 
+            url_foto.BackColor = Color.FromArgb(168, 3, 12);
+            url_foto.ForeColor = Color.FromArgb(234, 234, 234);
             url_foto.Location = new Point(289, 224);
             url_foto.Name = "url_foto";
             url_foto.Size = new Size(75, 23);
             url_foto.TabIndex = 0;
             url_foto.Text = "Escolher";
-            url_foto.UseVisualStyleBackColor = true;
+            url_foto.UseVisualStyleBackColor = false;
             url_foto.Click += url_foto_Click;
             // 
             // lb1
             // 
             lb1.AutoSize = true;
             lb1.Font = new Font("SansSerif", 27.7499962F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            lb1.ForeColor = Color.FromArgb(234, 234, 234);
             lb1.Location = new Point(308, 14);
             lb1.Name = "lb1";
             lb1.Size = new Size(170, 43);
@@ -78,6 +93,7 @@
             // 
             email1.AutoSize = true;
             email1.Font = new Font("Century Gothic", 9.75F);
+            email1.ForeColor = Color.FromArgb(234, 234, 234);
             email1.Location = new Point(62, 101);
             email1.Name = "email1";
             email1.Size = new Size(43, 17);
@@ -88,6 +104,7 @@
             // 
             tipo_user1.AutoSize = true;
             tipo_user1.Font = new Font("Century Gothic", 9.75F);
+            tipo_user1.ForeColor = Color.FromArgb(234, 234, 234);
             tipo_user1.Location = new Point(418, 196);
             tipo_user1.Name = "tipo_user1";
             tipo_user1.Size = new Size(105, 17);
@@ -98,6 +115,7 @@
             // 
             nome1.AutoSize = true;
             nome1.Font = new Font("Century Gothic", 9.75F);
+            nome1.ForeColor = Color.FromArgb(234, 234, 234);
             nome1.Location = new Point(289, 101);
             nome1.Name = "nome1";
             nome1.Size = new Size(72, 17);
@@ -108,6 +126,7 @@
             // 
             nome_user1.AutoSize = true;
             nome_user1.Font = new Font("Century Gothic", 9.75F);
+            nome_user1.ForeColor = Color.FromArgb(234, 234, 234);
             nome_user1.Location = new Point(514, 101);
             nome_user1.Name = "nome_user1";
             nome_user1.Size = new Size(58, 17);
@@ -118,6 +137,7 @@
             // 
             senha1.AutoSize = true;
             senha1.Font = new Font("Century Gothic", 9.75F);
+            senha1.ForeColor = Color.FromArgb(234, 234, 234);
             senha1.Location = new Point(62, 291);
             senha1.Name = "senha1";
             senha1.Size = new Size(46, 17);
@@ -128,6 +148,7 @@
             // 
             url_foto1.AutoSize = true;
             url_foto1.Font = new Font("Century Gothic", 9.75F);
+            url_foto1.ForeColor = Color.FromArgb(234, 234, 234);
             url_foto1.Location = new Point(272, 199);
             url_foto1.Name = "url_foto1";
             url_foto1.Size = new Size(119, 17);
@@ -138,6 +159,7 @@
             // 
             cpf1.AutoSize = true;
             cpf1.Font = new Font("Century Gothic", 9.75F);
+            cpf1.ForeColor = Color.FromArgb(234, 234, 234);
             cpf1.Location = new Point(62, 198);
             cpf1.Name = "cpf1";
             cpf1.Size = new Size(33, 17);
@@ -149,7 +171,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = SystemColors.ActiveCaption;
+            label9.ForeColor = Color.FromArgb(234, 234, 234);
             label9.Location = new Point(328, 57);
             label9.Name = "label9";
             label9.Size = new Size(129, 23);
@@ -213,6 +235,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 9.75F);
+            label1.ForeColor = Color.FromArgb(234, 234, 234);
             label1.Location = new Point(276, 291);
             label1.Name = "label1";
             label1.Size = new Size(115, 17);
@@ -229,20 +252,11 @@
             pictureBox1.TabIndex = 20;
             pictureBox1.TabStop = false;
             // 
-            // cad
-            // 
-            cad.Location = new Point(328, 379);
-            cad.Name = "cad";
-            cad.Size = new Size(116, 40);
-            cad.TabIndex = 21;
-            cad.Text = "Cadastrar";
-            cad.UseVisualStyleBackColor = true;
-            cad.Click += button1_Click;
-            // 
             // TelaCadastroLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(800, 450);
             Controls.Add(cad);
             Controls.Add(pictureBox1);
