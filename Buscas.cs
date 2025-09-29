@@ -45,5 +45,22 @@ namespace Projeto_integrador
             }
         }
 
+        public DataTable teste()
+        {
+
+            string sql = "SELECT * FROM cadastro";
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                using (MySqlDataAdapter da = new MySqlDataAdapter(sql, conn))
+                {
+
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
     }
 }

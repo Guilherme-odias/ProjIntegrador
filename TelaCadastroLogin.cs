@@ -13,9 +13,13 @@ namespace Projeto_integrador
 {
     public partial class TelaCadastroLogin : Form
     {
+
+        private Buscas busca = new Buscas();
+
         public TelaCadastroLogin()
         {
             InitializeComponent();
+            busca.teste();
         }
 
         private void TelaCadastroLogin_Load(object sender, EventArgs e)
