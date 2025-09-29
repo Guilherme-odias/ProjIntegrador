@@ -54,6 +54,7 @@ namespace Projeto_integrador
             string varsenha2 = confsenha.Text;
 
             DataTable imail = busca.busca_email(varemail);
+            DataTable 
             //repete issai de cima
             
 
