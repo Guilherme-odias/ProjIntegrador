@@ -45,25 +45,56 @@ namespace Projeto_integrador
             Conexao conexao = new Conexao();
             Buscas busca = new Buscas();
 
-            string varemail = email.Text;
-            string varnome = nome.Text;
-            string varnick = nome_user.Text;
-            string varcpf = cpf.Text;
-            string vartipouser = tipo_user.Text;
-            string varsenha = senha.Text;
-            string varsenha2 = confsenha.Text;
+            string varemail = email.Text.Trim();
+            string varnome = nome.Text.Trim();
+            string varnick = nome_user.Text.Trim();
+            string varcpf = cpf.Text.Trim();
+            string vartipouser = tipo_user.Text.Trim();
+            string varsenha = senha.Text.Trim();
+            string varsenha2 = confsenha.Text.Trim();
 
-            DataTable imail = busca.busca_email(varemail);
-            DataTable 
-            //repete issai de cima
-            
-
-            if 
-
-            using (var crau = conexao.GetConnection()) ;
+            // Verifica se e-mail já existe
+            if (busca.busca_email(varemail))
             {
-
+                MessageBox.Show("Este e-mail já está cadastrado!");
+                return; // interrompe o cadastro
             }
+
+            if (busca.busca_cpf(varcpf))
+            {
+                MessageBox.Show("Este cpf já está cadastrado em uso!!!");
+                return;
+            }
+
+            // Verifica se senhas conferem
+            if (varsenha != varsenha2)
+            {
+                MessageBox.Show("As senhas não conferem!");
+                return;
+            }
+
+            // Aqui você insere o usuário no banco
+            using (var conn = conexao.GetConnection())
+            {
+                string sql = @"INSERT INTO cadastro 
+                      (email, nome, nome_user, cpf, tipo_user, senha) 
+                      VALUES (@Email, @Nome, @Nick, @Cpf, @TipoUser, @Senha)";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Email", varemail);
+                    cmd.Parameters.AddWithValue("@Nome", varnome);
+                    cmd.Parameters.AddWithValue("@Nick", varnick);
+                    cmd.Parameters.AddWithValue("@Cpf", varcpf);
+                    cmd.Parameters.AddWithValue("@TipoUser", vartipouser);
+                    cmd.Parameters.AddWithValue("@Senha", varsenha);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            MessageBox.Show("Usuário cadastrado com sucesso!");
         }
     }
 }

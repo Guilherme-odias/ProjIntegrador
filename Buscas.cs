@@ -11,19 +11,36 @@ namespace Projeto_integrador
     public class Buscas
     {
 
-        public DataTable busca_email(string imail)
+        public bool busca_email(string imail)
         {
-            string nomeBusca = imail;
-            string sql = "SELECT * FROM cadastro WHERE email LIKE @imail";
+            string sql = "SELECT COUNT(*) FROM cadastro WHERE email = @imail";
             Conexao conexao = new Conexao();
+
             using (var conn = conexao.GetConnection())
             {
-                using (MySqlDataAdapter da = new MySqlDataAdapter(sql, conn))
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
-                    da.SelectCommand.Parameters.AddWithValue("@imail", $"%{nomeBusca}%");
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    return dt;
+                    cmd.Parameters.AddWithValue("@imail", imail);
+                    conn.Open();
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0; // true se já existe
+                }
+            }
+        }
+
+        public bool busca_cpf(string cpff)
+        {
+            string sql = "SELECT COUNT(*) FROM cadastro WHERE cpf = @cpff";
+            Conexao conexao = new Conexao();
+
+            using (var conn = conexao.GetConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@cpff", cpff);
+                    conn.Open();
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0; // true se já existe
                 }
             }
         }
