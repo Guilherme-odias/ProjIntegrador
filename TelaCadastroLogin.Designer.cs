@@ -41,7 +41,6 @@
             cpf1 = new Label();
             label9 = new Label();
             email = new TextBox();
-            tipo_user = new TextBox();
             nome = new TextBox();
             nome_user = new TextBox();
             cpf = new TextBox();
@@ -50,6 +49,7 @@
             confsenha = new TextBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            tipo_user = new ComboBox();
             cad = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -185,13 +185,6 @@
             email.Size = new Size(192, 23);
             email.TabIndex = 12;
             // 
-            // tipo_user
-            // 
-            tipo_user.Location = new Point(418, 224);
-            tipo_user.Name = "tipo_user";
-            tipo_user.Size = new Size(98, 23);
-            tipo_user.TabIndex = 13;
-            // 
             // nome
             // 
             nome.Location = new Point(289, 129);
@@ -252,12 +245,22 @@
             pictureBox1.TabIndex = 20;
             pictureBox1.TabStop = false;
             // 
+            // tipo_user
+            // 
+            tipo_user.FormattingEnabled = true;
+            tipo_user.Items.AddRange(new object[] { "comum", "adm" });
+            tipo_user.Location = new Point(418, 234);
+            tipo_user.Name = "tipo_user";
+            tipo_user.Size = new Size(121, 23);
+            tipo_user.TabIndex = 22;
+            // 
             // TelaCadastroLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(800, 450);
+            Controls.Add(tipo_user);
             Controls.Add(cad);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
@@ -266,7 +269,6 @@
             Controls.Add(cpf);
             Controls.Add(nome_user);
             Controls.Add(nome);
-            Controls.Add(tipo_user);
             Controls.Add(email);
             Controls.Add(label9);
             Controls.Add(cpf1);
@@ -299,7 +301,6 @@
         private Label cpf1;
         private Label label9;
         private TextBox email;
-        private TextBox tipo_user;
         private TextBox nome;
         private TextBox nome_user;
         private TextBox cpf;
@@ -309,5 +310,6 @@
         private Label label1;
         private PictureBox pictureBox1;
         private Button cad;
+        private ComboBox tipo_user;
     }
 }

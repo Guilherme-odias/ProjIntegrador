@@ -96,5 +96,10 @@ namespace Projeto_integrador
 
             MessageBox.Show("Usuário cadastrado com sucesso!");
         }
+
+        private void tipo_user_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
