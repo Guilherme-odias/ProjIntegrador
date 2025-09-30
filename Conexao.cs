@@ -14,7 +14,10 @@ namespace Projeto_integrador
         public MySqlConnection GetConnection()
         {
             return new MySqlConnection(connString);
+
         }
         
+
     }
+
 }
