@@ -17,13 +17,13 @@ namespace Projeto_integrador
     {
         public Sorteador()
         {
-            /*InitializeComponent();
-           _repositorio = new RepositorioJogos();
+            InitializeComponent();
+            _repositorio = new RepositorioJogos();
         }
 
         private void Sorteador_Load(object sender, EventArgs e)
         {
-            //var jogoSorteado = _repositorio.SortearJogo();
+            var jogoSorteado = _repositorio.SortearJogo();
 
             if (jogoSorteado != null)
             {
@@ -33,7 +33,7 @@ namespace Projeto_integrador
                 {
                     using (var wc = new WebClient())
                     {
-                        //byte[] data = wc.DownloadData(jogoSorteado.Imagem);
+                        byte[] data = wc.DownloadData(jogoSorteado.Imagem);
                         using (var ms = new System.IO.MemoryStream(data))
                         {
                             pt_image_jogo.Image = Image.FromStream(ms);
@@ -49,7 +49,7 @@ namespace Projeto_integrador
             else
             {
                 lb_resposta.Text = "Nenhum jogo encontrado!";
-            }*/
+            }
         }
     }
 }
