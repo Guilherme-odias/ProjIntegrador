@@ -87,7 +87,7 @@
             btn_bi.TabIndex = 3;
             btn_bi.Text = "Minha Biblioteca";
             btn_bi.UseVisualStyleBackColor = false;
-            btn_bi.Click += btn_bi_Click;
+            //btn_bi.Click += btn_bi_Click;
             // 
             // btn_loja
             // 
@@ -101,7 +101,7 @@
             btn_loja.TabIndex = 4;
             btn_loja.Text = "Toda Loja";
             btn_loja.UseVisualStyleBackColor = false;
-            btn_loja.Click += btn_loja_Click;
+            //btn_loja.Click += btn_loja_Click;
             // 
             // btn_sortear
             // 
@@ -167,7 +167,7 @@
             Controls.Add(pictureBox1);
             Name = "Sorteador";
             Text = "Sorteador";
-            Load += Sorteador_Load;
+            //Load += Sorteador_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
