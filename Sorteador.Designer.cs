@@ -37,8 +37,10 @@
             pt_image_jogo = new PictureBox();
             lb_resposta = new Label();
             btn_nova = new Button();
+            groupBox1 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -116,7 +118,7 @@
             // 
             // pt_image_jogo
             // 
-            pt_image_jogo.Location = new Point(369, 490);
+            pt_image_jogo.Location = new Point(166, 53);
             pt_image_jogo.Name = "pt_image_jogo";
             pt_image_jogo.Size = new Size(189, 177);
             pt_image_jogo.TabIndex = 6;
@@ -129,7 +131,7 @@
             lb_resposta.FlatStyle = FlatStyle.Flat;
             lb_resposta.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb_resposta.ForeColor = Color.FromArgb(234, 234, 234);
-            lb_resposta.Location = new Point(425, 682);
+            lb_resposta.Location = new Point(219, 246);
             lb_resposta.Name = "lb_resposta";
             lb_resposta.Size = new Size(76, 19);
             lb_resposta.TabIndex = 7;
@@ -141,12 +143,25 @@
             btn_nova.FlatStyle = FlatStyle.Flat;
             btn_nova.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_nova.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_nova.Location = new Point(402, 723);
+            btn_nova.Location = new Point(193, 295);
             btn_nova.Name = "btn_nova";
             btn_nova.Size = new Size(120, 49);
             btn_nova.TabIndex = 8;
             btn_nova.Text = "Sortear Novamente";
             btn_nova.UseVisualStyleBackColor = false;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(pt_image_jogo);
+            groupBox1.Controls.Add(btn_nova);
+            groupBox1.Controls.Add(lb_resposta);
+            groupBox1.Location = new Point(200, 137);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(523, 439);
+            groupBox1.TabIndex = 9;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "groupBox1";
+            groupBox1.Visible = false;
             // 
             // Sorteador
             // 
@@ -154,9 +169,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(971, 838);
-            Controls.Add(btn_nova);
-            Controls.Add(lb_resposta);
-            Controls.Add(pt_image_jogo);
+            Controls.Add(groupBox1);
             Controls.Add(btn_sortear);
             Controls.Add(btn_loja);
             Controls.Add(btn_bi);
@@ -168,6 +181,8 @@
             Load += Sorteador_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -183,5 +198,6 @@
         private PictureBox pt_image_jogo;
         private Label lb_resposta;
         private Button btn_nova;
+        private GroupBox groupBox1;
     }
 }

@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 namespace Projeto_integrador
-{
+{ }
 
