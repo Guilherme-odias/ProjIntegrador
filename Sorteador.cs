@@ -18,5 +18,10 @@ namespace Projeto_integrador
         {
             InitializeComponent();
         }
+
+        private void Sorteador_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

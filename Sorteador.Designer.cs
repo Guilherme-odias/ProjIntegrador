@@ -30,15 +30,15 @@
         {
             pictureBox1 = new PictureBox();
             lb_titulo = new Label();
-            textBox1 = new TextBox();
+            txt_user = new TextBox();
             btn_bi = new Button();
             btn_loja = new Button();
             btn_sortear = new Button();
-            pictureBox2 = new PictureBox();
-            label1 = new Label();
-            button1 = new Button();
+            pt_image_jogo = new PictureBox();
+            lb_resposta = new Label();
+            btn_nova = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pt_image_jogo).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -64,16 +64,16 @@
             lb_titulo.TabIndex = 1;
             lb_titulo.Text = "Escolha um Jogo Aleatório da sua Biblioteca Quimera, ou da  Própria Loja ";
             // 
-            // textBox1
+            // txt_user
             // 
-            textBox1.BackColor = SystemColors.ActiveCaption;
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Lucida Console", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.FromArgb(234, 234, 234);
-            textBox1.Location = new Point(218, 348);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(480, 23);
-            textBox1.TabIndex = 2;
+            txt_user.BackColor = SystemColors.ActiveCaption;
+            txt_user.BorderStyle = BorderStyle.FixedSingle;
+            txt_user.Font = new Font("Lucida Console", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_user.ForeColor = Color.FromArgb(234, 234, 234);
+            txt_user.Location = new Point(218, 348);
+            txt_user.Name = "txt_user";
+            txt_user.Size = new Size(480, 23);
+            txt_user.TabIndex = 2;
             // 
             // btn_bi
             // 
@@ -87,7 +87,6 @@
             btn_bi.TabIndex = 3;
             btn_bi.Text = "Minha Biblioteca";
             btn_bi.UseVisualStyleBackColor = false;
-            //btn_bi.Click += btn_bi_Click;
             // 
             // btn_loja
             // 
@@ -101,7 +100,6 @@
             btn_loja.TabIndex = 4;
             btn_loja.Text = "Toda Loja";
             btn_loja.UseVisualStyleBackColor = false;
-            //btn_loja.Click += btn_loja_Click;
             // 
             // btn_sortear
             // 
@@ -116,39 +114,39 @@
             btn_sortear.Text = "Sortear";
             btn_sortear.UseVisualStyleBackColor = false;
             // 
-            // pictureBox2
+            // pt_image_jogo
             // 
-            pictureBox2.Location = new Point(369, 490);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(189, 177);
-            pictureBox2.TabIndex = 6;
-            pictureBox2.TabStop = false;
+            pt_image_jogo.Location = new Point(369, 490);
+            pt_image_jogo.Name = "pt_image_jogo";
+            pt_image_jogo.Size = new Size(189, 177);
+            pt_image_jogo.TabIndex = 6;
+            pt_image_jogo.TabStop = false;
             // 
-            // label1
+            // lb_resposta
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(168, 3, 12);
-            label1.FlatStyle = FlatStyle.Flat;
-            label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(425, 682);
-            label1.Name = "label1";
-            label1.Size = new Size(76, 19);
-            label1.TabIndex = 7;
-            label1.Text = "Resposta";
+            lb_resposta.AutoSize = true;
+            lb_resposta.BackColor = Color.FromArgb(168, 3, 12);
+            lb_resposta.FlatStyle = FlatStyle.Flat;
+            lb_resposta.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lb_resposta.ForeColor = Color.FromArgb(234, 234, 234);
+            lb_resposta.Location = new Point(425, 682);
+            lb_resposta.Name = "lb_resposta";
+            lb_resposta.Size = new Size(76, 19);
+            lb_resposta.TabIndex = 7;
+            lb_resposta.Text = "Resposta";
             // 
-            // button1
+            // btn_nova
             // 
-            button1.BackColor = Color.FromArgb(168, 3, 12);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(234, 234, 234);
-            button1.Location = new Point(402, 723);
-            button1.Name = "button1";
-            button1.Size = new Size(120, 49);
-            button1.TabIndex = 8;
-            button1.Text = "Sortear Novamente";
-            button1.UseVisualStyleBackColor = false;
+            btn_nova.BackColor = Color.FromArgb(168, 3, 12);
+            btn_nova.FlatStyle = FlatStyle.Flat;
+            btn_nova.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_nova.ForeColor = Color.FromArgb(234, 234, 234);
+            btn_nova.Location = new Point(402, 723);
+            btn_nova.Name = "btn_nova";
+            btn_nova.Size = new Size(120, 49);
+            btn_nova.TabIndex = 8;
+            btn_nova.Text = "Sortear Novamente";
+            btn_nova.UseVisualStyleBackColor = false;
             // 
             // Sorteador
             // 
@@ -156,20 +154,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(971, 838);
-            Controls.Add(button1);
-            Controls.Add(label1);
-            Controls.Add(pictureBox2);
+            Controls.Add(btn_nova);
+            Controls.Add(lb_resposta);
+            Controls.Add(pt_image_jogo);
             Controls.Add(btn_sortear);
             Controls.Add(btn_loja);
             Controls.Add(btn_bi);
-            Controls.Add(textBox1);
+            Controls.Add(txt_user);
             Controls.Add(lb_titulo);
             Controls.Add(pictureBox1);
             Name = "Sorteador";
             Text = "Sorteador";
-            //Load += Sorteador_Load;
+            Load += Sorteador_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pt_image_jogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -178,12 +176,12 @@
 
         private PictureBox pictureBox1;
         private Label lb_titulo;
-        private TextBox textBox1;
+        private TextBox txt_user;
         private Button btn_bi;
         private Button btn_loja;
         private Button btn_sortear;
-        private PictureBox pictureBox2;
-        private Label label1;
-        private Button button1;
+        private PictureBox pt_image_jogo;
+        private Label lb_resposta;
+        private Button btn_nova;
     }
 }
