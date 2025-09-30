@@ -62,5 +62,72 @@ namespace Projeto_integrador
             }
         }
 
+        public DataTable procura_titulo(string nome)
+        {
+            string nomeBusca = nome;
+            string sql = "SELECT * FROM jogos WHERE titulo LIKE @nome";
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                using (MySqlDataAdapter da = new MySqlDataAdapter(sql, conn))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@nome", $"%{nomeBusca}%");
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable procura_desenvolvedora(string nome)
+        {
+            string nomeBusca = nome;
+            string sql = "SELECT * FROM jogos WHERE desenvolvedora LIKE @nome";
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                using (MySqlDataAdapter da = new MySqlDataAdapter(sql, conn))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@nome", $"%{nomeBusca}%");
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable procura_distribuidora(string nome)
+        {
+            string nomeBusca = nome;
+            string sql = "SELECT * FROM jogos WHERE distribuidora LIKE @nome";
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                using (MySqlDataAdapter da = new MySqlDataAdapter(sql, conn))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@nome", $"%{nomeBusca}%");
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable procura_informacoes(string nome)
+        {
+            string nomeBusca = nome;
+            string sql = "SELECT * FROM jogos WHERE titulo LIKE @nome";
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                using (MySqlDataAdapter da = new MySqlDataAdapter(sql, conn))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@nome", $"%{nomeBusca}%");
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+        }
     }
 }

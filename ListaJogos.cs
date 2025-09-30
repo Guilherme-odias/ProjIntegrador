@@ -15,7 +15,6 @@ namespace Projeto_integrador
         public ListaJogos()
         {
             InitializeComponent();
-            AtualizarGrid();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
