@@ -14,7 +14,7 @@ namespace Projeto_integrador
 <<<<<<< HEAD
             Application.Run(new Sorteador());
 =======
-            Application.Run(new CadastroJogos());
+           // Application.Run(new CadastroJogos());
 >>>>>>> 041472e5b0582ca6a778d3d7911fc703e246c043
         }
     }
