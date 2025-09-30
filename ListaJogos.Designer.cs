@@ -33,15 +33,15 @@
             label2 = new Label();
             label3 = new Label();
             textBox1 = new TextBox();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dgv = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("SansSerif", 20.2499981F, FontStyle.Bold, GraphicsUnit.Point, 2);
-            label1.Location = new Point(392, 21);
+            label1.Location = new Point(349, 9);
             label1.Name = "label1";
             label1.Size = new Size(211, 31);
             label1.TabIndex = 0;
@@ -52,7 +52,7 @@
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Titulo", "Desenvolvedora", "Distribuidora", "Informacoes" });
-            comboBox1.Location = new Point(83, 113);
+            comboBox1.Location = new Point(171, 127);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(149, 23);
             comboBox1.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 15.75F);
-            label2.Location = new Point(83, 76);
+            label2.Location = new Point(171, 90);
             label2.Name = "label2";
             label2.Size = new Size(149, 24);
             label2.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 15.75F);
-            label3.Location = new Point(270, 76);
+            label3.Location = new Point(358, 90);
             label3.Name = "label3";
             label3.Size = new Size(72, 24);
             label3.TabIndex = 3;
@@ -79,25 +79,26 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(270, 113);
+            textBox1.Location = new Point(358, 127);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(354, 23);
+            textBox1.Size = new Size(382, 23);
             textBox1.TabIndex = 4;
             // 
-            // dataGridView1
+            // dgv
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(83, 185);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(767, 298);
-            dataGridView1.TabIndex = 5;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv.Location = new Point(83, 185);
+            dgv.Name = "dgv";
+            dgv.Size = new Size(767, 298);
+            dgv.TabIndex = 5;
+            dgv.CellContentClick += dataGridView1_CellContentClick;
             // 
             // ListaJogos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(924, 538);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgv);
             Controls.Add(textBox1);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -105,7 +106,7 @@
             Controls.Add(label1);
             Name = "ListaJogos";
             Text = "ListaJogos";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -117,6 +118,6 @@
         private Label label2;
         private Label label3;
         private TextBox textBox1;
-        private DataGridView dataGridView1;
+        private DataGridView dgv;
     }
 }

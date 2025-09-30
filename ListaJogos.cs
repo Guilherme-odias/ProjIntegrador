@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace Projeto_integrador
 {
-    public partial class ListaJogos: Form
+    public partial class ListaJogos : Form
     {
         public ListaJogos()
         {
             InitializeComponent();
+            AtualizarGrid();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

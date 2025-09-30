@@ -56,5 +56,15 @@ namespace Projeto_integrador
             dgvJogos.DataSource = null;
             dgvJogos.DataSource = Jogo.ListarTodos();
         }
+
+        private void dgvJogos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvJogos_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
