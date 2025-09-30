@@ -29,19 +29,27 @@
         private void InitializeComponent()
         {
             btnCadastrar = new Button();
-            lblNomeJogo = new Label();
-            txtNomeJogo = new TextBox();
-            lblGenero = new Label();
-            txtGenero = new TextBox();
-            lblPreco = new Label();
-            txtPreco = new TextBox();
+            lblTitulo = new Label();
+            txtTitulo = new TextBox();
+            lblCategoria = new Label();
+            txtCategoria = new TextBox();
             dgvJogos = new DataGridView();
+            lblDesenvolvedora = new Label();
+            txtDesenvolvedora = new TextBox();
+            lblDistribuidora = new Label();
+            txtDistribuidora = new TextBox();
+            lblInformacoes = new Label();
+            txtInformacoes = new TextBox();
+            lblDataLancamento = new Label();
+            dtpDataLancamento = new DateTimePicker();
+            lblReqSistema = new Label();
+            txtReq_Sis = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvJogos).BeginInit();
             SuspendLayout();
             // 
             // btnCadastrar
             // 
-            btnCadastrar.Location = new Point(634, 28);
+            btnCadastrar.Location = new Point(999, 87);
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(77, 22);
             btnCadastrar.TabIndex = 0;
@@ -49,75 +57,147 @@
             btnCadastrar.UseVisualStyleBackColor = true;
             btnCadastrar.Click += btnCadastrar_Click;
             // 
-            // lblNomeJogo
+            // lblTitulo
             // 
-            lblNomeJogo.AutoSize = true;
-            lblNomeJogo.Location = new Point(50, 11);
-            lblNomeJogo.Name = "lblNomeJogo";
-            lblNomeJogo.Size = new Size(85, 15);
-            lblNomeJogo.TabIndex = 1;
-            lblNomeJogo.Text = "Nome do Jogo";
+            lblTitulo.AutoSize = true;
+            lblTitulo.Location = new Point(91, 7);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(38, 15);
+            lblTitulo.TabIndex = 1;
+            lblTitulo.Text = "Titulo";
             // 
-            // txtNomeJogo
+            // txtTitulo
             // 
-            txtNomeJogo.Location = new Point(50, 29);
-            txtNomeJogo.Name = "txtNomeJogo";
-            txtNomeJogo.Size = new Size(223, 23);
-            txtNomeJogo.TabIndex = 2;
+            txtTitulo.Location = new Point(91, 25);
+            txtTitulo.Name = "txtTitulo";
+            txtTitulo.Size = new Size(223, 23);
+            txtTitulo.TabIndex = 2;
             // 
-            // lblGenero
+            // lblCategoria
             // 
-            lblGenero.AutoSize = true;
-            lblGenero.Location = new Point(296, 11);
-            lblGenero.Name = "lblGenero";
-            lblGenero.Size = new Size(45, 15);
-            lblGenero.TabIndex = 3;
-            lblGenero.Text = "Gênero";
+            lblCategoria.AutoSize = true;
+            lblCategoria.Location = new Point(12, 7);
+            lblCategoria.Name = "lblCategoria";
+            lblCategoria.Size = new Size(58, 15);
+            lblCategoria.TabIndex = 3;
+            lblCategoria.Text = "Categoria";
             // 
-            // txtGenero
+            // txtCategoria
             // 
-            txtGenero.Location = new Point(296, 29);
-            txtGenero.Name = "txtGenero";
-            txtGenero.Size = new Size(238, 23);
-            txtGenero.TabIndex = 4;
-            // 
-            // lblPreco
-            // 
-            lblPreco.AutoSize = true;
-            lblPreco.Location = new Point(553, 11);
-            lblPreco.Name = "lblPreco";
-            lblPreco.Size = new Size(37, 15);
-            lblPreco.TabIndex = 5;
-            lblPreco.Text = "Preço";
-            // 
-            // txtPreco
-            // 
-            txtPreco.Location = new Point(553, 29);
-            txtPreco.Name = "txtPreco";
-            txtPreco.Size = new Size(66, 23);
-            txtPreco.TabIndex = 6;
+            txtCategoria.Location = new Point(12, 25);
+            txtCategoria.Name = "txtCategoria";
+            txtCategoria.Size = new Size(58, 23);
+            txtCategoria.TabIndex = 4;
             // 
             // dgvJogos
             // 
             dgvJogos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJogos.Location = new Point(38, 84);
+            dgvJogos.Location = new Point(12, 115);
             dgvJogos.Name = "dgvJogos";
-            dgvJogos.Size = new Size(713, 326);
+            dgvJogos.Size = new Size(1064, 481);
             dgvJogos.TabIndex = 7;
             dgvJogos.CellContentClick += dgvJogos_CellContentClick_1;
+            // 
+            // lblDesenvolvedora
+            // 
+            lblDesenvolvedora.AutoSize = true;
+            lblDesenvolvedora.Location = new Point(343, 7);
+            lblDesenvolvedora.Name = "lblDesenvolvedora";
+            lblDesenvolvedora.Size = new Size(91, 15);
+            lblDesenvolvedora.TabIndex = 8;
+            lblDesenvolvedora.Text = "Desenvlovedora";
+            // 
+            // txtDesenvolvedora
+            // 
+            txtDesenvolvedora.Location = new Point(343, 25);
+            txtDesenvolvedora.Name = "txtDesenvolvedora";
+            txtDesenvolvedora.Size = new Size(231, 23);
+            txtDesenvolvedora.TabIndex = 9;
+            // 
+            // lblDistribuidora
+            // 
+            lblDistribuidora.AutoSize = true;
+            lblDistribuidora.Location = new Point(600, 7);
+            lblDistribuidora.Name = "lblDistribuidora";
+            lblDistribuidora.Size = new Size(75, 15);
+            lblDistribuidora.TabIndex = 10;
+            lblDistribuidora.Text = "Distribuidora";
+            // 
+            // txtDistribuidora
+            // 
+            txtDistribuidora.Location = new Point(600, 25);
+            txtDistribuidora.Name = "txtDistribuidora";
+            txtDistribuidora.Size = new Size(181, 23);
+            txtDistribuidora.TabIndex = 11;
+            // 
+            // lblInformacoes
+            // 
+            lblInformacoes.AutoSize = true;
+            lblInformacoes.Location = new Point(806, 9);
+            lblInformacoes.Name = "lblInformacoes";
+            lblInformacoes.Size = new Size(73, 15);
+            lblInformacoes.TabIndex = 12;
+            lblInformacoes.Text = "Informações";
+            // 
+            // txtInformacoes
+            // 
+            txtInformacoes.Location = new Point(806, 25);
+            txtInformacoes.Name = "txtInformacoes";
+            txtInformacoes.Size = new Size(270, 23);
+            txtInformacoes.TabIndex = 13;
+            // 
+            // lblDataLancamento
+            // 
+            lblDataLancamento.AutoSize = true;
+            lblDataLancamento.Location = new Point(12, 57);
+            lblDataLancamento.Name = "lblDataLancamento";
+            lblDataLancamento.Size = new Size(116, 15);
+            lblDataLancamento.TabIndex = 14;
+            lblDataLancamento.Text = "Data de Lançamento";
+            // 
+            // dtpDataLancamento
+            // 
+            dtpDataLancamento.Location = new Point(12, 76);
+            dtpDataLancamento.Name = "dtpDataLancamento";
+            dtpDataLancamento.Size = new Size(200, 23);
+            dtpDataLancamento.TabIndex = 15;
+            // 
+            // lblReqSistema
+            // 
+            lblReqSistema.AutoSize = true;
+            lblReqSistema.Location = new Point(237, 57);
+            lblReqSistema.Name = "lblReqSistema";
+            lblReqSistema.Size = new Size(122, 15);
+            lblReqSistema.TabIndex = 16;
+            lblReqSistema.Text = "Requisitos do Sistema";
+            // 
+            // txtReq_Sis
+            // 
+            txtReq_Sis.Location = new Point(237, 75);
+            txtReq_Sis.Name = "txtReq_Sis";
+            txtReq_Sis.Size = new Size(337, 23);
+            txtReq_Sis.TabIndex = 17;
             // 
             // CadastroJogos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1088, 621);
+            Controls.Add(txtReq_Sis);
+            Controls.Add(lblReqSistema);
+            Controls.Add(dtpDataLancamento);
+            Controls.Add(lblDataLancamento);
+            Controls.Add(txtInformacoes);
+            Controls.Add(lblInformacoes);
+            Controls.Add(txtDistribuidora);
+            Controls.Add(lblDistribuidora);
+            Controls.Add(txtDesenvolvedora);
+            Controls.Add(lblDesenvolvedora);
             Controls.Add(dgvJogos);
-            Controls.Add(txtPreco);
-            Controls.Add(lblPreco);
-            Controls.Add(txtGenero);
-            Controls.Add(lblGenero);
-            Controls.Add(txtNomeJogo);
-            Controls.Add(lblNomeJogo);
+            Controls.Add(txtCategoria);
+            Controls.Add(lblCategoria);
+            Controls.Add(txtTitulo);
+            Controls.Add(lblTitulo);
             Controls.Add(btnCadastrar);
             Name = "CadastroJogos";
             Text = "CadastroJogos";
@@ -129,12 +209,20 @@
         #endregion
 
         private Button btnCadastrar;
-        private Label lblNomeJogo;
-        private TextBox txtNomeJogo;
-        private Label lblGenero;
-        private TextBox txtGenero;
-        private Label lblPreco;
-        private TextBox txtPreco;
+        private Label lblTitulo;
+        private TextBox txtTitulo;
+        private Label lblCategoria;
+        private TextBox txtCategoria;
         private DataGridView dgvJogos;
+        private Label lblDesenvolvedora;
+        private TextBox txtDesenvolvedora;
+        private Label lblDistribuidora;
+        private TextBox txtDistribuidora;
+        private Label lblInformacoes;
+        private TextBox txtInformacoes;
+        private Label lblDataLancamento;
+        private DateTimePicker dtpDataLancamento;
+        private Label lblReqSistema;
+        private TextBox txtReq_Sis;
     }
 }

@@ -21,12 +21,21 @@ namespace Projeto_integrador
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            string nome = txtNomeJogo.Text;
-            string genero = txtGenero.Text;
-            string precoTexto = txtPreco.Text;
-            decimal preco;
+            string categoria = txtCategoria.Text;
+            string titulo = txtTitulo.Text;
+            string desenvolvedora = txtDesenvolvedora.Text;
+            string distribuidora = txtDistribuidora.Text;
+            string informacoes = txtInformacoes.Text;
+            DateTime dataLancamento = dtpDataLancamento.Value;
+            string reqSistema = txtReq_Sis.Text;
 
-            if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(genero) || !decimal.TryParse(precoTexto, out preco))
+            // Validação simples
+            if (string.IsNullOrWhiteSpace(categoria) ||
+                string.IsNullOrWhiteSpace(titulo) ||
+                string.IsNullOrWhiteSpace(desenvolvedora) ||
+                string.IsNullOrWhiteSpace(distribuidora) ||
+                string.IsNullOrWhiteSpace(informacoes) ||
+                string.IsNullOrWhiteSpace(reqSistema))
             {
                 MessageBox.Show("Por favor, preencha todos os campos corretamente.");
                 return;
@@ -34,20 +43,35 @@ namespace Projeto_integrador
 
             Jogo jogo = new Jogo
             {
-                Nome = nome,
-                Genero = genero,
-                Preco = preco
+                Categoria = categoria,
+                Titulo = titulo,
+                Desenvolvedora = desenvolvedora,
+                Distribuidora = distribuidora,
+                Informacoes = informacoes,
+                DataLancamento = dataLancamento,
+                RequisitosSistema = reqSistema
             };
 
-            jogo.Inserir();
+            try
+            {
+                jogo.Inserir();
+                MessageBox.Show("Jogo cadastrado com sucesso!");
 
-            MessageBox.Show("Jogo cadastrado com sucesso!");
+                // Limpar campos
+                txtCategoria.Clear();
+                txtTitulo.Clear();
+                txtDesenvolvedora.Clear();
+                txtDistribuidora.Clear();
+                txtInformacoes.Clear();
+                txtReq_Sis.Clear();
+                dtpDataLancamento.Value = DateTime.Now;
 
-            txtNomeJogo.Clear();
-            txtGenero.Clear();
-            txtPreco.Clear();
-
-            AtualizarGrid();
+                AtualizarGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao cadastrar jogo: " + ex.Message);
+            }
 
         }
 
