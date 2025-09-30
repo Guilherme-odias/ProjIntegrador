@@ -13,21 +13,34 @@ namespace Projeto_integrador
 {
     class Jogo
     {
-        public string Nome { get; set; }
-        public string Genero { get; set; }
-        public decimal Preco { get; set; }
+        public string Categoria { get; set; }
+        public string Titulo { get; set; }
+        public string Desenvolvedora { get; set; }
+        public string Distribuidora { get; set; }
+        public string Informacoes { get; set; }
+        public DateTime DataLancamento { get; set; }
+        public string RequisitosSistema { get; set; }
 
         public void Inserir()
         {
             Conexao conexao = new Conexao();
             using (var conn = conexao.GetConnection())
             {
-                string sql = "INSERT INTO jogos (nome, genero, preco) VALUES (@nome, @genero, @preco)";
+                string sql = @"INSERT INTO jogos 
+                    (categoria, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema) 
+                    VALUES 
+                    (@categoria, @titulo, @desenvolvedora, @distribuidora, @informacoes, @data_lancamento, @req_sistema)";
+
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@nome", Nome);
-                    cmd.Parameters.AddWithValue("@genero", Genero);
-                    cmd.Parameters.AddWithValue("@preco", Preco);
+                    cmd.Parameters.AddWithValue("@categoria", Categoria);
+                    cmd.Parameters.AddWithValue("@titulo", Titulo);
+                    cmd.Parameters.AddWithValue("@desenvolvedora", Desenvolvedora);
+                    cmd.Parameters.AddWithValue("@distribuidora", Distribuidora);
+                    cmd.Parameters.AddWithValue("@informacoes", Informacoes);
+                    cmd.Parameters.AddWithValue("@data_lancamento", DataLancamento);
+                    cmd.Parameters.AddWithValue("@req_sistema", RequisitosSistema);
+
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
