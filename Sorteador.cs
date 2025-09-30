@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,11 +17,6 @@ namespace Projeto_integrador
         public Sorteador()
         {
             InitializeComponent();
-        }
-
-        private void Sorteador_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

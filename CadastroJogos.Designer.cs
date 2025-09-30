@@ -104,6 +104,7 @@
             dgvJogos.Name = "dgvJogos";
             dgvJogos.Size = new Size(713, 326);
             dgvJogos.TabIndex = 7;
+            dgvJogos.CellContentClick += dgvJogos_CellContentClick_1;
             // 
             // CadastroJogos
             // 
