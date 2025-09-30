@@ -53,6 +53,7 @@
             tabelasToolStripMenuItem.Name = "tabelasToolStripMenuItem";
             tabelasToolStripMenuItem.Size = new Size(58, 20);
             tabelasToolStripMenuItem.Text = "Tabelas";
+            tabelasToolStripMenuItem.Click += tabelasToolStripMenuItem_Click;
             // 
             // cadastroToolStripMenuItem
             // 
@@ -95,6 +96,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
+            IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "Menu";
             Text = "Menu";

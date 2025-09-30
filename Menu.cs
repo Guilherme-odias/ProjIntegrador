@@ -19,32 +19,42 @@ namespace Projeto_integrador
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TelaCadastroLogin modal = new TelaCadastroLogin();
-            modal.ShowDialog();
+           TelaCadastroLogin form = new TelaCadastroLogin();
+            form.MdiParent = this;
+            form.Show();
         }
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Login modal = new Login();
-            modal.ShowDialog();
+            Login form = new Login();
+            form.MdiParent = this;
+            form.Show();
         }
 
         private void cadastroJogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CadastroJogos modal = new CadastroJogos();
-            modal.ShowDialog();
+            CadastroJogos form = new CadastroJogos();
+            form.MdiParent = this;
+            form.Show();
         }
 
         private void listaJogosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListaJogos modal = new ListaJogos();
-            modal.ShowDialog();
+            ListaJogos form = new ListaJogos();
+            form.MdiParent = this;
+            form.Show();
         }
 
         private void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Sorteador modal = new Sorteador();
-            modal.ShowDialog();
+            Sorteador form = new Sorteador();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
