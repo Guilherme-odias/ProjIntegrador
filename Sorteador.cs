@@ -124,7 +124,7 @@ namespace Projeto_integrador
 
         private void btn_nova_Click(object sender, EventArgs e)
         {
-
+            Sorteador sorteador = new Sorteador();
         }
     }
 }

@@ -176,7 +176,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
-            ClientSize = new Size(824, 669);
+            ClientSize = new Size(831, 679);
             Controls.Add(grp_resultado);
             Controls.Add(btn_sortear);
             Controls.Add(btn_loja);
