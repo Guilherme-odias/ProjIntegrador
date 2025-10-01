@@ -1,4 +1,5 @@
-﻿namespace Projeto_integrador
+﻿
+namespace Projeto_integrador
 {
     partial class Login
     {
@@ -113,7 +114,7 @@
             label4.Size = new Size(251, 19);
             label4.TabIndex = 6;
             label4.Text = "Ainda não tem conta? cadastre-se";
-            label4.Click += label4_Click;
+            label4.Text += label4.Text;
             // 
             // Login
             // 
@@ -133,9 +134,14 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "Login";
             Text = "Login";
-            Load += this.Login_Load;
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
