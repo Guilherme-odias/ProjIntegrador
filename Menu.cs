@@ -19,14 +19,14 @@ namespace Projeto_integrador
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           TelaCadastroLogin form = new TelaCadastroLogin();
+            TelaCadastroLogin form = new TelaCadastroLogin();
             form.MdiParent = this;
             form.Show();
         }
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
             Login form = new Login();
             form.MdiParent = this;
             form.Show();
@@ -54,6 +54,11 @@ namespace Projeto_integrador
         }
 
         private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
         {
 
         }
