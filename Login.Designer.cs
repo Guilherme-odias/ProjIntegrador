@@ -105,7 +105,8 @@ namespace Projeto_integrador
             label3.Text = "Faça o seu login";
             // 
             // label4
-            // 
+            //
+            /*
             label4.AutoSize = true;
             label4.Font = new Font("SansSerif", 12F, FontStyle.Underline, GraphicsUnit.Point, 2);
             label4.ForeColor = Color.DeepSkyBlue;
@@ -115,6 +116,7 @@ namespace Projeto_integrador
             label4.TabIndex = 6;
             label4.Text = "Ainda não tem conta? cadastre-se";
             label4.Text += label4.Text;
+            */
             // 
             // Login
             // 
@@ -122,7 +124,7 @@ namespace Projeto_integrador
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(1028, 570);
-            Controls.Add(label4);
+            //Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
