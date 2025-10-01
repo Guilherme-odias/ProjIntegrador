@@ -56,11 +56,11 @@ namespace Projeto_integrador
             }
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-            TelaCadastroLogin form = new TelaCadastroLogin();
+        
+        
+            /*TelaCadastroLogin form = new TelaCadastroLogin();
             form.MdiParent = this;
-            form.Show();
-        }
+            form.Show();*/
+        
     }
 }
