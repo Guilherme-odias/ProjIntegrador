@@ -58,35 +58,35 @@
             // cadastroToolStripMenuItem
             // 
             cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            cadastroToolStripMenuItem.Size = new Size(180, 22);
+            cadastroToolStripMenuItem.Size = new Size(149, 22);
             cadastroToolStripMenuItem.Text = "Cadastro";
             cadastroToolStripMenuItem.Click += cadastroToolStripMenuItem_Click;
             // 
             // loginToolStripMenuItem
             // 
             loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            loginToolStripMenuItem.Size = new Size(180, 22);
+            loginToolStripMenuItem.Size = new Size(149, 22);
             loginToolStripMenuItem.Text = "Login";
             loginToolStripMenuItem.Click += loginToolStripMenuItem_Click;
             // 
             // cadastroJogoToolStripMenuItem
             // 
             cadastroJogoToolStripMenuItem.Name = "cadastroJogoToolStripMenuItem";
-            cadastroJogoToolStripMenuItem.Size = new Size(180, 22);
+            cadastroJogoToolStripMenuItem.Size = new Size(149, 22);
             cadastroJogoToolStripMenuItem.Text = "Cadastro Jogo";
             cadastroJogoToolStripMenuItem.Click += cadastroJogoToolStripMenuItem_Click;
             // 
             // listaJogosToolStripMenuItem
             // 
             listaJogosToolStripMenuItem.Name = "listaJogosToolStripMenuItem";
-            listaJogosToolStripMenuItem.Size = new Size(180, 22);
+            listaJogosToolStripMenuItem.Size = new Size(149, 22);
             listaJogosToolStripMenuItem.Text = "ListaJogos";
             listaJogosToolStripMenuItem.Click += listaJogosToolStripMenuItem_Click;
             // 
             // sorteadorToolStripMenuItem
             // 
             sorteadorToolStripMenuItem.Name = "sorteadorToolStripMenuItem";
-            sorteadorToolStripMenuItem.Size = new Size(180, 22);
+            sorteadorToolStripMenuItem.Size = new Size(149, 22);
             sorteadorToolStripMenuItem.Text = "Sorteador";
             sorteadorToolStripMenuItem.Click += sorteadorToolStripMenuItem_Click;
             // 
@@ -100,6 +100,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Menu";
             Text = "Menu";
+            Load += Menu_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

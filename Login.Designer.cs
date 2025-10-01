@@ -78,7 +78,6 @@
             label1.Size = new Size(110, 19);
             label1.TabIndex = 3;
             label1.Text = "Email ou User";
-            label1.Click += this.label1_Click;
             // 
             // label2
             // 
@@ -91,7 +90,6 @@
             label2.Size = new Size(56, 19);
             label2.TabIndex = 4;
             label2.Text = "Senha";
-            label2.Click += this.label2_Click;
             // 
             // label3
             // 
@@ -104,7 +102,6 @@
             label3.Size = new Size(289, 41);
             label3.TabIndex = 5;
             label3.Text = "Faça o seu login";
-            label3.Click += this.label3_Click;
             // 
             // label4
             // 
