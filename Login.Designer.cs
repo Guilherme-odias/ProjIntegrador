@@ -33,62 +33,110 @@
             txtSenha = new TextBox();
             label1 = new Label();
             label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             SuspendLayout();
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(314, 298);
+            btnLogin.BackColor = Color.FromArgb(168, 3, 12);
+            btnLogin.Font = new Font("SansSerif", 12F);
+            btnLogin.ForeColor = Color.FromArgb(234, 234, 234);
+            btnLogin.Location = new Point(419, 348);
+            btnLogin.Margin = new Padding(4, 3, 4, 3);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(75, 23);
+            btnLogin.Size = new Size(97, 29);
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(264, 178);
+            txtEmail.Location = new Point(347, 200);
+            txtEmail.Margin = new Padding(4, 3, 4, 3);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(191, 23);
+            txtEmail.Size = new Size(245, 26);
             txtEmail.TabIndex = 1;
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(264, 236);
+            txtSenha.Location = new Point(347, 287);
+            txtSenha.Margin = new Padding(4, 3, 4, 3);
             txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(191, 23);
+            txtSenha.Size = new Size(245, 26);
             txtSenha.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(264, 160);
+            label1.Font = new Font("SansSerif", 12F);
+            label1.ForeColor = Color.FromArgb(234, 234, 234);
+            label1.Location = new Point(406, 178);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(79, 15);
+            label1.Size = new Size(110, 19);
             label1.TabIndex = 3;
             label1.Text = "Email ou User";
+            label1.Click += this.label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(264, 218);
+            label2.Font = new Font("SansSerif", 12F);
+            label2.ForeColor = Color.FromArgb(234, 234, 234);
+            label2.Location = new Point(437, 265);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(39, 15);
+            label2.Size = new Size(56, 19);
             label2.TabIndex = 4;
             label2.Text = "Senha";
+            label2.Click += this.label2_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("SansSerif", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            label3.ForeColor = Color.FromArgb(234, 234, 234);
+            label3.Location = new Point(327, 76);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(289, 41);
+            label3.TabIndex = 5;
+            label3.Text = "Faça o seu login";
+            label3.Click += this.label3_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("SansSerif", 12F, FontStyle.Underline, GraphicsUnit.Point, 2);
+            label4.ForeColor = Color.DeepSkyBlue;
+            label4.Location = new Point(341, 458);
+            label4.Name = "label4";
+            label4.Size = new Size(251, 19);
+            label4.TabIndex = 6;
+            label4.Text = "Ainda não tem conta? cadastre-se";
+            label4.Click += label4_Click;
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.FromArgb(10, 15, 28);
+            ClientSize = new Size(1028, 570);
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtSenha);
             Controls.Add(txtEmail);
             Controls.Add(btnLogin);
+            Font = new Font("SansSerif", 12F);
+            ForeColor = Color.FromArgb(234, 234, 234);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "Login";
             Text = "Login";
+            Load += this.Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -100,5 +148,7 @@
         private TextBox txtSenha;
         private Label label1;
         private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
