@@ -105,7 +105,7 @@
             tipo_user1.AutoSize = true;
             tipo_user1.Font = new Font("Century Gothic", 9.75F);
             tipo_user1.ForeColor = Color.FromArgb(234, 234, 234);
-            tipo_user1.Location = new Point(418, 196);
+            tipo_user1.Location = new Point(403, 197);
             tipo_user1.Name = "tipo_user1";
             tipo_user1.Size = new Size(105, 17);
             tipo_user1.TabIndex = 3;
@@ -249,7 +249,7 @@
             // 
             tipo_user.FormattingEnabled = true;
             tipo_user.Items.AddRange(new object[] { "comum", "adm" });
-            tipo_user.Location = new Point(418, 234);
+            tipo_user.Location = new Point(403, 235);
             tipo_user.Name = "tipo_user";
             tipo_user.Size = new Size(121, 23);
             tipo_user.TabIndex = 22;
