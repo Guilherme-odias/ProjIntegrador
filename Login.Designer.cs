@@ -115,8 +115,7 @@ namespace Projeto_integrador
             label4.Size = new Size(251, 19);
             label4.TabIndex = 6;
             label4.Text = "Ainda não tem conta? cadastre-se";
-            label4.Text += label4.Text;
-            */
+            label4.Click += label4_Click;
             // 
             // Login
             // 
