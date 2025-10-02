@@ -43,13 +43,15 @@ namespace Projeto_integrador
 
                     if (count > 0)
                     {
-                        MessageBox.Show("Login realizado com sucesso!");
-                        //  new Sorteador.Show();
+                        lblAviso.Text = ("Login Realizado com Sucesso!");
+                        Sorteador sorte = new Sorteador();
+                        sorte.Show();
                         this.Hide();
                     }
                     else
                     {
-                        MessageBox.Show("Email ou senha incorretos.");
+                        lblAviso.Text = ("Email ou senha \n incorretos.");
+
                     }
                 }
                 catch (Exception ex)
