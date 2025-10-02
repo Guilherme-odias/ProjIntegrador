@@ -206,6 +206,7 @@
             btnAtualizar.TabIndex = 20;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
+            btnAtualizar.Click += btnAtualizar_Click;
             // 
             // btnRemover
             // 
@@ -243,6 +244,7 @@
             Controls.Add(btnCadastrar);
             Name = "CadastroJogos";
             Text = "CadastroJogos";
+            Load += CadastroJogos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvJogos).EndInit();
             ResumeLayout(false);
             PerformLayout();
