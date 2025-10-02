@@ -12,7 +12,7 @@ namespace Projeto_integrador
     }
     public class RepositorioJogos
     {
-        private string _connectionString = "server=localhost;user id=root;password=root;database=projeto_quimera";
+        private string _connectionString = "server=10.37.44.72;user id=root;password=root;database=projeto_quimera";
 
         // Modelo de jogo
         public class Jogo
