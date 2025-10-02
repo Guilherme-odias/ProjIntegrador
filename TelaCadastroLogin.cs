@@ -77,21 +77,49 @@ namespace Projeto_integrador
                 return;
             }
 
-            
+            if (varsenha.Length < 8)
+            {
+                MessageBox.Show("A senha deve ter pelo menos 8 caracteres.");
+                return;
+            }
+            // 2 - Pelo menos 1 número
+            else if (!varsenha.Any(char.IsDigit))
+            {
+                MessageBox.Show("A senha deve conter pelo menos 1 número.");
+                return;
+            }
+            // 3 - Pelo menos 1 letra maiúscula
+            else if (!varsenha.Any(char.IsUpper))
+            {
+                MessageBox.Show("A senha deve conter pelo menos 1 letra maiúscula.");
+                return;
+            }
+            // pelo memnos 1 letra menoscola
+            else if (!varsenha.Any(char.IsLower))
+            {
+                MessageBox.Show("A senha deve conter pelo menos 1 letra minuscula.");
+                return;
+            }
+            // 4 - Pelo menos 1 caractere especial
+            else if (!varsenha.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                MessageBox.Show("A senha deve conter pelo menos 1 caractere especial.");
+                return;
+            }
 
             // Aqui você insere o usuário no banco
             using (var conn = conexao.GetConnection())
             {
                 string sql = @"INSERT INTO cadastro 
                       (email, nome, nome_user, cpf, tipo_user, senha) 
-                      VALUES (@Email, @Nome, @Nick, @Cpf, @TipoUser, @Senha)";
+                      VALUES (@Email, @Nome, @Nick, @Cpff, @TipoUser, @Senha)";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Email", varemail);
                     cmd.Parameters.AddWithValue("@Nome", varnome);
                     cmd.Parameters.AddWithValue("@Nick", varnick);
-                    cmd.Parameters.AddWithValue("@Cpf", varcpf);
+                    cmd.Parameters.AddWithValue("@Cpff", varcpf);
                     cmd.Parameters.AddWithValue("@TipoUser", vartipouser);
                     cmd.Parameters.AddWithValue("@Senha", varsenha);
 
