@@ -22,7 +22,7 @@ namespace Projeto_integrador
             TelaCadastroLogin form = new TelaCadastroLogin();
             form.MdiParent = this;
             form.Show();
-            this.Hide();
+            
         }
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace Projeto_integrador
             TelaLogin form = new TelaLogin();
             form.MdiParent = this;
             form.Show();
-            this.Hide();
+            
         }
 
         private void cadastroJogoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace Projeto_integrador
             CadastroJogos form = new CadastroJogos();
             form.MdiParent = this;
             form.Show();
-            this.Hide();
+            
         }
 
         private void listaJogosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace Projeto_integrador
             ListaJogos form = new ListaJogos();
             form.MdiParent = this;
             form.Show();
-            this.Hide();
+            
         }
 
         private void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace Projeto_integrador
             Sorteador form = new Sorteador();
             form.MdiParent = this;
             form.Show();
-            this.Hide();
+            
         }
 
         private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
