@@ -134,17 +134,16 @@
             // lb_resposta
             // 
             lb_resposta.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lb_resposta.AutoSize = true;
-            lb_resposta.BackColor = Color.FromArgb(168, 3, 12);
+            lb_resposta.BackColor = Color.Transparent;
             lb_resposta.BorderStyle = BorderStyle.Fixed3D;
             lb_resposta.FlatStyle = FlatStyle.Flat;
             lb_resposta.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb_resposta.ForeColor = Color.White;
-            lb_resposta.Location = new Point(363, 309);
+            lb_resposta.Location = new Point(163, 247);
             lb_resposta.Name = "lb_resposta";
-            lb_resposta.Size = new Size(78, 21);
+            lb_resposta.Size = new Size(477, 85);
             lb_resposta.TabIndex = 7;
-            lb_resposta.Text = "Resposta";
+            lb_resposta.Text = "Resposta do jogo sorteado";
             lb_resposta.TextAlign = ContentAlignment.MiddleCenter;
             lb_resposta.Click += lb_resposta_Click;
             // 
@@ -193,12 +192,12 @@
             Controls.Add(lb_titulo);
             Controls.Add(pictureBox1);
             Name = "Sorteador";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Sorteador";
             Load += Sorteador_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).EndInit();
             grp_resultado.ResumeLayout(false);
-            grp_resultado.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
