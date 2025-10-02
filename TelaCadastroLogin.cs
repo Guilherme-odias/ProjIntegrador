@@ -77,7 +77,29 @@ namespace Projeto_integrador
                 return;
             }
 
-            
+            if (varsenha.Length < 8)
+            {
+                MessageBox.Show("A senha deve ter pelo menos 8 caracteres.");
+                return;
+            }
+            // 2 - Pelo menos 1 número
+            else if (!varsenha.Any(char.IsDigit))
+            {
+                MessageBox.Show("A senha deve conter pelo menos 1 número.");
+                return;
+            }
+            // 3 - Pelo menos 1 letra maiúscula
+            else if (!varsenha.Any(char.IsUpper))
+            {
+                MessageBox.Show("A senha deve conter pelo menos 1 letra maiúscula.");
+                return;
+            }
+            // 4 - Pelo menos 1 caractere especial
+            else if (!varsenha.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                MessageBox.Show("A senha deve conter pelo menos 1 caractere especial.");
+                return;
+            }
 
             // Aqui você insere o usuário no banco
             using (var conn = conexao.GetConnection())
