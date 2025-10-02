@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            button1 = new Button();
+            Login = new Button();
             button2 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            textEmail = new TextBox();
+            textSenha = new TextBox();
+            label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -40,45 +42,68 @@
             label1.BackColor = Color.FromArgb(10, 15, 28);
             label1.Font = new Font("SansSerif", 20F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.Transparent;
-            label1.Location = new Point(289, 66);
+            label1.Location = new Point(292, 81);
             label1.Name = "label1";
             label1.Size = new Size(151, 50);
             label1.TabIndex = 0;
             label1.Text = "LOGIN";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // Login
             // 
-            button1.Location = new Point(216, 260);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            Login.BackColor = Color.FromArgb(168, 3, 12);
+            Login.ForeColor = SystemColors.ButtonHighlight;
+            Login.Location = new Point(254, 260);
+            Login.Name = "Login";
+            Login.Size = new Size(75, 23);
+            Login.TabIndex = 1;
+            Login.Text = "LOGIN";
+            Login.UseVisualStyleBackColor = false;
+            Login.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(426, 260);
+            button2.Location = new Point(401, 260);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 2;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textEmail
             // 
-            textBox1.Location = new Point(319, 153);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 3;
+            textEmail.Location = new Point(292, 155);
+            textEmail.Name = "textEmail";
+            textEmail.Size = new Size(157, 23);
+            textEmail.TabIndex = 3;
             // 
-            // textBox2
+            // textSenha
             // 
-            textBox2.Location = new Point(319, 215);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 4;
+            textSenha.Location = new Point(292, 217);
+            textSenha.Name = "textSenha";
+            textSenha.Size = new Size(157, 23);
+            textSenha.TabIndex = 4;
+            textSenha.TextChanged += textSenha_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = SystemColors.ButtonFace;
+            label2.Location = new Point(292, 199);
+            label2.Name = "label2";
+            label2.Size = new Size(45, 15);
+            label2.TabIndex = 5;
+            label2.Text = "SENHA";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = SystemColors.ButtonFace;
+            label3.Location = new Point(292, 137);
+            label3.Name = "label3";
+            label3.Size = new Size(79, 15);
+            label3.TabIndex = 6;
+            label3.Text = "Email ou User";
             // 
             // TelaLogin
             // 
@@ -86,10 +111,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(textSenha);
+            Controls.Add(textEmail);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(Login);
             Controls.Add(label1);
             Name = "TelaLogin";
             Text = "TelaLogin";
@@ -101,9 +128,11 @@
         #endregion
 
         private Label label1;
-        private Button button1;
+        private Button Login;
         private Button button2;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox textEmail;
+        private TextBox textSenha;
+        private Label label2;
+        private Label label3;
     }
 }
