@@ -29,13 +29,13 @@ namespace Projeto_integrador
             using (var conn = conexao.GetConnection())
             {
                 string sql = @"INSERT INTO jogos 
-                    (categoria, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema) 
+                    (id_categoria, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema) 
                     VALUES 
-                    (@categoria, @titulo, @desenvolvedora, @distribuidora, @informacoes, @data_lancamento, @req_sistema)";
+                    (@id_categoria, @titulo, @desenvolvedora, @distribuidora, @informacoes, @data_lancamento, @req_sistema)";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@categoria", Categoria);
+                    cmd.Parameters.AddWithValue("@id_categoria", Categoria);
                     cmd.Parameters.AddWithValue("@titulo", Titulo);
                     cmd.Parameters.AddWithValue("@desenvolvedora", Desenvolvedora);
                     cmd.Parameters.AddWithValue("@distribuidora", Distribuidora);
