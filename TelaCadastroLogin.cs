@@ -94,6 +94,12 @@ namespace Projeto_integrador
                 MessageBox.Show("A senha deve conter pelo menos 1 letra maiúscula.");
                 return;
             }
+            // pelo memnos 1 letra menoscola
+            else if (!varsenha.Any(char.IsLower))
+            {
+                MessageBox.Show("A senha deve conter pelo menos 1 letra minuscula.");
+                return;
+            }
             // 4 - Pelo menos 1 caractere especial
             else if (!varsenha.Any(ch => !char.IsLetterOrDigit(ch)))
             {
