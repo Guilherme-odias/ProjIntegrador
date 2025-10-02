@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sorteador));
             pictureBox1 = new PictureBox();
             lb_titulo = new Label();
             txt_user = new TextBox();
@@ -183,7 +184,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
-            ClientSize = new Size(815, 487);
+            ClientSize = new Size(816, 488);
             Controls.Add(grp_resultado);
             Controls.Add(btn_sortear);
             Controls.Add(btn_loja);
@@ -191,6 +192,7 @@
             Controls.Add(txt_user);
             Controls.Add(lb_titulo);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Sorteador";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sorteador";

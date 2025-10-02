@@ -106,7 +106,7 @@ namespace Projeto_integrador
                 timer_an.Stop();
 
                 // Mostra o resultado final
-                lb_resposta.Text = "🎮 👿 " + _jogoSorteado.Titulo;
+                lb_resposta.Text = "🎮 " + _jogoSorteado.Titulo;
 
                 // Tenta carregar imagem
                 if (!string.IsNullOrWhiteSpace(_jogoSorteado.Imagem))
