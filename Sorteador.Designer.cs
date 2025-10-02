@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             pictureBox1 = new PictureBox();
             lb_titulo = new Label();
             txt_user = new TextBox();
@@ -38,6 +39,7 @@
             lb_resposta = new Label();
             btn_nova = new Button();
             grp_resultado = new GroupBox();
+            timer_an = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).BeginInit();
             grp_resultado.SuspendLayout();
@@ -46,7 +48,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.controle_ps1;
-            pictureBox1.Location = new Point(369, 28);
+            pictureBox1.Location = new Point(312, 21);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(189, 120);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -60,7 +62,7 @@
             lb_titulo.FlatStyle = FlatStyle.Popup;
             lb_titulo.Font = new Font("SansSerif", 14.2499981F, FontStyle.Italic, GraphicsUnit.Point, 2);
             lb_titulo.ForeColor = Color.FromArgb(234, 234, 234);
-            lb_titulo.Location = new Point(134, 165);
+            lb_titulo.Location = new Point(86, 156);
             lb_titulo.Name = "lb_titulo";
             lb_titulo.Size = new Size(651, 22);
             lb_titulo.TabIndex = 1;
@@ -71,8 +73,8 @@
             txt_user.BackColor = SystemColors.ActiveCaption;
             txt_user.BorderStyle = BorderStyle.FixedSingle;
             txt_user.Font = new Font("Lucida Console", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_user.ForeColor = Color.FromArgb(234, 234, 234);
-            txt_user.Location = new Point(218, 348);
+            txt_user.ForeColor = Color.Black;
+            txt_user.Location = new Point(160, 309);
             txt_user.Name = "txt_user";
             txt_user.Size = new Size(480, 23);
             txt_user.TabIndex = 2;
@@ -84,7 +86,7 @@
             btn_bibl.FlatStyle = FlatStyle.Flat;
             btn_bibl.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_bibl.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_bibl.Location = new Point(270, 225);
+            btn_bibl.Location = new Point(186, 216);
             btn_bibl.Name = "btn_bibl";
             btn_bibl.Size = new Size(177, 38);
             btn_bibl.TabIndex = 3;
@@ -98,7 +100,7 @@
             btn_loja.FlatStyle = FlatStyle.Flat;
             btn_loja.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_loja.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_loja.Location = new Point(491, 225);
+            btn_loja.Location = new Point(451, 216);
             btn_loja.Name = "btn_loja";
             btn_loja.Size = new Size(116, 38);
             btn_loja.TabIndex = 4;
@@ -112,7 +114,7 @@
             btn_sortear.FlatStyle = FlatStyle.Flat;
             btn_sortear.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_sortear.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_sortear.Location = new Point(426, 420);
+            btn_sortear.Location = new Point(391, 397);
             btn_sortear.Name = "btn_sortear";
             btn_sortear.Size = new Size(75, 38);
             btn_sortear.TabIndex = 5;
@@ -131,14 +133,16 @@
             // 
             // lb_resposta
             // 
+            lb_resposta.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lb_resposta.AutoSize = true;
             lb_resposta.BackColor = Color.FromArgb(168, 3, 12);
+            lb_resposta.BorderStyle = BorderStyle.Fixed3D;
             lb_resposta.FlatStyle = FlatStyle.Flat;
             lb_resposta.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb_resposta.ForeColor = Color.FromArgb(234, 234, 234);
-            lb_resposta.Location = new Point(369, 235);
+            lb_resposta.ForeColor = Color.White;
+            lb_resposta.Location = new Point(363, 309);
             lb_resposta.Name = "lb_resposta";
-            lb_resposta.Size = new Size(76, 19);
+            lb_resposta.Size = new Size(78, 21);
             lb_resposta.TabIndex = 7;
             lb_resposta.Text = "Resposta";
             lb_resposta.TextAlign = ContentAlignment.MiddleCenter;
@@ -150,7 +154,7 @@
             btn_nova.FlatStyle = FlatStyle.Flat;
             btn_nova.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_nova.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_nova.Location = new Point(346, 283);
+            btn_nova.Location = new Point(346, 358);
             btn_nova.Name = "btn_nova";
             btn_nova.Size = new Size(120, 49);
             btn_nova.TabIndex = 8;
@@ -165,18 +169,22 @@
             grp_resultado.Controls.Add(lb_resposta);
             grp_resultado.Location = new Point(0, 0);
             grp_resultado.Name = "grp_resultado";
-            grp_resultado.Size = new Size(823, 671);
+            grp_resultado.Size = new Size(815, 487);
             grp_resultado.TabIndex = 9;
             grp_resultado.TabStop = false;
             grp_resultado.Text = "groupBox1";
             grp_resultado.Visible = false;
+            // 
+            // timer_an
+            // 
+            timer_an.Interval = 50;
             // 
             // Sorteador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
-            ClientSize = new Size(831, 679);
+            ClientSize = new Size(815, 487);
             Controls.Add(grp_resultado);
             Controls.Add(btn_sortear);
             Controls.Add(btn_loja);
@@ -207,5 +215,6 @@
         private Label lb_resposta;
         private Button btn_nova;
         private GroupBox grp_resultado;
+        private System.Windows.Forms.Timer timer_an;
     }
 }
