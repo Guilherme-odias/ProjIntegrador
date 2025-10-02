@@ -77,6 +77,8 @@ namespace Projeto_integrador
                 return;
             }
 
+            
+
             // Aqui você insere o usuário no banco
             using (var conn = conexao.GetConnection())
             {
