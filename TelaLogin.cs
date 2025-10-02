@@ -63,5 +63,12 @@ namespace Projeto_integrador
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TelaCadastroLogin Tela = new TelaCadastroLogin();
+            Tela.Show();
+            this.Hide();
+        }
     }
 }
