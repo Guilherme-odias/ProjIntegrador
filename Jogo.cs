@@ -55,7 +55,7 @@ namespace Projeto_integrador
             using (var conn = conexao.GetConnection())
             {
                 string sql = @"UPDATE jogos SET 
-                        categoria = @categoria,
+                        id_categoria = @id_categoria,
                         titulo = @titulo,
                         desenvolvedora = @desenvolvedora,
                         distribuidora = @distribuidora,
@@ -66,7 +66,7 @@ namespace Projeto_integrador
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@categoria", Categoria);
+                    cmd.Parameters.AddWithValue("@id_categoria", Categoria);
                     cmd.Parameters.AddWithValue("@titulo", Titulo);
                     cmd.Parameters.AddWithValue("@desenvolvedora", Desenvolvedora);
                     cmd.Parameters.AddWithValue("@distribuidora", Distribuidora);

@@ -109,7 +109,7 @@
             lblDesenvolvedora.Name = "lblDesenvolvedora";
             lblDesenvolvedora.Size = new Size(91, 15);
             lblDesenvolvedora.TabIndex = 8;
-            lblDesenvolvedora.Text = "Desenvlovedora";
+            lblDesenvolvedora.Text = "Desenvolvedora";
             // 
             // txtDesenvolvedora
             // 
