@@ -26,10 +26,6 @@ namespace Projeto_integrador
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            Login form = new Login();
-            form.MdiParent = this;
-            form.Show();
         }
 
         private void cadastroJogoToolStripMenuItem_Click(object sender, EventArgs e)

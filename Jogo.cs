@@ -20,6 +20,8 @@ namespace Projeto_integrador
         public string Informacoes { get; set; }
         public DateTime DataLancamento { get; set; }
         public string RequisitosSistema { get; set; }
+        public int Id { get; set; }
+
 
         public void Inserir()
         {
@@ -46,6 +48,55 @@ namespace Projeto_integrador
                 }
             }
         }
+
+        public void Atualizar()
+        {
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                string sql = @"UPDATE jogos SET 
+                        categoria = @categoria,
+                        titulo = @titulo,
+                        desenvolvedora = @desenvolvedora,
+                        distribuidora = @distribuidora,
+                        informacoes = @informacoes,
+                        data_lancamento = @data_lancamento,
+                        req_sistema = @req_sistema
+                    WHERE id = @id";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@categoria", Categoria);
+                    cmd.Parameters.AddWithValue("@titulo", Titulo);
+                    cmd.Parameters.AddWithValue("@desenvolvedora", Desenvolvedora);
+                    cmd.Parameters.AddWithValue("@distribuidora", Distribuidora);
+                    cmd.Parameters.AddWithValue("@informacoes", Informacoes);
+                    cmd.Parameters.AddWithValue("@data_lancamento", DataLancamento);
+                    cmd.Parameters.AddWithValue("@req_sistema", RequisitosSistema);
+                    cmd.Parameters.AddWithValue("@id", Id);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Remover()
+        {
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                string sql = "DELETE FROM jogos WHERE id = @id";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", Id);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
         public static DataTable ListarTodos()
         {

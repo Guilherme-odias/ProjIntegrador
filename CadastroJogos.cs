@@ -13,6 +13,8 @@ namespace Projeto_integrador
 {
     public partial class CadastroJogos : Form
     {
+        private int jogoSelecionadoId = -1;
+
         public CadastroJogos()
         {
             InitializeComponent();
@@ -87,6 +89,43 @@ namespace Projeto_integrador
         }
 
         private void dgvJogos_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            Conexao conexao = new Conexao();
+            using (var conn = conexao.GetConnection())
+            {
+                string sql = @"UPDATE jogos SET 
+                        categoria = @categoria,
+                        titulo = @titulo,
+                        desenvolvedora = @desenvolvedora,
+                        distribuidora = @distribuidora,
+                        informacoes = @informacoes,
+                        data_lancamento = @data_lancamento,
+                        req_sistema = @req_sistema
+                    WHERE id = @id";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    string categoria = txtCategoria.Text;
+                    string titulo = txtTitulo.Text;
+                    string desenvolvedora = txtDesenvolvedora.Text;
+                    string distribuidora = txtDistribuidora.Text;
+                    string informacoes = txtInformacoes.Text;
+                    DateTime dataLancamento = dtpDataLancamento.Value;
+                    string reqSistema = txtReq_Sis.Text;
+                    cmd.Parameters.AddWithValue("@titulo", txtTitulo);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void CadastroJogos_Load(object sender, EventArgs e)
         {
 
         }
