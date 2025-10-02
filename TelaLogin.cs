@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +24,42 @@ namespace Projeto_integrador
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            string email = textEmail.Text;
+            string senha = textSenha.Text;
+
+            Conexao conexao = new Conexao();
+
+            using (MySqlConnection conn = conexao.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM cadastro WHERE (email = @login OR nome_user = @login) AND senha = @senha";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@login", email);
+                    cmd.Parameters.AddWithValue("@senha", senha);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Login realizado com sucesso!");
+                        //  new Sorteador.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email ou senha incorretos.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao fazer login: " + ex.Message);
+                }
+            }
+        }
+
+        private void textSenha_TextChanged(object sender, EventArgs e)
         {
 
         }
