@@ -112,14 +112,14 @@ namespace Projeto_integrador
             {
                 string sql = @"INSERT INTO cadastro 
                       (email, nome, nome_user, cpf, tipo_user, senha) 
-                      VALUES (@Email, @Nome, @Nick, @Cpf, @TipoUser, @Senha)";
+                      VALUES (@Email, @Nome, @Nick, @Cpff, @TipoUser, @Senha)";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Email", varemail);
                     cmd.Parameters.AddWithValue("@Nome", varnome);
                     cmd.Parameters.AddWithValue("@Nick", varnick);
-                    cmd.Parameters.AddWithValue("@Cpf", varcpf);
+                    cmd.Parameters.AddWithValue("@Cpff", varcpf);
                     cmd.Parameters.AddWithValue("@TipoUser", vartipouser);
                     cmd.Parameters.AddWithValue("@Senha", varsenha);
 
