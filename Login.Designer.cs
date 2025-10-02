@@ -7,6 +7,13 @@ namespace Projeto_integrador
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private object label3;
+        private Label label4;
+        private Button btnLogin;
+        private TextBox txtEmail;
+        private TextBox txtSenha;
+        private Label label1;
+        private Label label2;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -103,6 +110,8 @@ namespace Projeto_integrador
             label3.Size = new Size(289, 41);
             label3.TabIndex = 5;
             label3.Text = "Faça o seu login";
+}
+    }
             // 
             // label4
             //
