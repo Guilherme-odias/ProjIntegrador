@@ -44,12 +44,16 @@
             dtpDataLancamento = new DateTimePicker();
             lblReqSistema = new Label();
             txtReq_Sis = new TextBox();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            btnAtualizar = new Button();
+            btnRemover = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvJogos).BeginInit();
             SuspendLayout();
             // 
             // btnCadastrar
             // 
-            btnCadastrar.Location = new Point(999, 87);
+            btnCadastrar.Location = new Point(819, 74);
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(77, 22);
             btnCadastrar.TabIndex = 0;
@@ -175,14 +179,52 @@
             // 
             txtReq_Sis.Location = new Point(237, 75);
             txtReq_Sis.Name = "txtReq_Sis";
-            txtReq_Sis.Size = new Size(337, 23);
+            txtReq_Sis.Size = new Size(312, 23);
             txtReq_Sis.TabIndex = 17;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(573, 57);
+            label1.Name = "label1";
+            label1.Size = new Size(52, 15);
+            label1.TabIndex = 18;
+            label1.Text = "Imagens";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(573, 75);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(220, 23);
+            textBox1.TabIndex = 19;
+            // 
+            // btnAtualizar
+            // 
+            btnAtualizar.Location = new Point(902, 75);
+            btnAtualizar.Name = "btnAtualizar";
+            btnAtualizar.Size = new Size(75, 20);
+            btnAtualizar.TabIndex = 20;
+            btnAtualizar.Text = "Atualizar";
+            btnAtualizar.UseVisualStyleBackColor = true;
+            // 
+            // btnRemover
+            // 
+            btnRemover.Location = new Point(983, 74);
+            btnRemover.Name = "btnRemover";
+            btnRemover.Size = new Size(75, 21);
+            btnRemover.TabIndex = 21;
+            btnRemover.Text = "Remover";
+            btnRemover.UseVisualStyleBackColor = true;
             // 
             // CadastroJogos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1088, 621);
+            Controls.Add(btnRemover);
+            Controls.Add(btnAtualizar);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
             Controls.Add(txtReq_Sis);
             Controls.Add(lblReqSistema);
             Controls.Add(dtpDataLancamento);
@@ -224,5 +266,9 @@
         private DateTimePicker dtpDataLancamento;
         private Label lblReqSistema;
         private TextBox txtReq_Sis;
+        private Label label1;
+        private TextBox textBox1;
+        private Button btnAtualizar;
+        private Button btnRemover;
     }
 }

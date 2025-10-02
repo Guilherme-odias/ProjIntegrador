@@ -18,27 +18,22 @@ namespace Projeto_integrador
         private RepositorioJogos _repositorio;
         private string modo = ""; // "loja" ou "biblioteca"
 
+        // variáveis para animação
+        private List<string> _titulosAnimacao;
+        private int _animIndex;
+        private int _velocidade;
+        private RepositorioJogos.Jogo _jogoSorteado;
+
         public Sorteador()
         {
             InitializeComponent();
             _repositorio = new RepositorioJogos();
 
-            // estado inicial
-            grp_resultado.Visible = false;      // se tiver groupbox de resultado
-            txt_user.Visible = false;         // só aparece quando escolher Biblioteca
+            grp_resultado.Visible = false;
+            txt_user.Visible = false;       
 
-            // (opcional) ligar eventos manualmente se não estiverem ligados no Designer:
-            // btn_bibl.Click += btn_bibl_Click;
-            // btn_loja.Click += btn_loja_Click;
-            // btn_sortear.Click += btn_sortear_Click;
-            // btn_nova.Click += btn_nova_Click;
-        }
+            timer_an.Tick += TimerAnimacao_Tick;
 
-        // botão Minha Biblioteca
-
-        private void Sorteador_Load(object sender, EventArgs e)
-        {
-            // nada aqui (a menos que queira algo ao abrir)
         }
 
         private void btn_bibl_Click_1(object sender, EventArgs e)
@@ -54,10 +49,6 @@ namespace Projeto_integrador
             txt_user.Visible = false;
         }
 
-        private void txt_user_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_sortear_Click(object sender, EventArgs e)
         {
@@ -75,43 +66,83 @@ namespace Projeto_integrador
             }
 
             // Sorteia usando a classe
-            var jogoSorteado = _repositorio.SortearJogo(modo, txt_user.Text.Trim());
+            _jogoSorteado = _repositorio.SortearJogo(modo, txt_user.Text.Trim());
 
-            if (jogoSorteado == null)
+            if (_jogoSorteado == null)
             {
                 MessageBox.Show("Nenhum jogo encontrado.");
                 return;
             }
 
-            // Atualiza UI
-            lb_resposta.Text = jogoSorteado.Titulo;
+            // Prepara lista de títulos para simular "roleta"
+            _titulosAnimacao = new List<string>();
+            for (int i = 0; i < 5; i++)
+                _titulosAnimacao.Add("Sorteando... " + (i + 1));
+            _titulosAnimacao.Add(_jogoSorteado.Titulo);
+
+            _animIndex = _titulosAnimacao.Count - 1;
+            _velocidade = 50; // começa rápido
+            timer_an.Interval = _velocidade;
+            timer_an.Start();
+
+            grp_resultado.Visible = true;
+            lb_resposta.Text = "";
             pt_image_jogo.Image = null;
-
-            // Carrega imagem da URL (se houver)
-            if (!string.IsNullOrWhiteSpace(jogoSorteado.Imagem))
-            {
-                try
-                {
-                    using (var wc = new WebClient())
-                    {
-                        byte[] data = wc.DownloadData(jogoSorteado.Imagem);
-                        using (var ms = new System.IO.MemoryStream(data))
-                        {
-                            pt_image_jogo.Image = Image.FromStream(ms);
-                            pt_image_jogo.SizeMode = PictureBoxSizeMode.Zoom; // ou StretchImage
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // se quiser, mostra mensagem simples e segue
-                    MessageBox.Show("Não foi possível carregar a imagem do jogo.\n" + ex.Message);
-                }
-            }
-
-            grp_resultado.Visible = true; // mostra o bloco com resultado
         }
 
+        private void TimerAnimacao_Tick(object sender, EventArgs e)
+        {
+            if (_animIndex >= 0)
+            {
+                lb_resposta.Text = _titulosAnimacao[_animIndex];
+                _animIndex--;
+
+                // desacelera gradualmente
+                _velocidade += 40;
+                timer_an.Interval = _velocidade;
+            }
+            else
+            {
+                timer_an.Stop();
+
+                // Mostra o resultado final
+                lb_resposta.Text = "🎮 👿 " + _jogoSorteado.Titulo;
+
+                // Tenta carregar imagem
+                if (!string.IsNullOrWhiteSpace(_jogoSorteado.Imagem))
+                {
+                    try
+                    {
+                        using (var wc = new WebClient())
+                        {
+                            byte[] data = wc.DownloadData(_jogoSorteado.Imagem);
+                            using (var ms = new System.IO.MemoryStream(data))
+                            {
+                                pt_image_jogo.Image = Image.FromStream(ms);
+                                pt_image_jogo.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        pt_image_jogo.Image = null;
+                    }
+                }
+            }
+        }
+
+        private void btn_nova_Click(object sender, EventArgs e)
+        {
+                lb_resposta.Text = "";
+                pt_image_jogo.Image = null;
+                grp_resultado.Visible = false;
+
+                // Se estiver no modo biblioteca, deixa a caixa visível
+            if (modo == "minha_biblioteca")
+                txt_user.Visible = true;
+            else
+                txt_user.Visible = false;
+        }
         private void pt_image_jogo_Click(object sender, EventArgs e)
         {
 
@@ -122,9 +153,13 @@ namespace Projeto_integrador
 
         }
 
-        private void btn_nova_Click(object sender, EventArgs e)
+        private void txt_user_TextChanged(object sender, EventArgs e)
         {
-            Sorteador sorteador = new Sorteador();
+
+        }
+
+        private void Sorteador_Load(object sender, EventArgs e)
+        {
         }
     }
 }
