@@ -41,45 +41,45 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { tabelasToolStripMenuItem });
             resources.ApplyResources(menuStrip1, "menuStrip1");
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tabelasToolStripMenuItem });
             menuStrip1.Name = "menuStrip1";
             // 
             // tabelasToolStripMenuItem
             // 
-            tabelasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, loginToolStripMenuItem, cadastroJogoToolStripMenuItem, listaJogosToolStripMenuItem, sorteadorToolStripMenuItem });
             resources.ApplyResources(tabelasToolStripMenuItem, "tabelasToolStripMenuItem");
+            tabelasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, loginToolStripMenuItem, cadastroJogoToolStripMenuItem, listaJogosToolStripMenuItem, sorteadorToolStripMenuItem });
             tabelasToolStripMenuItem.Name = "tabelasToolStripMenuItem";
             tabelasToolStripMenuItem.Click += tabelasToolStripMenuItem_Click;
             // 
             // cadastroToolStripMenuItem
             // 
-            cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             resources.ApplyResources(cadastroToolStripMenuItem, "cadastroToolStripMenuItem");
+            cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             cadastroToolStripMenuItem.Click += cadastroToolStripMenuItem_Click;
             // 
             // loginToolStripMenuItem
             // 
-            loginToolStripMenuItem.Name = "loginToolStripMenuItem";
             resources.ApplyResources(loginToolStripMenuItem, "loginToolStripMenuItem");
+            loginToolStripMenuItem.Name = "loginToolStripMenuItem";
             loginToolStripMenuItem.Click += loginToolStripMenuItem_Click;
             // 
             // cadastroJogoToolStripMenuItem
             // 
-            cadastroJogoToolStripMenuItem.Name = "cadastroJogoToolStripMenuItem";
             resources.ApplyResources(cadastroJogoToolStripMenuItem, "cadastroJogoToolStripMenuItem");
+            cadastroJogoToolStripMenuItem.Name = "cadastroJogoToolStripMenuItem";
             cadastroJogoToolStripMenuItem.Click += cadastroJogoToolStripMenuItem_Click;
             // 
             // listaJogosToolStripMenuItem
             // 
-            listaJogosToolStripMenuItem.Name = "listaJogosToolStripMenuItem";
             resources.ApplyResources(listaJogosToolStripMenuItem, "listaJogosToolStripMenuItem");
+            listaJogosToolStripMenuItem.Name = "listaJogosToolStripMenuItem";
             listaJogosToolStripMenuItem.Click += listaJogosToolStripMenuItem_Click;
             // 
             // sorteadorToolStripMenuItem
             // 
-            sorteadorToolStripMenuItem.Name = "sorteadorToolStripMenuItem";
             resources.ApplyResources(sorteadorToolStripMenuItem, "sorteadorToolStripMenuItem");
+            sorteadorToolStripMenuItem.Name = "sorteadorToolStripMenuItem";
             sorteadorToolStripMenuItem.Click += sorteadorToolStripMenuItem_Click;
             // 
             // Menu
@@ -93,6 +93,7 @@
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "Menu";
+            WindowState = FormWindowState.Maximized;
             Load += Menu_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
