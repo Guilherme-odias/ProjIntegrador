@@ -243,7 +243,7 @@
             Controls.Add(lblTitulo);
             Controls.Add(btnCadastrar);
             Name = "CadastroJogos";
-            Text = "CadastroJogos";
+            Text = "'";
             Load += CadastroJogos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvJogos).EndInit();
             ResumeLayout(false);
