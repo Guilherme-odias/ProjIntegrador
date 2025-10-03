@@ -35,6 +35,14 @@
             label3 = new Label();
             EnviarCodigo = new Button();
             button1 = new Button();
+            lblCodigo = new Label();
+            lblVerificar = new Label();
+            txtSenha = new TextBox();
+            txtConfirma = new TextBox();
+            label4 = new Label();
+            btnConfirma = new Button();
+            lblMensagem = new Label();
+            verSenha = new CheckBox();
             SuspendLayout();
             // 
             // txtEmail
@@ -106,12 +114,102 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_2;
             // 
+            // lblCodigo
+            // 
+            lblCodigo.AutoSize = true;
+            lblCodigo.ForeColor = Color.FromArgb(234, 234, 234);
+            lblCodigo.Location = new Point(314, 192);
+            lblCodigo.Name = "lblCodigo";
+            lblCodigo.Size = new Size(10, 15);
+            lblCodigo.TabIndex = 7;
+            lblCodigo.Text = " ";
+            // 
+            // lblVerificar
+            // 
+            lblVerificar.AutoSize = true;
+            lblVerificar.ForeColor = Color.FromArgb(234, 234, 234);
+            lblVerificar.Location = new Point(419, 140);
+            lblVerificar.Name = "lblVerificar";
+            lblVerificar.Size = new Size(10, 15);
+            lblVerificar.TabIndex = 8;
+            lblVerificar.Text = " ";
+            // 
+            // txtSenha
+            // 
+            txtSenha.Location = new Point(102, 184);
+            txtSenha.Name = "txtSenha";
+            txtSenha.Size = new Size(177, 23);
+            txtSenha.TabIndex = 9;
+            txtSenha.Visible = false;
+            txtSenha.TextChanged += txtSenha_TextChanged;
+            // 
+            // txtConfirma
+            // 
+            txtConfirma.Location = new Point(102, 229);
+            txtConfirma.Name = "txtConfirma";
+            txtConfirma.Size = new Size(177, 23);
+            txtConfirma.TabIndex = 10;
+            txtConfirma.Visible = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.FromArgb(234, 234, 234);
+            label4.Location = new Point(102, 211);
+            label4.Name = "label4";
+            label4.Size = new Size(118, 15);
+            label4.TabIndex = 11;
+            label4.Text = "CONFIRME A SENHA";
+            label4.Visible = false;
+            // 
+            // btnConfirma
+            // 
+            btnConfirma.BackColor = Color.FromArgb(168, 3, 12);
+            btnConfirma.ForeColor = Color.FromArgb(234, 234, 234);
+            btnConfirma.Location = new Point(136, 270);
+            btnConfirma.Name = "btnConfirma";
+            btnConfirma.Size = new Size(84, 26);
+            btnConfirma.TabIndex = 12;
+            btnConfirma.Text = "CONFIRMAR";
+            btnConfirma.UseVisualStyleBackColor = false;
+            btnConfirma.Visible = false;
+            btnConfirma.Click += btnConfirma_Click;
+            // 
+            // lblMensagem
+            // 
+            lblMensagem.AutoSize = true;
+            lblMensagem.ForeColor = Color.FromArgb(234, 234, 234);
+            lblMensagem.Location = new Point(314, 229);
+            lblMensagem.Name = "lblMensagem";
+            lblMensagem.Size = new Size(10, 15);
+            lblMensagem.TabIndex = 13;
+            lblMensagem.Text = " ";
+            // 
+            // verSenha
+            // 
+            verSenha.AutoSize = true;
+            verSenha.Location = new Point(293, 189);
+            verSenha.Name = "verSenha";
+            verSenha.Size = new Size(15, 14);
+            verSenha.TabIndex = 14;
+            verSenha.UseVisualStyleBackColor = true;
+            verSenha.Visible = false;
+            verSenha.CheckedChanged += verSenha_CheckedChanged;
+            // 
             // EsqueciSenha
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(681, 423);
+            Controls.Add(verSenha);
+            Controls.Add(lblMensagem);
+            Controls.Add(btnConfirma);
+            Controls.Add(label4);
+            Controls.Add(txtConfirma);
+            Controls.Add(txtSenha);
+            Controls.Add(lblVerificar);
+            Controls.Add(lblCodigo);
             Controls.Add(button1);
             Controls.Add(EnviarCodigo);
             Controls.Add(label3);
@@ -134,5 +232,13 @@
         private Label label3;
         private Button EnviarCodigo;
         private Button button1;
+        private Label lblCodigo;
+        private Label lblVerificar;
+        private TextBox txtSenha;
+        private TextBox txtConfirma;
+        private Label label4;
+        private Button btnConfirma;
+        private Label lblMensagem;
+        private CheckBox verSenha;
     }
 }
