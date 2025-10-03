@@ -136,7 +136,7 @@
             pt_image_jogo.Location = new Point(401, 53);
             pt_image_jogo.Margin = new Padding(4);
             pt_image_jogo.Name = "pt_image_jogo";
-            pt_image_jogo.Size = new Size(243, 224);
+            pt_image_jogo.Size = new Size(243, 299);
             pt_image_jogo.TabIndex = 6;
             pt_image_jogo.TabStop = false;
             pt_image_jogo.Click += pt_image_jogo_Click;
@@ -149,7 +149,7 @@
             lb_resposta.FlatStyle = FlatStyle.Flat;
             lb_resposta.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lb_resposta.ForeColor = Color.White;
-            lb_resposta.Location = new Point(239, 313);
+            lb_resposta.Location = new Point(219, 386);
             lb_resposta.Margin = new Padding(4, 0, 4, 0);
             lb_resposta.Name = "lb_resposta";
             lb_resposta.Size = new Size(560, 108);
@@ -164,7 +164,7 @@
             btn_nova.FlatStyle = FlatStyle.Flat;
             btn_nova.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_nova.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_nova.Location = new Point(444, 453);
+            btn_nova.Location = new Point(430, 532);
             btn_nova.Margin = new Padding(4);
             btn_nova.Name = "btn_nova";
             btn_nova.Size = new Size(156, 62);
