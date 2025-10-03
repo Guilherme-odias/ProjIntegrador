@@ -35,6 +35,7 @@
             textSenha = new TextBox();
             label2 = new Label();
             label3 = new Label();
+            lblAviso = new Label();
             SuspendLayout();
             // 
             // label1
@@ -53,7 +54,7 @@
             // 
             Login.BackColor = Color.FromArgb(168, 3, 12);
             Login.ForeColor = SystemColors.ButtonHighlight;
-            Login.Location = new Point(254, 260);
+            Login.Location = new Point(262, 260);
             Login.Name = "Login";
             Login.Size = new Size(75, 23);
             Login.TabIndex = 1;
@@ -63,12 +64,14 @@
             // 
             // button2
             // 
-            button2.Location = new Point(401, 260);
+            button2.BackColor = Color.FromArgb(168, 3, 12);
+            button2.ForeColor = SystemColors.ButtonHighlight;
+            button2.Location = new Point(417, 260);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(82, 23);
             button2.TabIndex = 2;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            button2.Text = "CADASTRO";
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // textEmail
@@ -106,12 +109,22 @@
             label3.TabIndex = 6;
             label3.Text = "Email ou User";
             // 
+            // lblAviso
+            // 
+            lblAviso.AutoSize = true;
+            lblAviso.ForeColor = SystemColors.ButtonHighlight;
+            lblAviso.Location = new Point(340, 312);
+            lblAviso.Name = "lblAviso";
+            lblAviso.Size = new Size(0, 15);
+            lblAviso.TabIndex = 7;
+            // 
             // TelaLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(800, 450);
+            Controls.Add(lblAviso);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(textSenha);
@@ -135,5 +148,6 @@
         private TextBox textSenha;
         private Label label2;
         private Label label3;
+        private Label lblAviso;
     }
 }

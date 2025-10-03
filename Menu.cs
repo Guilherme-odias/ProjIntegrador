@@ -19,42 +19,92 @@ namespace Projeto_integrador
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TelaCadastroLogin form = new TelaCadastroLogin();
-            form.MdiParent = this;
-            form.Show();
-            
+            if (this.MdiChildren.Length == 0)
+            {
+
+
+                TelaCadastroLogin abrirfo1 = new TelaCadastroLogin();
+                abrirfo1.MdiParent = this;
+                abrirfo1.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
+
         }
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TelaLogin form = new TelaLogin();
-            form.MdiParent = this;
-            form.Show();
-            
+            if (this.MdiChildren.Length == 0)
+            {
+
+
+                TelaLogin abrirfo1 = new TelaLogin();
+                abrirfo1.MdiParent = this;
+                abrirfo1.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
+
         }
 
         private void cadastroJogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CadastroJogos form = new CadastroJogos();
-            form.MdiParent = this;
-            form.Show();
-            
+            if (this.MdiChildren.Length == 0)
+            {
+
+
+                CadastroJogos abrirfo1 = new CadastroJogos();
+                abrirfo1.MdiParent = this;
+                abrirfo1.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
+
         }
 
         private void listaJogosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListaJogos form = new ListaJogos();
-            form.MdiParent = this;
-            form.Show();
-            
+            if (this.MdiChildren.Length == 0)
+            {
+
+
+                ListaJogos abrirfo1 = new ListaJogos();
+                abrirfo1.MdiParent = this;
+                abrirfo1.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
+
         }
 
         private void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Sorteador form = new Sorteador();
-            form.MdiParent = this;
-            form.Show();
-            
+            if (this.MdiChildren.Length == 0)
+            {
+
+
+                Sorteador abrirfo1 = new Sorteador();
+                abrirfo1.MdiParent = this;
+                abrirfo1.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
+
         }
 
         private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
