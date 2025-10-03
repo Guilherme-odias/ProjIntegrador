@@ -23,6 +23,7 @@ namespace Projeto_integrador
         public int Id { get; set; }
 
 
+
         public void Inserir()
         {
             Conexao conexao = new Conexao();
@@ -62,7 +63,7 @@ namespace Projeto_integrador
                         informacoes = @informacoes,
                         data_lancamento = @data_lancamento,
                         req_sistema = @req_sistema
-                    WHERE id = @id";
+                    WHERE id_play = @id";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
