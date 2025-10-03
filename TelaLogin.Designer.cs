@@ -36,6 +36,7 @@
             label2 = new Label();
             label3 = new Label();
             lblAviso = new Label();
+            verSenha = new CheckBox();
             SuspendLayout();
             // 
             // label1
@@ -85,6 +86,7 @@
             // 
             textSenha.Location = new Point(292, 217);
             textSenha.Name = "textSenha";
+            textSenha.PasswordChar = '*';
             textSenha.Size = new Size(157, 23);
             textSenha.TabIndex = 4;
             textSenha.TextChanged += textSenha_TextChanged;
@@ -118,12 +120,23 @@
             lblAviso.Size = new Size(0, 15);
             lblAviso.TabIndex = 7;
             // 
+            // verSenha
+            // 
+            verSenha.AutoSize = true;
+            verSenha.Location = new Point(455, 221);
+            verSenha.Name = "verSenha";
+            verSenha.Size = new Size(15, 14);
+            verSenha.TabIndex = 9;
+            verSenha.UseVisualStyleBackColor = true;
+            verSenha.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // TelaLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(800, 450);
+            Controls.Add(verSenha);
             Controls.Add(lblAviso);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -149,5 +162,6 @@
         private Label label2;
         private Label label3;
         private Label lblAviso;
+        private CheckBox verSenha;
     }
 }

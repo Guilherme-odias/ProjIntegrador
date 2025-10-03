@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Projeto_integrador
 {
@@ -44,7 +45,7 @@ namespace Projeto_integrador
                     if (count > 0)
                     {
                         lblAviso.Text = ("Login Realizado com Sucesso!");
-                        Sorteador sorte = new Sorteador();
+                        CadastroJogos sorte = new CadastroJogos();
                         sorte.Show();
                         this.Hide();
                     }
@@ -71,6 +72,29 @@ namespace Projeto_integrador
             TelaCadastroLogin Tela = new TelaCadastroLogin();
             Tela.Show();
             this.Hide();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (verSenha.TabStop == true)
+            {
+                if (textSenha.PasswordChar == '*')
+                {
+                    textSenha.PasswordChar = '\0'; // Mostra a senha
+                }
+                else
+                {
+                    textSenha.PasswordChar = '*'; // Oculta a senha
+                }
+            }
+
+
         }
     }
 }
