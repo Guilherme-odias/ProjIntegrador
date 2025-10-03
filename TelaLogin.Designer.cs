@@ -37,6 +37,7 @@
             label3 = new Label();
             lblAviso = new Label();
             verSenha = new CheckBox();
+            esqueciSenha = new Label();
             SuspendLayout();
             // 
             // label1
@@ -55,7 +56,7 @@
             // 
             Login.BackColor = Color.FromArgb(168, 3, 12);
             Login.ForeColor = SystemColors.ButtonHighlight;
-            Login.Location = new Point(262, 260);
+            Login.Location = new Point(273, 260);
             Login.Name = "Login";
             Login.Size = new Size(75, 23);
             Login.TabIndex = 1;
@@ -67,7 +68,7 @@
             // 
             button2.BackColor = Color.FromArgb(168, 3, 12);
             button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(417, 260);
+            button2.Location = new Point(402, 260);
             button2.Name = "button2";
             button2.Size = new Size(82, 23);
             button2.TabIndex = 2;
@@ -115,10 +116,12 @@
             // 
             lblAviso.AutoSize = true;
             lblAviso.ForeColor = SystemColors.ButtonHighlight;
-            lblAviso.Location = new Point(340, 312);
+            lblAviso.Location = new Point(336, 295);
             lblAviso.Name = "lblAviso";
-            lblAviso.Size = new Size(0, 15);
+            lblAviso.Size = new Size(10, 15);
             lblAviso.TabIndex = 7;
+            lblAviso.Text = " ";
+            lblAviso.Click += lblAviso_Click;
             // 
             // verSenha
             // 
@@ -130,12 +133,27 @@
             verSenha.UseVisualStyleBackColor = true;
             verSenha.CheckedChanged += checkBox1_CheckedChanged;
             // 
+            // esqueciSenha
+            // 
+            esqueciSenha.AutoSize = true;
+            esqueciSenha.Cursor = Cursors.Hand;
+            esqueciSenha.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            esqueciSenha.ForeColor = SystemColors.HotTrack;
+            esqueciSenha.Location = new Point(306, 325);
+            esqueciSenha.Name = "esqueciSenha";
+            esqueciSenha.Size = new Size(137, 15);
+            esqueciSenha.TabIndex = 10;
+            esqueciSenha.Text = "ESQUECI MINHA SENHA";
+            esqueciSenha.Visible = false;
+            esqueciSenha.Click += esqueciSenha_Click;
+            // 
             // TelaLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(800, 450);
+            Controls.Add(esqueciSenha);
             Controls.Add(verSenha);
             Controls.Add(lblAviso);
             Controls.Add(label3);
@@ -163,5 +181,6 @@
         private Label label3;
         private Label lblAviso;
         private CheckBox verSenha;
+        private Label esqueciSenha;
     }
 }

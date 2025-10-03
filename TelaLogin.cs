@@ -52,6 +52,7 @@ namespace Projeto_integrador
                     else
                     {
                         lblAviso.Text = ("Email ou senha \n incorretos.");
+                        esqueciSenha.Visible = true;
 
                     }
                 }
@@ -76,7 +77,7 @@ namespace Projeto_integrador
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -94,6 +95,19 @@ namespace Projeto_integrador
                 }
             }
 
+
+        }
+
+        private void esqueciSenha_Click(object sender, EventArgs e)
+        {
+
+            EsqueciSenha novoForm = new EsqueciSenha(); // substitua pelo nome do seu Form
+            novoForm.Show();
+
+        }
+
+        private void lblAviso_Click(object sender, EventArgs e)
+        {
 
         }
     }
