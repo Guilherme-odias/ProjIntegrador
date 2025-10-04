@@ -91,7 +91,7 @@ namespace Projeto_integrador
 
         }
 
-        private void  btnConfirma_Click(object sender, EventArgs e)
+        private void btnConfirma_Click(object sender, EventArgs e)
         {
 
             string novaSenha = txtSenha.Text;
@@ -125,9 +125,9 @@ namespace Projeto_integrador
                         lblMensagem.ForeColor = Color.Green;
 
 
-                       
 
-                        this.Hide(); 
+
+                        this.Hide();
                         TelaLogin login = new TelaLogin();
                         login.Show();
 
@@ -160,6 +160,21 @@ namespace Projeto_integrador
                 else
                 {
                     txtSenha.PasswordChar = '*'; // Oculta a senha
+                }
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.TabStop == true)
+            {
+                if (txtConfirma.PasswordChar == '*')
+                {
+                    txtConfirma.PasswordChar = '\0'; // Mostra a senha
+                }
+                else
+                {
+                    txtConfirma.PasswordChar = '*'; // Oculta a senha
                 }
             }
         }
