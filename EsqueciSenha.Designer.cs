@@ -43,6 +43,7 @@
             btnConfirma = new Button();
             lblMensagem = new Label();
             verSenha = new CheckBox();
+            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // txtEmail
@@ -138,6 +139,7 @@
             // 
             txtSenha.Location = new Point(102, 184);
             txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '*';
             txtSenha.Size = new Size(177, 23);
             txtSenha.TabIndex = 9;
             txtSenha.Visible = false;
@@ -147,6 +149,7 @@
             // 
             txtConfirma.Location = new Point(102, 229);
             txtConfirma.Name = "txtConfirma";
+            txtConfirma.PasswordChar = '*';
             txtConfirma.Size = new Size(177, 23);
             txtConfirma.TabIndex = 10;
             txtConfirma.Visible = false;
@@ -196,12 +199,24 @@
             verSenha.Visible = false;
             verSenha.CheckedChanged += verSenha_CheckedChanged;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(293, 238);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(15, 14);
+            checkBox1.TabIndex = 15;
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.Visible = false;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // EsqueciSenha
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(681, 423);
+            Controls.Add(checkBox1);
             Controls.Add(verSenha);
             Controls.Add(lblMensagem);
             Controls.Add(btnConfirma);
@@ -240,5 +255,6 @@
         private Button btnConfirma;
         private Label lblMensagem;
         private CheckBox verSenha;
+        private CheckBox checkBox1;
     }
 }
