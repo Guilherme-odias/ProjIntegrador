@@ -141,6 +141,12 @@ namespace Projeto_integrador
         {
             if (e.RowIndex >= 0)
             {
+
+                // Limpar os campos das imagens antes de preencher com novos dados
+                txtImagem1.Clear();
+                txtImagem2.Clear();
+                txtImagem3.Clear();
+
                 DataGridViewRow row = dgvJogos.Rows[e.RowIndex];
 
                 jogoSelecionadoId = Convert.ToInt32(row.Cells["id_play"].Value);
