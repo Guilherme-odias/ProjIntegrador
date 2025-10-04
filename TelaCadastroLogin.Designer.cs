@@ -185,6 +185,7 @@
             email.Name = "email";
             email.Size = new Size(192, 23);
             email.TabIndex = 12;
+            email.TextChanged += email_TextChanged;
             email.Leave += email_Leave;
             // 
             // nome

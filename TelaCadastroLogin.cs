@@ -158,5 +158,10 @@ namespace Projeto_integrador
             }
 
         }
+
+        private void email_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
