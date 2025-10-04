@@ -50,6 +50,7 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             tipo_user = new ComboBox();
+            lblMensagem = new Label();
             cad = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -184,6 +185,7 @@
             email.Name = "email";
             email.Size = new Size(192, 23);
             email.TabIndex = 12;
+            email.Leave += email_Leave;
             // 
             // nome
             // 
@@ -254,12 +256,22 @@
             tipo_user.Size = new Size(121, 23);
             tipo_user.TabIndex = 22;
             // 
+            // lblMensagem
+            // 
+            lblMensagem.AutoSize = true;
+            lblMensagem.Location = new Point(62, 155);
+            lblMensagem.Name = "lblMensagem";
+            lblMensagem.Size = new Size(10, 15);
+            lblMensagem.TabIndex = 23;
+            lblMensagem.Text = " ";
+            // 
             // TelaCadastroLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(800, 450);
+            Controls.Add(lblMensagem);
             Controls.Add(tipo_user);
             Controls.Add(cad);
             Controls.Add(pictureBox1);
@@ -311,5 +323,6 @@
         private PictureBox pictureBox1;
         private Button cad;
         private ComboBox tipo_user;
+        private Label lblMensagem;
     }
 }
