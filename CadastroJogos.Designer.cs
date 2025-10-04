@@ -45,15 +45,17 @@
             lblReqSistema = new Label();
             txtReq_Sis = new TextBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtImagem1 = new TextBox();
             btnAtualizar = new Button();
             btnRemover = new Button();
+            txtImagem2 = new TextBox();
+            txtImagem3 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvJogos).BeginInit();
             SuspendLayout();
             // 
             // btnCadastrar
             // 
-            btnCadastrar.Location = new Point(819, 74);
+            btnCadastrar.Location = new Point(837, 119);
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(77, 22);
             btnCadastrar.TabIndex = 0;
@@ -96,9 +98,9 @@
             // dgvJogos
             // 
             dgvJogos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJogos.Location = new Point(12, 115);
+            dgvJogos.Location = new Point(12, 146);
             dgvJogos.Name = "dgvJogos";
-            dgvJogos.Size = new Size(1064, 481);
+            dgvJogos.Size = new Size(1064, 450);
             dgvJogos.TabIndex = 7;
             dgvJogos.CellContentClick += dgvJogos_CellContentClick_1;
             // 
@@ -153,7 +155,7 @@
             // lblDataLancamento
             // 
             lblDataLancamento.AutoSize = true;
-            lblDataLancamento.Location = new Point(12, 57);
+            lblDataLancamento.Location = new Point(15, 68);
             lblDataLancamento.Name = "lblDataLancamento";
             lblDataLancamento.Size = new Size(116, 15);
             lblDataLancamento.TabIndex = 14;
@@ -161,7 +163,7 @@
             // 
             // dtpDataLancamento
             // 
-            dtpDataLancamento.Location = new Point(12, 76);
+            dtpDataLancamento.Location = new Point(15, 87);
             dtpDataLancamento.Name = "dtpDataLancamento";
             dtpDataLancamento.Size = new Size(200, 23);
             dtpDataLancamento.TabIndex = 15;
@@ -169,7 +171,7 @@
             // lblReqSistema
             // 
             lblReqSistema.AutoSize = true;
-            lblReqSistema.Location = new Point(237, 57);
+            lblReqSistema.Location = new Point(240, 68);
             lblReqSistema.Name = "lblReqSistema";
             lblReqSistema.Size = new Size(122, 15);
             lblReqSistema.TabIndex = 16;
@@ -177,7 +179,7 @@
             // 
             // txtReq_Sis
             // 
-            txtReq_Sis.Location = new Point(237, 75);
+            txtReq_Sis.Location = new Point(240, 86);
             txtReq_Sis.Name = "txtReq_Sis";
             txtReq_Sis.Size = new Size(312, 23);
             txtReq_Sis.TabIndex = 17;
@@ -185,22 +187,22 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(573, 57);
+            label1.Location = new Point(576, 89);
             label1.Name = "label1";
             label1.Size = new Size(52, 15);
             label1.TabIndex = 18;
             label1.Text = "Imagens";
             // 
-            // textBox1
+            // txtImagem1
             // 
-            textBox1.Location = new Point(573, 75);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(220, 23);
-            textBox1.TabIndex = 19;
+            txtImagem1.Location = new Point(644, 57);
+            txtImagem1.Name = "txtImagem1";
+            txtImagem1.Size = new Size(109, 23);
+            txtImagem1.TabIndex = 19;
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(902, 75);
+            btnAtualizar.Location = new Point(920, 120);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(75, 20);
             btnAtualizar.TabIndex = 20;
@@ -210,21 +212,38 @@
             // 
             // btnRemover
             // 
-            btnRemover.Location = new Point(983, 74);
+            btnRemover.Location = new Point(1001, 119);
             btnRemover.Name = "btnRemover";
             btnRemover.Size = new Size(75, 21);
             btnRemover.TabIndex = 21;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = true;
+            btnRemover.Click += btnRemover_Click;
+            // 
+            // txtImagem2
+            // 
+            txtImagem2.Location = new Point(644, 86);
+            txtImagem2.Name = "txtImagem2";
+            txtImagem2.Size = new Size(109, 23);
+            txtImagem2.TabIndex = 22;
+            // 
+            // txtImagem3
+            // 
+            txtImagem3.Location = new Point(644, 115);
+            txtImagem3.Name = "txtImagem3";
+            txtImagem3.Size = new Size(109, 23);
+            txtImagem3.TabIndex = 23;
             // 
             // CadastroJogos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1088, 621);
+            Controls.Add(txtImagem3);
+            Controls.Add(txtImagem2);
             Controls.Add(btnRemover);
             Controls.Add(btnAtualizar);
-            Controls.Add(textBox1);
+            Controls.Add(txtImagem1);
             Controls.Add(label1);
             Controls.Add(txtReq_Sis);
             Controls.Add(lblReqSistema);
@@ -269,8 +288,10 @@
         private Label lblReqSistema;
         private TextBox txtReq_Sis;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtImagem1;
         private Button btnAtualizar;
         private Button btnRemover;
+        private TextBox txtImagem2;
+        private TextBox txtImagem3;
     }
 }

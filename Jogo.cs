@@ -21,7 +21,9 @@ namespace Projeto_integrador
         public DateTime DataLancamento { get; set; }
         public string RequisitosSistema { get; set; }
         public int Id { get; set; }
-
+        public string ImagemCapa { get; set; }
+        public string ImagemCen1 { get; set; }
+        public string ImagemCen2 { get; set; }
 
 
         public void Inserir()
@@ -30,9 +32,10 @@ namespace Projeto_integrador
             using (var conn = conexao.GetConnection())
             {
                 string sql = @"INSERT INTO jogos 
-                    (id_categoria, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema) 
-                    VALUES 
-                    (@id_categoria, @titulo, @desenvolvedora, @distribuidora, @informacoes, @data_lancamento, @req_sistema)";
+                (id_categoria, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1,Imagens_cen2)
+                VALUES 
+                (@id_categoria, @titulo, @desenvolvedora, @distribuidora, @informacoes, @data_lancamento, @req_sistema, @ImagemCapa, @ImagemCen1, @ImagemCen2)";
+
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
@@ -43,6 +46,9 @@ namespace Projeto_integrador
                     cmd.Parameters.AddWithValue("@informacoes", Informacoes);
                     cmd.Parameters.AddWithValue("@data_lancamento", DataLancamento);
                     cmd.Parameters.AddWithValue("@req_sistema", RequisitosSistema);
+                    cmd.Parameters.AddWithValue("@ImagemCapa", ImagemCapa);
+                    cmd.Parameters.AddWithValue("@ImagemCen1", ImagemCen1);
+                    cmd.Parameters.AddWithValue("@ImagemCen1", ImagemCen2);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -56,14 +62,17 @@ namespace Projeto_integrador
             using (var conn = conexao.GetConnection())
             {
                 string sql = @"UPDATE jogos SET 
-                        id_categoria = @id_categoria,
-                        titulo = @titulo,
-                        desenvolvedora = @desenvolvedora,
-                        distribuidora = @distribuidora,
-                        informacoes = @informacoes,
-                        data_lancamento = @data_lancamento,
-                        req_sistema = @req_sistema
-                    WHERE id_play = @id";
+            id_categoria = @id_categoria,
+            titulo = @titulo,
+            desenvolvedora = @desenvolvedora,
+            distribuidora = @distribuidora,
+            informacoes = @informacoes,
+            data_lancamento = @data_lancamento,
+            req_sistema = @req_sistema,
+            Imagens_jogos = @Imagens_jogos,
+            Imagens_cen1 = @Imagem_cen1,
+            Imagens_cen2 = @Imagem_cen2
+            WHERE id_play = @id";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
@@ -74,6 +83,9 @@ namespace Projeto_integrador
                     cmd.Parameters.AddWithValue("@informacoes", Informacoes);
                     cmd.Parameters.AddWithValue("@data_lancamento", DataLancamento);
                     cmd.Parameters.AddWithValue("@req_sistema", RequisitosSistema);
+                    cmd.Parameters.AddWithValue("@Imagens_jogos", ImagemCapa);       // <- NOVO
+                    cmd.Parameters.AddWithValue("@Imagem_cen1", ImagemCen1);     // <- NOVO
+                    cmd.Parameters.AddWithValue("@Imagem_cen2", ImagemCen2);     // <- NOVO
                     cmd.Parameters.AddWithValue("@id", Id);
 
                     conn.Open();
@@ -82,16 +94,18 @@ namespace Projeto_integrador
             }
         }
 
+
+
         public void Remover()
         {
             Conexao conexao = new Conexao();
             using (var conn = conexao.GetConnection())
             {
-                string sql = "DELETE FROM jogos WHERE id = @id";
+                string sql = "DELETE FROM jogos WHERE id_play = @id_play";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@id", Id);
+                    cmd.Parameters.AddWithValue("@id_play", Id);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
