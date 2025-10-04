@@ -118,13 +118,12 @@
             // 
             // lblAviso
             // 
-            lblAviso.AutoSize = true;
-            lblAviso.BackColor = Color.FromArgb(0, 0, 64);
+            lblAviso.BackColor = Color.Transparent;
             lblAviso.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAviso.ForeColor = SystemColors.ButtonHighlight;
-            lblAviso.Location = new Point(344, 346);
+            lblAviso.Location = new Point(246, 346);
             lblAviso.Name = "lblAviso";
-            lblAviso.Size = new Size(14, 21);
+            lblAviso.Size = new Size(224, 48);
             lblAviso.TabIndex = 7;
             lblAviso.Text = " ";
             lblAviso.TextAlign = ContentAlignment.MiddleCenter;
@@ -146,7 +145,7 @@
             esqueciSenha.Cursor = Cursors.Hand;
             esqueciSenha.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
             esqueciSenha.ForeColor = SystemColors.HotTrack;
-            esqueciSenha.Location = new Point(282, 370);
+            esqueciSenha.Location = new Point(282, 408);
             esqueciSenha.Name = "esqueciSenha";
             esqueciSenha.Size = new Size(137, 15);
             esqueciSenha.TabIndex = 10;
@@ -159,7 +158,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
-            ClientSize = new Size(737, 450);
+            ClientSize = new Size(733, 551);
             Controls.Add(esqueciSenha);
             Controls.Add(verSenha);
             Controls.Add(lblAviso);

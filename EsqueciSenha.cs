@@ -178,6 +178,11 @@ namespace Projeto_integrador
                 }
             }
         }
+
+        private void EsqueciSenha_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -55,28 +55,29 @@
             // 
             // label1
             // 
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("SansSerif", 12F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(91, 56);
+            label1.Location = new Point(102, 43);
             label1.Name = "label1";
-            label1.Size = new Size(268, 48);
+            label1.Size = new Size(302, 48);
             label1.TabIndex = 1;
-            label1.Text = "COLOQUE O EMAIL CADASTRADO\r\n PARA RECUPERAR SUA CONTA";
+            label1.Text = "COLOQUE O EMAIL CADASTRADO\r\nPARA RECUPERAR SUA CONTA\r\n";
             label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(234, 234, 234);
-            label2.Location = new Point(102, 114);
+            label2.Location = new Point(102, 104);
             label2.Name = "label2";
-            label2.Size = new Size(41, 15);
+            label2.Size = new Size(59, 21);
             label2.TabIndex = 2;
             label2.Text = "EMAIL";
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(102, 184);
+            txtCodigo.Location = new Point(102, 192);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(100, 23);
             txtCodigo.TabIndex = 3;
@@ -84,20 +85,22 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(234, 234, 234);
             label3.Location = new Point(102, 166);
             label3.Name = "label3";
-            label3.Size = new Size(52, 15);
+            label3.Size = new Size(82, 21);
             label3.TabIndex = 4;
             label3.Text = "CODIGO";
             // 
             // EnviarCodigo
             // 
             EnviarCodigo.BackColor = Color.FromArgb(168, 3, 12);
+            EnviarCodigo.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             EnviarCodigo.ForeColor = Color.FromArgb(234, 234, 234);
-            EnviarCodigo.Location = new Point(339, 132);
+            EnviarCodigo.Location = new Point(339, 129);
             EnviarCodigo.Name = "EnviarCodigo";
-            EnviarCodigo.Size = new Size(55, 23);
+            EnviarCodigo.Size = new Size(73, 30);
             EnviarCodigo.TabIndex = 5;
             EnviarCodigo.Text = "ENVIAR";
             EnviarCodigo.UseVisualStyleBackColor = false;
@@ -106,10 +109,11 @@
             // button1
             // 
             button1.BackColor = Color.FromArgb(168, 3, 12);
+            button1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.FromArgb(234, 234, 234);
-            button1.Location = new Point(208, 184);
+            button1.Location = new Point(208, 189);
             button1.Name = "button1";
-            button1.Size = new Size(71, 23);
+            button1.Size = new Size(116, 26);
             button1.TabIndex = 6;
             button1.Text = "VERIFICAR";
             button1.UseVisualStyleBackColor = false;
@@ -117,50 +121,49 @@
             // 
             // lblCodigo
             // 
-            lblCodigo.AutoSize = true;
             lblCodigo.ForeColor = Color.FromArgb(234, 234, 234);
-            lblCodigo.Location = new Point(314, 192);
+            lblCodigo.Location = new Point(369, 195);
             lblCodigo.Name = "lblCodigo";
-            lblCodigo.Size = new Size(10, 15);
+            lblCodigo.Size = new Size(300, 15);
             lblCodigo.TabIndex = 7;
             lblCodigo.Text = " ";
             // 
             // lblVerificar
             // 
-            lblVerificar.AutoSize = true;
             lblVerificar.ForeColor = Color.FromArgb(234, 234, 234);
-            lblVerificar.Location = new Point(419, 140);
+            lblVerificar.Location = new Point(418, 138);
             lblVerificar.Name = "lblVerificar";
-            lblVerificar.Size = new Size(10, 15);
+            lblVerificar.Size = new Size(251, 15);
             lblVerificar.TabIndex = 8;
             lblVerificar.Text = " ";
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(102, 184);
+            txtSenha.Location = new Point(102, 191);
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '*';
-            txtSenha.Size = new Size(177, 23);
+            txtSenha.Size = new Size(231, 23);
             txtSenha.TabIndex = 9;
             txtSenha.Visible = false;
             txtSenha.TextChanged += txtSenha_TextChanged;
             // 
             // txtConfirma
             // 
-            txtConfirma.Location = new Point(102, 229);
+            txtConfirma.Location = new Point(102, 260);
             txtConfirma.Name = "txtConfirma";
             txtConfirma.PasswordChar = '*';
-            txtConfirma.Size = new Size(177, 23);
+            txtConfirma.Size = new Size(231, 23);
             txtConfirma.TabIndex = 10;
             txtConfirma.Visible = false;
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(234, 234, 234);
-            label4.Location = new Point(102, 211);
+            label4.Location = new Point(102, 234);
             label4.Name = "label4";
-            label4.Size = new Size(118, 15);
+            label4.Size = new Size(170, 21);
             label4.TabIndex = 11;
             label4.Text = "CONFIRME A SENHA";
             label4.Visible = false;
@@ -168,10 +171,11 @@
             // btnConfirma
             // 
             btnConfirma.BackColor = Color.FromArgb(168, 3, 12);
+            btnConfirma.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConfirma.ForeColor = Color.FromArgb(234, 234, 234);
-            btnConfirma.Location = new Point(102, 326);
+            btnConfirma.Location = new Point(102, 306);
             btnConfirma.Name = "btnConfirma";
-            btnConfirma.Size = new Size(84, 26);
+            btnConfirma.Size = new Size(113, 26);
             btnConfirma.TabIndex = 12;
             btnConfirma.Text = "CONFIRMAR";
             btnConfirma.UseVisualStyleBackColor = false;
@@ -191,7 +195,7 @@
             // verSenha
             // 
             verSenha.AutoSize = true;
-            verSenha.Location = new Point(293, 189);
+            verSenha.Location = new Point(339, 196);
             verSenha.Name = "verSenha";
             verSenha.Size = new Size(15, 14);
             verSenha.TabIndex = 14;
@@ -202,7 +206,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(293, 238);
+            checkBox1.Location = new Point(339, 264);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(15, 14);
             checkBox1.TabIndex = 15;
@@ -234,6 +238,7 @@
             Controls.Add(txtEmail);
             Name = "EsqueciSenha";
             Text = "EsqueciSenha";
+            Load += EsqueciSenha_Load;
             ResumeLayout(false);
             PerformLayout();
         }
