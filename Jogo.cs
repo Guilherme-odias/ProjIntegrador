@@ -48,7 +48,7 @@ namespace Projeto_integrador
                     cmd.Parameters.AddWithValue("@req_sistema", RequisitosSistema);
                     cmd.Parameters.AddWithValue("@ImagemCapa", ImagemCapa);
                     cmd.Parameters.AddWithValue("@ImagemCen1", ImagemCen1);
-                    cmd.Parameters.AddWithValue("@ImagemCen1", ImagemCen2);
+                    cmd.Parameters.AddWithValue("@ImagemCen2", ImagemCen2);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();

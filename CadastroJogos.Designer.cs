@@ -50,6 +50,9 @@
             btnRemover = new Button();
             txtImagem2 = new TextBox();
             txtImagem3 = new TextBox();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvJogos).BeginInit();
             SuspendLayout();
             // 
@@ -187,7 +190,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(576, 89);
+            label1.Location = new Point(586, 68);
             label1.Name = "label1";
             label1.Size = new Size(52, 15);
             label1.TabIndex = 18;
@@ -195,7 +198,7 @@
             // 
             // txtImagem1
             // 
-            txtImagem1.Location = new Point(644, 57);
+            txtImagem1.Location = new Point(770, 65);
             txtImagem1.Name = "txtImagem1";
             txtImagem1.Size = new Size(109, 23);
             txtImagem1.TabIndex = 19;
@@ -222,23 +225,53 @@
             // 
             // txtImagem2
             // 
-            txtImagem2.Location = new Point(644, 86);
+            txtImagem2.Location = new Point(644, 65);
             txtImagem2.Name = "txtImagem2";
             txtImagem2.Size = new Size(109, 23);
             txtImagem2.TabIndex = 22;
             // 
             // txtImagem3
             // 
-            txtImagem3.Location = new Point(644, 115);
+            txtImagem3.Location = new Point(899, 65);
             txtImagem3.Name = "txtImagem3";
             txtImagem3.Size = new Size(109, 23);
             txtImagem3.TabIndex = 23;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(644, 51);
+            label2.Name = "label2";
+            label2.Size = new Size(34, 15);
+            label2.TabIndex = 24;
+            label2.Text = "Capa";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(770, 51);
+            label3.Name = "label3";
+            label3.Size = new Size(34, 15);
+            label3.TabIndex = 25;
+            label3.Text = "Cen1";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(899, 51);
+            label4.Name = "label4";
+            label4.Size = new Size(34, 15);
+            label4.TabIndex = 26;
+            label4.Text = "Cen2";
             // 
             // CadastroJogos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1088, 621);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(txtImagem3);
             Controls.Add(txtImagem2);
             Controls.Add(btnRemover);
@@ -293,5 +326,8 @@
         private Button btnRemover;
         private TextBox txtImagem2;
         private TextBox txtImagem3;
+        private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
