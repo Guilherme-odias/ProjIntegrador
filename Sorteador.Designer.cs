@@ -152,7 +152,7 @@
             lb_resposta.Location = new Point(219, 386);
             lb_resposta.Margin = new Padding(4, 0, 4, 0);
             lb_resposta.Name = "lb_resposta";
-            lb_resposta.Size = new Size(560, 108);
+            lb_resposta.Size = new Size(565, 108);
             lb_resposta.TabIndex = 7;
             lb_resposta.Text = "Resposta do jogo sorteado";
             lb_resposta.TextAlign = ContentAlignment.MiddleCenter;
@@ -182,7 +182,7 @@
             grp_resultado.Margin = new Padding(4);
             grp_resultado.Name = "grp_resultado";
             grp_resultado.Padding = new Padding(4);
-            grp_resultado.Size = new Size(1042, 617);
+            grp_resultado.Size = new Size(1047, 617);
             grp_resultado.TabIndex = 9;
             grp_resultado.TabStop = false;
             grp_resultado.Text = "groupBox1";

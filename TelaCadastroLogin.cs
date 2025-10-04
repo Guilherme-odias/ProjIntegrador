@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -129,10 +130,32 @@ namespace Projeto_integrador
             }
 
             MessageBox.Show("Usuário cadastrado com sucesso!");
+
+            ValidacaoEmail novo = new ValidacaoEmail();
+            this.Hide();
+            novo.Show();
         }
 
         private void tipo_user_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void email_Leave(object sender, EventArgs e)
+        {
+
+            string emailDigitado = email.Text.Trim();
+            string padrao = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+            if (!Regex.IsMatch(emailDigitado, padrao))
+            {
+                lblMensagem.Text = "Formato de e-mail inválido!";
+                lblMensagem.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblMensagem.Text = "";
+            }
 
         }
     }
