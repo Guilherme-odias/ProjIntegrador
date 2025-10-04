@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Projeto_integrador
 {
@@ -53,8 +54,12 @@ namespace Projeto_integrador
                 Distribuidora = distribuidora,
                 Informacoes = informacoes,
                 DataLancamento = dataLancamento,
-                RequisitosSistema = reqSistema
+                RequisitosSistema = reqSistema,
+                ImagemCapa = txtImagem1.Text.Trim(),
+                ImagemCen1 = txtImagem2.Text.Trim(),
+                ImagemCen2 = txtImagem3.Text.Trim(),
             };
+
 
             try
             {
@@ -86,7 +91,51 @@ namespace Projeto_integrador
             dgvJogos.DataSource = Jogo.ListarTodos();
         }
 
-       
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            if (jogoSelecionadoId == -1)
+            {
+                MessageBox.Show("Por favor, selecione um jogo na lista para atualizar.");
+                return;
+            }
+
+            int categoriaId;
+            if (!int.TryParse(txtCategoria.Text, out categoriaId))
+            {
+                MessageBox.Show("Por favor, insira um número válido na categoria.");
+                return;
+            }
+
+            Jogo jogo = new Jogo
+            {
+                Id = jogoSelecionadoId,
+                Categoria = txtCategoria.Text,
+                Titulo = txtTitulo.Text,
+                Desenvolvedora = txtDesenvolvedora.Text,
+                Distribuidora = txtDistribuidora.Text,
+                Informacoes = txtInformacoes.Text,
+                DataLancamento = dtpDataLancamento.Value,
+                RequisitosSistema = txtReq_Sis.Text,
+                ImagemCapa = txtImagem1.Text.Trim(),
+                ImagemCen1 = txtImagem2.Text.Trim(),
+                ImagemCen2 = txtImagem3.Text.Trim()
+            };
+
+
+            try
+            {
+                jogo.Atualizar();
+                MessageBox.Show("Jogo atualizado com sucesso!");
+                LimparCampos();
+                jogoSelecionadoId = -1;
+                AtualizarGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar o jogo: " + ex.Message);
+            }
+        }
+
 
         private void dgvJogos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -102,6 +151,13 @@ namespace Projeto_integrador
                 txtInformacoes.Text = row.Cells["informacoes"].Value.ToString();
                 dtpDataLancamento.Value = Convert.ToDateTime(row.Cells["data_lancamento"].Value);
                 txtReq_Sis.Text = row.Cells["req_sistema"].Value.ToString();
+
+                string imagensConcatenadas = row.Cells["imagens"].Value.ToString();
+                string[] imagensArray = imagensConcatenadas.Split(';');
+
+                txtImagem1.Text = imagensArray.Length > 0 ? imagensArray[0] : "";
+                txtImagem2.Text = imagensArray.Length > 1 ? imagensArray[1] : "";
+                txtImagem3.Text = imagensArray.Length > 2 ? imagensArray[2] : "";
             }
         }
 
@@ -110,70 +166,7 @@ namespace Projeto_integrador
 
         }
 
-        private void btnAtualizar_Click(object sender, EventArgs e)
-        {
-            Conexao conexao = new Conexao();
-            using (var conn = conexao.GetConnection())
-            {
-                string sql = @"UPDATE jogos SET 
-                        id_categoria = @id_categoria,
-                        titulo = @titulo,
-                        desenvolvedora = @desenvolvedora,
-                        distribuidora = @distribuidora,
-                        informacoes = @informacoes,
-                        data_lancamento = @data_lancamento,
-                        req_sistema = @req_sistema
-                    WHERE id_play = @id_play";
-
-                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id_categoria", Convert.ToInt32(txtCategoria.Text));
-                    cmd.Parameters.AddWithValue("@titulo", txtTitulo.Text);
-                    cmd.Parameters.AddWithValue("@desenvolvedora", txtDesenvolvedora.Text);
-                    cmd.Parameters.AddWithValue("@distribuidora", txtDistribuidora.Text);
-                    cmd.Parameters.AddWithValue("@informacoes", txtInformacoes.Text);
-                    cmd.Parameters.AddWithValue("@data_lancamento", dtpDataLancamento.Value);
-                    cmd.Parameters.AddWithValue("@req_sistema", txtReq_Sis.Text);
-                    cmd.Parameters.AddWithValue("@id_play", jogoSelecionadoId); // ID do jogo selecionado no DataGridView
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-
-                }
-
-                if (jogoSelecionadoId == -1)
-                {
-                    MessageBox.Show("Por favor, selecione um jogo na lista para atualizar.");
-                    return;
-                }
-
-                // Criar o objeto jogo com dados atuais do formulário e id selecionado
-                Jogo jogo = new Jogo
-                {
-                    Id = jogoSelecionadoId,
-                    Categoria = txtCategoria.Text,
-                    Titulo = txtTitulo.Text,
-                    Desenvolvedora = txtDesenvolvedora.Text,
-                    Distribuidora = txtDistribuidora.Text,
-                    Informacoes = txtInformacoes.Text,
-                    DataLancamento = dtpDataLancamento.Value,
-                    RequisitosSistema = txtReq_Sis.Text
-                };
-
-                try
-                {
-                    jogo.Atualizar();  // Ou seu código de update direto
-                    MessageBox.Show("Jogo atualizado com sucesso!");
-                    LimparCampos();
-                    jogoSelecionadoId = -1;
-                    AtualizarGrid();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao atualizar o jogo: " + ex.Message);
-                }
-            }
-        }
+        
 
         private void LimparCampos()
         {
@@ -207,5 +200,34 @@ namespace Projeto_integrador
             }
         }
 
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            if (jogoSelecionadoId == -1)
+            {
+                MessageBox.Show("Por favor, selecione um jogo na lista para remover.");
+                return;
+            }
+
+            var confirmResult = MessageBox.Show("Tem certeza que deseja remover este jogo?",
+                                                 "Confirmar Remoção",
+                                                 MessageBoxButtons.YesNo,
+                                                 MessageBoxIcon.Warning);
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    Jogo jogo = new Jogo { Id = jogoSelecionadoId };
+                    jogo.Remover();
+                    MessageBox.Show("Jogo removido com sucesso!");
+                    LimparCampos();
+                    jogoSelecionadoId = -1;
+                    AtualizarGrid();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao remover o jogo: " + ex.Message);
+                }
+            }
+        }
     }
 }

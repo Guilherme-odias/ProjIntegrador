@@ -45,7 +45,7 @@
             label1.BackColor = Color.FromArgb(10, 15, 28);
             label1.Font = new Font("SansSerif", 20F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.Transparent;
-            label1.Location = new Point(292, 81);
+            label1.Location = new Point(282, 53);
             label1.Name = "label1";
             label1.Size = new Size(151, 50);
             label1.TabIndex = 0;
@@ -55,10 +55,11 @@
             // Login
             // 
             Login.BackColor = Color.FromArgb(168, 3, 12);
+            Login.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Login.ForeColor = SystemColors.ButtonHighlight;
-            Login.Location = new Point(273, 260);
+            Login.Location = new Point(246, 300);
             Login.Name = "Login";
-            Login.Size = new Size(75, 23);
+            Login.Size = new Size(88, 38);
             Login.TabIndex = 1;
             Login.Text = "LOGIN";
             Login.UseVisualStyleBackColor = false;
@@ -67,10 +68,11 @@
             // button2
             // 
             button2.BackColor = Color.FromArgb(168, 3, 12);
+            button2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(402, 260);
+            button2.Location = new Point(359, 300);
             button2.Name = "button2";
-            button2.Size = new Size(82, 23);
+            button2.Size = new Size(111, 38);
             button2.TabIndex = 2;
             button2.Text = "CADASTRO";
             button2.UseVisualStyleBackColor = false;
@@ -78,55 +80,59 @@
             // 
             // textEmail
             // 
-            textEmail.Location = new Point(292, 155);
+            textEmail.Location = new Point(246, 161);
             textEmail.Name = "textEmail";
-            textEmail.Size = new Size(157, 23);
+            textEmail.Size = new Size(224, 23);
             textEmail.TabIndex = 3;
             // 
             // textSenha
             // 
-            textSenha.Location = new Point(292, 217);
+            textSenha.Location = new Point(246, 251);
             textSenha.Name = "textSenha";
             textSenha.PasswordChar = '*';
-            textSenha.Size = new Size(157, 23);
+            textSenha.Size = new Size(224, 23);
             textSenha.TabIndex = 4;
             textSenha.TextChanged += textSenha_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(292, 199);
+            label2.Location = new Point(246, 221);
             label2.Name = "label2";
-            label2.Size = new Size(45, 15);
+            label2.Size = new Size(63, 21);
             label2.TabIndex = 5;
             label2.Text = "SENHA";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(292, 137);
+            label3.Location = new Point(246, 131);
             label3.Name = "label3";
-            label3.Size = new Size(79, 15);
+            label3.Size = new Size(111, 21);
             label3.TabIndex = 6;
             label3.Text = "Email ou User";
             // 
             // lblAviso
             // 
-            lblAviso.AutoSize = true;
+            lblAviso.BackColor = Color.Transparent;
+            lblAviso.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAviso.ForeColor = SystemColors.ButtonHighlight;
-            lblAviso.Location = new Point(336, 295);
+            lblAviso.Location = new Point(246, 346);
             lblAviso.Name = "lblAviso";
-            lblAviso.Size = new Size(10, 15);
+            lblAviso.Size = new Size(224, 48);
             lblAviso.TabIndex = 7;
             lblAviso.Text = " ";
+            lblAviso.TextAlign = ContentAlignment.MiddleCenter;
             lblAviso.Click += lblAviso_Click;
             // 
             // verSenha
             // 
             verSenha.AutoSize = true;
-            verSenha.Location = new Point(455, 221);
+            verSenha.Location = new Point(476, 255);
             verSenha.Name = "verSenha";
             verSenha.Size = new Size(15, 14);
             verSenha.TabIndex = 9;
@@ -139,7 +145,7 @@
             esqueciSenha.Cursor = Cursors.Hand;
             esqueciSenha.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
             esqueciSenha.ForeColor = SystemColors.HotTrack;
-            esqueciSenha.Location = new Point(306, 325);
+            esqueciSenha.Location = new Point(282, 408);
             esqueciSenha.Name = "esqueciSenha";
             esqueciSenha.Size = new Size(137, 15);
             esqueciSenha.TabIndex = 10;
@@ -152,7 +158,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(733, 551);
             Controls.Add(esqueciSenha);
             Controls.Add(verSenha);
             Controls.Add(lblAviso);
