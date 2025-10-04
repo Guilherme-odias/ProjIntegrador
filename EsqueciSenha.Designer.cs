@@ -166,7 +166,7 @@
             // 
             btnConfirma.BackColor = Color.FromArgb(168, 3, 12);
             btnConfirma.ForeColor = Color.FromArgb(234, 234, 234);
-            btnConfirma.Location = new Point(136, 270);
+            btnConfirma.Location = new Point(102, 326);
             btnConfirma.Name = "btnConfirma";
             btnConfirma.Size = new Size(84, 26);
             btnConfirma.TabIndex = 12;
