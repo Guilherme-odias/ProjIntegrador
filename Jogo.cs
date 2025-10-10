@@ -118,7 +118,7 @@ namespace Projeto_integrador
             Conexao conexao = new Conexao();
             using (var conn = conexao.GetConnection())
             {
-                string sql = "SELECT * FROM jogos";
+                string sql = "SELECT * FROM jogos ";
                 using (MySqlDataAdapter da = new MySqlDataAdapter(sql, conn))
                 {
                     DataTable dt = new DataTable();
