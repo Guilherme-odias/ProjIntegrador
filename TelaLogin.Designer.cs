@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLogin));
             label1 = new Label();
             Login = new Button();
             button2 = new Button();
@@ -169,6 +170,7 @@
             Controls.Add(button2);
             Controls.Add(Login);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaLogin";
             Text = "TelaLogin";
             Load += TelaLogin_Load;

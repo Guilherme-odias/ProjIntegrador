@@ -293,6 +293,7 @@
             Controls.Add(email1);
             Controls.Add(lb1);
             Controls.Add(url_foto);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaCadastroLogin";
             Text = "TelaCadastroLogin";
             Load += TelaCadastroLogin_Load;

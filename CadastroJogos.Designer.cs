@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroJogos));
             btnCadastrar = new Button();
             lblTitulo = new Label();
             txtTitulo = new TextBox();
@@ -294,6 +295,7 @@
             Controls.Add(txtTitulo);
             Controls.Add(lblTitulo);
             Controls.Add(btnCadastrar);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CadastroJogos";
             Text = "'";
             Load += CadastroJogos_Load;
