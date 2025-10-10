@@ -75,12 +75,12 @@
             // 
             txt_user.BackColor = Color.White;
             txt_user.CharacterCasing = CharacterCasing.Upper;
-            txt_user.Font = new Font("Lucida Console", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_user.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_user.ForeColor = Color.Black;
             txt_user.Location = new Point(206, 391);
             txt_user.Margin = new Padding(4);
             txt_user.Name = "txt_user";
-            txt_user.Size = new Size(616, 23);
+            txt_user.Size = new Size(616, 27);
             txt_user.TabIndex = 2;
             txt_user.Tag = "";
             txt_user.Text = "DIGITE SEU USERNAME:";
@@ -152,7 +152,7 @@
             lb_resposta.Location = new Point(219, 386);
             lb_resposta.Margin = new Padding(4, 0, 4, 0);
             lb_resposta.Name = "lb_resposta";
-            lb_resposta.Size = new Size(565, 108);
+            lb_resposta.Size = new Size(564, 108);
             lb_resposta.TabIndex = 7;
             lb_resposta.Text = "Resposta do jogo sorteado";
             lb_resposta.TextAlign = ContentAlignment.MiddleCenter;
@@ -182,7 +182,7 @@
             grp_resultado.Margin = new Padding(4);
             grp_resultado.Name = "grp_resultado";
             grp_resultado.Padding = new Padding(4);
-            grp_resultado.Size = new Size(1047, 617);
+            grp_resultado.Size = new Size(1046, 617);
             grp_resultado.TabIndex = 9;
             grp_resultado.TabStop = false;
             grp_resultado.Text = "groupBox1";

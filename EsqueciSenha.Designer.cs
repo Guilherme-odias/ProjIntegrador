@@ -56,13 +56,13 @@
             // 
             // label1
             // 
-            label1.Font = new Font("SansSerif", 12F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            label1.Font = new Font("SansSerif", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
             label1.Location = new Point(102, 43);
             label1.Name = "label1";
-            label1.Size = new Size(302, 48);
+            label1.Size = new Size(360, 48);
             label1.TabIndex = 1;
-            label1.Text = "COLOQUE O EMAIL CADASTRADO\r\nPARA RECUPERAR SUA CONTA\r\n";
+            label1.Text = "DIGITE O EMAIL CADASTRADO PARA \r\n        RECUPERAR SUA CONTA\r\n";
             label1.Click += label1_Click;
             // 
             // label2
@@ -97,7 +97,7 @@
             // EnviarCodigo
             // 
             EnviarCodigo.BackColor = Color.FromArgb(168, 3, 12);
-            EnviarCodigo.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            EnviarCodigo.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             EnviarCodigo.ForeColor = Color.FromArgb(234, 234, 234);
             EnviarCodigo.Location = new Point(339, 129);
             EnviarCodigo.Name = "EnviarCodigo";
@@ -172,7 +172,7 @@
             // btnConfirma
             // 
             btnConfirma.BackColor = Color.FromArgb(168, 3, 12);
-            btnConfirma.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConfirma.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnConfirma.ForeColor = Color.FromArgb(234, 234, 234);
             btnConfirma.Location = new Point(102, 306);
             btnConfirma.Name = "btnConfirma";

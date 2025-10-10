@@ -56,7 +56,7 @@
             // Login
             // 
             Login.BackColor = Color.FromArgb(168, 3, 12);
-            Login.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Login.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Login.ForeColor = SystemColors.ButtonHighlight;
             Login.Location = new Point(246, 300);
             Login.Name = "Login";
@@ -69,7 +69,7 @@
             // button2
             // 
             button2.BackColor = Color.FromArgb(168, 3, 12);
-            button2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = SystemColors.ButtonHighlight;
             button2.Location = new Point(359, 300);
             button2.Name = "button2";

@@ -59,25 +59,31 @@
             // 
             // btnCadastrar
             // 
-            btnCadastrar.Location = new Point(837, 119);
+            btnCadastrar.BackColor = Color.FromArgb(168, 3, 12);
+            btnCadastrar.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCadastrar.ForeColor = Color.FromArgb(234, 234, 234);
+            btnCadastrar.Location = new Point(992, 47);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(77, 22);
+            btnCadastrar.Size = new Size(84, 22);
             btnCadastrar.TabIndex = 0;
             btnCadastrar.Text = "Cadastrar";
-            btnCadastrar.UseVisualStyleBackColor = true;
+            btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click;
             // 
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            lblTitulo.ForeColor = Color.FromArgb(234, 234, 234);
             lblTitulo.Location = new Point(91, 7);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(38, 15);
+            lblTitulo.Size = new Size(39, 15);
             lblTitulo.TabIndex = 1;
             lblTitulo.Text = "Titulo";
             // 
             // txtTitulo
             // 
+            txtTitulo.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTitulo.Location = new Point(91, 25);
             txtTitulo.Name = "txtTitulo";
             txtTitulo.Size = new Size(223, 23);
@@ -86,23 +92,27 @@
             // lblCategoria
             // 
             lblCategoria.AutoSize = true;
+            lblCategoria.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            lblCategoria.ForeColor = Color.FromArgb(234, 234, 234);
             lblCategoria.Location = new Point(12, 7);
             lblCategoria.Name = "lblCategoria";
-            lblCategoria.Size = new Size(58, 15);
+            lblCategoria.Size = new Size(62, 15);
             lblCategoria.TabIndex = 3;
             lblCategoria.Text = "Categoria";
             // 
             // txtCategoria
             // 
+            txtCategoria.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCategoria.Location = new Point(12, 25);
             txtCategoria.Name = "txtCategoria";
-            txtCategoria.Size = new Size(58, 23);
+            txtCategoria.Size = new Size(73, 23);
             txtCategoria.TabIndex = 4;
             // 
             // dgvJogos
             // 
+            dgvJogos.BackgroundColor = Color.FromArgb(234, 234, 234);
             dgvJogos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJogos.Location = new Point(12, 146);
+            dgvJogos.Location = new Point(15, 146);
             dgvJogos.Name = "dgvJogos";
             dgvJogos.Size = new Size(1064, 450);
             dgvJogos.TabIndex = 7;
@@ -111,31 +121,37 @@
             // lblDesenvolvedora
             // 
             lblDesenvolvedora.AutoSize = true;
-            lblDesenvolvedora.Location = new Point(343, 7);
+            lblDesenvolvedora.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            lblDesenvolvedora.ForeColor = Color.FromArgb(234, 234, 234);
+            lblDesenvolvedora.Location = new Point(320, 7);
             lblDesenvolvedora.Name = "lblDesenvolvedora";
-            lblDesenvolvedora.Size = new Size(91, 15);
+            lblDesenvolvedora.Size = new Size(100, 15);
             lblDesenvolvedora.TabIndex = 8;
             lblDesenvolvedora.Text = "Desenvolvedora";
             // 
             // txtDesenvolvedora
             // 
-            txtDesenvolvedora.Location = new Point(343, 25);
+            txtDesenvolvedora.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDesenvolvedora.Location = new Point(320, 25);
             txtDesenvolvedora.Name = "txtDesenvolvedora";
-            txtDesenvolvedora.Size = new Size(231, 23);
+            txtDesenvolvedora.Size = new Size(209, 23);
             txtDesenvolvedora.TabIndex = 9;
             // 
             // lblDistribuidora
             // 
             lblDistribuidora.AutoSize = true;
-            lblDistribuidora.Location = new Point(600, 7);
+            lblDistribuidora.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            lblDistribuidora.ForeColor = Color.FromArgb(234, 234, 234);
+            lblDistribuidora.Location = new Point(535, 7);
             lblDistribuidora.Name = "lblDistribuidora";
-            lblDistribuidora.Size = new Size(75, 15);
+            lblDistribuidora.Size = new Size(79, 15);
             lblDistribuidora.TabIndex = 10;
             lblDistribuidora.Text = "Distribuidora";
             // 
             // txtDistribuidora
             // 
-            txtDistribuidora.Location = new Point(600, 25);
+            txtDistribuidora.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDistribuidora.Location = new Point(535, 25);
             txtDistribuidora.Name = "txtDistribuidora";
             txtDistribuidora.Size = new Size(181, 23);
             txtDistribuidora.TabIndex = 11;
@@ -143,31 +159,37 @@
             // lblInformacoes
             // 
             lblInformacoes.AutoSize = true;
-            lblInformacoes.Location = new Point(806, 9);
+            lblInformacoes.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            lblInformacoes.ForeColor = Color.FromArgb(234, 234, 234);
+            lblInformacoes.Location = new Point(722, 7);
             lblInformacoes.Name = "lblInformacoes";
-            lblInformacoes.Size = new Size(73, 15);
+            lblInformacoes.Size = new Size(79, 15);
             lblInformacoes.TabIndex = 12;
             lblInformacoes.Text = "Informações";
             // 
             // txtInformacoes
             // 
-            txtInformacoes.Location = new Point(806, 25);
+            txtInformacoes.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtInformacoes.Location = new Point(722, 25);
             txtInformacoes.Name = "txtInformacoes";
-            txtInformacoes.Size = new Size(270, 23);
+            txtInformacoes.Size = new Size(264, 23);
             txtInformacoes.TabIndex = 13;
             // 
             // lblDataLancamento
             // 
             lblDataLancamento.AutoSize = true;
-            lblDataLancamento.Location = new Point(15, 68);
+            lblDataLancamento.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            lblDataLancamento.ForeColor = Color.FromArgb(234, 234, 234);
+            lblDataLancamento.Location = new Point(15, 84);
             lblDataLancamento.Name = "lblDataLancamento";
-            lblDataLancamento.Size = new Size(116, 15);
+            lblDataLancamento.Size = new Size(127, 15);
             lblDataLancamento.TabIndex = 14;
             lblDataLancamento.Text = "Data de Lançamento";
             // 
             // dtpDataLancamento
             // 
-            dtpDataLancamento.Location = new Point(15, 87);
+            dtpDataLancamento.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDataLancamento.Location = new Point(15, 102);
             dtpDataLancamento.Name = "dtpDataLancamento";
             dtpDataLancamento.Size = new Size(200, 23);
             dtpDataLancamento.TabIndex = 15;
@@ -175,15 +197,18 @@
             // lblReqSistema
             // 
             lblReqSistema.AutoSize = true;
-            lblReqSistema.Location = new Point(240, 68);
+            lblReqSistema.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            lblReqSistema.ForeColor = Color.FromArgb(234, 234, 234);
+            lblReqSistema.Location = new Point(240, 84);
             lblReqSistema.Name = "lblReqSistema";
-            lblReqSistema.Size = new Size(122, 15);
+            lblReqSistema.Size = new Size(138, 15);
             lblReqSistema.TabIndex = 16;
             lblReqSistema.Text = "Requisitos do Sistema";
             // 
             // txtReq_Sis
             // 
-            txtReq_Sis.Location = new Point(240, 86);
+            txtReq_Sis.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtReq_Sis.Location = new Point(240, 102);
             txtReq_Sis.Name = "txtReq_Sis";
             txtReq_Sis.Size = new Size(312, 23);
             txtReq_Sis.TabIndex = 17;
@@ -191,49 +216,60 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(586, 68);
+            label1.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            label1.ForeColor = Color.FromArgb(234, 234, 234);
+            label1.Location = new Point(573, 84);
             label1.Name = "label1";
-            label1.Size = new Size(52, 15);
+            label1.Size = new Size(57, 15);
             label1.TabIndex = 18;
             label1.Text = "Imagens";
             // 
             // txtImagem1
             // 
-            txtImagem1.Location = new Point(770, 65);
+            txtImagem1.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtImagem1.Location = new Point(703, 102);
             txtImagem1.Name = "txtImagem1";
             txtImagem1.Size = new Size(109, 23);
             txtImagem1.TabIndex = 19;
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(920, 120);
+            btnAtualizar.BackColor = Color.FromArgb(168, 3, 12);
+            btnAtualizar.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAtualizar.ForeColor = Color.FromArgb(234, 234, 234);
+            btnAtualizar.Location = new Point(992, 75);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(75, 20);
+            btnAtualizar.Size = new Size(84, 22);
             btnAtualizar.TabIndex = 20;
             btnAtualizar.Text = "Atualizar";
-            btnAtualizar.UseVisualStyleBackColor = true;
+            btnAtualizar.UseVisualStyleBackColor = false;
             btnAtualizar.Click += btnAtualizar_Click;
             // 
             // btnRemover
             // 
-            btnRemover.Location = new Point(1001, 119);
+            btnRemover.BackColor = Color.FromArgb(168, 3, 12);
+            btnRemover.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRemover.ForeColor = Color.FromArgb(234, 234, 234);
+            btnRemover.Location = new Point(992, 103);
             btnRemover.Name = "btnRemover";
-            btnRemover.Size = new Size(75, 21);
+            btnRemover.Size = new Size(84, 22);
             btnRemover.TabIndex = 21;
             btnRemover.Text = "Remover";
-            btnRemover.UseVisualStyleBackColor = true;
+            btnRemover.UseVisualStyleBackColor = false;
             btnRemover.Click += btnRemover_Click;
             // 
             // txtImagem2
             // 
-            txtImagem2.Location = new Point(644, 65);
+            txtImagem2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtImagem2.Location = new Point(573, 102);
             txtImagem2.Name = "txtImagem2";
             txtImagem2.Size = new Size(109, 23);
             txtImagem2.TabIndex = 22;
             // 
             // txtImagem3
             // 
-            txtImagem3.Location = new Point(899, 65);
+            txtImagem3.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtImagem3.Location = new Point(827, 102);
             txtImagem3.Name = "txtImagem3";
             txtImagem3.Size = new Size(109, 23);
             txtImagem3.TabIndex = 23;
@@ -241,27 +277,33 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(644, 51);
+            label2.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            label2.ForeColor = Color.FromArgb(234, 234, 234);
+            label2.Location = new Point(627, 84);
             label2.Name = "label2";
-            label2.Size = new Size(34, 15);
+            label2.Size = new Size(37, 15);
             label2.TabIndex = 24;
             label2.Text = "Capa";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(770, 51);
+            label3.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            label3.ForeColor = Color.FromArgb(234, 234, 234);
+            label3.Location = new Point(703, 84);
             label3.Name = "label3";
-            label3.Size = new Size(34, 15);
+            label3.Size = new Size(37, 15);
             label3.TabIndex = 25;
             label3.Text = "Cen1";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(899, 51);
+            label4.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            label4.ForeColor = Color.FromArgb(234, 234, 234);
+            label4.Location = new Point(827, 84);
             label4.Name = "label4";
-            label4.Size = new Size(34, 15);
+            label4.Size = new Size(37, 15);
             label4.TabIndex = 26;
             label4.Text = "Cen2";
             // 
@@ -269,6 +311,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(1088, 621);
             Controls.Add(label4);
             Controls.Add(label3);

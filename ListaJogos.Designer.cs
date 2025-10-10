@@ -55,7 +55,7 @@
             cb1.DropDownStyle = ComboBoxStyle.DropDownList;
             cb1.FormattingEnabled = true;
             cb1.Items.AddRange(new object[] { "Titulo", "Desenvolvedora", "Distribuidora", "Informacoes" });
-            cb1.Location = new Point(119, 131);
+            cb1.Location = new Point(83, 135);
             cb1.Name = "cb1";
             cb1.Size = new Size(149, 23);
             cb1.TabIndex = 1;
@@ -65,7 +65,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 15.75F);
             label2.ForeColor = Color.FromArgb(234, 234, 234);
-            label2.Location = new Point(119, 94);
+            label2.Location = new Point(83, 94);
             label2.Name = "label2";
             label2.Size = new Size(149, 24);
             label2.TabIndex = 2;
@@ -76,7 +76,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 15.75F);
             label3.ForeColor = Color.FromArgb(234, 234, 234);
-            label3.Location = new Point(306, 94);
+            label3.Location = new Point(274, 94);
             label3.Name = "label3";
             label3.Size = new Size(72, 24);
             label3.TabIndex = 3;
@@ -84,13 +84,14 @@
             // 
             // tb1
             // 
-            tb1.Location = new Point(306, 131);
+            tb1.Location = new Point(274, 135);
             tb1.Name = "tb1";
-            tb1.Size = new Size(382, 23);
+            tb1.Size = new Size(467, 23);
             tb1.TabIndex = 4;
             // 
             // dgv
             // 
+            dgv.BackgroundColor = Color.FromArgb(234, 234, 234);
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv.Location = new Point(83, 185);
             dgv.Name = "dgv";
@@ -101,11 +102,11 @@
             // b1
             // 
             b1.BackColor = Color.FromArgb(168, 3, 12);
-            b1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            b1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             b1.ForeColor = Color.FromArgb(234, 234, 234);
-            b1.Location = new Point(723, 121);
+            b1.Location = new Point(760, 135);
             b1.Name = "b1";
-            b1.Size = new Size(90, 37);
+            b1.Size = new Size(90, 27);
             b1.TabIndex = 6;
             b1.Text = "Buscar";
             b1.UseVisualStyleBackColor = false;
