@@ -50,7 +50,9 @@
             label1 = new Label();
             tipo_user = new ComboBox();
             lblMensagem = new Label();
+            pictureBox1 = new PictureBox();
             cad = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // cad
@@ -254,6 +256,16 @@
             lblMensagem.TabIndex = 23;
             lblMensagem.Text = " ";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
+            pictureBox1.Location = new Point(563, 224);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(150, 122);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 20;
+            pictureBox1.TabStop = false;
+            // 
             // TelaCadastroLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -263,6 +275,7 @@
             Controls.Add(lblMensagem);
             Controls.Add(tipo_user);
             Controls.Add(cad);
+            Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(confsenha);
             Controls.Add(senha);
@@ -284,6 +297,7 @@
             Name = "TelaCadastroLogin";
             Text = "TelaCadastroLogin";
             Load += TelaCadastroLogin_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -311,5 +325,6 @@
         private Button cad;
         private ComboBox tipo_user;
         private Label lblMensagem;
+        private PictureBox pictureBox1;
     }
 }
