@@ -22,6 +22,12 @@ namespace Projeto_integrador
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            dgv.Columns["id_play"].Visible = false;
+            dgv.Columns["id_categoria"].Visible = false;
+            dgv.Columns["Imagens_jogos"].Visible = false;
+            dgv.Columns["Imagens_cen1"].Visible = false;
+            dgv.Columns["Imagens_cen2"].Visible = false;
+            dgv.Columns["Trailers"].Visible = false;
 
         }
 

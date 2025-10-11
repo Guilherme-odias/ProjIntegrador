@@ -130,7 +130,7 @@
             nome_user1.AutoSize = true;
             nome_user1.Font = new Font("Century Gothic", 9.75F);
             nome_user1.ForeColor = Color.FromArgb(234, 234, 234);
-            nome_user1.Location = new Point(514, 101);
+            nome_user1.Location = new Point(533, 101);
             nome_user1.Name = "nome_user1";
             nome_user1.Size = new Size(58, 17);
             nome_user1.TabIndex = 5;
@@ -202,7 +202,7 @@
             // nome_user
             // 
             nome_user.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nome_user.Location = new Point(514, 129);
+            nome_user.Location = new Point(533, 129);
             nome_user.Name = "nome_user";
             nome_user.Size = new Size(199, 22);
             nome_user.TabIndex = 15;
@@ -268,7 +268,7 @@
             // pictureBox1
             // 
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(563, 224);
+            pictureBox1.Location = new Point(582, 226);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(150, 122);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
