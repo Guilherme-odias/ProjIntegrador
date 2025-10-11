@@ -20,7 +20,13 @@ namespace Projeto_integrador
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void chama(object sender, EventArgs e)
+        {
+            dgv.DataSource = 
+        }
+
+        private void ocultar()
         {
             dgv.Columns["id_play"].Visible = false;
             dgv.Columns["id_categoria"].Visible = false;
@@ -28,6 +34,11 @@ namespace Projeto_integrador
             dgv.Columns["Imagens_cen1"].Visible = false;
             dgv.Columns["Imagens_cen2"].Visible = false;
             dgv.Columns["Trailers"].Visible = false;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
 
         }
 
