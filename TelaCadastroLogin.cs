@@ -65,6 +65,12 @@ namespace Projeto_integrador
                 return; // interrompe o cadastro
             }
 
+            if (varcpf.Any(char.IsLetter))
+            {
+                MessageBox.Show("Use apenas números no cpf!!");
+                return;
+            }
+
             if (busca.busca_cpf(varcpf))
             {
                 MessageBox.Show("Este cpf já está cadastrado em uso!!!");
