@@ -129,5 +129,19 @@ namespace Projeto_integrador
                 }
             }
         }
+
+        public DataTable jubarte()
+        {
+            Conexao conexao = new Conexao();
+            using (MySqlConnection conn = conexao.GetConnection())
+            {
+                string query = "SELECT * FROM jogos";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable tabela = new DataTable();
+                da.Fill(tabela);
+                return tabela;
+            }
+        }
     }
 }

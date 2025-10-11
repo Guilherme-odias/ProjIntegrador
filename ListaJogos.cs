@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,10 +21,10 @@ namespace Projeto_integrador
             InitializeComponent();
         }
 
-
         private void chama(object sender, EventArgs e)
         {
-            dgv.DataSource = 
+            dgv.DataSource = busca.jubarte(); // método que retorna um DataTable
+            ocultar(); // 👈 já pode ocultar as colunas depois de preencher
         }
 
         private void ocultar()
