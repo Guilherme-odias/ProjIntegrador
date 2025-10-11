@@ -123,11 +123,14 @@
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>20, 23</value>
   </metadata>
+  <metadata name="tipo_user.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAASsAAACoCAIAAAA3lV8hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAA/7JJREFUeF7E/QdUk9n6sI1HRaT33nvvHZJASELonZCE0Htv0ntHQATBhopSBEQF
+        wAAADsABataJCQAA/7JJREFUeF7E/QdUk9n6sI1HRaT33nvvHZJASELonZCE0Htv0ntHQATBhopSBEQF
         xU7vvfdeBESw0ME2M/7Xk8xwPOOZ33ve7/+97zfrWns9eUhQZ3Fx3/u+994PqPdeeldxSlthQsP1qJeX
         Q55k+T9K965M8bgdblMQgsn3N89y10/Aa4aZK/nrS/kgRf2RUgFwyQC4pL+2hB9M3FdLzEdT1EdT1Bsq
         4gUR9oIIe4KFPDQE3dUF3NT43dT4XVX5nJS47eTYcVLM1hL01hL0WAkGnCQjVoIOQJwaI0ZlLUppLUqJ

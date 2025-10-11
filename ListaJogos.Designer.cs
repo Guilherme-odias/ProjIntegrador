@@ -91,6 +91,7 @@
             // 
             // dgv
             // 
+            dgv.AllowUserToOrderColumns = true;
             dgv.BackgroundColor = Color.FromArgb(234, 234, 234);
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv.Location = new Point(83, 185);
