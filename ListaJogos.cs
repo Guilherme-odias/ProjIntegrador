@@ -52,7 +52,6 @@ namespace Projeto_integrador
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            
-
         }
 
         private void ListaJogos_Load(object sender, EventArgs e)
@@ -70,26 +69,26 @@ namespace Projeto_integrador
 
             if (cb == "Titulo")
             {
-                CarregarJogos();
                 dgv.DataSource = busca.procura_titulo(tb);
+                CarregarJogos();
             }
 
             if (cb == "Desenvolvedora")
             {
-                CarregarJogos();
                 dgv.DataSource = busca.procura_desenvolvedora(tb);
+                CarregarJogos();
             }
 
             if (cb == "Distribuidora")
             {
-                CarregarJogos();
                 dgv.DataSource = busca.procura_distribuidora(tb);
+                CarregarJogos();
             }
 
             if (cb == "Informacoes")
             {
-                CarregarJogos();
                 dgv.DataSource = busca.procura_informacoes(tb);
+                CarregarJogos();
             }
         }
     }
