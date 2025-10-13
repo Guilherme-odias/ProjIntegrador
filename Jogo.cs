@@ -83,9 +83,9 @@ namespace Projeto_integrador
                     cmd.Parameters.AddWithValue("@informacoes", Informacoes);
                     cmd.Parameters.AddWithValue("@data_lancamento", DataLancamento);
                     cmd.Parameters.AddWithValue("@req_sistema", RequisitosSistema);
-                    cmd.Parameters.AddWithValue("@Imagens_jogos", ImagemCapa);       // <- NOVO
-                    cmd.Parameters.AddWithValue("@Imagem_cen1", ImagemCen1);     // <- NOVO
-                    cmd.Parameters.AddWithValue("@Imagem_cen2", ImagemCen2);     // <- NOVO
+                    cmd.Parameters.AddWithValue("@Imagens_jogos", ImagemCapa);       
+                    cmd.Parameters.AddWithValue("@Imagem_cen1", ImagemCen1);     
+                    cmd.Parameters.AddWithValue("@Imagem_cen2", ImagemCen2);     
                     cmd.Parameters.AddWithValue("@id", Id);
 
                     conn.Open();
