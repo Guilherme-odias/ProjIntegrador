@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using static Projeto_integrador.RepositorioJogos;
 
 namespace Projeto_integrador
 {
@@ -16,6 +17,7 @@ namespace Projeto_integrador
     {
         private RepositorioJogos _repositorio;
         private string modo = ""; // "loja" ou "biblioteca"
+        private Dictionary<string, int> categorias;
 
         // variáveis para animação
         private List<string> _titulosAnimacao;
@@ -23,16 +25,59 @@ namespace Projeto_integrador
         private int _velocidade;
         private RepositorioJogos.Jogo _jogoSorteado;
 
+        private ComboBox cb_categoria;
+
+
         public Sorteador()
         {
             InitializeComponent();
             _repositorio = new RepositorioJogos();
 
+            categorias = new Dictionary<string, int>()
+    {
+        { "Todas", 0 },
+        { "Ação", 1 },
+        { "Aventura", 2 },
+        { "Corrida", 3 },
+        { "Estratégia", 4 },
+        { "Esporte", 5 },
+        { "Tiro", 6 },
+        { "Terror", 7 },
+        { "Sobrevivência", 8 },
+        { "RPG", 9 },
+        { "Lutas", 10 }
+    };
+
             grp_resultado.Visible = false;
-            txt_user.Visible = false;       
+            txt_user.Visible = false;
+
+
+            cb_cate.DataSource = new BindingSource(categorias, null);
+            cb_cate.DisplayMember = "Key";
+            cb_cate.ValueMember = "Value";
+            cb_cate.SelectedIndex = 0;
+            cb_cate.Location = new Point(480, 287); // Ajuste a posição conforme necessário
+            cb_cate.Size = new Size(100, 30);
+ 
+
+            PreencherCategorias();
 
             timer_an.Tick += TimerAnimacao_Tick;
 
+        }
+
+        private void PreencherCategorias()
+        {
+            var categorias = _repositorio.ObterCategorias();
+
+            cb_cate.DataSource = null;
+            cb_cate.DataSource = new BindingSource(categorias, null);
+
+            cb_cate.DisplayMember = "Nome";   // o nome da propriedade que você quer mostrar
+            cb_cate.ValueMember = "Id";       // a propriedade com o id (ajuste conforme seu modelo)
+
+            if (cb_cate.Items.Count > 0)
+                cb_cate.SelectedIndex = 0;
         }
 
         private void btn_bibl_Click_1(object sender, EventArgs e)
@@ -51,7 +96,6 @@ namespace Projeto_integrador
 
         private void btn_sortear_Click(object sender, EventArgs e)
         {
-            // Validações
             if (string.IsNullOrWhiteSpace(modo))
             {
                 MessageBox.Show("Escolha primeiro 'Minha Biblioteca' ou 'Toda Loja'.");
@@ -64,14 +108,17 @@ namespace Projeto_integrador
                 return;
             }
 
-            // Sorteia usando a classe
-            _jogoSorteado = _repositorio.SortearJogo(modo, txt_user.Text.Trim());
+            var categoriaSelecionada = (Categoria)cb_cate.SelectedItem;
+            int idCategoriaSelecionada = categoriaSelecionada.Id;
+
+            _jogoSorteado = _repositorio.SortearJogo(modo, txt_user.Text.Trim(), idCategoriaSelecionada);
 
             if (_jogoSorteado == null)
             {
                 MessageBox.Show("Nenhum jogo encontrado.");
                 return;
             }
+
 
             // Prepara lista de títulos para simular "roleta"
             _titulosAnimacao = new List<string>();

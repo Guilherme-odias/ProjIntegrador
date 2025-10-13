@@ -41,6 +41,7 @@
             btn_nova = new Button();
             grp_resultado = new GroupBox();
             timer_an = new System.Windows.Forms.Timer(components);
+            cb_cate = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).BeginInit();
             grp_resultado.SuspendLayout();
@@ -75,12 +76,12 @@
             // 
             txt_user.BackColor = Color.White;
             txt_user.CharacterCasing = CharacterCasing.Upper;
-            txt_user.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_user.Font = new Font("Lucida Console", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_user.ForeColor = Color.Black;
             txt_user.Location = new Point(206, 391);
             txt_user.Margin = new Padding(4);
             txt_user.Name = "txt_user";
-            txt_user.Size = new Size(616, 27);
+            txt_user.Size = new Size(616, 23);
             txt_user.TabIndex = 2;
             txt_user.Tag = "";
             txt_user.Text = "DIGITE SEU USERNAME:";
@@ -92,7 +93,7 @@
             btn_bibl.FlatStyle = FlatStyle.Flat;
             btn_bibl.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_bibl.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_bibl.Location = new Point(239, 274);
+            btn_bibl.Location = new Point(219, 274);
             btn_bibl.Margin = new Padding(4);
             btn_bibl.Name = "btn_bibl";
             btn_bibl.Size = new Size(228, 48);
@@ -107,7 +108,7 @@
             btn_loja.FlatStyle = FlatStyle.Flat;
             btn_loja.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_loja.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_loja.Location = new Point(577, 274);
+            btn_loja.Location = new Point(584, 274);
             btn_loja.Margin = new Padding(4);
             btn_loja.Name = "btn_loja";
             btn_loja.Size = new Size(228, 48);
@@ -152,7 +153,7 @@
             lb_resposta.Location = new Point(219, 386);
             lb_resposta.Margin = new Padding(4, 0, 4, 0);
             lb_resposta.Name = "lb_resposta";
-            lb_resposta.Size = new Size(564, 108);
+            lb_resposta.Size = new Size(701, 108);
             lb_resposta.TabIndex = 7;
             lb_resposta.Text = "Resposta do jogo sorteado";
             lb_resposta.TextAlign = ContentAlignment.MiddleCenter;
@@ -182,7 +183,7 @@
             grp_resultado.Margin = new Padding(4);
             grp_resultado.Name = "grp_resultado";
             grp_resultado.Padding = new Padding(4);
-            grp_resultado.Size = new Size(1046, 617);
+            grp_resultado.Size = new Size(1048, 617);
             grp_resultado.TabIndex = 9;
             grp_resultado.TabStop = false;
             grp_resultado.Text = "groupBox1";
@@ -192,12 +193,21 @@
             // 
             timer_an.Interval = 50;
             // 
+            // cb_cate
+            // 
+            cb_cate.FormattingEnabled = true;
+            cb_cate.Location = new Point(454, 287);
+            cb_cate.Name = "cb_cate";
+            cb_cate.Size = new Size(123, 27);
+            cb_cate.TabIndex = 10;
+            // 
             // Sorteador
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(1048, 618);
+            Controls.Add(cb_cate);
             Controls.Add(grp_resultado);
             Controls.Add(btn_sortear);
             Controls.Add(btn_loja);
@@ -232,5 +242,6 @@
         private Button btn_nova;
         private GroupBox grp_resultado;
         private System.Windows.Forms.Timer timer_an;
+        private ComboBox cb_cate;
     }
 }
