@@ -54,7 +54,7 @@ namespace Projeto_integrador
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void b1_Click(object sender, EventArgs e)
@@ -82,6 +82,11 @@ namespace Projeto_integrador
             {
                 dgv.DataSource = busca.procura_informacoes(tb);
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
