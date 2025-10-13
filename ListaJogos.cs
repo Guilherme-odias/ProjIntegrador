@@ -24,12 +24,18 @@ namespace Projeto_integrador
         private void ListaJogos_Load(object sender, EventArgs e)
         {
             CarregarJogos();
+            dgv.Columns["id_play"].Visible = false;
+            dgv.Columns["Imagens_jogos"].Visible = false;
+            dgv.Columns["Imagens_cen1"].Visible = false;
+            dgv.Columns["Imagens_cen2"].Visible = false;
         }
+
+        // id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2
 
         private void CarregarJogos()
         {
             Conexao conexao = new Conexao();
-            string query = @"SELECT titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema FROM jogos";
+            string query = @"SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema FROM jogos";
 
             // pega uma nova conexão
             using (MySqlConnection con = conexao.GetConnection())
@@ -86,6 +92,51 @@ namespace Projeto_integrador
 
         private void label3_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // garante que clicou em uma linha válida
+            {
+                DataGridViewRow linha = dgv.Rows[e.RowIndex];
+
+                // pega as URLs direto das colunas do DataGridView
+                string urlImagemPrincipal = linha.Cells["Imagens_jogos"].Value?.ToString();
+                string urlCenario1 = linha.Cells["Imagens_cen1"].Value?.ToString();
+                string urlCenario2 = linha.Cells["Imagens_cen2"].Value?.ToString();
+
+                // carrega as imagens nos PictureBox
+                if (!string.IsNullOrEmpty(urlImagemPrincipal))
+                {
+                    pictureBox1.ImageLocation = urlImagemPrincipal;
+                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    pictureBox1.Image = null;
+                }
+
+                if (!string.IsNullOrEmpty(urlCenario1))
+                {
+                    pictureBox2.ImageLocation = urlCenario1;
+                    pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    pictureBox2.Image = null;
+                }
+
+                if (!string.IsNullOrEmpty(urlCenario2))
+                {
+                    pictureBox3.ImageLocation = urlCenario2;
+                    pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    pictureBox3.Image = null;
+                }
+            }
 
         }
     }
