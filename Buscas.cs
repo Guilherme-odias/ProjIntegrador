@@ -135,7 +135,7 @@ namespace Projeto_integrador
             Conexao conexao = new Conexao();
             using (MySqlConnection conn = conexao.GetConnection())
             {
-                string query = "SELECT * FROM jogos";
+                string query = "SELECT titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2 FROM jogos";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 DataTable tabela = new DataTable();

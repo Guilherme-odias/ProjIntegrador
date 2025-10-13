@@ -21,20 +21,32 @@ namespace Projeto_integrador
             InitializeComponent();
         }
 
-        private void chama(object sender, EventArgs e)
+        private void CarregarJogos()
         {
-            dgv.DataSource = busca.jubarte(); // método que retorna um DataTable
-            ocultar(); // 👈 já pode ocultar as colunas depois de preencher
-        }
+            Conexao conexao = new Conexao();
+            string query = @"SELECT titulo, desenvolvedora, distribuidora, informacoes, 
+                            data_lancamento, req_sistema 
+                     FROM jogos";
 
-        private void ocultar()
-        {
-            dgv.Columns["id_play"].Visible = false;
-            dgv.Columns["id_categoria"].Visible = false;
-            dgv.Columns["Imagens_jogos"].Visible = false;
-            dgv.Columns["Imagens_cen1"].Visible = false;
-            dgv.Columns["Imagens_cen2"].Visible = false;
-            dgv.Columns["Trailers"].Visible = false;
+            // pega uma nova conexão
+            using (MySqlConnection con = conexao.GetConnection())
+            {
+                try
+                {
+                    con.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgv.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar jogos: " + ex.Message);
+                }
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -50,27 +62,33 @@ namespace Projeto_integrador
 
         private void b1_Click(object sender, EventArgs e)
         {
+
+            CarregarJogos();
+
             string cb = cb1.Text;
             string tb = tb1.Text;
 
             if (cb == "Titulo")
             {
+                CarregarJogos();
                 dgv.DataSource = busca.procura_titulo(tb);
             }
 
             if (cb == "Desenvolvedora")
             {
+                CarregarJogos();
                 dgv.DataSource = busca.procura_desenvolvedora(tb);
-
             }
 
             if (cb == "Distribuidora")
             {
+                CarregarJogos();
                 dgv.DataSource = busca.procura_distribuidora(tb);
             }
 
             if (cb == "Informacoes")
             {
+                CarregarJogos();
                 dgv.DataSource = busca.procura_informacoes(tb);
             }
         }
