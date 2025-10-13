@@ -21,12 +21,15 @@ namespace Projeto_integrador
             InitializeComponent();
         }
 
+        private void ListaJogos_Load(object sender, EventArgs e)
+        {
+            CarregarJogos();
+        }
+
         private void CarregarJogos()
         {
             Conexao conexao = new Conexao();
-            string query = @"SELECT titulo, desenvolvedora, distribuidora, informacoes, 
-                            data_lancamento, req_sistema 
-                     FROM jogos";
+            string query = @"SELECT titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema FROM jogos";
 
             // pega uma nova conexão
             using (MySqlConnection con = conexao.GetConnection())
@@ -54,15 +57,8 @@ namespace Projeto_integrador
            
         }
 
-        private void ListaJogos_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void b1_Click(object sender, EventArgs e)
         {
-
-            CarregarJogos();
 
             string cb = cb1.Text;
             string tb = tb1.Text;
@@ -70,25 +66,21 @@ namespace Projeto_integrador
             if (cb == "Titulo")
             {
                 dgv.DataSource = busca.procura_titulo(tb);
-                CarregarJogos();
             }
 
             if (cb == "Desenvolvedora")
             {
                 dgv.DataSource = busca.procura_desenvolvedora(tb);
-                CarregarJogos();
             }
 
             if (cb == "Distribuidora")
             {
                 dgv.DataSource = busca.procura_distribuidora(tb);
-                CarregarJogos();
             }
 
             if (cb == "Informacoes")
             {
                 dgv.DataSource = busca.procura_informacoes(tb);
-                CarregarJogos();
             }
         }
     }
