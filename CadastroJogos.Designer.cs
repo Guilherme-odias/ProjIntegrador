@@ -33,7 +33,6 @@
             lblTitulo = new Label();
             txtTitulo = new TextBox();
             lblCategoria = new Label();
-            txtCategoria = new TextBox();
             dgvJogos = new DataGridView();
             lblDesenvolvedora = new Label();
             txtDesenvolvedora = new TextBox();
@@ -54,6 +53,7 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            cmbCategoria = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvJogos).BeginInit();
             SuspendLayout();
             // 
@@ -100,14 +100,6 @@
             lblCategoria.TabIndex = 3;
             lblCategoria.Text = "Categoria";
             // 
-            // txtCategoria
-            // 
-            txtCategoria.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCategoria.Location = new Point(14, 46);
-            txtCategoria.Name = "txtCategoria";
-            txtCategoria.Size = new Size(73, 23);
-            txtCategoria.TabIndex = 4;
-            // 
             // dgvJogos
             // 
             dgvJogos.BackgroundColor = Color.FromArgb(234, 234, 234);
@@ -116,7 +108,7 @@
             dgvJogos.Name = "dgvJogos";
             dgvJogos.Size = new Size(1064, 450);
             dgvJogos.TabIndex = 7;
-            dgvJogos.CellContentClick += dgvJogos_CellContentClick_1;
+
             // 
             // lblDesenvolvedora
             // 
@@ -307,12 +299,21 @@
             label4.TabIndex = 26;
             label4.Text = "Cen2";
             // 
+            // cmbCategoria
+            // 
+            cmbCategoria.FormattingEnabled = true;
+            cmbCategoria.Location = new Point(15, 47);
+            cmbCategoria.Name = "cmbCategoria";
+            cmbCategoria.Size = new Size(66, 23);
+            cmbCategoria.TabIndex = 27;
+            // 
             // CadastroJogos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(1088, 621);
+            Controls.Add(cmbCategoria);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -333,7 +334,6 @@
             Controls.Add(txtDesenvolvedora);
             Controls.Add(lblDesenvolvedora);
             Controls.Add(dgvJogos);
-            Controls.Add(txtCategoria);
             Controls.Add(lblCategoria);
             Controls.Add(txtTitulo);
             Controls.Add(lblTitulo);
@@ -353,7 +353,6 @@
         private Label lblTitulo;
         private TextBox txtTitulo;
         private Label lblCategoria;
-        private TextBox txtCategoria;
         private DataGridView dgvJogos;
         private Label lblDesenvolvedora;
         private TextBox txtDesenvolvedora;
@@ -374,5 +373,6 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private ComboBox cmbCategoria;
     }
 }
