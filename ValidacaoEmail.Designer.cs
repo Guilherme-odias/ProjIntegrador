@@ -139,6 +139,7 @@
             Controls.Add(lbl);
             Name = "ValidacaoEmail";
             Text = "ValidacaoEmail";
+            Load += ValidacaoEmail_Load;
             ResumeLayout(false);
             PerformLayout();
         }

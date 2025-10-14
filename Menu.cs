@@ -17,93 +17,67 @@ namespace Projeto_integrador
             InitializeComponent();
         }
 
-        private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
+        public void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.MdiChildren.Length == 0)
+            if (!SessaoAtual.VerificarLogin(this)) return;
+
+            if (SessaoAtual.TipoUsuario != "admin")
             {
-
-
-                TelaCadastroLogin abrirfo1 = new TelaCadastroLogin();
-                abrirfo1.MdiParent = this;
-                abrirfo1.Show();
+                MessageBox.Show("Acesso permitido apenas para administradores.");
+                return;
             }
-            else
-            {
 
-                this.MdiChildren[0].Activate();
-            }
+            TelaCadastroLogin tela = new TelaCadastroLogin();
+            tela.MdiParent = this;
+            tela.Show();
 
         }
 
-        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        public void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.MdiChildren.Length == 0)
-            {
-
-
-                TelaLogin abrirfo1 = new TelaLogin();
-                abrirfo1.MdiParent = this;
-                abrirfo1.Show();
-            }
-            else
-            {
-
-                this.MdiChildren[0].Activate();
-            }
+            SessaoAtual.VerificarLogin(this);
 
         }
 
-        private void cadastroJogoToolStripMenuItem_Click(object sender, EventArgs e)
+        public void cadastroJogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.MdiChildren.Length == 0)
+            if (!SessaoAtual.VerificarLogin(this)) return;
+
+            if (SessaoAtual.TipoUsuario != "admin")
             {
-
-
-                CadastroJogos abrirfo1 = new CadastroJogos();
-                abrirfo1.MdiParent = this;
-                abrirfo1.Show();
+                MessageBox.Show("Acesso permitido apenas para administradores.");
+                return;
             }
-            else
-            {
 
-                this.MdiChildren[0].Activate();
-            }
+            CadastroJogos tela = new CadastroJogos();
+            tela.MdiParent = this;
+            tela.Show();
 
         }
 
-        private void listaJogosToolStripMenuItem_Click(object sender, EventArgs e)
+        public void listaJogosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.MdiChildren.Length == 0)
+            if (!SessaoAtual.VerificarLogin(this)) return;
+
+            if (SessaoAtual.TipoUsuario != "admin")
             {
-
-
-                ListaJogos abrirfo1 = new ListaJogos();
-                abrirfo1.MdiParent = this;
-                abrirfo1.Show();
+                MessageBox.Show("Acesso permitido apenas para administradores.");
+                return;
             }
-            else
-            {
 
-                this.MdiChildren[0].Activate();
-            }
+            ListaJogos tela = new ListaJogos();
+            tela.MdiParent = this;
+            tela.Show();
 
         }
 
-        private void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
+       public void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.MdiChildren.Length == 0)
-            {
+            if (!SessaoAtual.VerificarLogin(this)) return;
 
-
-                Sorteador abrirfo1 = new Sorteador();
-                abrirfo1.MdiParent = this;
-                abrirfo1.Show();
-            }
-            else
-            {
-
-                this.MdiChildren[0].Activate();
-            }
+            Sorteador tela = new Sorteador();
+            tela.MdiParent = this;
+            tela.Show();
 
         }
 
@@ -112,9 +86,12 @@ namespace Projeto_integrador
 
         }
 
-        private void Menu_Load(object sender, EventArgs e)
+        public void Menu_Load(object sender, EventArgs e)
         {
-
+            cadastroToolStripMenuItem.Enabled = false;
+            cadastroJogoToolStripMenuItem.Enabled = false;
+            listaJogosToolStripMenuItem.Enabled = false;
+            sorteadorToolStripMenuItem.Enabled = false;
         }
     }
 }

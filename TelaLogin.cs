@@ -14,10 +14,14 @@ namespace Projeto_integrador
 {
     public partial class TelaLogin : Form
     {
+        public string EmailOuUsuario { get; private set; }
+        public string TipoUsuario { get; private set; }
+
         public TelaLogin()
         {
             InitializeComponent();
         }
+
 
         private void TelaLogin_Load(object sender, EventArgs e)
         {
@@ -26,42 +30,48 @@ namespace Projeto_integrador
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string email = textEmail.Text;
-            string senha = textSenha.Text;
+            string login = textEmail.Text.Trim();
+            string senha = textSenha.Text.Trim();
+
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(senha))
+            {
+                lblAviso.Text = "Preencha usuário e senha!";
+                return;
+            }
 
             Conexao conexao = new Conexao();
-
             using (MySqlConnection conn = conexao.GetConnection())
             {
                 try
                 {
                     conn.Open();
-                    string query = "SELECT COUNT(*) FROM cadastro WHERE (email = @login OR nome_user = @login) AND senha = @senha";
+                    string query = "SELECT tipo_user FROM cadastro WHERE (email=@login OR nome_user=@login) AND senha=@senha";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@login", email);
+                    cmd.Parameters.AddWithValue("@login", login);
                     cmd.Parameters.AddWithValue("@senha", senha);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    if (count > 0)
+                    var tipo = cmd.ExecuteScalar();
+
+                    if (tipo != null)
                     {
-                        lblAviso.Text = ("Login Realizado com Sucesso!");
-                        CadastroJogos sorte = new CadastroJogos();
-                        sorte.Show();
-                        this.Hide();
+                        EmailOuUsuario = login;
+                        TipoUsuario = tipo.ToString();
+                        DialogResult = DialogResult.OK;
+                        Close();
                     }
                     else
                     {
-                        lblAviso.Text = ("Email ou senha \n incorretos.");
+                        lblAviso.Text = "Email ou senha incorretos!";
                         esqueciSenha.Visible = true;
-
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao fazer login: " + ex.Message);
+                    MessageBox.Show("Erro ao conectar ao banco: " + ex.Message);
                 }
             }
         }
+
 
         private void textSenha_TextChanged(object sender, EventArgs e)
         {
@@ -71,8 +81,8 @@ namespace Projeto_integrador
         private void button2_Click(object sender, EventArgs e)
         {
             TelaCadastroLogin Tela = new TelaCadastroLogin();
-            Tela.Show();
-            this.Hide();
+            TelaCadastroLogin tela = new TelaCadastroLogin();
+            tela.ShowDialog();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

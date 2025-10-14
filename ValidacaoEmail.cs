@@ -73,13 +73,13 @@ namespace Projeto_integrador
                     codigoGerado = rnd.Next(100000, 999999).ToString();
 
                     MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("nicolas.seabra09@gmail.com");
+                    mail.From = new MailAddress("quimeraggames@gmail.com");
                     mail.To.Add(txtEmail.Text);
                     mail.Subject = "Código de Verificação";
                     mail.Body = $"Seu código de verificação é: {codigoGerado}";
 
                     SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                    smtp.Credentials = new NetworkCredential("nicolas.seabra09@gmail.com", "juoo dqyy kyda zhap");
+                    smtp.Credentials = new NetworkCredential("quimeraggames@gmail.com", "juoo dqyy kyda zhap");
                     smtp.EnableSsl = true;
 
                     try
@@ -105,13 +105,18 @@ namespace Projeto_integrador
 
                 this.Hide();
                 novo.Show();
-            
+
             }
             else
             {
                 lblCodigo.Text = ("Código incorreto. Verifique seu email.");
 
             }
+        }
+
+        private void ValidacaoEmail_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

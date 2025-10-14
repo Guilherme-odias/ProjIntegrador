@@ -55,9 +55,9 @@ namespace Projeto_integrador
             cb_cate.DataSource = new BindingSource(categorias, null);
             cb_cate.DisplayMember = "Key";
             cb_cate.ValueMember = "Value";
-            cb_cate.SelectedIndex = 0;
-            cb_cate.Location = new Point(480, 287); // Ajuste a posição conforme necessário
-            cb_cate.Size = new Size(100, 30);
+            cb_cate.SelectedIndex = -1;
+            cb_cate.Location = new Point(463, 295); // Ajuste a posição conforme necessário
+            cb_cate.Size = new Size(123, 27);
  
 
             PreencherCategorias();
@@ -108,8 +108,13 @@ namespace Projeto_integrador
                 return;
             }
 
-            var categoriaSelecionada = (Categoria)cb_cate.SelectedItem;
-            int idCategoriaSelecionada = categoriaSelecionada.Id;
+            int idCategoriaSelecionada = 0;
+
+            if (cb_cate.SelectedItem != null)
+            {
+                var categoriaSelecionada = (Categoria)cb_cate.SelectedItem;
+                idCategoriaSelecionada = categoriaSelecionada.Id;
+            }
 
             _jogoSorteado = _repositorio.SortearJogo(modo, txt_user.Text.Trim(), idCategoriaSelecionada);
 
@@ -119,6 +124,8 @@ namespace Projeto_integrador
                 return;
             }
 
+            cb_cate.Visible = false;
+            lb_cate.Visible = false;
 
             // Prepara lista de títulos para simular "roleta"
             _titulosAnimacao = new List<string>();
@@ -182,8 +189,11 @@ namespace Projeto_integrador
                 lb_resposta.Text = "";
                 pt_image_jogo.Image = null;
                 grp_resultado.Visible = false;
+                cb_cate.Visible = true;
+                lb_cate.Visible = true;
+                cb_cate.SelectedIndex = -1; 
 
-                // Se estiver no modo biblioteca, deixa a caixa visível
+            // Se estiver no modo biblioteca, deixa a caixa visível
             if (modo == "minha_biblioteca")
                 txt_user.Visible = true;
             else
