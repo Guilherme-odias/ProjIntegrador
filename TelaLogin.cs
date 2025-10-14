@@ -35,17 +35,18 @@ namespace Projeto_integrador
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(senha))
             {
-                lblAviso.Text = "Preencha usuário e senha!";
+                MessageBox.Show("Preencha todos os campos!");
                 return;
             }
 
-            Conexao conexao = new Conexao();
-            using (MySqlConnection conn = conexao.GetConnection())
+            string connectionString = "server=10.37.44.72;user id=root;password=root;database=projeto_quimera";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
                 {
                     conn.Open();
-                    string query = "SELECT tipo_user FROM cadastro WHERE (email=@login OR nome_user=@login) AND senha=@senha";
+                    string query = "SELECT tipo_user FROM cadastro WHERE (email = @login OR nome_user = @login) AND senha = @senha LIMIT 1";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@login", login);
                     cmd.Parameters.AddWithValue("@senha", senha);
@@ -55,19 +56,18 @@ namespace Projeto_integrador
                     if (tipo != null)
                     {
                         EmailOuUsuario = login;
-                        TipoUsuario = tipo.ToString();
+                        TipoUsuario = tipo.ToString(); // "admin" ou "comum"
                         DialogResult = DialogResult.OK;
                         Close();
                     }
                     else
                     {
-                        lblAviso.Text = "Email ou senha incorretos!";
-                        esqueciSenha.Visible = true;
+                        MessageBox.Show("Email/usuário ou senha incorretos.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao conectar ao banco: " + ex.Message);
+                    MessageBox.Show("Erro ao fazer login: " + ex.Message);
                 }
             }
         }

@@ -31,17 +31,24 @@ namespace Projeto_integrador
 
 
 
+            string corpoEmail = $"Olá!\n\n" +
+                                $"Você solicitou um código de verificação para concluir seu cadastro.\n\n" +
+                                $"Seu código de verificação é: {codigoGerado}\n\n" +
+                                $"Por favor, insira este código no campo indicado para confirmar seu email.\n\n" +
+                                $"Se você não solicitou este código, ignore este email.\n\n" +
+                                $"Atenciosamente,\nEquipe Quimera Games";
+
             Random rnd = new Random();
             codigoGerado = rnd.Next(100000, 999999).ToString();
 
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("nicolas.seabra09@gmail.com");
+            mail.From = new MailAddress("quimeraggames@gmail.com");
             mail.To.Add(txtEmail.Text);
-            mail.Subject = "Código de Verificação";
-            mail.Body = $"Seu código de verificação é: {codigoGerado}";
+            mail.Subject = "QUIMERA GAMES";
+            mail.Body = corpoEmail;
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("nicolas.seabra09@gmail.com", "juoo dqyy kyda zhap");
+            smtp.Credentials = new NetworkCredential("quimeraggames@gmail.com", "mhas gggt gaja aqez");
             smtp.EnableSsl = true;
 
             try
