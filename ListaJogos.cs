@@ -35,7 +35,7 @@ namespace Projeto_integrador
         private void CarregarJogos()
         {
             Conexao conexao = new Conexao();
-            string query = @"SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema FROM jogos";
+            string query = @"SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2";
 
             // pega uma nova conexão
             using (MySqlConnection con = conexao.GetConnection())
