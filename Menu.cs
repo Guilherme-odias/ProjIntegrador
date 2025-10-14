@@ -89,6 +89,14 @@ namespace Projeto_integrador
 
         }
 
+        private void FecharFilhosAbertos()
+        {
+            foreach (Form form in this.MdiChildren)
+            {
+                form.Close();
+            }
+        }
+
         public void AplicarPermissoesLocais(bool ehAdmin)
         {
             cadastroToolStripMenuItem.Enabled = ehAdmin;
