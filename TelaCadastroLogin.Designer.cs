@@ -73,7 +73,7 @@
             url_foto.BackColor = Color.FromArgb(168, 3, 12);
             url_foto.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             url_foto.ForeColor = Color.FromArgb(234, 234, 234);
-            url_foto.Location = new Point(272, 224);
+            url_foto.Location = new Point(289, 223);
             url_foto.Name = "url_foto";
             url_foto.Size = new Size(69, 25);
             url_foto.TabIndex = 0;
@@ -108,7 +108,7 @@
             tipo_user1.AutoSize = true;
             tipo_user1.Font = new Font("Century Gothic", 9.75F);
             tipo_user1.ForeColor = Color.FromArgb(234, 234, 234);
-            tipo_user1.Location = new Point(403, 197);
+            tipo_user1.Location = new Point(403, 198);
             tipo_user1.Name = "tipo_user1";
             tipo_user1.Size = new Size(105, 17);
             tipo_user1.TabIndex = 3;
