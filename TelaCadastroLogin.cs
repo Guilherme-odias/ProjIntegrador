@@ -131,8 +131,7 @@ namespace Projeto_integrador
                     cmd.Parameters.AddWithValue("@Senha", varsenha);
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
+                    cmd.ExecuteNonQuery();                }
             }
 
             MessageBox.Show("Usuário cadastrado com sucesso!");
