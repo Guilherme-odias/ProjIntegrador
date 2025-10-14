@@ -104,8 +104,7 @@ namespace Projeto_integrador
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
+                
             Application.Restart();
 
         }
