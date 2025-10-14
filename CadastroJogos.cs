@@ -20,13 +20,37 @@ namespace Projeto_integrador
         public CadastroJogos()
         {
             InitializeComponent();
-            this.dgvJogos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJogos_CellClick);
+            this.dgvJogos.CellClick += new DataGridViewCellEventHandler(this.dgvJogos_CellClick);
+            CarregarCategorias();
             AtualizarGrid();
+        }
+
+        private void CarregarCategorias()
+        {
+            try
+            {
+                Conexao conexao = new Conexao();
+                using (var conn = conexao.GetConnection())
+                {
+                    string sql = "SELECT id_categoria, tipo_categoria FROM categorias";
+                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    cmbCategoria.DisplayMember = "tipo_categoria"; // O que aparece
+                    cmbCategoria.ValueMember = "id_categoria";     // O que fica guardado
+                    cmbCategoria.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar categorias: " + ex.Message);
+            }
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            string categoria = txtCategoria.Text;
+            int categoriaId = Convert.ToInt32(cmbCategoria.SelectedValue);
             string titulo = txtTitulo.Text;
             string desenvolvedora = txtDesenvolvedora.Text;
             string distribuidora = txtDistribuidora.Text;
@@ -35,8 +59,7 @@ namespace Projeto_integrador
             string reqSistema = txtReq_Sis.Text;
 
             // Validação simples
-            if (string.IsNullOrWhiteSpace(categoria) ||
-                string.IsNullOrWhiteSpace(titulo) ||
+            if (string.IsNullOrWhiteSpace(titulo) ||
                 string.IsNullOrWhiteSpace(desenvolvedora) ||
                 string.IsNullOrWhiteSpace(distribuidora) ||
                 string.IsNullOrWhiteSpace(informacoes) ||
@@ -48,7 +71,7 @@ namespace Projeto_integrador
 
             Jogo jogo = new Jogo
             {
-                Categoria = categoria,
+                Categoria = categoriaId.ToString(),
                 Titulo = titulo,
                 Desenvolvedora = desenvolvedora,
                 Distribuidora = distribuidora,
@@ -99,17 +122,18 @@ namespace Projeto_integrador
                 return;
             }
 
-            int categoriaId;
-            if (!int.TryParse(txtCategoria.Text, out categoriaId))
+            if (cmbCategoria.SelectedValue == null)
             {
-                MessageBox.Show("Por favor, insira um número válido na categoria.");
+                MessageBox.Show("Por favor, selecione uma categoria.");
                 return;
             }
+
+            int categoriaId = Convert.ToInt32(cmbCategoria.SelectedValue);
 
             Jogo jogo = new Jogo
             {
                 Id = jogoSelecionadoId,
-                Categoria = txtCategoria.Text,
+                Categoria = categoriaId.ToString(),
                 Titulo = txtTitulo.Text,
                 Desenvolvedora = txtDesenvolvedora.Text,
                 Distribuidora = txtDistribuidora.Text,
@@ -121,7 +145,7 @@ namespace Projeto_integrador
                 ImagemCen2 = txtImagem3.Text.Trim()
             };
 
-
+            
             try
             {
                 jogo.Atualizar();
@@ -137,58 +161,6 @@ namespace Projeto_integrador
         }
 
 
-        private void dgvJogos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-
-                // Limpar os campos das imagens antes de preencher com novos dados
-                txtImagem1.Clear();
-                txtImagem2.Clear();
-                txtImagem3.Clear();
-
-                DataGridViewRow row = dgvJogos.Rows[e.RowIndex];
-
-                jogoSelecionadoId = Convert.ToInt32(row.Cells["id_play"].Value);
-                txtCategoria.Text = row.Cells["id_categoria"].Value.ToString();
-                txtTitulo.Text = row.Cells["titulo"].Value.ToString();
-                txtDesenvolvedora.Text = row.Cells["desenvolvedora"].Value.ToString();
-                txtDistribuidora.Text = row.Cells["distribuidora"].Value.ToString();
-                txtInformacoes.Text = row.Cells["informacoes"].Value.ToString();
-                dtpDataLancamento.Value = Convert.ToDateTime(row.Cells["data_lancamento"].Value);
-                txtReq_Sis.Text = row.Cells["req_sistema"].Value.ToString();
-
-                string imagensConcatenadas = row.Cells["imagens"].Value.ToString();
-                string[] imagensArray = imagensConcatenadas.Split(';');
-
-                txtImagem1.Text = imagensArray.Length > 0 ? imagensArray[0] : "";
-                txtImagem2.Text = imagensArray.Length > 1 ? imagensArray[1] : "";
-                txtImagem3.Text = imagensArray.Length > 2 ? imagensArray[2] : "";
-            }
-        }
-
-        private void dgvJogos_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        
-
-        private void LimparCampos()
-        {
-            txtCategoria.Clear();
-            txtTitulo.Clear();
-            txtDesenvolvedora.Clear();
-            txtDistribuidora.Clear();
-            txtInformacoes.Clear();
-            txtReq_Sis.Clear();
-            dtpDataLancamento.Value = DateTime.Now;
-        }
-
-        private void CadastroJogos_Load(object sender, EventArgs e)
-        {
-
-        }
         private void dgvJogos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -196,15 +168,46 @@ namespace Projeto_integrador
                 DataGridViewRow row = dgvJogos.Rows[e.RowIndex];
 
                 jogoSelecionadoId = Convert.ToInt32(row.Cells["id_play"].Value);
-                txtCategoria.Text = row.Cells["id_categoria"].Value.ToString();
+
+                int idCategoria = Convert.ToInt32(row.Cells["id_categoria"].Value);
+                cmbCategoria.SelectedValue = idCategoria;
+
                 txtTitulo.Text = row.Cells["titulo"].Value.ToString();
                 txtDesenvolvedora.Text = row.Cells["desenvolvedora"].Value.ToString();
                 txtDistribuidora.Text = row.Cells["distribuidora"].Value.ToString();
                 txtInformacoes.Text = row.Cells["informacoes"].Value.ToString();
                 dtpDataLancamento.Value = Convert.ToDateTime(row.Cells["data_lancamento"].Value);
                 txtReq_Sis.Text = row.Cells["req_sistema"].Value.ToString();
+
+                // Preenchendo os campos das imagens diretamente pelas colunas corretas
+                txtImagem1.Text = row.Cells["Imagens_jogos"].Value?.ToString() ?? "";
+                txtImagem2.Text = row.Cells["Imagens_cen1"].Value?.ToString() ?? "";
+                txtImagem3.Text = row.Cells["Imagens_cen2"].Value?.ToString() ?? "";
             }
         }
+
+
+
+
+        private void LimparCampos()
+        {
+            cmbCategoria.SelectedIndex = -1;
+            txtTitulo.Clear();
+            txtDesenvolvedora.Clear();
+            txtDistribuidora.Clear();
+            txtInformacoes.Clear();
+            txtReq_Sis.Clear();
+            dtpDataLancamento.Value = DateTime.Now;
+            txtImagem1.Clear();
+            txtImagem2.Clear();
+            txtImagem3.Clear();
+        }
+
+        private void CadastroJogos_Load(object sender, EventArgs e)
+        {
+
+        }
+       
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
