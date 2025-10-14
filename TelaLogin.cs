@@ -62,7 +62,11 @@ namespace Projeto_integrador
                     }
                     else
                     {
+                        
+
                         MessageBox.Show("Email/usuário ou senha incorretos.");
+                        lblAviso.Visible = true;
+                        esqueciSenha.Visible = true;
                     }
                 }
                 catch (Exception ex)
@@ -81,8 +85,7 @@ namespace Projeto_integrador
         private void button2_Click(object sender, EventArgs e)
         {
             TelaCadastroLogin tela = new TelaCadastroLogin();
-            tela.Show();
-            this.Hide();
+            tela.ShowDialog();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

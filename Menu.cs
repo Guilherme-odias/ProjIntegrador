@@ -21,11 +21,13 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
-            if (SessaoAtual.TipoUsuario != "admin")
+            if (SessaoAtual.TipoUsuario != "adm")
             {
                 MessageBox.Show("Acesso permitido apenas para administradores.");
                 return;
             }
+
+            FecharFilhosAbertos();
 
             TelaCadastroLogin tela = new TelaCadastroLogin();
             tela.MdiParent = this;
@@ -49,6 +51,8 @@ namespace Projeto_integrador
                 return;
             }
 
+            FecharFilhosAbertos();
+
             CadastroJogos tela = new CadastroJogos();
             tela.MdiParent = this;
             tela.Show();
@@ -65,15 +69,19 @@ namespace Projeto_integrador
                 return;
             }
 
+            FecharFilhosAbertos();
+
             ListaJogos tela = new ListaJogos();
             tela.MdiParent = this;
             tela.Show();
 
         }
 
-       public void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
+        public void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
+
+            FecharFilhosAbertos();
 
             Sorteador tela = new Sorteador();
             tela.MdiParent = this;
@@ -81,16 +89,11 @@ namespace Projeto_integrador
 
         }
 
-        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void AplicarPermissoesLocais(bool ehAdmin)
         {
             cadastroToolStripMenuItem.Enabled = ehAdmin;
             cadastroJogoToolStripMenuItem.Enabled = ehAdmin;
-            listaJogosToolStripMenuItem.Enabled = ehAdmin;
+            listaJogosToolStripMenuItem.Enabled = true;
             sorteadorToolStripMenuItem.Enabled = true;
         }
 

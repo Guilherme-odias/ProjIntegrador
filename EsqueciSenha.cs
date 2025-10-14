@@ -30,6 +30,8 @@ namespace Projeto_integrador
 
 
 
+            Random rnd = new Random();
+            codigoGerado = rnd.Next(100000, 999999).ToString();
 
             string corpoEmail = $"Olá!\n\n" +
                                 $"Você solicitou um código de verificação para concluir seu cadastro.\n\n" +
@@ -37,9 +39,6 @@ namespace Projeto_integrador
                                 $"Por favor, insira este código no campo indicado para confirmar seu email.\n\n" +
                                 $"Se você não solicitou este código, ignore este email.\n\n" +
                                 $"Atenciosamente,\nEquipe Quimera Games";
-
-            Random rnd = new Random();
-            codigoGerado = rnd.Next(100000, 999999).ToString();
 
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("quimeraggames@gmail.com");
@@ -78,6 +77,7 @@ namespace Projeto_integrador
                 lblCodigo.Visible = false;
                 EnviarCodigo.Visible = false;
                 button1.Visible = false;
+                txtCodigo.Visible = false;
 
                 txtSenha.Visible = true;
                 btnConfirma.Visible = true;

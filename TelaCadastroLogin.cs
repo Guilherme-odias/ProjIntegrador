@@ -131,8 +131,7 @@ namespace Projeto_integrador
                     cmd.Parameters.AddWithValue("@Senha", varsenha);
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
+                    cmd.ExecuteNonQuery();                }
             }
 
             MessageBox.Show("Usuário cadastrado com sucesso!");
@@ -166,6 +165,11 @@ namespace Projeto_integrador
         }
 
         private void email_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cpf_TextChanged(object sender, EventArgs e)
         {
 
         }
