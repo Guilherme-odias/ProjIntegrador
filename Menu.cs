@@ -43,7 +43,7 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
-            if (SessaoAtual.TipoUsuario != "admin")
+            if (SessaoAtual.TipoUsuario != "adm")
             {
                 MessageBox.Show("Acesso permitido apenas para administradores.");
                 return;
@@ -59,7 +59,7 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
-            if (SessaoAtual.TipoUsuario != "admin")
+            if (SessaoAtual.TipoUsuario != "adm")
             {
                 MessageBox.Show("Acesso permitido apenas para administradores.");
                 return;

@@ -75,7 +75,7 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblTitulo.ForeColor = Color.FromArgb(234, 234, 234);
-            lblTitulo.Location = new Point(91, 7);
+            lblTitulo.Location = new Point(93, 28);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(39, 15);
             lblTitulo.TabIndex = 1;
@@ -84,7 +84,7 @@
             // txtTitulo
             // 
             txtTitulo.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTitulo.Location = new Point(91, 25);
+            txtTitulo.Location = new Point(93, 46);
             txtTitulo.Name = "txtTitulo";
             txtTitulo.Size = new Size(223, 23);
             txtTitulo.TabIndex = 2;
@@ -94,7 +94,7 @@
             lblCategoria.AutoSize = true;
             lblCategoria.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblCategoria.ForeColor = Color.FromArgb(234, 234, 234);
-            lblCategoria.Location = new Point(12, 7);
+            lblCategoria.Location = new Point(14, 28);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(62, 15);
             lblCategoria.TabIndex = 3;
@@ -103,7 +103,7 @@
             // txtCategoria
             // 
             txtCategoria.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCategoria.Location = new Point(12, 25);
+            txtCategoria.Location = new Point(14, 46);
             txtCategoria.Name = "txtCategoria";
             txtCategoria.Size = new Size(73, 23);
             txtCategoria.TabIndex = 4;
@@ -123,7 +123,7 @@
             lblDesenvolvedora.AutoSize = true;
             lblDesenvolvedora.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblDesenvolvedora.ForeColor = Color.FromArgb(234, 234, 234);
-            lblDesenvolvedora.Location = new Point(320, 7);
+            lblDesenvolvedora.Location = new Point(322, 28);
             lblDesenvolvedora.Name = "lblDesenvolvedora";
             lblDesenvolvedora.Size = new Size(100, 15);
             lblDesenvolvedora.TabIndex = 8;
@@ -132,7 +132,7 @@
             // txtDesenvolvedora
             // 
             txtDesenvolvedora.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDesenvolvedora.Location = new Point(320, 25);
+            txtDesenvolvedora.Location = new Point(322, 46);
             txtDesenvolvedora.Name = "txtDesenvolvedora";
             txtDesenvolvedora.Size = new Size(209, 23);
             txtDesenvolvedora.TabIndex = 9;
@@ -142,7 +142,7 @@
             lblDistribuidora.AutoSize = true;
             lblDistribuidora.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblDistribuidora.ForeColor = Color.FromArgb(234, 234, 234);
-            lblDistribuidora.Location = new Point(535, 7);
+            lblDistribuidora.Location = new Point(537, 28);
             lblDistribuidora.Name = "lblDistribuidora";
             lblDistribuidora.Size = new Size(79, 15);
             lblDistribuidora.TabIndex = 10;
@@ -151,7 +151,7 @@
             // txtDistribuidora
             // 
             txtDistribuidora.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDistribuidora.Location = new Point(535, 25);
+            txtDistribuidora.Location = new Point(537, 46);
             txtDistribuidora.Name = "txtDistribuidora";
             txtDistribuidora.Size = new Size(181, 23);
             txtDistribuidora.TabIndex = 11;
@@ -161,7 +161,7 @@
             lblInformacoes.AutoSize = true;
             lblInformacoes.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblInformacoes.ForeColor = Color.FromArgb(234, 234, 234);
-            lblInformacoes.Location = new Point(722, 7);
+            lblInformacoes.Location = new Point(724, 28);
             lblInformacoes.Name = "lblInformacoes";
             lblInformacoes.Size = new Size(79, 15);
             lblInformacoes.TabIndex = 12;
@@ -170,7 +170,7 @@
             // txtInformacoes
             // 
             txtInformacoes.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtInformacoes.Location = new Point(722, 25);
+            txtInformacoes.Location = new Point(724, 46);
             txtInformacoes.Name = "txtInformacoes";
             txtInformacoes.Size = new Size(264, 23);
             txtInformacoes.TabIndex = 13;
