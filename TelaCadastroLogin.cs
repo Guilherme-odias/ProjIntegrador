@@ -168,5 +168,10 @@ namespace Projeto_integrador
         {
 
         }
+
+        private void cpf_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

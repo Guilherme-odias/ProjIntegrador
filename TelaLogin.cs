@@ -62,7 +62,11 @@ namespace Projeto_integrador
                     }
                     else
                     {
+                        
+
                         MessageBox.Show("Email/usuário ou senha incorretos.");
+                        lblAviso.Visible = true;
+                        esqueciSenha.Visible = true;
                     }
                 }
                 catch (Exception ex)

@@ -77,7 +77,7 @@ namespace Projeto_integrador
 
         }
 
-       public void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
+        public void sorteadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
@@ -103,19 +103,6 @@ namespace Projeto_integrador
             cadastroJogoToolStripMenuItem.Enabled = false;
             listaJogosToolStripMenuItem.Enabled = false;
             sorteadorToolStripMenuItem.Enabled = false;
-        }
-
-        private void FecharFilhosAbertos()
-        {
-            foreach (Form form in this.MdiChildren)
-            {
-                form.Close();
-            }
-        }
-
-        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

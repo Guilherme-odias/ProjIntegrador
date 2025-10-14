@@ -38,7 +38,7 @@ namespace Projeto_integrador
             Conexao conexao = new Conexao();
             string query = @"SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2 FROM jogos";
 
-            // pega uma nova conexão
+            // pega uma nova conexãoasdasd
             using (MySqlConnection con = conexao.GetConnection())
             {
                 try

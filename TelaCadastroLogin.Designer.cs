@@ -214,6 +214,7 @@
             cpf.Name = "cpf";
             cpf.Size = new Size(183, 22);
             cpf.TabIndex = 16;
+            cpf.TextChanged += cpf_TextChanged;
             // 
             // openFileDialog1
             // 
