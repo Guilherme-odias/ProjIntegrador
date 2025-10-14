@@ -86,6 +86,14 @@ namespace Projeto_integrador
 
         }
 
+        public void AplicarPermissoesLocais(bool ehAdmin)
+        {
+            cadastroToolStripMenuItem.Enabled = ehAdmin;
+            cadastroJogoToolStripMenuItem.Enabled = ehAdmin;
+            listaJogosToolStripMenuItem.Enabled = ehAdmin;
+            sorteadorToolStripMenuItem.Enabled = true;
+        }
+
         public void Menu_Load(object sender, EventArgs e)
         {
             cadastroToolStripMenuItem.Enabled = false;
