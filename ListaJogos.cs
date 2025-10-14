@@ -24,10 +24,7 @@ namespace Projeto_integrador
         private void ListaJogos_Load(object sender, EventArgs e)
         {
             CarregarJogos();
-            dgv.Columns["id_play"].Visible = false;
-            dgv.Columns["Imagens_jogos"].Visible = false;
-            dgv.Columns["Imagens_cen1"].Visible = false;
-            dgv.Columns["Imagens_cen2"].Visible = false;
+          
         }
 
         // id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2
@@ -72,6 +69,7 @@ namespace Projeto_integrador
             if (cb == "Titulo")
             {
                 dgv.DataSource = busca.procura_titulo(tb);
+
             }
 
             if (cb == "Desenvolvedora")

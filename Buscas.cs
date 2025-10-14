@@ -65,7 +65,7 @@ namespace Projeto_integrador
         public DataTable procura_titulo(string nome)
         {
             string nomeBusca = nome;
-            string sql = "SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema FROM jogos WHERE titulo LIKE @nome";
+            string sql = "SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2 FROM jogos WHERE titulo LIKE @nome";
             Conexao conexao = new Conexao();
             using (var conn = conexao.GetConnection())
             {
@@ -77,12 +77,14 @@ namespace Projeto_integrador
                     return dt;
                 }
             }
+
+
         }
 
         public DataTable procura_desenvolvedora(string nome)
         {
             string nomeBusca = nome;
-            string sql = "SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema FROM jogos WHERE desenvolvedora LIKE @nome";
+            string sql = "SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2 FROM jogos WHERE desenvolvedora LIKE @nome";
             Conexao conexao = new Conexao();
             using (var conn = conexao.GetConnection())
             {
@@ -99,7 +101,7 @@ namespace Projeto_integrador
         public DataTable procura_distribuidora(string nome)
         {
             string nomeBusca = nome;
-            string sql = "SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema FROM jogos WHERE distribuidora LIKE @nome";
+            string sql = "SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2 FROM jogos WHERE distribuidora LIKE @nome";
             Conexao conexao = new Conexao();
             using (var conn = conexao.GetConnection())
             {
@@ -116,7 +118,7 @@ namespace Projeto_integrador
         public DataTable procura_informacoes(string nome)
         {
             string nomeBusca = nome;
-            string sql = "SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema FROM jogos WHERE titulo LIKE @nome";
+            string sql = "SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2 FROM jogos WHERE titulo LIKE @nome";
             Conexao conexao = new Conexao();
             using (var conn = conexao.GetConnection())
             {
