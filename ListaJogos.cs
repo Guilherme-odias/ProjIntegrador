@@ -24,7 +24,11 @@ namespace Projeto_integrador
         private void ListaJogos_Load(object sender, EventArgs e)
         {
             CarregarJogos();
-          
+
+            dgv.Columns["id_play"].Visible = false;
+            dgv.Columns["Imagens_jogos"].Visible = false;
+            dgv.Columns["Imagens_cen1"].Visible = false;
+            dgv.Columns["Imagens_cen2"].Visible = false;
         }
 
         // id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2
@@ -32,7 +36,7 @@ namespace Projeto_integrador
         private void CarregarJogos()
         {
             Conexao conexao = new Conexao();
-            string query = @"SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2";
+            string query = @"SELECT id_play, titulo, desenvolvedora, distribuidora, informacoes, data_lancamento, req_sistema, Imagens_jogos, Imagens_cen1, Imagens_cen2 FROM jogos";
 
             // pega uma nova conexão
             using (MySqlConnection con = conexao.GetConnection())
@@ -135,6 +139,16 @@ namespace Projeto_integrador
                     pictureBox3.Image = null;
                 }
             }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }
