@@ -112,5 +112,15 @@ namespace Projeto_integrador
             listaJogosToolStripMenuItem.Enabled = false;
             sorteadorToolStripMenuItem.Enabled = false;
         }
+        
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e) 
+        { 
+        }
+
     }
 }
