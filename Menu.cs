@@ -21,11 +21,13 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
-            if (SessaoAtual.TipoUsuario != "admin")
+            if (SessaoAtual.TipoUsuario != "adm")
             {
                 MessageBox.Show("Acesso permitido apenas para administradores.");
                 return;
             }
+
+            FecharFilhosAbertos();
 
             TelaCadastroLogin tela = new TelaCadastroLogin();
             tela.MdiParent = this;
@@ -49,6 +51,8 @@ namespace Projeto_integrador
                 return;
             }
 
+            FecharFilhosAbertos();
+
             CadastroJogos tela = new CadastroJogos();
             tela.MdiParent = this;
             tela.Show();
@@ -65,6 +69,8 @@ namespace Projeto_integrador
                 return;
             }
 
+            FecharFilhosAbertos();
+
             ListaJogos tela = new ListaJogos();
             tela.MdiParent = this;
             tela.Show();
@@ -75,14 +81,11 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
+            FecharFilhosAbertos();
+
             Sorteador tela = new Sorteador();
             tela.MdiParent = this;
             tela.Show();
-
-        }
-
-        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -90,7 +93,7 @@ namespace Projeto_integrador
         {
             cadastroToolStripMenuItem.Enabled = ehAdmin;
             cadastroJogoToolStripMenuItem.Enabled = ehAdmin;
-            listaJogosToolStripMenuItem.Enabled = ehAdmin;
+            listaJogosToolStripMenuItem.Enabled = true;
             sorteadorToolStripMenuItem.Enabled = true;
         }
 
@@ -100,6 +103,19 @@ namespace Projeto_integrador
             cadastroJogoToolStripMenuItem.Enabled = false;
             listaJogosToolStripMenuItem.Enabled = false;
             sorteadorToolStripMenuItem.Enabled = false;
+        }
+
+        private void FecharFilhosAbertos()
+        {
+            foreach (Form form in this.MdiChildren)
+            {
+                form.Close();
+            }
+        }
+
+        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
