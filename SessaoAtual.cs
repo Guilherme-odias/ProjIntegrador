@@ -37,11 +37,14 @@ namespace Projeto_integrador
 
         private static void AplicarPermissoes(Form menu)
         {
-            if (menu is Menu m)
-            {
-                bool ehAdmin = TipoUsuario == "admin";
-                m.AplicarPermissoesLocais(ehAdmin);
-            }
+            // Normaliza o texto vindo do banco
+            string tipo = (TipoUsuario ?? "").Trim().ToLower();
+
+            // Só libera tudo se for 'adm'
+            bool ehAdmin = tipo == "adm";
+
+            // Chama o método público do Menu
+            m.AplicarPermissoesLocais(ehAdmin);
         }
 
         public static void Logout()

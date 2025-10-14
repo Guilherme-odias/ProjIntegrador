@@ -80,9 +80,9 @@ namespace Projeto_integrador
 
         private void button2_Click(object sender, EventArgs e)
         {
-            TelaCadastroLogin Tela = new TelaCadastroLogin();
             TelaCadastroLogin tela = new TelaCadastroLogin();
-            tela.ShowDialog();
+            tela.Show();
+            this.Hide();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
