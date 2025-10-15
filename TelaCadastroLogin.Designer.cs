@@ -305,6 +305,7 @@
             Controls.Add(url_foto);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaCadastroLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaCadastroLogin";
             Load += TelaCadastroLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

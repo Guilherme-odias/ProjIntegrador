@@ -108,7 +108,6 @@
             dgvJogos.Name = "dgvJogos";
             dgvJogos.Size = new Size(1064, 450);
             dgvJogos.TabIndex = 7;
-
             // 
             // lblDesenvolvedora
             // 
@@ -340,6 +339,7 @@
             Controls.Add(btnCadastrar);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CadastroJogos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "'";
             Load += CadastroJogos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvJogos).EndInit();

@@ -239,6 +239,7 @@
             Controls.Add(txtEmail);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EsqueciSenha";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EsqueciSenha";
             Load += EsqueciSenha_Load;
             ResumeLayout(false);
