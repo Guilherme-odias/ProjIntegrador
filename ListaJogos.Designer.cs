@@ -51,7 +51,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("SansSerif", 27.7499962F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(93, 121);
+            label1.Location = new Point(103, 129);
             label1.Name = "label1";
             label1.Size = new Size(292, 43);
             label1.TabIndex = 0;
