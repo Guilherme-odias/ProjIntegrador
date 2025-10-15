@@ -61,13 +61,7 @@ namespace Projeto_integrador
 
         public void listaJogosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!SessaoAtual.VerificarLogin(this)) return;
-
-            if (SessaoAtual.TipoUsuario != "adm")
-            {
-                MessageBox.Show("Acesso permitido apenas para administradores.");
-                return;
-            }
+            if (!SessaoAtual.VerificarLogin(this)) return; 
 
             FecharFilhosAbertos();
 
