@@ -131,7 +131,8 @@ namespace Projeto_integrador
                     cmd.Parameters.AddWithValue("@Senha", varsenha);
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();                }
+                    cmd.ExecuteNonQuery();
+                }
             }
 
             MessageBox.Show("Usuário cadastrado com sucesso!");
@@ -171,6 +172,18 @@ namespace Projeto_integrador
 
         private void cpf_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void cpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Block any non-numeric character (like letters, punctuation, etc.)
+                e.Handled = true;
+            }
+
+            cpf.MaxLength = 11;
 
         }
     }

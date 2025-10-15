@@ -215,6 +215,7 @@
             cpf.Size = new Size(183, 22);
             cpf.TabIndex = 16;
             cpf.TextChanged += cpf_TextChanged;
+            cpf.KeyPress += cpf_KeyPress;
             // 
             // openFileDialog1
             // 
