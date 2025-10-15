@@ -49,11 +49,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("SansSerif", 32.2499962F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 2);
+            label1.Font = new Font("SansSerif", 27.7499962F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(21, 79);
+            label1.Location = new Point(21, 95);
             label1.Name = "label1";
-            label1.Size = new Size(336, 49);
+            label1.Size = new Size(292, 43);
             label1.TabIndex = 0;
             label1.Text = "Buscar jogos!!!";
             label1.Click += label1_Click;
@@ -125,7 +125,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(387, 12);
+            pictureBox1.Location = new Point(345, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(167, 178);
             pictureBox1.TabIndex = 7;
@@ -134,17 +134,17 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Location = new Point(791, 55);
+            pictureBox2.Location = new Point(772, 63);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(328, 219);
+            pictureBox2.Size = new Size(339, 216);
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(791, 329);
+            pictureBox3.Location = new Point(772, 337);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(328, 221);
+            pictureBox3.Size = new Size(339, 218);
             pictureBox3.TabIndex = 9;
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click;
@@ -154,7 +154,7 @@
             lb2.AutoSize = true;
             lb2.Font = new Font("SansSerif", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 2);
             lb2.ForeColor = Color.Silver;
-            lb2.Location = new Point(373, 206);
+            lb2.Location = new Point(344, 204);
             lb2.Name = "lb2";
             lb2.Size = new Size(168, 25);
             lb2.TabIndex = 10;
