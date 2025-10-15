@@ -57,6 +57,13 @@ namespace Projeto_integrador
             string informacoes = txtInformacoes.Text;
             DateTime dataLancamento = dtpDataLancamento.Value;
             string reqSistema = txtReq_Sis.Text;
+            decimal valor;
+
+            if (!decimal.TryParse(txtValor.Text, out valor))
+            {
+                MessageBox.Show("Valor inválido.");
+                return;
+            }
 
             // Validação simples
             if (string.IsNullOrWhiteSpace(titulo) ||
@@ -78,6 +85,7 @@ namespace Projeto_integrador
                 Informacoes = informacoes,
                 DataLancamento = dataLancamento,
                 RequisitosSistema = reqSistema,
+                Valor = valor,
                 ImagemCapa = txtImagem1.Text.Trim(),
                 ImagemCen1 = txtImagem2.Text.Trim(),
                 ImagemCen2 = txtImagem3.Text.Trim(),
@@ -128,6 +136,13 @@ namespace Projeto_integrador
                 return;
             }
 
+            decimal valor;
+            if (!decimal.TryParse(txtValor.Text, out valor))
+            {
+                MessageBox.Show("Valor inválido.");
+                return;
+            }
+
             int categoriaId = Convert.ToInt32(cmbCategoria.SelectedValue);
 
             Jogo jogo = new Jogo
@@ -140,6 +155,7 @@ namespace Projeto_integrador
                 Informacoes = txtInformacoes.Text,
                 DataLancamento = dtpDataLancamento.Value,
                 RequisitosSistema = txtReq_Sis.Text,
+                Valor = valor,
                 ImagemCapa = txtImagem1.Text.Trim(),
                 ImagemCen1 = txtImagem2.Text.Trim(),
                 ImagemCen2 = txtImagem3.Text.Trim()
@@ -178,7 +194,7 @@ namespace Projeto_integrador
                 txtInformacoes.Text = row.Cells["informacoes"].Value.ToString();
                 dtpDataLancamento.Value = Convert.ToDateTime(row.Cells["data_lancamento"].Value);
                 txtReq_Sis.Text = row.Cells["req_sistema"].Value.ToString();
-
+                txtValor.Text = row.Cells["valor"].Value?.ToString() ?? "";
                 txtImagem1.Text = row.Cells["Imagens_jogos"].Value?.ToString() ?? "";
                 txtImagem2.Text = row.Cells["Imagens_cen1"].Value?.ToString() ?? "";
                 txtImagem3.Text = row.Cells["Imagens_cen2"].Value?.ToString() ?? "";
