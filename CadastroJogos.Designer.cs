@@ -64,9 +64,9 @@
             btnCadastrar.BackColor = Color.FromArgb(168, 3, 12);
             btnCadastrar.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCadastrar.ForeColor = Color.FromArgb(234, 234, 234);
-            btnCadastrar.Location = new Point(963, 103);
+            btnCadastrar.Location = new Point(454, 146);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(84, 22);
+            btnCadastrar.Size = new Size(84, 34);
             btnCadastrar.TabIndex = 0;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = false;
@@ -77,7 +77,7 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblTitulo.ForeColor = Color.FromArgb(234, 234, 234);
-            lblTitulo.Location = new Point(114, 28);
+            lblTitulo.Location = new Point(98, 28);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(39, 15);
             lblTitulo.TabIndex = 1;
@@ -86,7 +86,7 @@
             // txtTitulo
             // 
             txtTitulo.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTitulo.Location = new Point(114, 46);
+            txtTitulo.Location = new Point(98, 46);
             txtTitulo.Name = "txtTitulo";
             txtTitulo.Size = new Size(223, 23);
             txtTitulo.TabIndex = 2;
@@ -106,9 +106,9 @@
             // 
             dgvJogos.BackgroundColor = Color.FromArgb(234, 234, 234);
             dgvJogos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJogos.Location = new Point(162, 160);
+            dgvJogos.Location = new Point(15, 186);
             dgvJogos.Name = "dgvJogos";
-            dgvJogos.Size = new Size(1064, 450);
+            dgvJogos.Size = new Size(1224, 424);
             dgvJogos.TabIndex = 7;
             // 
             // lblDesenvolvedora
@@ -116,7 +116,7 @@
             lblDesenvolvedora.AutoSize = true;
             lblDesenvolvedora.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblDesenvolvedora.ForeColor = Color.FromArgb(234, 234, 234);
-            lblDesenvolvedora.Location = new Point(383, 29);
+            lblDesenvolvedora.Location = new Point(339, 29);
             lblDesenvolvedora.Name = "lblDesenvolvedora";
             lblDesenvolvedora.Size = new Size(100, 15);
             lblDesenvolvedora.TabIndex = 8;
@@ -125,7 +125,7 @@
             // txtDesenvolvedora
             // 
             txtDesenvolvedora.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDesenvolvedora.Location = new Point(383, 47);
+            txtDesenvolvedora.Location = new Point(339, 47);
             txtDesenvolvedora.Name = "txtDesenvolvedora";
             txtDesenvolvedora.Size = new Size(209, 23);
             txtDesenvolvedora.TabIndex = 9;
@@ -135,7 +135,7 @@
             lblDistribuidora.AutoSize = true;
             lblDistribuidora.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblDistribuidora.ForeColor = Color.FromArgb(234, 234, 234);
-            lblDistribuidora.Location = new Point(629, 29);
+            lblDistribuidora.Location = new Point(565, 29);
             lblDistribuidora.Name = "lblDistribuidora";
             lblDistribuidora.Size = new Size(79, 15);
             lblDistribuidora.TabIndex = 10;
@@ -144,7 +144,7 @@
             // txtDistribuidora
             // 
             txtDistribuidora.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDistribuidora.Location = new Point(629, 47);
+            txtDistribuidora.Location = new Point(565, 47);
             txtDistribuidora.Name = "txtDistribuidora";
             txtDistribuidora.Size = new Size(181, 23);
             txtDistribuidora.TabIndex = 11;
@@ -154,7 +154,7 @@
             lblInformacoes.AutoSize = true;
             lblInformacoes.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             lblInformacoes.ForeColor = Color.FromArgb(234, 234, 234);
-            lblInformacoes.Location = new Point(845, 29);
+            lblInformacoes.Location = new Point(765, 29);
             lblInformacoes.Name = "lblInformacoes";
             lblInformacoes.Size = new Size(79, 15);
             lblInformacoes.TabIndex = 12;
@@ -163,9 +163,9 @@
             // txtInformacoes
             // 
             txtInformacoes.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtInformacoes.Location = new Point(845, 47);
+            txtInformacoes.Location = new Point(765, 47);
             txtInformacoes.Name = "txtInformacoes";
-            txtInformacoes.Size = new Size(381, 23);
+            txtInformacoes.Size = new Size(364, 23);
             txtInformacoes.TabIndex = 13;
             // 
             // lblDataLancamento
@@ -203,7 +203,7 @@
             txtReq_Sis.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtReq_Sis.Location = new Point(162, 102);
             txtReq_Sis.Name = "txtReq_Sis";
-            txtReq_Sis.Size = new Size(648, 23);
+            txtReq_Sis.Size = new Size(584, 23);
             txtReq_Sis.TabIndex = 17;
             // 
             // label1
@@ -211,7 +211,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(15, 142);
+            label1.Location = new Point(764, 82);
             label1.Name = "label1";
             label1.Size = new Size(57, 15);
             label1.TabIndex = 18;
@@ -220,9 +220,9 @@
             // txtImagem1
             // 
             txtImagem1.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtImagem1.Location = new Point(15, 212);
+            txtImagem1.Location = new Point(764, 102);
             txtImagem1.Name = "txtImagem1";
-            txtImagem1.Size = new Size(109, 23);
+            txtImagem1.Size = new Size(148, 23);
             txtImagem1.TabIndex = 19;
             // 
             // btnAtualizar
@@ -230,9 +230,9 @@
             btnAtualizar.BackColor = Color.FromArgb(168, 3, 12);
             btnAtualizar.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAtualizar.ForeColor = Color.FromArgb(234, 234, 234);
-            btnAtualizar.Location = new Point(1053, 104);
+            btnAtualizar.Location = new Point(560, 146);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(84, 22);
+            btnAtualizar.Size = new Size(84, 34);
             btnAtualizar.TabIndex = 20;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = false;
@@ -243,9 +243,9 @@
             btnRemover.BackColor = Color.FromArgb(168, 3, 12);
             btnRemover.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRemover.ForeColor = Color.FromArgb(234, 234, 234);
-            btnRemover.Location = new Point(1143, 102);
+            btnRemover.Location = new Point(672, 146);
             btnRemover.Name = "btnRemover";
-            btnRemover.Size = new Size(84, 22);
+            btnRemover.Size = new Size(84, 34);
             btnRemover.TabIndex = 21;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = false;
@@ -254,17 +254,17 @@
             // txtImagem2
             // 
             txtImagem2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtImagem2.Location = new Point(15, 160);
+            txtImagem2.Location = new Point(934, 102);
             txtImagem2.Name = "txtImagem2";
-            txtImagem2.Size = new Size(109, 23);
+            txtImagem2.Size = new Size(142, 23);
             txtImagem2.TabIndex = 22;
             // 
             // txtImagem3
             // 
             txtImagem3.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtImagem3.Location = new Point(15, 271);
+            txtImagem3.Location = new Point(1098, 102);
             txtImagem3.Name = "txtImagem3";
-            txtImagem3.Size = new Size(109, 23);
+            txtImagem3.Size = new Size(141, 23);
             txtImagem3.TabIndex = 23;
             // 
             // label2
@@ -272,7 +272,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label2.ForeColor = Color.FromArgb(234, 234, 234);
-            label2.Location = new Point(69, 142);
+            label2.Location = new Point(818, 82);
             label2.Name = "label2";
             label2.Size = new Size(37, 15);
             label2.TabIndex = 24;
@@ -283,7 +283,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label3.ForeColor = Color.FromArgb(234, 234, 234);
-            label3.Location = new Point(15, 194);
+            label3.Location = new Point(938, 83);
             label3.Name = "label3";
             label3.Size = new Size(37, 15);
             label3.TabIndex = 25;
@@ -294,7 +294,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("SansSerif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label4.ForeColor = Color.FromArgb(234, 234, 234);
-            label4.Location = new Point(15, 253);
+            label4.Location = new Point(1098, 82);
             label4.Name = "label4";
             label4.Size = new Size(37, 15);
             label4.TabIndex = 26;
@@ -312,7 +312,7 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = SystemColors.ButtonHighlight;
-            label5.Location = new Point(845, 84);
+            label5.Location = new Point(1139, 29);
             label5.Name = "label5";
             label5.Size = new Size(33, 15);
             label5.TabIndex = 28;
@@ -320,7 +320,7 @@
             // 
             // txtValor
             // 
-            txtValor.Location = new Point(845, 103);
+            txtValor.Location = new Point(1139, 48);
             txtValor.Name = "txtValor";
             txtValor.Size = new Size(100, 23);
             txtValor.TabIndex = 29;
