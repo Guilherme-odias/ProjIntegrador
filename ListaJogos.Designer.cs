@@ -51,7 +51,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("SansSerif", 27.7499962F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(31, 98);
+            label1.Location = new Point(93, 121);
             label1.Name = "label1";
             label1.Size = new Size(292, 43);
             label1.TabIndex = 0;
@@ -63,7 +63,7 @@
             cb1.DropDownStyle = ComboBoxStyle.DropDownList;
             cb1.FormattingEnabled = true;
             cb1.Items.AddRange(new object[] { "Titulo", "Desenvolvedora", "Distribuidora", "Informacoes" });
-            cb1.Location = new Point(31, 274);
+            cb1.Location = new Point(24, 291);
             cb1.Name = "cb1";
             cb1.Size = new Size(149, 23);
             cb1.TabIndex = 1;
@@ -73,7 +73,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 15.75F);
             label2.ForeColor = Color.FromArgb(234, 234, 234);
-            label2.Location = new Point(31, 233);
+            label2.Location = new Point(24, 250);
             label2.Name = "label2";
             label2.Size = new Size(149, 24);
             label2.TabIndex = 2;
@@ -84,7 +84,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 15.75F);
             label3.ForeColor = Color.FromArgb(234, 234, 234);
-            label3.Location = new Point(213, 233);
+            label3.Location = new Point(206, 250);
             label3.Name = "label3";
             label3.Size = new Size(72, 24);
             label3.TabIndex = 3;
@@ -93,7 +93,7 @@
             // 
             // tb1
             // 
-            tb1.Location = new Point(204, 274);
+            tb1.Location = new Point(197, 291);
             tb1.Name = "tb1";
             tb1.Size = new Size(350, 23);
             tb1.TabIndex = 4;
@@ -103,7 +103,7 @@
             dgv.AllowUserToOrderColumns = true;
             dgv.BackgroundColor = Color.FromArgb(234, 234, 234);
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv.Location = new Point(31, 316);
+            dgv.Location = new Point(24, 333);
             dgv.Name = "dgv";
             dgv.Size = new Size(676, 282);
             dgv.TabIndex = 5;
@@ -115,7 +115,7 @@
             b1.BackColor = Color.FromArgb(168, 3, 12);
             b1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             b1.ForeColor = Color.FromArgb(234, 234, 234);
-            b1.Location = new Point(582, 274);
+            b1.Location = new Point(575, 291);
             b1.Name = "b1";
             b1.Size = new Size(125, 29);
             b1.TabIndex = 6;
@@ -125,26 +125,26 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(348, 21);
+            pictureBox1.Location = new Point(473, 28);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(167, 178);
+            pictureBox1.Size = new Size(167, 209);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
             // pictureBox2
             // 
-            pictureBox2.Location = new Point(772, 63);
+            pictureBox2.Location = new Point(755, 26);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(339, 216);
+            pictureBox2.Size = new Size(339, 209);
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(772, 337);
+            pictureBox3.Location = new Point(755, 333);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(339, 218);
+            pictureBox3.Size = new Size(339, 207);
             pictureBox3.TabIndex = 9;
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click;
@@ -152,11 +152,11 @@
             // lb2
             // 
             lb2.AutoSize = true;
-            lb2.Font = new Font("SansSerif", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            lb2.Font = new Font("SansSerif", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 2);
             lb2.ForeColor = Color.Silver;
-            lb2.Location = new Point(347, 213);
+            lb2.Location = new Point(473, 252);
             lb2.Name = "lb2";
-            lb2.Size = new Size(168, 25);
+            lb2.Size = new Size(151, 22);
             lb2.TabIndex = 10;
             lb2.Text = "Buscar jogos!!!";
             lb2.Visible = false;
