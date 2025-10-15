@@ -172,6 +172,7 @@
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaLogin";
             Load += TelaLogin_Load;
             ResumeLayout(false);

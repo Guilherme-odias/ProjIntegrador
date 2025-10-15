@@ -179,10 +179,12 @@ namespace Projeto_integrador
                 dtpDataLancamento.Value = Convert.ToDateTime(row.Cells["data_lancamento"].Value);
                 txtReq_Sis.Text = row.Cells["req_sistema"].Value.ToString();
 
-                // Preenchendo os campos das imagens diretamente pelas colunas corretas
                 txtImagem1.Text = row.Cells["Imagens_jogos"].Value?.ToString() ?? "";
                 txtImagem2.Text = row.Cells["Imagens_cen1"].Value?.ToString() ?? "";
                 txtImagem3.Text = row.Cells["Imagens_cen2"].Value?.ToString() ?? "";
+
+
+
             }
         }
 
