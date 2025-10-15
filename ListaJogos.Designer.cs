@@ -166,6 +166,7 @@
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ListaJogos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ListaJogos";
             Load += ListaJogos_Load;
             ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
