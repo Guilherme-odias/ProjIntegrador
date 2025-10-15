@@ -39,6 +39,7 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
+            lb2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -50,7 +51,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("SansSerif", 32.2499962F, FontStyle.Bold, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(319, 85);
+            label1.Location = new Point(107, 72);
             label1.Name = "label1";
             label1.Size = new Size(336, 49);
             label1.TabIndex = 0;
@@ -62,7 +63,7 @@
             cb1.DropDownStyle = ComboBoxStyle.DropDownList;
             cb1.FormattingEnabled = true;
             cb1.Items.AddRange(new object[] { "Titulo", "Desenvolvedora", "Distribuidora", "Informacoes" });
-            cb1.Location = new Point(70, 258);
+            cb1.Location = new Point(31, 274);
             cb1.Name = "cb1";
             cb1.Size = new Size(149, 23);
             cb1.TabIndex = 1;
@@ -72,7 +73,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 15.75F);
             label2.ForeColor = Color.FromArgb(234, 234, 234);
-            label2.Location = new Point(70, 217);
+            label2.Location = new Point(31, 233);
             label2.Name = "label2";
             label2.Size = new Size(149, 24);
             label2.TabIndex = 2;
@@ -83,7 +84,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 15.75F);
             label3.ForeColor = Color.FromArgb(234, 234, 234);
-            label3.Location = new Point(252, 217);
+            label3.Location = new Point(213, 233);
             label3.Name = "label3";
             label3.Size = new Size(72, 24);
             label3.TabIndex = 3;
@@ -92,7 +93,7 @@
             // 
             // tb1
             // 
-            tb1.Location = new Point(243, 258);
+            tb1.Location = new Point(204, 274);
             tb1.Name = "tb1";
             tb1.Size = new Size(350, 23);
             tb1.TabIndex = 4;
@@ -102,7 +103,7 @@
             dgv.AllowUserToOrderColumns = true;
             dgv.BackgroundColor = Color.FromArgb(234, 234, 234);
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv.Location = new Point(70, 300);
+            dgv.Location = new Point(31, 316);
             dgv.Name = "dgv";
             dgv.Size = new Size(676, 282);
             dgv.TabIndex = 5;
@@ -114,7 +115,7 @@
             b1.BackColor = Color.FromArgb(168, 3, 12);
             b1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             b1.ForeColor = Color.FromArgb(234, 234, 234);
-            b1.Location = new Point(621, 258);
+            b1.Location = new Point(582, 274);
             b1.Name = "b1";
             b1.Size = new Size(125, 29);
             b1.TabIndex = 6;
@@ -124,9 +125,9 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(70, 12);
+            pictureBox1.Location = new Point(540, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(167, 185);
+            pictureBox1.Size = new Size(167, 178);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
@@ -135,18 +136,30 @@
             // 
             pictureBox2.Location = new Point(791, 55);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(332, 226);
+            pictureBox2.Size = new Size(328, 219);
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(791, 300);
+            pictureBox3.Location = new Point(791, 329);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(332, 239);
+            pictureBox3.Size = new Size(328, 221);
             pictureBox3.TabIndex = 9;
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click;
+            // 
+            // lb2
+            // 
+            lb2.AutoSize = true;
+            lb2.Font = new Font("SansSerif", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            lb2.ForeColor = Color.FromArgb(234, 234, 234);
+            lb2.Location = new Point(539, 206);
+            lb2.Name = "lb2";
+            lb2.Size = new Size(168, 25);
+            lb2.TabIndex = 10;
+            lb2.Text = "Buscar jogos!!!";
+            lb2.Visible = false;
             // 
             // ListaJogos
             // 
@@ -154,6 +167,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(1155, 627);
+            Controls.Add(lb2);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -188,5 +202,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
+        private Label lb2;
     }
 }
