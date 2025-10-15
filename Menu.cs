@@ -21,6 +21,7 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
+
             if (SessaoAtual.TipoUsuario != "adm")
             {
                 MessageBox.Show("Acesso permitido apenas para administradores.");
@@ -28,10 +29,19 @@ namespace Projeto_integrador
             }
 
             FecharFilhosAbertos();
+            if (this.MdiChildren.Length == 0)
+            {
 
-            TelaCadastroLogin tela = new TelaCadastroLogin();
-            tela.MdiParent = this;
-            tela.Show();
+
+                TelaCadastroLogin tela = new TelaCadastroLogin();
+                tela.MdiParent = this;
+                tela.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
 
         }
 
@@ -45,35 +55,52 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
+            
             if (SessaoAtual.TipoUsuario != "adm")
             {
+
                 MessageBox.Show("Acesso permitido apenas para administradores.");
                 return;
             }
 
             FecharFilhosAbertos();
+            if (this.MdiChildren.Length == 0)
+            {
 
-            CadastroJogos tela = new CadastroJogos();
-            tela.MdiParent = this;
-            tela.Show();
+
+                CadastroJogos tela = new CadastroJogos();
+                tela.MdiParent = this;
+                tela.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
+            
 
         }
 
         public void listaJogosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!SessaoAtual.VerificarLogin(this)) return;
-
-            if (SessaoAtual.TipoUsuario != "adm")
-            {
-                MessageBox.Show("Acesso permitido apenas para administradores.");
-                return;
-            }
+            if (!SessaoAtual.VerificarLogin(this)) return; 
 
             FecharFilhosAbertos();
 
-            ListaJogos tela = new ListaJogos();
-            tela.MdiParent = this;
-            tela.Show();
+            if (this.MdiChildren.Length == 0)
+            {
+
+
+                ListaJogos tela = new ListaJogos();
+                tela.MdiParent = this;
+                tela.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
+            
 
         }
 
@@ -81,11 +108,24 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
+            
+
             FecharFilhosAbertos();
 
-            Sorteador tela = new Sorteador();
-            tela.MdiParent = this;
-            tela.Show();
+            if (this.MdiChildren.Length == 0)
+            {
+
+
+                Sorteador tela = new Sorteador();
+                tela.MdiParent = this;
+                tela.Show();
+            }
+            else
+            {
+
+                this.MdiChildren[0].Activate();
+            }
+            
 
         }
 

@@ -360,6 +360,7 @@
             Controls.Add(btnCadastrar);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CadastroJogos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "'";
             Load += CadastroJogos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvJogos).EndInit();

@@ -101,7 +101,12 @@ namespace Projeto_integrador
         {
             if (e.RowIndex >= 0) // garante que clicou em uma linha válida
             {
+
                 DataGridViewRow linha = dgv.Rows[e.RowIndex];
+
+                lb2.Visible = true;
+                string nome = linha.Cells["titulo"].Value?.ToString();
+                lb2.Text = nome;
 
                 // pega as URLs direto das colunas do DataGridView
                 string urlImagemPrincipal = linha.Cells["Imagens_jogos"].Value?.ToString();
