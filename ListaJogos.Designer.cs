@@ -49,9 +49,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("SansSerif", 32.2499962F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            label1.Font = new Font("SansSerif", 32.2499962F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(107, 72);
+            label1.Location = new Point(21, 79);
             label1.Name = "label1";
             label1.Size = new Size(336, 49);
             label1.TabIndex = 0;
@@ -125,7 +125,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(540, 12);
+            pictureBox1.Location = new Point(387, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(167, 178);
             pictureBox1.TabIndex = 7;
@@ -153,8 +153,8 @@
             // 
             lb2.AutoSize = true;
             lb2.Font = new Font("SansSerif", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, 2);
-            lb2.ForeColor = Color.FromArgb(234, 234, 234);
-            lb2.Location = new Point(539, 206);
+            lb2.ForeColor = Color.Silver;
+            lb2.Location = new Point(373, 206);
             lb2.Name = "lb2";
             lb2.Size = new Size(168, 25);
             lb2.TabIndex = 10;
