@@ -324,6 +324,7 @@
             txtValor.Name = "txtValor";
             txtValor.Size = new Size(100, 23);
             txtValor.TabIndex = 29;
+            txtValor.TextChanged += txtValor_TextChanged;
             // 
             // CadastroJogos
             // 
