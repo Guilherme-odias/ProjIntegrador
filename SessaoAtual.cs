@@ -12,7 +12,7 @@ namespace Projeto_integrador
         public static string UsuarioLogado { get; private set; } = null;
         public static string TipoUsuario { get; private set; } = null;
 
-        // ALTERAÇÃO: recebe Menu em vez de Form
+        /// ALTERAÇÃO: recebe Menu em vez de Form /
         public static bool VerificarLogin(Menu menu)
         {
             if (!string.IsNullOrEmpty(UsuarioLogado))
