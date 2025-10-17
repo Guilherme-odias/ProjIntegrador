@@ -137,11 +137,11 @@ namespace Projeto_integrador
             }
 
             decimal valor;
-            if (!decimal.TryParse(txtValor.Text, out valor))
+           /* if (!decimal.TryParse(txtValor.Text, out valor))
             {
                 MessageBox.Show("Valor inválido.");
                 return;
-            }
+            }*/
 
             int categoriaId = Convert.ToInt32(cmbCategoria.SelectedValue);
 
@@ -155,7 +155,7 @@ namespace Projeto_integrador
                 Informacoes = txtInformacoes.Text,
                 DataLancamento = dtpDataLancamento.Value,
                 RequisitosSistema = txtReq_Sis.Text,
-                Valor = valor,
+               // Valor = valor,
                 ImagemCapa = txtImagem1.Text.Trim(),
                 ImagemCen1 = txtImagem2.Text.Trim(),
                 ImagemCen2 = txtImagem3.Text.Trim()
