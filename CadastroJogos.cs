@@ -161,7 +161,7 @@ namespace Projeto_integrador
                 ImagemCen2 = txtImagem3.Text.Trim()
             };
 
-            
+
             try
             {
                 jogo.Atualizar();
@@ -225,7 +225,7 @@ namespace Projeto_integrador
         {
 
         }
-       
+
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
@@ -255,6 +255,11 @@ namespace Projeto_integrador
                     MessageBox.Show("Erro ao remover o jogo: " + ex.Message);
                 }
             }
+        }
+
+        private void txtValor_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
