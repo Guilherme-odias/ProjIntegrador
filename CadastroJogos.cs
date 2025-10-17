@@ -194,7 +194,16 @@ namespace Projeto_integrador
                 txtInformacoes.Text = row.Cells["informacoes"].Value.ToString();
                 dtpDataLancamento.Value = Convert.ToDateTime(row.Cells["data_lancamento"].Value);
                 txtReq_Sis.Text = row.Cells["req_sistema"].Value.ToString();
-                txtValor.Text = row.Cells["valor"].Value?.ToString() ?? "";
+
+                if (row.Cells["valor"].Value != null && decimal.TryParse(row.Cells["valor"].Value.ToString(), out decimal valor))
+                {
+                    txtValor.Text = valor.ToString("F2");  // Formata com duas casas decimais
+                }
+                else
+                {
+                    txtValor.Text = "";
+                }
+
                 txtImagem1.Text = row.Cells["Imagens_jogos"].Value?.ToString() ?? "";
                 txtImagem2.Text = row.Cells["Imagens_cen1"].Value?.ToString() ?? "";
                 txtImagem3.Text = row.Cells["Imagens_cen2"].Value?.ToString() ?? "";
