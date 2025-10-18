@@ -55,7 +55,7 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
-            
+
             if (SessaoAtual.TipoUsuario != "adm")
             {
 
@@ -77,13 +77,13 @@ namespace Projeto_integrador
 
                 this.MdiChildren[0].Activate();
             }
-            
+
 
         }
 
         public void listaJogosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!SessaoAtual.VerificarLogin(this)) return; 
+            if (!SessaoAtual.VerificarLogin(this)) return;
 
             FecharFilhosAbertos();
 
@@ -100,7 +100,7 @@ namespace Projeto_integrador
 
                 this.MdiChildren[0].Activate();
             }
-            
+
 
         }
 
@@ -108,7 +108,7 @@ namespace Projeto_integrador
         {
             if (!SessaoAtual.VerificarLogin(this)) return;
 
-            
+
 
             FecharFilhosAbertos();
 
@@ -125,7 +125,7 @@ namespace Projeto_integrador
 
                 this.MdiChildren[0].Activate();
             }
-            
+
 
         }
 
@@ -152,15 +152,18 @@ namespace Projeto_integrador
             listaJogosToolStripMenuItem.Enabled = false;
             sorteadorToolStripMenuItem.Enabled = false;
         }
-        
+
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
 
-        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e) 
-        { 
+        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
 
+        private void videotesteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
