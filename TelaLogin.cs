@@ -17,15 +17,6 @@ namespace Projeto_integrador
         public string EmailOuUsuario { get; private set; }
         public string TipoUsuario { get; private set; }
 
-
-        private TelaCadastroLogin telaCadastroLogin; // referência ao outro form
-
-        public TelaLogin(TelaCadastroLogin telaCadastro)
-        {
-            InitializeComponent();
-            telaCadastroLogin = telaCadastro;
-        }
-
         public TelaLogin()
         {
             InitializeComponent();
@@ -66,20 +57,8 @@ namespace Projeto_integrador
 
                     if (tipo != null)
                     {
-                        EmailOuUsuario = login;
-                        TipoUsuario = tipo.ToString(); // "admin" ou "comum"
-
-                        if (TipoUsuario == "adm")
-                        {
-                            telaCadastroLogin.tipo_user.Visible = true;
-                            telaCadastroLogin.tipo_user1.Visible = true;
-                        }
-                        else
-                        {
-                            telaCadastroLogin.tipo_user.Visible = false;
-                            telaCadastroLogin.tipo_user1.Visible = false;
-                        }
-
+                        Sessao.EmailOuUsuario = login;
+                        Sessao.TipoUsuario = tipo.ToString(); // "admin" ou "comum"
                         DialogResult = DialogResult.OK;
                         Close();
                     }

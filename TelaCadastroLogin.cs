@@ -25,7 +25,16 @@ namespace Projeto_integrador
 
         private void TelaCadastroLogin_Load(object sender, EventArgs e)
         {
-
+            if (Sessao.TipoUsuario == "comum")
+            {
+                tipo_user1.Visible = false;
+                tipo_user.Visible = false;
+            }
+            else if (Sessao.TipoUsuario == "adm")
+            {
+                tipo_user1.Visible = true;
+                tipo_user.Visible = true;
+            }
         }
 
         private void label8_Click(object sender, EventArgs e)
