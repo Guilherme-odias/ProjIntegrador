@@ -47,6 +47,8 @@ namespace Projeto_integrador
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+
             Conexao conexao = new Conexao();
             Buscas busca = new Buscas();
 
@@ -184,6 +186,11 @@ namespace Projeto_integrador
             }
 
             cpf.MaxLength = 11;
+
+        }
+
+        private void tipo_user_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

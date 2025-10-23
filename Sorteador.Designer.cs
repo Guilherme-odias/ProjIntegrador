@@ -43,6 +43,7 @@
             timer_an = new System.Windows.Forms.Timer(components);
             cb_cate = new ComboBox();
             lb_cate = new Label();
+            btn_trailer = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).BeginInit();
             grp_resultado.SuspendLayout();
@@ -151,7 +152,7 @@
             lb_resposta.FlatStyle = FlatStyle.Flat;
             lb_resposta.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lb_resposta.ForeColor = Color.White;
-            lb_resposta.Location = new Point(219, 386);
+            lb_resposta.Location = new Point(231, 418);
             lb_resposta.Margin = new Padding(4, 0, 4, 0);
             lb_resposta.Name = "lb_resposta";
             lb_resposta.Size = new Size(585, 108);
@@ -166,7 +167,7 @@
             btn_nova.FlatStyle = FlatStyle.Flat;
             btn_nova.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_nova.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_nova.Location = new Point(430, 532);
+            btn_nova.Location = new Point(445, 543);
             btn_nova.Margin = new Padding(4);
             btn_nova.Name = "btn_nova";
             btn_nova.Size = new Size(156, 62);
@@ -177,6 +178,7 @@
             // 
             // grp_resultado
             // 
+            grp_resultado.Controls.Add(btn_trailer);
             grp_resultado.Controls.Add(pt_image_jogo);
             grp_resultado.Controls.Add(btn_nova);
             grp_resultado.Controls.Add(lb_resposta);
@@ -214,6 +216,19 @@
             lb_cate.Size = new Size(95, 21);
             lb_cate.TabIndex = 11;
             lb_cate.Text = "Categorias";
+            // 
+            // btn_trailer
+            // 
+            btn_trailer.BackColor = Color.FromArgb(168, 3, 12);
+            btn_trailer.FlatStyle = FlatStyle.Flat;
+            btn_trailer.ForeColor = Color.FromArgb(234, 234, 234);
+            btn_trailer.Location = new Point(445, 365);
+            btn_trailer.Name = "btn_trailer";
+            btn_trailer.Size = new Size(156, 38);
+            btn_trailer.TabIndex = 9;
+            btn_trailer.Text = "Veja o trailer aqui!";
+            btn_trailer.UseVisualStyleBackColor = false;
+            btn_trailer.Click += btn_trailer_Click;
             // 
             // Sorteador
             // 
@@ -259,5 +274,6 @@
         private System.Windows.Forms.Timer timer_an;
         private ComboBox cb_cate;
         private Label lb_cate;
+        private Button btn_trailer;
     }
 }
