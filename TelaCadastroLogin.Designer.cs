@@ -257,6 +257,7 @@
             tipo_user.Name = "tipo_user";
             tipo_user.Size = new Size(121, 25);
             tipo_user.TabIndex = 22;
+            tipo_user.SelectedIndexChanged += tipo_user_SelectedIndexChanged;
             // 
             // lblMensagem
             // 
