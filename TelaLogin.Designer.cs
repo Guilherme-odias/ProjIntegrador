@@ -36,7 +36,6 @@
             textSenha = new TextBox();
             label2 = new Label();
             label3 = new Label();
-            lblAviso = new Label();
             verSenha = new CheckBox();
             esqueciSenha = new Label();
             SuspendLayout();
@@ -117,19 +116,6 @@
             label3.TabIndex = 6;
             label3.Text = "Email ou User";
             // 
-            // lblAviso
-            // 
-            lblAviso.BackColor = Color.Transparent;
-            lblAviso.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAviso.ForeColor = SystemColors.ButtonHighlight;
-            lblAviso.Location = new Point(246, 346);
-            lblAviso.Name = "lblAviso";
-            lblAviso.Size = new Size(224, 48);
-            lblAviso.TabIndex = 7;
-            lblAviso.Text = " ";
-            lblAviso.TextAlign = ContentAlignment.MiddleCenter;
-            lblAviso.Click += lblAviso_Click;
-            // 
             // verSenha
             // 
             verSenha.AutoSize = true;
@@ -146,7 +132,7 @@
             esqueciSenha.Cursor = Cursors.Hand;
             esqueciSenha.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
             esqueciSenha.ForeColor = SystemColors.HotTrack;
-            esqueciSenha.Location = new Point(282, 408);
+            esqueciSenha.Location = new Point(282, 352);
             esqueciSenha.Name = "esqueciSenha";
             esqueciSenha.Size = new Size(137, 15);
             esqueciSenha.TabIndex = 10;
@@ -162,7 +148,6 @@
             ClientSize = new Size(733, 551);
             Controls.Add(esqueciSenha);
             Controls.Add(verSenha);
-            Controls.Add(lblAviso);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(textSenha);
@@ -188,7 +173,6 @@
         private TextBox textSenha;
         private Label label2;
         private Label label3;
-        private Label lblAviso;
         private CheckBox verSenha;
         private Label esqueciSenha;
     }
