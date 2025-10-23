@@ -20,6 +20,7 @@ namespace Projeto_integrador
         {
             public string Titulo { get; set; }
             public string Imagem { get; set; }
+            public string Trailer { get; set; }
         }
 
         public class Categoria
@@ -72,8 +73,8 @@ namespace Projeto_integrador
                 if (modo == "loja")
                 {
                     sql = (idCategoria > 0)
-                        ? "SELECT Titulo, Imagens_jogos FROM jogos WHERE id_categoria = @idCategoria"
-                        : "SELECT Titulo, Imagens_jogos FROM jogos";
+                        ? "SELECT Titulo, Imagens_jogos, Trailers FROM jogos WHERE id_categoria = @idCategoria"
+                        : "SELECT Titulo, Imagens_jogos, Trailers FROM jogos";
                 }
                 else // minha_biblioteca
                 {
@@ -104,7 +105,8 @@ namespace Projeto_integrador
                             lista.Add(new Jogo
                             {
                                 Titulo = reader["Titulo"]?.ToString() ?? string.Empty,
-                                Imagem = reader["Imagens_jogos"]?.ToString() ?? string.Empty
+                                Imagem = reader["Imagens_jogos"]?.ToString() ?? string.Empty,
+                                Trailer = reader["Trailers"]?.ToString() ?? string.Empty
                             });
                         }
                     }
