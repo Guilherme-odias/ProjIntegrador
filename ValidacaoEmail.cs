@@ -101,7 +101,7 @@ namespace Projeto_integrador
         {
             if (txtCodigo.Text == codigoGerado)
             {
-                TelaLogin novo = new TelaLogin();
+                Sorteador novo = new Sorteador();
 
                 this.Hide();
                 novo.Show();
