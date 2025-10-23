@@ -11,6 +11,9 @@ namespace Projeto_integrador
     class classsorte
     {
     }
+    
+
+
     public class RepositorioJogos
     {
         private string _connectionString = "server=10.37.44.72;user id=root;password=root;database=projeto_quimera";
@@ -57,6 +60,39 @@ namespace Projeto_integrador
             }
 
             return categorias;
+        }
+
+        public bool UsuarioExiste(string username)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT COUNT(*) FROM cadastro WHERE nome_user = @nome";
+                using (var cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", username);
+                    long count = Convert.ToInt64(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool UsuarioPossuiJogos(string username)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = @"SELECT COUNT(*) 
+                           FROM minha_biblioteca b
+                           INNER JOIN cadastro c ON b.id_user = c.id_user
+                           WHERE c.nome_user = @nome";
+                using (var cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", username);
+                    long count = Convert.ToInt64(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
         }
 
         // Agora só existe esse método
