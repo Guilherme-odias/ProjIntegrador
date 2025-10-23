@@ -41,11 +41,11 @@ namespace Projeto_integrador
         { "Corrida", 3 },
         { "Estratégia", 4 },
         { "Esporte", 5 },
-        { "Tiro", 6 },
-        { "Terror", 7 },
-        { "Sobrevivência", 8 },
-        { "RPG", 9 },
-        { "Lutas", 10 }
+        { "FPS", 6 },
+        { "Luta", 7 },
+        { "Terror", 8 },
+        { "Sobrevivência", 9 },
+        { "RPG", 10 }
     };
 
             grp_resultado.Visible = false;
@@ -58,12 +58,23 @@ namespace Projeto_integrador
             cb_cate.SelectedIndex = -1;
             cb_cate.Location = new Point(463, 295); // Ajuste a posição conforme necessário
             cb_cate.Size = new Size(123, 27);
- 
+
 
             PreencherCategorias();
 
             timer_an.Tick += TimerAnimacao_Tick;
 
+        }
+
+        public void ResetarTela()
+        {
+            lb_resposta.Text = "";
+            pt_image_jogo.Image = null;
+            grp_resultado.Visible = false;
+            cb_cate.Visible = true;
+            lb_cate.Visible = true;
+            cb_cate.SelectedIndex = -1;
+            txt_user.Visible = (modo == "minha_biblioteca");
         }
 
         private void PreencherCategorias()
@@ -186,12 +197,12 @@ namespace Projeto_integrador
 
         private void btn_nova_Click(object sender, EventArgs e)
         {
-                lb_resposta.Text = "";
-                pt_image_jogo.Image = null;
-                grp_resultado.Visible = false;
-                cb_cate.Visible = true;
-                lb_cate.Visible = true;
-                cb_cate.SelectedIndex = -1; 
+            lb_resposta.Text = "";
+            pt_image_jogo.Image = null;
+            grp_resultado.Visible = false;
+            cb_cate.Visible = true;
+            lb_cate.Visible = true;
+            cb_cate.SelectedIndex = -1;
 
             // Se estiver no modo biblioteca, deixa a caixa visível
             if (modo == "minha_biblioteca")
@@ -216,6 +227,25 @@ namespace Projeto_integrador
 
         private void Sorteador_Load(object sender, EventArgs e)
         {
+        }
+
+        private void btn_trailer_Click(object sender, EventArgs e)
+        {
+            if (_jogoSorteado == null)
+            {
+                MessageBox.Show("Nenhum jogo foi sorteado ainda!");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(_jogoSorteado.Trailer))
+            {
+                MessageBox.Show("Este jogo não possui trailer cadastrado.");
+                return;
+            }
+
+            Trailer telaTrailer = new Trailer(_jogoSorteado.Trailer, this);
+            telaTrailer.Show();
+            this.Hide();
         }
     }
 }

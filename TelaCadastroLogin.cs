@@ -188,5 +188,10 @@ namespace Projeto_integrador
             cpf.MaxLength = 11;
 
         }
+
+        private void tipo_user_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
