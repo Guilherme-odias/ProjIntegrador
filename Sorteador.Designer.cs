@@ -40,10 +40,10 @@
             lb_resposta = new Label();
             btn_nova = new Button();
             grp_resultado = new GroupBox();
+            btn_trailer = new Button();
             timer_an = new System.Windows.Forms.Timer(components);
             cb_cate = new ComboBox();
             lb_cate = new Label();
-            btn_trailer = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).BeginInit();
             grp_resultado.SuspendLayout();
@@ -155,7 +155,7 @@
             lb_resposta.Location = new Point(231, 418);
             lb_resposta.Margin = new Padding(4, 0, 4, 0);
             lb_resposta.Name = "lb_resposta";
-            lb_resposta.Size = new Size(585, 108);
+            lb_resposta.Size = new Size(583, 108);
             lb_resposta.TabIndex = 7;
             lb_resposta.Text = "Resposta do jogo sorteado";
             lb_resposta.TextAlign = ContentAlignment.MiddleCenter;
@@ -186,11 +186,24 @@
             grp_resultado.Margin = new Padding(4);
             grp_resultado.Name = "grp_resultado";
             grp_resultado.Padding = new Padding(4);
-            grp_resultado.Size = new Size(1047, 617);
+            grp_resultado.Size = new Size(1045, 617);
             grp_resultado.TabIndex = 9;
             grp_resultado.TabStop = false;
             grp_resultado.Text = "groupBox1";
             grp_resultado.Visible = false;
+            // 
+            // btn_trailer
+            // 
+            btn_trailer.BackColor = Color.FromArgb(168, 3, 12);
+            btn_trailer.FlatStyle = FlatStyle.Flat;
+            btn_trailer.ForeColor = Color.FromArgb(234, 234, 234);
+            btn_trailer.Location = new Point(445, 365);
+            btn_trailer.Name = "btn_trailer";
+            btn_trailer.Size = new Size(156, 38);
+            btn_trailer.TabIndex = 9;
+            btn_trailer.Text = "Veja o trailer aqui!";
+            btn_trailer.UseVisualStyleBackColor = false;
+            btn_trailer.Click += btn_trailer_Click;
             // 
             // timer_an
             // 
@@ -216,19 +229,6 @@
             lb_cate.Size = new Size(95, 21);
             lb_cate.TabIndex = 11;
             lb_cate.Text = "Categorias";
-            // 
-            // btn_trailer
-            // 
-            btn_trailer.BackColor = Color.FromArgb(168, 3, 12);
-            btn_trailer.FlatStyle = FlatStyle.Flat;
-            btn_trailer.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_trailer.Location = new Point(445, 365);
-            btn_trailer.Name = "btn_trailer";
-            btn_trailer.Size = new Size(156, 38);
-            btn_trailer.TabIndex = 9;
-            btn_trailer.Text = "Veja o trailer aqui!";
-            btn_trailer.UseVisualStyleBackColor = false;
-            btn_trailer.Click += btn_trailer_Click;
             // 
             // Sorteador
             // 

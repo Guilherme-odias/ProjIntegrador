@@ -50,31 +50,47 @@ namespace Projeto_integrador
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            int categoriaId = Convert.ToInt32(cmbCategoria.SelectedValue);
-            string titulo = txtTitulo.Text;
-            string desenvolvedora = txtDesenvolvedora.Text;
-            string distribuidora = txtDistribuidora.Text;
-            string informacoes = txtInformacoes.Text;
+
+            if (cmbCategoria.SelectedValue == null)
+            {
+                MessageBox.Show("Por favor, selecione uma categoria.");
+                return;
+            }
+
+            string titulo = txtTitulo.Text.Trim();
+            string desenvolvedora = txtDesenvolvedora.Text.Trim();
+            string distribuidora = txtDistribuidora.Text.Trim();
+            string informacoes = txtInformacoes.Text.Trim();
+            string reqSistema = txtReq_Sis.Text.Trim();
+            string imagem1 = txtImagem1.Text.Trim();
+            string imagem2 = txtImagem2.Text.Trim();
+            string imagem3 = txtImagem3.Text.Trim();
+            string valorTexto = txtValor.Text.Trim();
             DateTime dataLancamento = dtpDataLancamento.Value;
-            string reqSistema = txtReq_Sis.Text;
-            decimal valor;
 
-            if (!decimal.TryParse(txtValor.Text, out valor))
-            {
-                MessageBox.Show("Valor inválido.");
-                return;
-            }
-
-            // Validação simples
             if (string.IsNullOrWhiteSpace(titulo) ||
-                string.IsNullOrWhiteSpace(desenvolvedora) ||
-                string.IsNullOrWhiteSpace(distribuidora) ||
-                string.IsNullOrWhiteSpace(informacoes) ||
-                string.IsNullOrWhiteSpace(reqSistema))
+                 string.IsNullOrWhiteSpace(desenvolvedora) ||
+                 string.IsNullOrWhiteSpace(distribuidora) ||
+                 string.IsNullOrWhiteSpace(informacoes) ||
+                 string.IsNullOrWhiteSpace(reqSistema) ||
+                 string.IsNullOrWhiteSpace(imagem1) ||
+                 string.IsNullOrWhiteSpace(imagem2) ||
+                 string.IsNullOrWhiteSpace(imagem3) ||
+                 string.IsNullOrWhiteSpace(valorTexto))
+
             {
-                MessageBox.Show("Por favor, preencha todos os campos corretamente.");
+                MessageBox.Show("Por favor, preencha todos os campos antes de cadastrar o jogo.");
                 return;
             }
+
+            if (!decimal.TryParse(valorTexto, out decimal valor))
+            {
+                MessageBox.Show("Valor inválido. Digite apenas números e vírgula.");
+                return;
+            }
+
+            int categoriaId = Convert.ToInt32(cmbCategoria.SelectedValue);
+
 
             Jogo jogo = new Jogo
             {
@@ -86,9 +102,9 @@ namespace Projeto_integrador
                 DataLancamento = dataLancamento,
                 RequisitosSistema = reqSistema,
                 Valor = valor,
-                ImagemCapa = txtImagem1.Text.Trim(),
-                ImagemCen1 = txtImagem2.Text.Trim(),
-                ImagemCen2 = txtImagem3.Text.Trim(),
+                ImagemCapa = imagem1,
+                ImagemCen1 = imagem2,
+                ImagemCen2 = imagem3,
             };
 
 
