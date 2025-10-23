@@ -113,10 +113,29 @@ namespace Projeto_integrador
                 return;
             }
 
-            if (modo == "minha_biblioteca" && string.IsNullOrWhiteSpace(txt_user.Text))
+            if (modo == "minha_biblioteca")
             {
-                MessageBox.Show("Digite o nome do usuário para buscar a biblioteca.");
-                return;
+                string usuario = txt_user.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(usuario))
+                {
+                    MessageBox.Show("Digite o nome do usuário para buscar a biblioteca.");
+                    return;
+                }
+
+                // Verifica se o usuário existe no banco
+                if (!_repositorio.UsuarioExiste(usuario))
+                {
+                    MessageBox.Show("Usuário não existe.");
+                    return;
+                }
+
+                // Verifica se o usuário tem jogos
+                if (!_repositorio.UsuarioPossuiJogos(usuario))
+                {
+                    MessageBox.Show("Este usuário não possui jogos para sortear.");
+                    return;
+                }
             }
 
             int idCategoriaSelecionada = 0;
