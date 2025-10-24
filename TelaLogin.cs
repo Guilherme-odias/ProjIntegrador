@@ -57,10 +57,10 @@ namespace Projeto_integrador
 
                     if (tipo != null)
                     {
-                        Sessao.EmailOuUsuario = login;
-                        Sessao.TipoUsuario = tipo.ToString(); // "admin" ou "comum"
-                        DialogResult = DialogResult.OK;
-                        Close();
+                       EmailOuUsuario = login;
+                       TipoUsuario = tipo.ToString(); // "admin" ou "comum"
+                       DialogResult = DialogResult.OK;
+                       Close();
                     }
                     else
                     {
