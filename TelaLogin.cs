@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -69,11 +70,18 @@ namespace Projeto_integrador
                         MessageBox.Show("Email/usuário ou senha incorretos.");
                         esqueciSenha.Visible = true;
                     }
+
+
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erro ao fazer login: " + ex.Message);
                 }
+
+
+                
+
             }
         }
 
