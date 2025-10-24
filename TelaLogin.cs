@@ -67,7 +67,6 @@ namespace Projeto_integrador
                         
 
                         MessageBox.Show("Email/usuário ou senha incorretos.");
-                        lblAviso.Visible = true;
                         esqueciSenha.Visible = true;
                     }
                 }
@@ -118,11 +117,6 @@ namespace Projeto_integrador
 
             EsqueciSenha novoForm = new EsqueciSenha(); // substitua pelo nome do seu Form
             novoForm.Show();
-
-        }
-
-        private void lblAviso_Click(object sender, EventArgs e)
-        {
 
         }
     }
