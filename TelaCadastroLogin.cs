@@ -42,7 +42,7 @@ namespace Projeto_integrador
 
         }
 
-        private void url_foto_Click(object sender, EventArgs e)
+       /* private void url_foto_Click(object sender, EventArgs e)
         {
             OpenFileDialog x = new OpenFileDialog();
             x.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*";
@@ -53,6 +53,7 @@ namespace Projeto_integrador
                 pictureBox1.Image = Image.FromFile(x.FileName);
             }
         }
+       */
 
         private void button1_Click(object sender, EventArgs e)
         {
