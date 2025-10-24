@@ -229,24 +229,6 @@ namespace Projeto_integrador
             else
                 txt_user.Visible = false;
         }
-        private void pt_image_jogo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_resposta_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_user_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Sorteador_Load(object sender, EventArgs e)
-        {
-        }
 
         private void btn_trailer_Click(object sender, EventArgs e)
         {
@@ -265,6 +247,24 @@ namespace Projeto_integrador
             Trailer telaTrailer = new Trailer(_jogoSorteado.Trailer, this);
             telaTrailer.Show();
             this.Hide();
+        }
+        private void pt_image_jogo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_resposta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_user_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Sorteador_Load(object sender, EventArgs e)
+        {
         }
     }
 }
