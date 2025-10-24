@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.VisualBasic.Logging;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,7 +29,6 @@ namespace Projeto_integrador
         {
 
         }
-
 
 
         private void button1_Click(object sender, EventArgs e)
