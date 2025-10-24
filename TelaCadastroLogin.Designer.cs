@@ -56,7 +56,7 @@
             cad.BackColor = Color.FromArgb(168, 3, 12);
             cad.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cad.ForeColor = Color.FromArgb(234, 234, 234);
-            cad.Location = new Point(328, 385);
+            cad.Location = new Point(328, 365);
             cad.Name = "cad";
             cad.Size = new Size(116, 40);
             cad.TabIndex = 21;
