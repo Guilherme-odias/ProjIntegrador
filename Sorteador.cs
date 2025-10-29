@@ -155,42 +155,41 @@ namespace Projeto_integrador
 
         private async void TimerAnimacao_Tick(object sender, EventArgs e)
         {
-            if (_animIndex >= 0)
+            if (!string.IsNullOrWhiteSpace(_jogoSorteado.Imagem))
             {
-                lb_resposta.Text = _titulosAnimacao[_animIndex];
-                _animIndex--;
-                _velocidade += 40;
-                timer_an.Interval = _velocidade;
-            }
-            else
-            {
-                timer_an.Stop();
-                lb_resposta.Text = "🎮 " + _jogoSorteado.Titulo;
-
-                if (!string.IsNullOrWhiteSpace(_jogoSorteado.Imagem))
+                try
                 {
-                    try
-                    {
-                        string url = Uri.EscapeUriString(_jogoSorteado.Imagem);
+                    string url = Uri.EscapeUriString(_jogoSorteado.Imagem);
 
+                    if (_cacheImagens.ContainsKey(url))
+                    {
+                        pt_image_jogo.Image = _cacheImagens[url];
+                    }
+                    else
+                    {
                         using (HttpClient client = new HttpClient())
                         {
                             var bytes = await client.GetByteArrayAsync(url);
                             using (var ms = new System.IO.MemoryStream(bytes))
                             {
-                                pt_image_jogo.Image = Image.FromStream(ms);
-                                pt_image_jogo.SizeMode = PictureBoxSizeMode.Zoom;
+                                var img = Image.FromStream(ms);
+                                _cacheImagens[url] = img; // adiciona ao cache
+                                pt_image_jogo.Image = img;
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Erro ao carregar imagem: " + ex.Message);
-                        pt_image_jogo.Image = null;
-                    }
+
+                    pt_image_jogo.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao carregar imagem: " + ex.Message);
+                    pt_image_jogo.Image = null;
                 }
             }
         }
+           
+       
 
         private void btn_nova_Click(object sender, EventArgs e)
         {

@@ -19,6 +19,8 @@ namespace Projeto_integrador
             public string Trailer { get; set; }
         }
 
+        public static Dictionary<string, Image> _cacheImagens = new Dictionary<string, Image>();
+
         public class Categoria
         {
             public int Id { get; set; }
