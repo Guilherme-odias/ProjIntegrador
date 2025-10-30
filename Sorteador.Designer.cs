@@ -86,7 +86,6 @@
             txt_user.Size = new Size(651, 23);
             txt_user.TabIndex = 2;
             txt_user.Tag = "";
-            txt_user.Text = "DIGITE SEU USERNAME:";
             txt_user.TextChanged += txt_user_TextChanged;
             // 
             // btn_bibl
@@ -155,7 +154,7 @@
             lb_resposta.Location = new Point(231, 418);
             lb_resposta.Margin = new Padding(4, 0, 4, 0);
             lb_resposta.Name = "lb_resposta";
-            lb_resposta.Size = new Size(583, 108);
+            lb_resposta.Size = new Size(586, 108);
             lb_resposta.TabIndex = 7;
             lb_resposta.Text = "Resposta do jogo sorteado";
             lb_resposta.TextAlign = ContentAlignment.MiddleCenter;
@@ -186,7 +185,7 @@
             grp_resultado.Margin = new Padding(4);
             grp_resultado.Name = "grp_resultado";
             grp_resultado.Padding = new Padding(4);
-            grp_resultado.Size = new Size(1045, 617);
+            grp_resultado.Size = new Size(1048, 617);
             grp_resultado.TabIndex = 9;
             grp_resultado.TabStop = false;
             grp_resultado.Text = "groupBox1";

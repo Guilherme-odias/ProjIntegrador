@@ -15,8 +15,10 @@ namespace Projeto_integrador
 {
     public partial class Sorteador : Form
     {
+        private Dictionary<string, Image> _cacheImagens = new Dictionary<string, Image>();
+
         private RepositorioJogos _repositorio;
-        private string modo = ""; // "loja" ou "minha_biblioteca"
+        private string modo = "";
         private Dictionary<string, int> categorias;
 
         private List<string> _titulosAnimacao;
@@ -54,6 +56,27 @@ namespace Projeto_integrador
 
             PreencherCategorias();
             timer_an.Tick += TimerAnimacao_Tick;
+
+            txt_user.GotFocus += TxtUser_GotFocus;
+            txt_user.LostFocus += TxtUser_LostFocus;
+        }
+
+        private void TxtUser_GotFocus(object sender, EventArgs e)
+        {
+            if (txt_user.Text == "Digite seu username")
+            {
+                txt_user.Text = "";
+                txt_user.ForeColor = Color.Black;
+            }
+        }
+
+        private void TxtUser_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txt_user.Text))
+            {
+                txt_user.Text = "Digite seu username";
+                txt_user.ForeColor = Color.Gray;
+            }
         }
 
         public void ResetarTela()
@@ -82,6 +105,8 @@ namespace Projeto_integrador
         {
             modo = "minha_biblioteca";
             txt_user.Visible = true;
+            txt_user.Text = "Digite seu username";
+            txt_user.ForeColor = Color.Gray;
             txt_user.Focus();
         }
 
@@ -93,6 +118,16 @@ namespace Projeto_integrador
 
         private void btn_sortear_Click(object sender, EventArgs e)
         {
+            ResetarTela();
+            _titulosAnimacao = null;
+            _animIndex = 0;
+            _velocidade = 0;
+            _jogoSorteado = null;
+
+            if (txt_user.Visible && txt_user.Text == "Digite seu username")
+                txt_user.Text = "";
+
+
             if (string.IsNullOrWhiteSpace(modo))
             {
                 MessageBox.Show("Escolha primeiro 'Minha Biblioteca' ou 'Toda Loja'.");
@@ -138,53 +173,63 @@ namespace Projeto_integrador
             cb_cate.Visible = false;
             lb_cate.Visible = false;
 
-            _titulosAnimacao = new List<string>();
-            for (int i = 0; i < 5; i++)
-                _titulosAnimacao.Add("Sorteando... " + (i + 1));
-            _titulosAnimacao.Add(_jogoSorteado.Titulo);
+            _titulosAnimacao = new List<string>() { "Sorteando... 5", "Sorteando... 4", "Sorteando... 3", "Sorteando... 2", "Sorteando... 1" };
 
-            _animIndex = _titulosAnimacao.Count - 1;
-            _velocidade = 50;
+            _animIndex = 0;
+            _velocidade = 300;
             timer_an.Interval = _velocidade;
             timer_an.Start();
 
             grp_resultado.Visible = true;
             lb_resposta.Text = "";
             pt_image_jogo.Image = null;
+            cb_cate.Visible = false;
+            lb_cate.Visible = false;
         }
 
         private async void TimerAnimacao_Tick(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(_jogoSorteado.Imagem))
+            if (_animIndex < _titulosAnimacao.Count)
             {
-                try
-                {
-                    string url = Uri.EscapeUriString(_jogoSorteado.Imagem);
+                lb_resposta.Text = _titulosAnimacao[_animIndex];
+                _animIndex++;
+            }
+            else
+            {
+                timer_an.Stop();
 
-                    if (_cacheImagens.ContainsKey(url))
+
+                lb_resposta.Text = "🎮 " + _jogoSorteado.Titulo;
+
+                if (!string.IsNullOrWhiteSpace(_jogoSorteado.Imagem))
+                {
+                    string url = _jogoSorteado.Imagem.Trim();
+
+                    try
                     {
-                        pt_image_jogo.Image = _cacheImagens[url];
-                    }
-                    else
-                    {
-                        using (HttpClient client = new HttpClient())
+                        if (_cacheImagens.ContainsKey(url))
                         {
-                            var bytes = await client.GetByteArrayAsync(url);
-                            using (var ms = new System.IO.MemoryStream(bytes))
+                            pt_image_jogo.Image = _cacheImagens[url];
+                        }
+                        else
+                        {
+                            using (var wc = new WebClient())
                             {
-                                var img = Image.FromStream(ms);
-                                _cacheImagens[url] = img; // adiciona ao cache
-                                pt_image_jogo.Image = img;
+                                byte[] data = wc.DownloadData(url);
+                                using (var ms = new System.IO.MemoryStream(data))
+                                {
+                                    Image img = Image.FromStream(ms);
+                                    pt_image_jogo.Image = img;
+                                    pt_image_jogo.SizeMode = PictureBoxSizeMode.Zoom;
+                                    _cacheImagens[url] = img;
+                                }
                             }
                         }
                     }
-
-                    pt_image_jogo.SizeMode = PictureBoxSizeMode.Zoom;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Erro ao carregar imagem: " + ex.Message);
-                    pt_image_jogo.Image = null;
+                    catch
+                    {
+                        pt_image_jogo.Image = null;
+                    }
                 }
             }
         }
@@ -194,6 +239,10 @@ namespace Projeto_integrador
         private void btn_nova_Click(object sender, EventArgs e)
         {
             ResetarTela();
+            modo = "";
+            cb_cate.SelectedIndex = -1;
+            txt_user.Text = "Digite seu username";
+            txt_user.ForeColor = Color.Gray;
         }
 
         private void btn_trailer_Click(object sender, EventArgs e)

@@ -19,15 +19,12 @@ namespace Projeto_integrador
             public string Trailer { get; set; }
         }
 
-        public static Dictionary<string, Image> _cacheImagens = new Dictionary<string, Image>();
-
         public class Categoria
         {
             public int Id { get; set; }
             public string Nome { get; set; }
         }
 
-        // Lista categorias
         public List<Categoria> ObterCategorias()
         {
             var categorias = new List<Categoria>();
@@ -87,7 +84,6 @@ namespace Projeto_integrador
             }
         }
 
-        // Sortear jogo
         public Jogo SortearJogo(string modo = "loja", string usuario = "", int idCategoria = 0)
         {
             var lista = new List<Jogo>();
@@ -103,7 +99,7 @@ namespace Projeto_integrador
                         ? "SELECT Titulo, Imagens_jogos, Trailers FROM jogos WHERE id_categoria = @idCategoria"
                         : "SELECT Titulo, Imagens_jogos, Trailers FROM jogos";
                 }
-                else // biblioteca
+                else
                 {
                     sql = (idCategoria > 0)
                         ? @"SELECT j.Titulo, j.Imagens_jogos, j.Trailers
