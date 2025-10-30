@@ -67,6 +67,7 @@
             cb1.Name = "cb1";
             cb1.Size = new Size(149, 23);
             cb1.TabIndex = 1;
+            cb1.SelectedIndexChanged += cb1_SelectedIndexChanged;
             // 
             // label2
             // 

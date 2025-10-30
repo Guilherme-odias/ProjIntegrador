@@ -30,14 +30,12 @@
         {
             Button cad;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastroLogin));
-            url_foto = new Button();
             lb1 = new Label();
             email1 = new Label();
             tipo_user1 = new Label();
             nome1 = new Label();
             nome_user1 = new Label();
             senha1 = new Label();
-            url_foto1 = new Label();
             cpf1 = new Label();
             label9 = new Label();
             email = new TextBox();
@@ -50,9 +48,7 @@
             label1 = new Label();
             tipo_user = new ComboBox();
             lblMensagem = new Label();
-            pictureBox1 = new PictureBox();
             cad = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // cad
@@ -60,7 +56,7 @@
             cad.BackColor = Color.FromArgb(168, 3, 12);
             cad.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cad.ForeColor = Color.FromArgb(234, 234, 234);
-            cad.Location = new Point(328, 379);
+            cad.Location = new Point(328, 365);
             cad.Name = "cad";
             cad.Size = new Size(116, 40);
             cad.TabIndex = 21;
@@ -73,7 +69,7 @@
             url_foto.BackColor = Color.FromArgb(168, 3, 12);
             url_foto.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             url_foto.ForeColor = Color.FromArgb(234, 234, 234);
-            url_foto.Location = new Point(308, 226);
+            url_foto.Location = new Point(289, 223);
             url_foto.Name = "url_foto";
             url_foto.Size = new Size(69, 25);
             url_foto.TabIndex = 0;
@@ -97,7 +93,7 @@
             email1.AutoSize = true;
             email1.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             email1.ForeColor = Color.FromArgb(234, 234, 234);
-            email1.Location = new Point(62, 101);
+            email1.Location = new Point(78, 113);
             email1.Name = "email1";
             email1.Size = new Size(43, 17);
             email1.TabIndex = 2;
@@ -108,7 +104,7 @@
             tipo_user1.AutoSize = true;
             tipo_user1.Font = new Font("Century Gothic", 9.75F);
             tipo_user1.ForeColor = Color.FromArgb(234, 234, 234);
-            tipo_user1.Location = new Point(403, 198);
+            tipo_user1.Location = new Point(78, 313);
             tipo_user1.Name = "tipo_user1";
             tipo_user1.Size = new Size(105, 17);
             tipo_user1.TabIndex = 3;
@@ -119,7 +115,7 @@
             nome1.AutoSize = true;
             nome1.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             nome1.ForeColor = Color.FromArgb(234, 234, 234);
-            nome1.Location = new Point(289, 101);
+            nome1.Location = new Point(305, 113);
             nome1.Name = "nome1";
             nome1.Size = new Size(72, 17);
             nome1.TabIndex = 4;
@@ -130,7 +126,7 @@
             nome_user1.AutoSize = true;
             nome_user1.Font = new Font("Century Gothic", 9.75F);
             nome_user1.ForeColor = Color.FromArgb(234, 234, 234);
-            nome_user1.Location = new Point(533, 101);
+            nome_user1.Location = new Point(549, 113);
             nome_user1.Name = "nome_user1";
             nome_user1.Size = new Size(58, 17);
             nome_user1.TabIndex = 5;
@@ -141,29 +137,18 @@
             senha1.AutoSize = true;
             senha1.Font = new Font("Century Gothic", 9.75F);
             senha1.ForeColor = Color.FromArgb(234, 234, 234);
-            senha1.Location = new Point(62, 291);
+            senha1.Location = new Point(308, 213);
             senha1.Name = "senha1";
             senha1.Size = new Size(47, 17);
             senha1.TabIndex = 6;
             senha1.Text = "Senha";
-            // 
-            // url_foto1
-            // 
-            url_foto1.AutoSize = true;
-            url_foto1.Font = new Font("Century Gothic", 9.75F);
-            url_foto1.ForeColor = Color.FromArgb(234, 234, 234);
-            url_foto1.Location = new Point(272, 199);
-            url_foto1.Name = "url_foto1";
-            url_foto1.Size = new Size(119, 17);
-            url_foto1.TabIndex = 7;
-            url_foto1.Text = "Imagem de perfil";
             // 
             // cpf1
             // 
             cpf1.AutoSize = true;
             cpf1.Font = new Font("Century Gothic", 9.75F);
             cpf1.ForeColor = Color.FromArgb(234, 234, 234);
-            cpf1.Location = new Point(62, 198);
+            cpf1.Location = new Point(78, 222);
             cpf1.Name = "cpf1";
             cpf1.Size = new Size(33, 17);
             cpf1.TabIndex = 8;
@@ -184,7 +169,7 @@
             // email
             // 
             email.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            email.Location = new Point(62, 129);
+            email.Location = new Point(78, 141);
             email.Name = "email";
             email.Size = new Size(192, 22);
             email.TabIndex = 12;
@@ -194,7 +179,7 @@
             // nome
             // 
             nome.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nome.Location = new Point(289, 129);
+            nome.Location = new Point(305, 141);
             nome.Name = "nome";
             nome.Size = new Size(197, 22);
             nome.TabIndex = 14;
@@ -202,7 +187,7 @@
             // nome_user
             // 
             nome_user.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nome_user.Location = new Point(533, 129);
+            nome_user.Location = new Point(549, 141);
             nome_user.Name = "nome_user";
             nome_user.Size = new Size(199, 22);
             nome_user.TabIndex = 15;
@@ -210,7 +195,7 @@
             // cpf
             // 
             cpf.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cpf.Location = new Point(62, 224);
+            cpf.Location = new Point(78, 248);
             cpf.Name = "cpf";
             cpf.Size = new Size(183, 22);
             cpf.TabIndex = 16;
@@ -224,7 +209,7 @@
             // senha
             // 
             senha.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            senha.Location = new Point(62, 326);
+            senha.Location = new Point(308, 248);
             senha.Name = "senha";
             senha.Size = new Size(168, 22);
             senha.TabIndex = 17;
@@ -232,7 +217,7 @@
             // confsenha
             // 
             confsenha.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            confsenha.Location = new Point(276, 326);
+            confsenha.Location = new Point(522, 248);
             confsenha.Name = "confsenha";
             confsenha.Size = new Size(174, 22);
             confsenha.TabIndex = 18;
@@ -242,7 +227,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 9.75F);
             label1.ForeColor = Color.FromArgb(234, 234, 234);
-            label1.Location = new Point(276, 291);
+            label1.Location = new Point(522, 213);
             label1.Name = "label1";
             label1.Size = new Size(115, 17);
             label1.TabIndex = 19;
@@ -253,7 +238,7 @@
             tipo_user.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             tipo_user.FormattingEnabled = true;
             tipo_user.Items.AddRange(new object[] { "comum", "adm" });
-            tipo_user.Location = new Point(403, 224);
+            tipo_user.Location = new Point(78, 339);
             tipo_user.Name = "tipo_user";
             tipo_user.Size = new Size(121, 25);
             tipo_user.TabIndex = 22;
@@ -262,21 +247,11 @@
             // lblMensagem
             // 
             lblMensagem.AutoSize = true;
-            lblMensagem.Location = new Point(62, 155);
+            lblMensagem.Location = new Point(78, 167);
             lblMensagem.Name = "lblMensagem";
             lblMensagem.Size = new Size(10, 15);
             lblMensagem.TabIndex = 23;
             lblMensagem.Text = " ";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(582, 226);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(150, 122);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 20;
-            pictureBox1.TabStop = false;
             // 
             // TelaCadastroLogin
             // 
@@ -287,7 +262,6 @@
             Controls.Add(lblMensagem);
             Controls.Add(tipo_user);
             Controls.Add(cad);
-            Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(confsenha);
             Controls.Add(senha);
@@ -297,34 +271,28 @@
             Controls.Add(email);
             Controls.Add(label9);
             Controls.Add(cpf1);
-            Controls.Add(url_foto1);
             Controls.Add(senha1);
             Controls.Add(nome_user1);
             Controls.Add(nome1);
             Controls.Add(tipo_user1);
             Controls.Add(email1);
             Controls.Add(lb1);
-            Controls.Add(url_foto);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaCadastroLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaCadastroLogin";
             Load += TelaCadastroLogin_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button url_foto;
         private Label lb1;
         private Label email1;
         private Label tipo_user1;
         private Label nome1;
         private Label nome_user1;
         private Label senha1;
-        private Label url_foto1;
         private Label cpf1;
         private Label label9;
         private TextBox email;
@@ -338,6 +306,5 @@
         private Button cad;
         private ComboBox tipo_user;
         private Label lblMensagem;
-        private PictureBox pictureBox1;
     }
 }
