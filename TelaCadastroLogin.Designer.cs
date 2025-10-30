@@ -65,7 +65,8 @@
             cad.Click += button1_Click;
             // 
             // url_foto
-            // 
+            //
+            /*
             url_foto.BackColor = Color.FromArgb(168, 3, 12);
             url_foto.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             url_foto.ForeColor = Color.FromArgb(234, 234, 234);
@@ -76,6 +77,7 @@
             url_foto.Text = "Escolher";
             url_foto.UseVisualStyleBackColor = false;
             url_foto.Click += url_foto_Click;
+            */
             // 
             // lb1
             // 
