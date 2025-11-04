@@ -22,6 +22,8 @@ namespace Projeto_integrador
             InitializeComponent();
         }
 
+        private bool validacaoConcluida = false;
+
         private void textBox1_Leave(object sender, EventArgs e)
         {
             string emailDigitado = txtEmail.Text.Trim();
@@ -99,21 +101,34 @@ namespace Projeto_integrador
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+
             if (txtCodigo.Text == codigoGerado)
             {
+                validacaoConcluida = true; // Marca como validado
+                MessageBox.Show("Código validado com sucesso!");
+
+                // Abre o próximo formulário
                 Sorteador novo = new Sorteador();
-
-                this.Hide();
+                this.Hide(); // Esconde este form
                 novo.Show();
-
             }
             else
             {
-                lblCodigo.Text = ("Código incorreto. Verifique seu email.");
-
+                lblCodigo.Text = "Código incorreto. Verifique seu email.";
             }
+
+
         }
 
+        private void FormValidacao_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!validacaoConcluida)
+            {
+                MessageBox.Show("Você precisa validar o código antes de sair!");
+                e.Cancel = true; // Impede o fechamento
+            }
+        }
         private void ValidacaoEmail_Load(object sender, EventArgs e)
         {
 
