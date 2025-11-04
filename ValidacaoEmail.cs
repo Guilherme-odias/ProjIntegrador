@@ -109,7 +109,7 @@ namespace Projeto_integrador
                 MessageBox.Show("Código validado com sucesso!");
 
                 // Abre o próximo formulário
-                Sorteador novo = new Sorteador();
+                TelaLogin novo = new TelaLogin();
                 this.Hide(); // Esconde este form
                 novo.Show();
             }
