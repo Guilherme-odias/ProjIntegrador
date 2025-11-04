@@ -150,8 +150,10 @@ namespace Projeto_integrador
 
             ValidacaoEmail novo = new ValidacaoEmail();
             this.Hide();
-            novo.Show();
+            novo.ShowDialog();
         }
+        
+
 
         private void tipo_user_TextChanged(object sender, EventArgs e)
         {
