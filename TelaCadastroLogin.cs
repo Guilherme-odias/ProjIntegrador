@@ -25,15 +25,26 @@ namespace Projeto_integrador
 
         private void TelaCadastroLogin_Load(object sender, EventArgs e)
         {
-            if (Sessao.TipoUsuario == "comum")
+            tipo_user.Items.Clear(); // limpa qualquer valor anterior
+
+            if (Sessao.TipoUsuario == "adm")
             {
-                tipo_user1.Visible = false;
-                tipo_user.Visible = false;
-            }
-            else if (Sessao.TipoUsuario == "adm")
-            {
-                tipo_user1.Visible = true;
+                // Administrador pode escolher o tipo do novo usuário
+                tipo_user.Items.Add("adm");
+                tipo_user.Items.Add("comum");
+                tipo_user.SelectedIndex = 0;
+
                 tipo_user.Visible = true;
+                tipo_user1.Visible = true;
+            }
+            else
+            {
+                // Usuário comum ou não logado só pode criar contas comuns
+                tipo_user.Items.Add("comum");
+                tipo_user.SelectedIndex = 0;
+
+                tipo_user.Visible = false;
+                tipo_user1.Visible = false;
             }
         }
 
@@ -42,7 +53,7 @@ namespace Projeto_integrador
 
         }
 
-        private void url_foto_Click(object sender, EventArgs e)
+       /* private void url_foto_Click(object sender, EventArgs e)
         {
             OpenFileDialog x = new OpenFileDialog();
             x.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*";
@@ -53,6 +64,9 @@ namespace Projeto_integrador
                 pictureBox1.Image = Image.FromFile(x.FileName);
             }
         }
+       */
+
+        //jaca preta
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -68,6 +82,15 @@ namespace Projeto_integrador
             string vartipouser = tipo_user.Text.Trim();
             string varsenha = senha.Text.Trim();
             string varsenha2 = confsenha.Text.Trim();
+
+            if (Sessao.TipoUsuario == "comum")
+            {
+                vartipouser = "comum";
+            }
+            else if (string.IsNullOrEmpty(vartipouser))
+            {
+                vartipouser = "comum";
+            }
 
             // Verifica se e-mail já existe
             if (busca.busca_email(varemail))
