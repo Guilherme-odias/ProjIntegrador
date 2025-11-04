@@ -98,6 +98,7 @@
             DoubleBuffered = true;
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "Menu";
             WindowState = FormWindowState.Maximized;
