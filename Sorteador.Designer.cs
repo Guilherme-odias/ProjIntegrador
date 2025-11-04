@@ -44,6 +44,7 @@
             timer_an = new System.Windows.Forms.Timer(components);
             cb_cate = new ComboBox();
             lb_cate = new Label();
+            btn_jogar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).BeginInit();
             grp_resultado.SuspendLayout();
@@ -135,7 +136,7 @@
             // 
             // pt_image_jogo
             // 
-            pt_image_jogo.Location = new Point(401, 53);
+            pt_image_jogo.Location = new Point(404, 27);
             pt_image_jogo.Margin = new Padding(4);
             pt_image_jogo.Name = "pt_image_jogo";
             pt_image_jogo.Size = new Size(243, 299);
@@ -177,6 +178,7 @@
             // 
             // grp_resultado
             // 
+            grp_resultado.Controls.Add(btn_jogar);
             grp_resultado.Controls.Add(btn_trailer);
             grp_resultado.Controls.Add(pt_image_jogo);
             grp_resultado.Controls.Add(btn_nova);
@@ -229,6 +231,17 @@
             lb_cate.TabIndex = 11;
             lb_cate.Text = "Categorias";
             // 
+            // btn_jogar
+            // 
+            btn_jogar.Location = new Point(796, 353);
+            btn_jogar.Name = "btn_jogar";
+            btn_jogar.Size = new Size(75, 23);
+            btn_jogar.TabIndex = 10;
+            btn_jogar.Text = "Jogar?";
+            btn_jogar.UseVisualStyleBackColor = true;
+            btn_jogar.Visible = false;
+            btn_jogar.Click += btn_jogar_Click;
+            // 
             // Sorteador
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -274,5 +287,6 @@
         private ComboBox cb_cate;
         private Label lb_cate;
         private Button btn_trailer;
+        private Button btn_jogar;
     }
 }

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto_integrador", "Projeto_integrador.csproj", "{632C79F5-5CB7-4D0C-9CE2-1AA4EDE6AB59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedDoom", "..\..\..\Downloads\managed-doom-master\managed-doom-master\ManagedDoom\ManagedDoom.csproj", "{F66440F2-34C1-9790-2F41-4A9D60E05811}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{632C79F5-5CB7-4D0C-9CE2-1AA4EDE6AB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{632C79F5-5CB7-4D0C-9CE2-1AA4EDE6AB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{632C79F5-5CB7-4D0C-9CE2-1AA4EDE6AB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F66440F2-34C1-9790-2F41-4A9D60E05811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F66440F2-34C1-9790-2F41-4A9D60E05811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F66440F2-34C1-9790-2F41-4A9D60E05811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F66440F2-34C1-9790-2F41-4A9D60E05811}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
