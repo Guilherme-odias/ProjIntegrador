@@ -13,4 +13,8 @@
     <PackageReference Include="MySql.Data" Version="9.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Downloads\managed-doom-master\managed-doom-master\ManagedDoom\ManagedDoom.csproj" />
+  </ItemGroup>
+
 </Project>

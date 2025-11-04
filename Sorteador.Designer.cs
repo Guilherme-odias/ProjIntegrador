@@ -40,6 +40,7 @@
             lb_resposta = new Label();
             btn_nova = new Button();
             grp_resultado = new GroupBox();
+            btn_jogar = new Button();
             btn_trailer = new Button();
             timer_an = new System.Windows.Forms.Timer(components);
             cb_cate = new ComboBox();
@@ -135,7 +136,7 @@
             // 
             // pt_image_jogo
             // 
-            pt_image_jogo.Location = new Point(401, 53);
+            pt_image_jogo.Location = new Point(404, 27);
             pt_image_jogo.Margin = new Padding(4);
             pt_image_jogo.Name = "pt_image_jogo";
             pt_image_jogo.Size = new Size(243, 299);
@@ -177,6 +178,7 @@
             // 
             // grp_resultado
             // 
+            grp_resultado.Controls.Add(btn_jogar);
             grp_resultado.Controls.Add(btn_trailer);
             grp_resultado.Controls.Add(pt_image_jogo);
             grp_resultado.Controls.Add(btn_nova);
@@ -191,12 +193,28 @@
             grp_resultado.Text = "groupBox1";
             grp_resultado.Visible = false;
             // 
+            // btn_jogar
+            // 
+            btn_jogar.AutoSize = true;
+            btn_jogar.BackColor = Color.FromArgb(168, 3, 12);
+            btn_jogar.FlatStyle = FlatStyle.Flat;
+            btn_jogar.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_jogar.ForeColor = Color.FromArgb(234, 234, 234);
+            btn_jogar.Location = new Point(488, 333);
+            btn_jogar.Name = "btn_jogar";
+            btn_jogar.Size = new Size(75, 32);
+            btn_jogar.TabIndex = 10;
+            btn_jogar.Text = "Jogar?";
+            btn_jogar.UseVisualStyleBackColor = false;
+            btn_jogar.Visible = false;
+            btn_jogar.Click += btn_jogar_Click;
+            // 
             // btn_trailer
             // 
             btn_trailer.BackColor = Color.FromArgb(168, 3, 12);
             btn_trailer.FlatStyle = FlatStyle.Flat;
             btn_trailer.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_trailer.Location = new Point(445, 365);
+            btn_trailer.Location = new Point(445, 371);
             btn_trailer.Name = "btn_trailer";
             btn_trailer.Size = new Size(156, 38);
             btn_trailer.TabIndex = 9;
@@ -254,6 +272,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).EndInit();
             grp_resultado.ResumeLayout(false);
+            grp_resultado.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -274,5 +293,6 @@
         private ComboBox cb_cate;
         private Label lb_cate;
         private Button btn_trailer;
+        private Button btn_jogar;
     }
 }
