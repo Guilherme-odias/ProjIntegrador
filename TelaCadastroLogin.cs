@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -22,6 +23,17 @@ namespace Projeto_integrador
             InitializeComponent();
             busca.teste();
         }
+
+        public class UsuarioTemp
+        {
+            public string Nome { get; set; }
+            public string Email { get; set; }
+            public string Senha { get; set; }
+            public string Senha2 { get; set; }
+            public string Nick { get; set; }
+        }
+
+        UsuarioTemp usuarioTemp;
 
         private void TelaCadastroLogin_Load(object sender, EventArgs e)
         {
@@ -74,7 +86,7 @@ namespace Projeto_integrador
 
             Conexao conexao = new Conexao();
             Buscas busca = new Buscas();
-
+            
             string varemail = email.Text.Trim();
             string varnome = nome.Text.Trim();
             string varnick = nome_user.Text.Trim();
@@ -173,8 +185,10 @@ namespace Projeto_integrador
 
             ValidacaoEmail novo = new ValidacaoEmail();
             this.Hide();
-            novo.Show();
+            novo.ShowDialog();
         }
+        
+
 
         private void tipo_user_TextChanged(object sender, EventArgs e)
         {
