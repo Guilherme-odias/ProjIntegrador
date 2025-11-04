@@ -9,7 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using ManagedDoom;
 using static Projeto_integrador.RepositorioJogos;
+using System.Diagnostics;
 
 namespace Projeto_integrador
 {
@@ -61,6 +63,20 @@ namespace Projeto_integrador
 
             txt_user.GotFocus += TxtUser_GotFocus;
             txt_user.LostFocus += TxtUser_LostFocus;
+        }
+
+        private void JogarDoom()
+        {
+            try
+            {
+                Doom telaDoom = new Doom();
+                telaDoom.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o DOOM: " + ex.Message);
+            }
         }
 
         private void TxtUser_GotFocus(object sender, EventArgs e)
@@ -203,8 +219,15 @@ namespace Projeto_integrador
 
                 lb_resposta.Text = "🎮 " + _jogoSorteado.Titulo;
 
-                // esconder por padrão (caso já estivesse visível de um sorteio anterior)
-                btn_jogar.Visible = false;
+                if (!string.IsNullOrWhiteSpace(_jogoSorteado.Titulo) &&
+                    _jogoSorteado.Titulo.Trim().Equals("Doom Eternal", StringComparison.OrdinalIgnoreCase))
+                {
+                    btn_jogar.Visible = true;
+                }
+                else
+                {
+                    btn_jogar.Visible = false;
+                }
 
                 if (!string.IsNullOrWhiteSpace(_jogoSorteado.Imagem))
                 {
@@ -235,13 +258,6 @@ namespace Projeto_integrador
                     {
                         pt_image_jogo.Image = null;
                     }
-                }
-
-                // Se o título for exatamente "DOOM" (case-insensitive), mostra o botão Jogar
-                if (!string.IsNullOrWhiteSpace(_jogoSorteado.Titulo) &&
-                    _jogoSorteado.Titulo.Trim().Equals("DOOM", StringComparison.OrdinalIgnoreCase))
-                {
-                    btn_jogar.Visible = true;
                 }
             }
         }
@@ -275,6 +291,43 @@ namespace Projeto_integrador
             telaTrailer.Show();
             this.Hide();
         }
+
+        private void btn_jogar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Caminho do executável do Doom
+                string caminhoDoom = @"C:\Users\lucas.osilva37\Downloads\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0\ManagedDoom.exe";
+
+                // Cria o processo
+                Process process = new Process();
+                process.StartInfo.FileName = caminhoDoom;
+                process.EnableRaisingEvents = true;
+
+                // Evento disparado quando o jogo for fechado
+                process.Exited += (sender2, e2) =>
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        btn_jogar.Visible = false; // Esconde o botão novamente
+                        this.Show(); // Reexibe o formulário do sorteador
+                        MessageBox.Show("Jogo finalizado! Voltando ao sorteador.");
+                    });
+                };
+
+                // Inicia o jogo
+                process.Start();
+
+                // Esconde o formulário enquanto o jogo roda
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o jogo: " + ex.Message);
+            }
+
+        }
+
         private void pt_image_jogo_Click(object sender, EventArgs e)
         {
 
@@ -292,33 +345,6 @@ namespace Projeto_integrador
 
         private void Sorteador_Load(object sender, EventArgs e)
         {
-        }
-
-        private void btn_jogar_Click(object sender, EventArgs e)
-        {
-            string caminhoExe = @"C:\Jogos\Doom\chocolate-doom.exe";
-
-            if (System.IO.File.Exists(caminhoExe))
-            {
-                try
-                {
-                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
-                    {
-                        FileName = caminhoExe,
-                        WorkingDirectory = System.IO.Path.GetDirectoryName(caminhoExe),
-                        UseShellExecute = true
-                    };
-                    System.Diagnostics.Process.Start(psi);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao iniciar o DOOM: " + ex.Message);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Executável do DOOM não encontrado em: " + caminhoExe);
-            }
         }
     }
 }
