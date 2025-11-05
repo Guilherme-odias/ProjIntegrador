@@ -195,17 +195,12 @@
             // 
             // btn_jogar
             // 
-            btn_jogar.AutoSize = true;
-            btn_jogar.BackColor = Color.FromArgb(168, 3, 12);
-            btn_jogar.FlatStyle = FlatStyle.Flat;
-            btn_jogar.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_jogar.ForeColor = Color.FromArgb(234, 234, 234);
             btn_jogar.Location = new Point(488, 333);
             btn_jogar.Name = "btn_jogar";
-            btn_jogar.Size = new Size(75, 32);
+            btn_jogar.Size = new Size(75, 23);
             btn_jogar.TabIndex = 10;
             btn_jogar.Text = "Jogar?";
-            btn_jogar.UseVisualStyleBackColor = false;
+            btn_jogar.UseVisualStyleBackColor = true;
             btn_jogar.Visible = false;
             btn_jogar.Click += btn_jogar_Click;
             // 
@@ -214,7 +209,7 @@
             btn_trailer.BackColor = Color.FromArgb(168, 3, 12);
             btn_trailer.FlatStyle = FlatStyle.Flat;
             btn_trailer.ForeColor = Color.FromArgb(234, 234, 234);
-            btn_trailer.Location = new Point(445, 371);
+            btn_trailer.Location = new Point(445, 365);
             btn_trailer.Name = "btn_trailer";
             btn_trailer.Size = new Size(156, 38);
             btn_trailer.TabIndex = 9;
@@ -272,7 +267,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).EndInit();
             grp_resultado.ResumeLayout(false);
-            grp_resultado.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

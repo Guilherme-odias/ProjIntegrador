@@ -291,34 +291,6 @@ namespace Projeto_integrador
             telaTrailer.Show();
             this.Hide();
         }
-
-        private void btn_jogar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string exePath = @"C:\Users\lucas.osilva37\Downloads\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0";
-
-                if (!System.IO.File.Exists(exePath))
-                {
-                    MessageBox.Show("Arquivo do Doom não encontrado:\n" + exePath, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                var process = new System.Diagnostics.Process();
-                process.StartInfo.FileName = exePath;
-                process.StartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(exePath);
-                process.Start();
-
-                process.WaitForExit();
-
-                this.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao iniciar o jogo: " + ex.Message);
-            }
-        }
-
         private void pt_image_jogo_Click(object sender, EventArgs e)
         {
 
@@ -336,6 +308,41 @@ namespace Projeto_integrador
 
         private void Sorteador_Load(object sender, EventArgs e)
         {
+        }
+
+        private void btn_jogar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Caminho do executável do Doom
+                string caminhoDoom = @"C:\Users\lucas.osilva37\Downloads\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0\ManagedDoom.exe";
+
+                // Cria o processo
+                Process process = new Process();
+                process.StartInfo.FileName = caminhoDoom;
+                process.EnableRaisingEvents = true;
+
+                // Evento disparado quando o jogo for fechado
+                process.Exited += (sender2, e2) =>
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        btn_jogar.Visible = false; // Esconde o botão novamente
+                        this.Show(); // Reexibe o formulário do sorteador
+                        MessageBox.Show("Jogo finalizado! Voltando ao sorteador.");
+                    });
+                };
+
+                // Inicia o jogo
+                process.Start();
+
+                // Esconde o formulário enquanto o jogo roda
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o jogo: " + ex.Message);
+            }
         }
     }
 }
