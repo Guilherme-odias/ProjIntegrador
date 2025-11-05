@@ -314,7 +314,7 @@ namespace Projeto_integrador
         {
             try
             {
-                // Caminho relativo ao diretório do projeto (muito mais seguro)
+
                 string caminhoDoom = Path.Combine(
                     Application.StartupPath,
                     @"..\..\..\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0\managed-doom.exe"
@@ -329,26 +329,25 @@ namespace Projeto_integrador
                     return;
                 }
 
-                // Cria o processo
+
                 Process process = new Process();
                 process.StartInfo.FileName = caminhoDoom;
                 process.EnableRaisingEvents = true;
 
-                // Evento disparado quando o jogo for fechado
+
                 process.Exited += (sender2, e2) =>
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        btn_jogar.Visible = false; // Esconde o botão novamente
-                        this.Show(); // Reexibe o formulário do sorteador
+                        btn_jogar.Visible = false;
+                        this.Show(); 
                         MessageBox.Show("Jogo finalizado! Voltando ao sorteador.");
                     });
                 };
 
-                // Inicia o jogo
+
                 process.Start();
 
-                // Esconde o formulário enquanto o jogo roda
                 this.Hide();
             }
             catch (Exception ex)
