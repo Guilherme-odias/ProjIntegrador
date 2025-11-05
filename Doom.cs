@@ -26,7 +26,6 @@ namespace Projeto_integrador
 
         private void Doom_Load(object sender, EventArgs e)
         {
-            // Inicia o jogo em uma thread separada para não travar o WinForms
             _doomThread = new Thread(RunDoom);
             _doomThread.Start();
         }
@@ -43,7 +42,6 @@ namespace Projeto_integrador
                     return;
                 }
 
-                // Usa o inicializador principal do ManagedDoom
                 string[] args = { "-iwad", wadPath };
                 ManagedDoom.Silk.SilkProgram.Main(args);
             }
