@@ -31,6 +31,8 @@ namespace Projeto_integrador
             public string Senha { get; set; }
             public string Senha2 { get; set; }
             public string Nick { get; set; }
+            public string CPF { get; set; }
+            public string User { get; set; }
         }
 
         UsuarioTemp usuarioTemp;
