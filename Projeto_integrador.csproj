@@ -9,12 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="managed-doom-master\**" />
+    <EmbeddedResource Remove="managed-doom-master\**" />
+    <None Remove="managed-doom-master\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
     <PackageReference Include="MySql.Data" Version="9.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Downloads\managed-doom-master\managed-doom-master\ManagedDoom\ManagedDoom.csproj" />
-  </ItemGroup>
+<ItemGroup>
+  <ProjectReference Include="ManagedDoom\ManagedDoom.csproj" />
+</ItemGroup>
 
 </Project>
