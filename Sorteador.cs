@@ -314,8 +314,20 @@ namespace Projeto_integrador
         {
             try
             {
-                // Caminho do executável do Doom
-                string caminhoDoom = @"C:\Users\lucas.osilva37\Downloads\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0\ManagedDoom.exe";
+                // Caminho relativo ao diretório do projeto (muito mais seguro)
+                string caminhoDoom = Path.Combine(
+                    Application.StartupPath,
+                    @"..\..\..\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0\ManagedDoom.exe"
+                );
+
+                caminhoDoom = Path.GetFullPath(caminhoDoom);
+
+                if (!File.Exists(caminhoDoom))
+                {
+                    MessageBox.Show("O executável do Doom não foi encontrado em:\n" + caminhoDoom,
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 // Cria o processo
                 Process process = new Process();
