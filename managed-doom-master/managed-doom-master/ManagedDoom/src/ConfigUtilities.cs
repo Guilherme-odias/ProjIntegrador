@@ -79,7 +79,7 @@ namespace ManagedDoom
 
         public static string[] GetWadPaths(CommandLineArgs args)
         {
-            string customWad = @"C:\Users\lucas.osilva37\Downloads\managed-doom-master\managed-doom-master\ManagedDoom\WADs\doom1.wad";
+            string customWad = @"C:\Users\lucas.osilva37\source\repos\ProjIntegrador\managed-doom-master\managed-doom-master\ManagedDoom\WADs\doom1.wad";
             if (File.Exists(customWad))
             {
                 Console.WriteLine("WAD encontrado em: " + customWad);
