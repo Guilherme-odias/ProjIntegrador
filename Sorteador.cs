@@ -317,7 +317,7 @@ namespace Projeto_integrador
                 // Caminho relativo ao diretório do projeto (muito mais seguro)
                 string caminhoDoom = Path.Combine(
                     Application.StartupPath,
-                    @"..\..\..\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0\ManagedDoom.exe"
+                    @"..\..\..\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0\managed-doom.exe"
                 );
 
                 caminhoDoom = Path.GetFullPath(caminhoDoom);
