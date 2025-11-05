@@ -8,11 +8,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="managed-doom-master\**" />
-    <EmbeddedResource Remove="managed-doom-master\**" />
-    <None Remove="managed-doom-master\**" />
-  </ItemGroup>
+<ItemGroup>
+  <Compile Remove="managed-doom-master\**" />
+  <EmbeddedResource Remove="managed-doom-master\**" />
+  <None Remove="managed-doom-master\**" />
+</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
