@@ -197,10 +197,22 @@ namespace Projeto_integrador
         {
             if (e.RowIndex >= 0)
             {
+                // Exibe mensagem de confirmação antes de preencher os campos
+                var confirmar = MessageBox.Show(
+                    "Deseja realmente selecionar este jogo para edição?",
+                    "Confirmar Seleção",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                // Se o usuário clicar em "Não", nada é feito
+                if (confirmar == DialogResult.No)
+                {
+                    return;
+                }
+
+                // Se confirmou, preenche os campos normalmente
                 DataGridViewRow row = dgvJogos.Rows[e.RowIndex];
-
                 jogoSelecionadoId = Convert.ToInt32(row.Cells["id_play"].Value);
-
                 int idCategoria = Convert.ToInt32(row.Cells["id_categoria"].Value);
                 cmbCategoria.SelectedValue = idCategoria;
 
@@ -213,7 +225,7 @@ namespace Projeto_integrador
 
                 if (row.Cells["valor"].Value != null && decimal.TryParse(row.Cells["valor"].Value.ToString(), out decimal valor))
                 {
-                    txtValor.Text = valor.ToString("F2");  // Formata com duas casas decimais
+                    txtValor.Text = valor.ToString("F2"); // Formata com duas casas decimais
                 }
                 else
                 {
@@ -223,11 +235,9 @@ namespace Projeto_integrador
                 txtImagem1.Text = row.Cells["Imagens_jogos"].Value?.ToString() ?? "";
                 txtImagem2.Text = row.Cells["Imagens_cen1"].Value?.ToString() ?? "";
                 txtImagem3.Text = row.Cells["Imagens_cen2"].Value?.ToString() ?? "";
-
-
-
             }
         }
+
 
 
 
