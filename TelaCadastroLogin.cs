@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,18 +25,9 @@ namespace Projeto_integrador
             busca.teste();
         }
 
-        public class UsuarioTemp
-        {
-            public string Nome { get; set; }
-            public string Email { get; set; }
-            public string Senha { get; set; }
-            public string Senha2 { get; set; }
-            public string Nick { get; set; }
-            public string CPF { get; set; }
-            public string User { get; set; }
-        }
+       
 
-        UsuarioTemp usuarioTemp;
+        
 
         private void TelaCadastroLogin_Load(object sender, EventArgs e)
         {
@@ -88,7 +80,18 @@ namespace Projeto_integrador
 
             Conexao conexao = new Conexao();
             Buscas busca = new Buscas();
-            
+
+           
+            {
+                DadosBanco.Email = email.Text.Trim();
+                DadosBanco.Nome = nome.Text.Trim();
+                DadosBanco.Nick = nome_user.Text.Trim();
+                DadosBanco.CPF = cpf.Text.Trim();
+                DadosBanco.Tipo = tipo_user.Text.Trim();
+                DadosBanco.Senha = senha.Text.Trim();
+                DadosBanco.Senha2 = confsenha.Text.Trim();
+            };
+
             string varemail = email.Text.Trim();
             string varnome = nome.Text.Trim();
             string varnick = nome_user.Text.Trim();
@@ -163,31 +166,14 @@ namespace Projeto_integrador
             }
 
             // Aqui você insere o usuário no banco
-            using (var conn = conexao.GetConnection())
-            {
-                string sql = @"INSERT INTO cadastro 
-                      (email, nome, nome_user, cpf, tipo_user, senha) 
-                      VALUES (@Email, @Nome, @Nick, @Cpff, @TipoUser, @Senha)";
+            
 
-                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Email", varemail);
-                    cmd.Parameters.AddWithValue("@Nome", varnome);
-                    cmd.Parameters.AddWithValue("@Nick", varnick);
-                    cmd.Parameters.AddWithValue("@Cpff", varcpf);
-                    cmd.Parameters.AddWithValue("@TipoUser", vartipouser);
-                    cmd.Parameters.AddWithValue("@Senha", varsenha);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            MessageBox.Show("Usuário cadastrado com sucesso!");
+            MessageBox.Show("Você precisa verificar o seu email.");
 
             ValidacaoEmail novo = new ValidacaoEmail();
-            this.Hide();
             novo.ShowDialog();
+            this.Hide();
+            
         }
         
 

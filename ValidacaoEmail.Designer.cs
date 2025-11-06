@@ -67,6 +67,8 @@
             // lblMensagem
             // 
             lblMensagem.AutoSize = true;
+            lblMensagem.BackColor = Color.FromArgb(10, 15, 28);
+            lblMensagem.ForeColor = Color.FromArgb(234, 234, 234);
             lblMensagem.Location = new Point(247, 220);
             lblMensagem.Name = "lblMensagem";
             lblMensagem.Size = new Size(0, 15);

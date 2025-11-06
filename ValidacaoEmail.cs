@@ -12,17 +12,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using MySql.Data.MySqlClient;
+using static Projeto_integrador.TelaCadastroLogin;
 
 namespace Projeto_integrador
 {
     public partial class ValidacaoEmail : Form
     {
+        
         public ValidacaoEmail()
         {
             InitializeComponent();
+
+           
         }
 
+       
+
         private bool validacaoConcluida = false;
+
+        Conexao conexao = new Conexao();
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
@@ -51,26 +59,9 @@ namespace Projeto_integrador
             Conexao conexao = new Conexao(); // sua classe de conexão
             using (MySqlConnection conn = conexao.GetConnection())
             {
-                string sql = "SELECT COUNT(*) FROM cadastro WHERE email = @Email";
-                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Email", txtEmail);
-                    conn.Open();
-
-                    int resultado = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    if (resultado > 0)
-                    {
-                        lblMensagem.Text = "Cadastro encontrado!";
-                        lblMensagem.ForeColor = Color.Green;
-                    }
-                    else
-                    {
-                        lblMensagem.Text = "Cadastro não encontrado.";
-                        lblMensagem.ForeColor = Color.Red;
-                    }
-
-
+                string sql = txtEmail.Text;
+                
+                                  
                     Random rnd = new Random();
                     codigoGerado = rnd.Next(100000, 999999).ToString();
 
@@ -81,21 +72,21 @@ namespace Projeto_integrador
                     mail.Body = $"Seu código de verificação é: {codigoGerado}";
 
                     SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                    smtp.Credentials = new NetworkCredential("quimeraggames@gmail.com", "juoo dqyy kyda zhap");
+                    smtp.Credentials = new NetworkCredential("quimeraggames@gmail.com", "kzpr sxqr tppr qcsg");
                     smtp.EnableSsl = true;
 
                     try
                     {
                         smtp.Send(mail);
-                        lbl.Text = ("Código enviado para o email.");
+                        lblMensagem.Text = ("Código enviado para o email.");
                     }
                     catch (Exception ex)
                     {
-                        lbl.Text = ("Erro ao enviar email: " + ex.Message);
+                        lblMensagem.Text = ("Erro ao enviar email: " + ex.Message);
 
 
                     }
-                }
+                
             }
         }
 
@@ -105,8 +96,11 @@ namespace Projeto_integrador
 
             if (txtCodigo.Text == codigoGerado)
             {
-                validacaoConcluida = true; // Marca como validado
-                MessageBox.Show("Código validado com sucesso!");
+                validacaoConcluida = true; // Marca como validado               
+
+                SalvarUsuario();
+                MessageBox.Show("Cadastro concluído!");
+
 
                 // Abre o próximo formulário
                 TelaLogin novo = new TelaLogin();
@@ -120,7 +114,28 @@ namespace Projeto_integrador
 
 
         }
+        private void SalvarUsuario()
+        {
+            using (var conn = conexao.GetConnection())
+            {
+                string sql = @"INSERT INTO cadastro 
+                      (email, nome, nome_user, cpf, tipo_user, senha) 
+                      VALUES (@email, @nome, @nome_user, @cpf, @tipo_user, @senha)";
 
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@email", DadosBanco.Email);
+                    cmd.Parameters.AddWithValue("@nome", DadosBanco.Nome);
+                    cmd.Parameters.AddWithValue("@nome_user", DadosBanco.Nick);
+                    cmd.Parameters.AddWithValue("@cpf", DadosBanco.CPF);
+                    cmd.Parameters.AddWithValue("@tipo_user", DadosBanco.User);
+                    cmd.Parameters.AddWithValue("@senha", DadosBanco.Senha);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         private void FormValidacao_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!validacaoConcluida)

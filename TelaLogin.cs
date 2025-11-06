@@ -100,6 +100,7 @@ namespace Projeto_integrador
         {
             TelaCadastroLogin tela = new TelaCadastroLogin();
             tela.ShowDialog();
+            this.Hide();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
