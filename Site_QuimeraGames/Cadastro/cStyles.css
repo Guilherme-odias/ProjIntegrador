@@ -17,7 +17,7 @@ main{
     flex-direction: column;
     align-items: center;
     width: 350px;
-    background: #fff;
+    background: #132041;
     padding: 28px;
     border-radius: 14px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.12);
@@ -26,6 +26,7 @@ main{
 }
 
 h1{
+  color: #EAEAEA;
   text-align:center;
   font-size:22px;
   font-weight:700;
@@ -40,15 +41,24 @@ label{
 
 input{
   width:100%;
-  height:14px;                 
-  background:#e9e9e9;
+  height:14px;    
+  outline:none;
+  border: none;       
+  background:#EAEAEA;
   border-radius:999px;
   padding:10px 12px;           
 }
 .cards{
-  background:#bdbdbd;          
+  background:#C3D4FF;          
   border-radius:6px;
   padding:14px 14px 10px;
   margin:12px 0;
+}
+
+.btn {
+  background-color: #A8030C;
+  border-radius: 15px;
+  box-shadow: black;
+  color: #EAEAEA;
 }
 
