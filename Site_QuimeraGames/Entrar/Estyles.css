@@ -1,0 +1,9 @@
+.Conteudo {
+  display: grid; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 100px 50px; 
+  background-color: rgb(19, 32, 65); 
+  color: #fff;
+};
+

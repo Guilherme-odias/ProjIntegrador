@@ -3,3 +3,24 @@
   background-color: #f2f2f2;
   color: #333;
 }
+
+.topo{
+    gap: 10px;
+}
+
+.chikungunya{
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.chikungunya2{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px
+}
+
+.butaosprincipais{
+    display: flex;
+    align-content: center;
+}
