@@ -1,7 +1,54 @@
-.tudo {
+body{
     display: flex;
-    background-color: rgb(202, 16, 16);
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    background: #f2f4f7;
 }
+
+main{
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.tudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    background: #fff;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    
+
+}
+
+h1{
+  text-align:center;
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:14px;
+}
+
+label{
+  display:block;
+  font-size:18px;
+  margin:6px 0px 0px;
+}
+
+input{
+  width:100%;
+  height:14px;                 
+  background:#e9e9e9;
+  border-radius:999px;
+  padding:10px 12px;           
+}
+.cards{
+  background:#bdbdbd;          
+  border-radius:6px;
+  padding:14px 14px 10px;
+  margin:12px 0;
+}
+
