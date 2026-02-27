@@ -4,23 +4,39 @@
   color: #333;
 }
 
+.img{
+  width: 100px;
+  height: auto;
+
+}
+
 .topo{
-    gap: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;  
+    justify-content: space-between;  
+    margin-bottom: 30px;
+    background-color: #4d4b4b;
+    margin: 10px;
 }
 
 .chikungunya{
     display: flex;
     justify-content: flex-start;
+    gap: 10px;
     
 }
 
 .chikungunya2{
     display: flex;
     justify-content: flex-end;
-    gap: 10px
+    gap: 10px;
+    width: 90%
 }
 
 .butaosprincipais{
     display: flex;
     align-content: center;
+    justify-content: center;
+    gap: 100px;
 }
