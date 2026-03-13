@@ -2,7 +2,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f2f4f7;
+    background: #0A0F1C;
+    font-family: 'Inter', sans-serif;
 }
 
 main{
@@ -16,13 +17,17 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< Updated upstream
     width: 350px;
     background: #132041;
     padding: 28px;
+=======
+    width: 450px;
+    background: #132041;
+    padding: 50px;
+>>>>>>> Stashed changes
     border-radius: 14px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    
-
 }
 
 h1{
@@ -31,7 +36,11 @@ h1{
   font-size:22px;
   font-weight:700;
   margin-bottom:14px;
+<<<<<<< Updated upstream
   font-family: sans-serif;
+=======
+  color: #EAEAEA;
+>>>>>>> Stashed changes
 }
 
 label{
@@ -43,17 +52,29 @@ label{
 
 input{
   width:100%;
+<<<<<<< Updated upstream
   height:14px;    
   outline:none;
   border: none;       
   background:#EAEAEA;
+=======
+  height:14px;                 
+  background:#EAEAEA;
+  outline: none;
+  border: none;
+>>>>>>> Stashed changes
   border-radius:999px;
   padding:10px 12px;           
 }
 .cards{
   background:#C3D4FF;          
+<<<<<<< Updated upstream
   border-radius:10px;
   padding:14px 14px 10px;
+=======
+  border-radius:6px;
+  padding:25px 30px 10px;
+>>>>>>> Stashed changes
   margin:12px 0;
 }
 
