@@ -16,33 +16,37 @@
 
         <div class="item">
             <div>
-                <label for="name" class="label">Nome</label><br>
+                <label class="label">Nome</label>
                 <input type="text" name="name" id="name" class="inputNome"><br>
             </div>
 
             <div>
-                <label for="email" class="label">Email</label><br>
+                <label class="label">Email</label>
                 <input type="text" name="email" id="email" class="inputEmail"><br>
             </div>
 
             <div>
-                <label for="cpf" class="label">CPF</label><br>
+                <label class="label">CPF</label>
                 <input type="number" name="cpf" id="cpf" class="inputCpf"><br>
             </div>
 
-            <div>
-                <label for="freclamacao" class="label"> Escreva a reclamação/sugestão no campo abaixo: </label><br>
-                <input type="text" name="freclamacao" id="reclamacao" class="inputReclamacao">
-                <button id="bntContinuar" class="btn">➤</button>
+            
+            <label for="freclamacao" class="label"> Escreva a reclamação/sugestão no campo abaixo: </label><br>
+            <div class="inputContainer">
+                <input type="text" name="reclamacao" id="reclamacao" class="inputReclamacao">
+                <button id="bntContinuar" class="btnEnviar">➤</button>
             </div>
 
         </div>
 
+        <footer class="rodape">
+            <button class="btnVoltar" href="">❮</button>
+            <label> Voltar </label>
+        </footer>
+
     </div>
 
-    <footer class="rodape">
-        <!-- <br> <button class="volta">Voltar</button> -->
-    </footer>
+    
 
 
 
