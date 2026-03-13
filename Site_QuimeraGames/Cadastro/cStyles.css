@@ -18,9 +18,15 @@ main{
     flex-direction: column;
     align-items: center;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     width: 350px;
     background: #132041;
     padding: 28px;
+=======
+    width: 450px;
+    background: #132041;
+    padding: 50px;
+>>>>>>> Stashed changes
 =======
     width: 450px;
     background: #132041;
@@ -37,7 +43,11 @@ h1{
   font-weight:700;
   margin-bottom:14px;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   font-family: sans-serif;
+=======
+  color: #EAEAEA;
+>>>>>>> Stashed changes
 =======
   color: #EAEAEA;
 >>>>>>> Stashed changes
@@ -62,6 +72,9 @@ input{
   background:#EAEAEA;
   outline: none;
   border: none;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   border-radius:999px;
   padding:10px 12px;           
@@ -69,8 +82,13 @@ input{
 .cards{
   background:#C3D4FF;          
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   border-radius:10px;
   padding:14px 14px 10px;
+=======
+  border-radius:6px;
+  padding:25px 30px 10px;
+>>>>>>> Stashed changes
 =======
   border-radius:6px;
   padding:25px 30px 10px;
