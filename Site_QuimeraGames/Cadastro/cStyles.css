@@ -31,12 +31,14 @@ h1{
   font-size:22px;
   font-weight:700;
   margin-bottom:14px;
+  font-family: sans-serif;
 }
 
 label{
   display:block;
   font-size:18px;
   margin:6px 0px 0px;
+  font-family: century;
 }
 
 input{
@@ -50,15 +52,19 @@ input{
 }
 .cards{
   background:#C3D4FF;          
-  border-radius:6px;
+  border-radius:10px;
   padding:14px 14px 10px;
   margin:12px 0;
 }
 
 .btn {
   background-color: #A8030C;
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: black;
   color: #EAEAEA;
+  padding: 10px 15px;
+  font-family: century;
+  font-size: 15px;
+
 }
 
