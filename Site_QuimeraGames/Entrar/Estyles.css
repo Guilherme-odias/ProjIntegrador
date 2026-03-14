@@ -26,24 +26,22 @@ h1 {
   padding-right: 2px;
   padding-left: 50px;
   padding-top: 10px;
-  background-color: rgb(19, 32, 65);
-}
-
-.tela {
-margin-bottom: 70px;
+    background: linear-gradient(to top,#132041,#1b3c91);
+  margin-top: 160px;
 }
 
 .tudoai{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 70px;
-    width: 100%;
-    height: 150px;
+    gap: 130px;
+    width: 95.8% ; 
+    height: 120px;
 
-    background: linear-gradient(to right,#0b1a33,#020817);
+    background: linear-gradient(to bottom,#0f2449,#020817);
     padding: 20px 40px;
     color: white;
+    margin-top: 120px;
 }
 
 .primeira_cadastre{
@@ -53,24 +51,30 @@ margin-bottom: 70px;
 }
 
 .primeira{
-    font-size: 22px;
+    font-size: 28px;
     font-weight: bold;
     font-style: italic;
 }
 
 .cad{
-    background-color: #d61c1c;
+    background-color: #A8030C;
     color: white;
     border: none;
-    padding: 10px 25px;
+    padding: 4px 25px;
     border-radius: 25px;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
+  font-style: italic;
+  font-style: bold;
+}
+
+.cad:hover{
+  background-color: #d83b43;
 }
 
 .texto{
     max-width: 350px;
-    font-size: 16px;
+    font-size: 18px;
     color: #cfd6e6;
 }
 
@@ -84,12 +88,20 @@ margin-bottom: 70px;
   border-radius: 15px;
 }
 
+.iniciar_sessao:hover {
+  background-color: #d83b43;
+}
+
 .problemas_iniciar {
   display: flex;
   text-align: center;
   color: black;
   margin-left: 37px;
   margin-top: 10px;
+}
+
+.problemas_iniciar:hover {
+  color: rgb(63, 63, 63);
 }
 
 .conteudo {
