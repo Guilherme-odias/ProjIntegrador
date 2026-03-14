@@ -31,8 +31,12 @@
             <article class="cards">
                 <label for="fsenha">Senha</label><br>
                 <input type="password" id="senha"><br>
-
-                <label for="fconfirme">Confirme a senha</label><br>
+                <div class="check">
+                    <input type="checkbox" id="verifica">
+                    <label for="verifica">Mostrar senha</label>
+                </div>
+                
+                <label for="verifica">Confirme a senha</label><br>
                 <input type="password" name="fconfirme" id="confirme"><br>
             </article>
             <div class="botao">
@@ -43,7 +47,7 @@
 
 
     </main>
-
+<script src="capp.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
