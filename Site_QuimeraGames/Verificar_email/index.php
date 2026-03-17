@@ -21,10 +21,7 @@
         <p class="verif_email_texto">Enviamos um código de verificação no email “xxx@gmail.com”</p>
     </div>
 
-
-
             <div class="butaodumeio">
-                <label class="label">Códego</label>
                 <input type="number" name="name" id="codigo" class="codigo"><br>
 
                 <button class="verificar">Verificar</button>
