@@ -1,11 +1,79 @@
-* {
-  font-family: Arial;
-  background-color: #f2f2f2;
-  color: #333;
+body {
+  background: #0b1320;
+  margin: 0;
 }
 
-body {
-    margin: 0;
+input { display: none; }
+
+.carousel {
+  width: 900px;
+  margin: 40px auto; /* centraliza */
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  width: 300%;
+  transition: 0.4s;
+}
+
+.slide {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.main {
+  width: 75%;
+  border-radius: 10px;
+  }
+
+.side {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side img {
+  width: 100%;
+  border-radius: 10px;
+  opacity: 0.6;
+}
+
+.side img:hover {
+  opacity: 1;
+}
+
+/* Movimento */
+#s1:checked ~ .slides { transform: translateX(0); }
+#s2:checked ~ .slides { transform: translateX(-100%); }
+#s3:checked ~ .slides { transform: translateX(-200%); }
+#s4:checked ~ .slides { transform: translateX(-300%); }
+#s5:checked ~ .slides { transform: translateX(-400%); }
+#s6:checked ~ .slides { transform: translateX(-500%); }
+#s7:checked ~ .slides { transform: translateX(-600%); }
+
+/* Bolinhas */
+.dots { text-align: center; margin-top: 10px; }
+
+.dots label {
+  width: 10px;
+  height: 10px;
+  background: gray;
+  display: inline-block;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#s1:checked ~ .dots label[for="s1"],
+#s2:checked ~ .dots label[for="s2"],
+#s3:checked ~ .dots label[for="s3"]
+#s4:checked ~ .dots label[for="s4"]
+#s5:checked ~ .dots label[for="s5"]
+#s6:checked ~ .dots label[for="s6"]
+#s7:checked ~ .dots label[for="s7"] {
+  background: white;
 }
 
 .img{
@@ -60,7 +128,6 @@ body {
   height: 100px;
   margin-left: 60px;
   padding: 10px;
-  background: ;
 }
 
 .apresentacao2 {
@@ -78,10 +145,10 @@ body {
     width:110px;
     height:110px;
   }
-  .chikungunya{
+  .button{
     font-size:26px;
   }
-  .chikungunya2{
+  .button2{
     font-size:22px;
   }
   .butaosprincipais{
@@ -97,11 +164,11 @@ body {
     text-align:center;
     padding:20px;
   }
-  .chikungunya{
+  .button{
     justify-content:center;
     font-size:24px;
   }
-  .chikungunya2{
+  .button2{
     justify-content:center;
     margin-top:10px;
     font-size:20px;
@@ -117,11 +184,11 @@ body {
     width:80px;
     height:80px;
   }
-  .chikungunya{
+  .button{
     font-size:20px;
     flex-direction:column;
   }
-  .chikungunya2{
+  .button2{
     font-size:18px;
     gap:10px;
     flex-wrap:wrap;
