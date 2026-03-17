@@ -4,7 +4,8 @@ body {
   justify-content: center; 
   background: #454852;
   min-height: 100vh;      
-  margin: 0;              
+  margin: 0;
+  font-family: sans-serif;           
 }
 
 h1 {
@@ -19,7 +20,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   width: 350px;
-  height: 600px;
+  height: 500px;
   background: #132041;
   padding: 28px;
   border-radius: 14px;
@@ -27,43 +28,72 @@ h1 {
 }
 
 .item {
-  width: 90%;
-  height: 400px;
+  width: 93%;
+  height: 650px;
   background: #c3d4ffb7;
   border-radius: 14px;
   padding: 10px;
   position: relative;
   z-index: 1;
+  margin-top: 17px;
 }
 
-.inputNome {
+.parte_cima {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.verif_email {
+  color:rgb(255, 255, 255);
+  margin-bottom: 20px;
+  font-style: bold;
+}
+
+.verif_email_texto {
+  display: flex;
+  color:#ffffff;
+  font-size: 14px;
+  text-align: center;
+  margin-top: -16px;
+
+}
+
+.butaodumeio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center
+}
+
+.codigo {
   width: 200px;
   height: 14px;
   outline: none;
-  border: none;
+  border: none; 
   background: #EAEAEA;
-  padding: 10px 12px;
+  padding: 10px 20px;
   border-radius: 10px;
 }
 
-.inputEmail {
-  width: 200x;
-  border-radius: 10px;
-  height: 14px;
-  outline: none;
-  border: none;
-  background: #EAEAEA;
-  padding: 10px 12px;
-}
-
-.inputCpf {
+.verificar {
+  display: flex;  
+  margin-top: -6px;
   width: 200px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
-  height: 14px;
-  outline: none;
-  border: none;
-  background: #EAEAEA;
-  padding: 10px 12px;
+}
+
+.reenviar {
+  display: flex;
+  margin-top: 25px;
+  width: 130px;
+  text-align: center;
+  justify-content: center;
 }
 
 .inputContainer {
@@ -100,15 +130,15 @@ h1 {
 .rodape {
   background-color: #020c26;
   width: 410px;          
-  height: 15%;         
+  height: 120px;         
   padding: 0px 28px; 
   color: white;
   
   display: flex;
   align-items: center;
   
-  margin-top: 118px;     
-  margin-left: 0%; 
+  margin-top: 40px;     
+  margin-left: 0%;  
   margin-bottom: -28px;
 
   border-bottom-left-radius: 14px;
@@ -126,8 +156,10 @@ h1 {
   height: 30px;
   color: rgb(255, 255, 255);
   font-size: 20px;
-  margin-right: 5px;
-  margin-top: 15px;
+  margin-right: 7px;
+  margin-top: 3px;
+  margin-left: 10px;
+
   cursor: pointer;
   align-items: baseline;
 }
@@ -135,6 +167,6 @@ h1 {
 .labelVoltar {
   font-size: 20px;
   margin-right: 5px;
-  margin-top: 15px;
+  margin-top: 3px;
   align-items: baseline;
 }
