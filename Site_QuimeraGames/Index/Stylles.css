@@ -13,14 +13,14 @@ input { display: none; }
 
 .slides {
   display: flex;
-  width: 900%;
+  width: 500%;
   transition: 0.4s;
 }
 
 .slide {
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 20px;
 }
 
 .main {
@@ -30,13 +30,14 @@ input { display: none; }
 
 .side {
   width: 20%;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .side img {
-  width: 1000%;
+  width: 100%;
   border-radius: 10px;
   opacity: 0.6;
 }
@@ -55,7 +56,7 @@ input { display: none; }
 #s7:checked ~ .slides { transform: translateX(-600%); }
 
 /* Bolinhas */
-.dots { margin-left: 160px ; margin-top: 10px; }
+.dots { margin-left: 200px ; margin-top: 10px; }
 
 .dots label {
   width: 10px;
@@ -117,6 +118,7 @@ input { display: none; }
     justify-content: flex-start;
     align-content: center;
     margin-left: 75px;
+    margin-top: 20px;
     gap: 15px;
 
 }
