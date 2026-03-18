@@ -135,9 +135,11 @@
         </div>
     </section>
 
-    <section class="categorias">
-        <h2>Categorias</h2>
-    </section>
+    <footer class="rodape">
+        Rodapé
+    </footer>
 </body>
+
+
 
 </html>
