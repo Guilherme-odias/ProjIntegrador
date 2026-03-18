@@ -12,7 +12,7 @@
 
     <header class="topo">
 
-        <img class="img" src="logoproj_quimera.png" alt="🍹">
+        <img class="img" src="../imagens/logoproj_quimera.png" alt="🍹">
 
         <button class="button" id="home">Home</button>
 
