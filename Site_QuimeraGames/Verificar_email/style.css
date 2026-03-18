@@ -94,8 +94,9 @@ h1 {
   border: none;
 }
 
-.verificar:hover {
+.verificarr:hover {
   background-color: #c7222b;
+  cursor: pointer;
 }
 
 .reenviar {
@@ -113,6 +114,7 @@ h1 {
 
 .reenviar:hover {
   background-color: #c7222b;
+  cursor: pointer;
 }
 
 .inputContainer {
@@ -168,7 +170,7 @@ h1 {
 }
 
 .btnVoltar {
-  background-color: #000000;
+  background-color: #A8030C;
   border: none;
   border-radius: 100%;
   width: 30px;
@@ -176,20 +178,21 @@ h1 {
   color: rgb(255, 255, 255);
   font-size: 20px;
   margin-right: 7px;
-  margin-top: 3px;
-  margin-left: 10px;
+  margin-top: 4px;
+  margin-left: 12px;
+  padding-right: 8px;
 
   cursor: pointer;
   align-items: baseline;
+  text-align: center;
+  font-style: bold;
 }
 
-.linkVoltar {
+.labelVoltar {
   font-size: 20px;
   margin-right: 5px;
   margin-top: 3px;
   align-items: baseline;
+  color:#ffffff
 }
 
-.linkVoltar:hover {
-  background-color: #c7222b;
-}
