@@ -6,14 +6,14 @@ body {
 input { display: none; }
 
 .carousel {
-  width: 900px;
-  margin: 40px auto; /* centraliza */
+  width: 1000px;
+  margin: 40px 75px;
   overflow: hidden;
 }
 
 .slides {
   display: flex;
-  width: 300%;
+  width: 900%;
   transition: 0.4s;
 }
 
@@ -29,14 +29,14 @@ input { display: none; }
   }
 
 .side {
-  width: 25%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .side img {
-  width: 100%;
+  width: 1000%;
   border-radius: 10px;
   opacity: 0.6;
 }
@@ -55,7 +55,7 @@ input { display: none; }
 #s7:checked ~ .slides { transform: translateX(-600%); }
 
 /* Bolinhas */
-.dots { text-align: center; margin-top: 10px; }
+.dots { margin-left: 160px ; margin-top: 10px; }
 
 .dots label {
   width: 10px;
@@ -79,7 +79,6 @@ input { display: none; }
 .img{
   width: 90px;
   height: 85px;
-  margin-left: px;
   background: transparent;
 }
 
