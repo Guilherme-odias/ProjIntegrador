@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-                <!--imagem2-->
+            <!--imagem2-->
             <div class="slide">
                 <img class="main" src="">
                 <div class="side">
@@ -109,24 +109,35 @@
                 </div>
             </div>
 
-      </div>
+        </div>
 
-            <!-- Bolinhas -->
-            <div class="dots">
-                <label for="s1"></label>
-                <label for="s2"></label>
-                <label for="s3"></label>
-                <label for="s4"></label>
-                <label for="s5"></label>
-                <label for="s6"></label>
-                <label for="s7"></label>
-            </div>
+        <!-- Bolinhas -->
+        <div class="dots">
+            <label for="s1"></label>
+            <label for="s2"></label>
+            <label for="s3"></label>
+            <label for="s4"></label>
+            <label for="s5"></label>
+            <label for="s6"></label>
+            <label for="s7"></label>
+        </div>
 
-</div>            
+    </div>
+    <section class="destaques">
+        <h2>Descontos em destaque ></h2>
 
+        <div class="jogos">
+            <img src="../imagens/cyber.jpg">
+            <img src="../imagens/cyber.jpg">
+            <img src="../imagens/cyber.jpg">
+            <img src="../imagens/cyber.jpg">
+            <img src="../imagens/cyber.jpg">
+        </div>
+    </section>
 
-
-
+    <section class="categorias">
+        <h2>Categorias</h2>
+    </section>
 </body>
 
 </html>
