@@ -18,7 +18,7 @@ check.addEventListener('click', function() {
     
     else {
         console.log("Acabou de ser desmarcado!");
-        enha.setAttribute('type', 'password')
+        senha.setAttribute('type', 'password')
     }
 });
 
