@@ -11,6 +11,7 @@
 
 <body class="bg-dark">
 
+
  <main>
     <form method="POST">
      
@@ -42,29 +43,35 @@
                 <input type="password" name="confirme" id="confirme"><br>
             </article>
             <div class="botao">
-            <button id="btnVoltas" class="btn btn-secondary">Voltar</button>
-            <button id="bntContinuar" class="btn btn-danger">Continuar</button>
+            <button type="button" id="btnVoltas" class="btn btn-secondary">Voltar</button>
+            <button type="submit" id="bntContinuar" class="btn btn-danger">Continuar</button>
             </div>
         </div>
     </form>
 </main>
     <?php 
 
-    if($_POST) {
-         $sql = $pdo->prepare('
- INSERT INTO usuario (email, name, cpf, senha)
- VALUES (:email, :nome, :cpf, :senha)
- ');
+if($_POST) {
 
- $sql->execute(array(
-    ':email'=>$_POST['email'],
-    ':nome'=>$_POST['nome'],
-    ':cpf'=>$_POST['cpf'],
-    ':senha'=>$_POST['senha']
- ));
+    if($_POST['senha'] != $_POST['confirme']) {
+        echo "As senhas não coincidem!";
+    } else {
+
+        $sql = $pdo->prepare('
+        INSERT INTO usuario (email, name, cpf, senha)
+        VALUES (:email, :nome, :cpf, :senha)
+        ');
+
+        $sql->execute(array(
+            ':email'=>$_POST['email'],
+            ':nome'=>$_POST['nome'],
+            ':cpf'=>$_POST['cpf'],
+            ':senha'=>$_POST['senha']
+        ));
+
         echo 'Cadastro Realizado';
-        }
-
+    }
+}
     ?>
     
 <script src="script.js"></script>
