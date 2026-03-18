@@ -17,7 +17,7 @@
     <div class="item">
 
     <div class="parte_cima">
-        <h2 class="verif_email">Verificar Email</h2>
+        <h2 class="verif_email">Verifique seu Email</h2>
         <p class="verif_email_texto">Enviamos um código de verificação no email “xxx@gmail.com”</p>
     </div>
 
