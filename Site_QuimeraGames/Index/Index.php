@@ -135,6 +135,18 @@
         </div>
     </section>
 
+    <section class="descubra">
+        <h2>Descubra algo novo></h2>
+
+        <div class="jogos">
+            <img src="../imagens/cyber.jpg">
+            <img src="../imagens/cyber.jpg">
+            <img src="../imagens/cyber.jpg">
+            <img src="../imagens/cyber.jpg">
+            <img src="../imagens/cyber.jpg">
+        </div>
+    </section>
+
     <footer class="rodape">
         Rodapé
     </footer>

@@ -11,6 +11,12 @@ input { display: none; }
   margin-left: 75px;
 }
 
+.descubra h2 {
+  color: white;
+  margin-bottom: 20px;
+  margin-left: 75px;
+}
+
 .jogos {
   display: flex;
   gap: 20px;
