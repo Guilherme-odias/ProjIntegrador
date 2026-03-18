@@ -24,11 +24,12 @@ h1 {
   background: #132041;
   border-radius: 14px;
   overflow: hidden;
+  padding: 28px;
 }
 
 .item {
   width: 93%;
-  height: 650px;
+  height: 500px;
   background: #c3d4ffb7;
   border-radius: 14px;
   padding: 10px;
@@ -75,9 +76,10 @@ h1 {
   background: #EAEAEA;
   padding: 10px 20px;
   border-radius: 10px;
+  font
 }
 
-.verificar {
+.verificarr {
   margin-top: -6px;
   width: 200px;
   text-align: center;
@@ -92,8 +94,8 @@ h1 {
   width: 130px;
   text-align: center;
   justify-content: center;
-  border-radius: 30px;
-  height: 70px;
+  border-radius: 10px;
+  height: 50px;
 }
 
 .inputContainer {

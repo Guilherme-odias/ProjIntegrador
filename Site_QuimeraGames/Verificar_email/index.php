@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suporte ao Cliente</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleee.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
         
 
 
-        <div class="item">
+    <div class="item">
 
     <div class="parte_cima">
         <h2 class="verif_email">Verificar Email</h2>
@@ -24,12 +24,11 @@
             <div class="butaodumeio">
                 <input type="number" name="name" id="codigo" class="codigo"><br>
 
-                <button class="verificar">Verificar</button>
+                <button class="verificarr">Verificar</but ton>
             
                 <button class="reenviar">Reenviar o código</button>
             </div>
             
-
         </div>
 
         <footer class="rodape">
@@ -38,10 +37,6 @@
         </footer>
 
     </div>
-
-    
-
-
 
 </body>
 
