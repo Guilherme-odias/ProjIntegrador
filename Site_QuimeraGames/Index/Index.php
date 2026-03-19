@@ -11,7 +11,6 @@
 <body>
 
     <header class="topo">
-
         <img class="img" src="logoproj_quimera.png" alt="🍹">
 
         <button class="button" id="home">Home</button>
@@ -151,7 +150,4 @@
         Rodapé
     </footer>
 </body>
-
-
-
 </html>
