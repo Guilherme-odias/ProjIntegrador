@@ -11,14 +11,14 @@ check.addEventListener('click', function() {
 
     if (senha.getAttribute('type') == 'password' ) {
         
-        console.log("Acabou de ser marcado!");
+        
 
         senha.setAttribute('type', 'text')
     }
     
     else {
-        console.log("Acabou de ser desmarcado!");
-        enha.setAttribute('type', 'password')
+        
+        senha.setAttribute('type', 'password')
     }
 });
 

@@ -14,22 +14,21 @@
         
 
 
-        <div class="item">
+    <div class="item">
 
     <div class="parte_cima">
-        <h2 class="verif_email">Verificar Email</h2>
+        <h2 class="verif_email">Verifique seu Email</h2>
         <p class="verif_email_texto">Enviamos um código de verificação no email “xxx@gmail.com”</p>
     </div>
 
             <div class="butaodumeio">
                 <input type="number" name="name" id="codigo" class="codigo"><br>
 
-                <button class="verificar">Verificar</button>
+                <button class="verificarr">Verificar</but ton>
             
                 <button class="reenviar">Reenviar o código</button>
             </div>
             
-
         </div>
 
         <footer class="rodape">
@@ -38,10 +37,6 @@
         </footer>
 
     </div>
-
-    
-
-
 
 </body>
 

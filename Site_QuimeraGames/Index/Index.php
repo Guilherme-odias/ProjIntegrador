@@ -11,7 +11,12 @@
 <body>
 
     <header class="topo">
+<<<<<<< HEAD
         <img class="img" src="logoproj_quimera.png" alt="🍹">
+=======
+
+        <img class="img" src="../imagens/logoproj_quimera.png" alt="🍹">
+>>>>>>> 7f4fe07120202bc1f65179c04242019510da0b9f
 
         <button class="button" id="home">Home</button>
 

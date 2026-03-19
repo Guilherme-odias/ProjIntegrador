@@ -1,16 +1,9 @@
 <?php
-    $host = "10.37.44.28";
-    $db = "projeto_quimera";
-    $usuario = "root";
-    $senha = "";
- 
+function conectar() {
     try {
- 
-        $pdo = new PDO("mysql:host=$host;dbname=$db",$usuario,$senha);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         return $pdo;
-        //echo "Conectado com sucesso!";
+        return new PDO("mysql:host=localhost;dbname=projeto_quimera", "root", "");
     } catch (PDOException $e) {
-        echo "Erro ao conectar: " . $e->getMenssage();
+        die("Erro: " . $e->getMessage());
     }
+}
 ?>
