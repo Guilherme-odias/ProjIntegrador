@@ -29,13 +29,6 @@
     </section>
 
 
-
-
-
-
-
-
-
     <footer>
     <div class="tudoai">
 <div class="primeira_cadastre">
