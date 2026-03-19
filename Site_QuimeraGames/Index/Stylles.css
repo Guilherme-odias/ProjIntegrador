@@ -1,81 +1,92 @@
 body {
-  background: #0b1320;
   margin: 0;
+  background: #0b1320;
+  font-family: Arial;
 }
 
-input { display: none; }
-
-.destaques h2 {
-  color: white;
-  margin-bottom: 20px;
-  margin-left: 75px;
+/* CONTAINER CENTRAL */
+.container {
+  max-width: 1200px;
+  margin: auto;
 }
 
-.descubra h2 {
-  color: white;
-  margin-bottom: 20px;
-  margin-left: 75px;
-}
-
-.jogos {
+/* TOPO */
+.topo {
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  margin-left: 75px;
-}
-
-.jogos img {
-  width: 120px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.jogos img:hover {
-  transform: scale(1.1);
-}
-
-/* Rodapé */
-.rodape {
+  justify-content: space-between;
+  align-items: center;
   background: #132041;
+  padding: 10px 20px;
+}
+
+.img {
+  width: 70px;
+}
+
+/* BOTÕES */
+button {
+  background: #e50914;
+  border: none;
   color: white;
-  text-align: center;
-  padding: 20px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button2 {
+  display: flex;
+  gap: 10px;
+}
+
+/* MENU */
+.butaosprincipais {
+  margin: 20px 0;
+  display: flex;
+  gap: 15px;
+}
+
+/* CARROSSEL */
+input {
+  display: none;
 }
 
 .carousel {
-  width: 1000px;
-  margin: 30px 75px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .slides {
   display: flex;
-  width: 700%;
+  width: 300%;
   transition: 0.4s;
 }
 
 .slide {
-  width: 100%;
+  min-width: 100%;
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .main {
-  width: 75%;
+  width: 80%;
+  height: 350px;
+  object-fit: cover;
   border-radius: 10px;
-  }
+}
 
 .side {
   width: 20%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-content: center;
 }
 
 .side img {
   width: 100%;
-  border-radius: 10px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
   opacity: 0.6;
 }
 
@@ -83,17 +94,16 @@ input { display: none; }
   opacity: 1;
 }
 
-/* Movimento */
+/* MOVIMENTO */
 #s1:checked ~ .slides { transform: translateX(0); }
 #s2:checked ~ .slides { transform: translateX(-100%); }
 #s3:checked ~ .slides { transform: translateX(-200%); }
-#s4:checked ~ .slides { transform: translateX(-300%); }
-#s5:checked ~ .slides { transform: translateX(-400%); }
-#s6:checked ~ .slides { transform: translateX(-500%); }
-#s7:checked ~ .slides { transform: translateX(-600%); }
 
-/* Bolinhas */
-.dots { margin-left: 200px ; margin-top: 10px; }
+/* BOLINHAS */
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
 
 .dots label {
   width: 10px;
@@ -101,78 +111,48 @@ input { display: none; }
   background: gray;
   display: inline-block;
   border-radius: 50%;
+  margin: 5px;
   cursor: pointer;
 }
 
 #s1:checked ~ .dots label[for="s1"],
 #s2:checked ~ .dots label[for="s2"],
-#s3:checked ~ .dots label[for="s3"],
-#s4:checked ~ .dots label[for="s4"],
-#s5:checked ~ .dots label[for="s5"],
-#s6:checked ~ .dots label[for="s6"],
-#s7:checked ~ .dots label[for="s7"] {
+#s3:checked ~ .dots label[for="s3"] {
   background: white;
 }
 
-.img{
-  width: 90px;
-  height: 85px;
-  background: transparent;
+/* SEÇÕES */
+.destaques, .descubra {
+  margin-top: 40px;
 }
 
-.topo{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;  
-    justify-content: space-between;  
-    margin-bottom: 20px;
-    background-color: #132041;
-    height: 85px;
+h2 {
+  color: white;
 }
 
-.button{
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 10px;
-    height: 20px;
-    font-size: 10px;
+.jogos {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
 }
 
-.button2{
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    width: 90%;
-    height: 20px;
-    background-color: #132041;
-    margin-right: 50px;
-    font-size: 20px;
+.jogos img {
+  width: 120px;
+  border-radius: 8px;
+  transition: 0.3s;
 }
 
-.butaosprincipais{
-    display: flex;
-    justify-content: flex-start;
-    align-content: center;
-    margin-left: 75px;
-    margin-top: 20px;
-    gap: 15px;
-
+.jogos img:hover {
+  transform: scale(1.1);
 }
 
-.apresentacao {
-  justify-content: flex-start;
-  width: 100px;
-  height: 100px;
-  margin-left: 60px;
-  padding: 10px;
-}
-
-.apresentacao2 {
-  justify-content: flex-start;
-  width: 100px;
-  height: 100px;
-  margin-left: 60px;
-  padding: 10px;
+/* RODAPÉ */
+.rodape {
+  background: #132041;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
 }
 
 @media (max-width:1024px){
