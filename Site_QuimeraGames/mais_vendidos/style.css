@@ -1,0 +1,139 @@
+body {
+  background: #0A0F1C;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+input { display: none; }
+
+.img{
+  width: 90px;
+  height: 85px;
+  background: transparent;
+  margin-left: 25px;
+}
+
+.topo{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;  
+    justify-content: space-between;  
+    margin-bottom: 20px;
+    background-color: #132041;
+    height: 85px;
+}
+
+.button{
+    display: flex;
+    justify-content: flex-start;
+    padding: 6px 15px;  
+    margin-left: 25px;
+    font-size: 15px;
+    background-color: #A8030C;
+    color:#ffffff;
+    border: none;
+    border-radius: 3px;
+    width: 70px;
+    height: 28px;
+}
+
+.button2{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 90%;
+    height: 20px;
+    background-color: #132041;
+    margin-right: 50px;
+    font-size: 20px;
+}
+
+.entrar {
+  background-color: #A8030C;
+  color:#ffffff;
+  border: none;
+  border-radius: 3px;
+  width: 70px;
+  height: 28px;
+
+}
+
+.suporte {
+  background-color: #A8030C;
+  color:#ffffff;
+  border: none;
+  border-radius: 3px;
+  width: 70px;
+  height: 28px;
+
+}
+
+.textao {
+  display: flex;
+  color: #ffffff;
+  flex-direction: column;
+  align-items: start;
+  text-align: left;
+  font-size: 22px;
+  margin-top: 50px;
+  margin-left: 180px;
+}
+
+.texto1 {
+  font-style: bold;
+  margin-bottom: -15px;
+}
+
+.texto2 {
+  font-style: bold;
+  font-size: 17px;
+}
+
+.tudoai{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 130px;
+    width: 95.8% ; 
+    height: 120px;
+
+    background: linear-gradient(to bottom,#0f2449,#020817);
+    padding: 20px 40px;
+    color: white;
+    margin-top: 700px;
+}
+
+.primeira_cadastre{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.primeira{
+    font-size: 28px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.cad{
+    background-color: #A8030C;
+    color: white;
+    border: none;
+    padding: 4px 25px;
+    border-radius: 25px;
+    font-size: 24px;
+    cursor: pointer;
+  font-style: italic;
+  font-style: bold;
+}
+
+.cad:hover{
+  background-color: #d83b43;
+}
+
+.texto{
+    max-width: 350px;
+    font-size: 18px;
+    color: #cfd6e6;
+}
+
