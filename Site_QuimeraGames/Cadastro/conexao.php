@@ -11,6 +11,6 @@
          return $pdo;
         //echo "Conectado com sucesso!";
     } catch (PDOException $e) {
-        echo "Erro ao conectar: " . $e->getMenssage();
+        echo "Erro ao conectar: " . $e->getMessage();
     }
 ?>
