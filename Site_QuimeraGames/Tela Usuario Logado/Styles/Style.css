@@ -1,6 +1,12 @@
+* {
+  font-family: 'sans-serif',sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: #0b1320;
-  margin: 0;
 }
 
 input {
@@ -150,13 +156,17 @@ input {
   cursor: pointer;
 }
 
-#Carrinho_compras {
+/* #Carrinho_compras {
   display: flex;
+  border-bottom: 0;
   justify-content: flex-start;
- 
   justify-content: space-between;
-  border: none;
-  cursor: pointer;
+  
+} */
+
+#home {
+  display: flex;
+  
 }
 
 .butaosprincipais {
