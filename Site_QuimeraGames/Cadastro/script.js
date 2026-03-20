@@ -30,3 +30,6 @@ function validarForm() {
     return true;
 }
 
+function voltarPagina(){
+    window.location.href = "../Entrar/Entrar.php";
+}

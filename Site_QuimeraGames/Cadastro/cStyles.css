@@ -111,10 +111,11 @@ body {
     align-items: center;
 }
 
-.voltar {
+.voltar button{
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    border: none;
     background: #A8030C;
     display: flex;
     justify-content: center;

@@ -50,10 +50,10 @@
             <input type="checkbox" onclick="mostrarSenha()"> Mostrar senha
         </div>
 
-        <button class="btn" id="btn" name="cadastro">Cadastrar</button>
+        <button class="btn" id="btn" name="acao" value="cadastrar">Cadastrar</button>
 
         <div class="footer">
-            <div class="voltar">←</div>
+            <button type="button" class="voltar" onclick="voltarPagina()">←</button>
             <span>Voltar</span>
         </div>
 
@@ -65,7 +65,7 @@ require_once '../conexa.php';
 
 
 
-if($_POST) {
+if($_POST['acao'] == 'cadastrar') {
 
         $sql = 'INSERT INTO cadastro (email, nome, nome_user, senha, cpf) 
                 VALUES (?, ?, ?, ?, ?)';  
@@ -79,6 +79,8 @@ if($_POST) {
             $_POST['senha'], 
             $_POST['cpf']
         ]);
+        
+        header("Location: ../Entrar/Entrar.php"); exit;
 }
 
 ?>
