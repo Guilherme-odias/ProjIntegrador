@@ -89,6 +89,13 @@ input { display: none; }
   font-size: 17px;
 }
 
+.preco {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  font-size: 20px;
+}
+
 .tudoai{
     display: flex;
     align-items: center;
