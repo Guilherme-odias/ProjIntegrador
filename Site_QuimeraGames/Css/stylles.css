@@ -1,0 +1,253 @@
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0b1320; font-family: sans-serif; color: white; overflow-x: hidden; }
+
+/* TOPO */
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
+  background: #132041;
+}
+
+.topo-esquerda { display: flex; align-items: center; gap: 20px; }
+
+.logo {
+  width: 80px; /* Tamanho da logo ajustado */
+  height: auto;
+  display: block;
+}
+
+.btn-nav.active { background: #e50914; }
+.btn-login { background: #e50914; margin-left: 10px; }
+
+button {
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* BUSCA */
+.menu-busca { display: flex; gap: 15px; padding: 20px 5%; }
+.busca-input {
+  background: #132041;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #2a3a5a;
+  width: 280px;
+}
+.busca-input input { background: transparent; border: none; color: white; padding-left: 10px; outline: none; width: 100%; }
+.btn-dropdown { background: transparent; border: 1px solid #2a3a5a; border-radius: 20px; }
+
+/* CARROSSEL (O segredo do erro estava aqui) */
+.carousel-container {
+  max-width: 90%;
+  margin: 0 auto;
+  overflow: hidden; /* Corta os outros slides */
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  width: 700%; /* 7 slides = 700% de largura total */
+  transition: transform 0.6s ease-in-out;
+}
+
+.slide {
+  width: calc(100% / 7); /* Cada slide ocupa exatamente 1/7 do container pai */
+  display: flex;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.main-box { width: 80%; }
+.main-box img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.side-box { width: 20%; display: flex; flex-direction: column; gap: 10px; }
+.side-box img {
+  width: 100%;
+  height: 235px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+/* LÓGICA DE MOVIMENTO (100 / 7 = 14.285%) */
+#s1:checked ~ .slides { transform: translateX(0); }
+#s2:checked ~ .slides { transform: translateX(-14.285%); }
+#s3:checked ~ .slides { transform: translateX(-28.571%); }
+#s4:checked ~ .slides { transform: translateX(-42.857%); }
+#s5:checked ~ .slides { transform: translateX(-57.142%); }
+#s6:checked ~ .slides { transform: translateX(-71.428%); }
+#s7:checked ~ .slides { transform: translateX(-85.714%); }
+
+/* BOLINHAS */
+.dots { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+.dots label {
+  width: 12px; height: 12px;
+  background: #444; border-radius: 50%;
+  cursor: pointer; transition: 0.3s;
+}
+
+input[type="radio"] { display: none; }
+
+#s1:checked ~ .dots label[for="s1"],
+#s2:checked ~ .dots label[for="s2"],
+#s3:checked ~ .dots label[for="s3"],
+#s4:checked ~ .dots label[for="s4"],
+#s5:checked ~ .dots label[for="s5"],
+#s6:checked ~ .dots label[for="s6"],
+#s7:checked ~ .dots label[for="s7"] { background: white; transform: scale(1.2); }
+
+/* GRID DE JOGOS ABAIXO */
+.secao { padding: 40px 5%; }
+.jogos-grid { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
+.jogos-grid img { width: 170px; height: 230px; object-fit: cover; border-radius: 4px; }
+
+.rodape { background: #132041; padding: 20px; text-align: center; margin-top: 40px; }/* RESET BÁSICO */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0b1320; font-family: sans-serif; color: white; }
+
+/* TOPO */
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
+  background: #0d1630;
+}
+
+.topo-esquerda { display: flex; align-items: center; gap: 20px; }
+
+.logo {
+  width: 50px; /* Tamanho fixo para não quebrar o layout */
+  height: 50px;
+  border-radius: 5px;
+}
+
+.btn-nav.active { background: #c62828; }
+.btn-login { background: #c62828; margin-left: 10px; }
+
+button {
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* MENU DE BUSCA */
+.menu-busca {
+  display: flex;
+  gap: 15px;
+  padding: 20px 5%;
+}
+
+.busca-input {
+  background: #132041;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #333;
+}
+
+.busca-input input {
+  background: transparent;
+  border: none;
+  color: white;
+  padding-left: 10px;
+  outline: none;
+}
+
+.btn-dropdown { background: #1a2a4d; }
+
+/* CARROSSEL */
+.carousel-container {
+  max-width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  transition: 0.6s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  display: flex;
+  gap: 15px;
+}
+
+.main-box { width: 75%; }
+.main-box img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.side-box {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-box img {
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0.6;
+}
+
+/* LÓGICA DO SLIDE */
+#s1:checked ~ .slides { transform: translateX(0); }
+#s2:checked ~ .slides { transform: translateX(-100%); }
+#s3:checked ~ .slides { transform: translateX(-200%); }
+
+.dots { text-align: center; margin-top: 15px; }
+.dots label {
+  display: inline-block;
+  width: 12px; height: 12px;
+  background: #555;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+#s1:checked ~ .dots label[for="s1"],
+#s2:checked ~ .dots label[for="s2"],
+#s3:checked ~ .dots label[for="s3"] { background: white; }
+
+/* SEÇÕES */
+.secao { padding: 40px 5%; }
+.jogos-grid {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto; /* Permite scroll lateral se tiver muitos jogos */
+}
+
+.jogos-grid img {
+  width: 180px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.jogos-grid img:hover { transform: scale(1.05); }
+
+.rodape { background: #0d1630; padding: 20px; text-align: center; margin-top: 50px; }
