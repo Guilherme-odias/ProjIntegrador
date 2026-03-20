@@ -1,83 +1,88 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Quimera</title>
-    <link rel="stylesheet" href="cStyles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro Quimera</title>
+
+<link rel="stylesheet" href="cStyles.css">
 </head>
 
-<body class="bg-dark">
+<body>
 
+<div class="container">
 
- <main>
-    <form method="POST">
-     
-        <div class="tudo">
-            <h1 class="text-light">Tela de Cadastro</h1>
+    <form class="card" method="POST" onsubmit="return validarForm()">
 
-            <article class="cards">
-                <label for="femail">Email</label><br>
-                <input type="text" name="email" id="email"><br>
+        <h1>Tela Cadastro</h1>
 
-                <label for="fname">Nome de usuario</label><br>
-                <input type="text" name="nome" id="nome"><br>
-            </article>
-
-            <article class="cards">
-                <label for="fcpf">CPF</label><br>
-                <input type="number" name="cpf" id="cpf"><br>
-            </article>
-
-            <article class="cards">
-                <label for="fsenha">Senha</label><br>
-                <input type="password" name="senha" id="senha"><br>
-                <div class="check">
-                    <input type="checkbox" id="verifica">
-                    <label for="verifica">Mostrar senha</label>
-                </div>
-                
-                <label for="verifica">Confirme a senha</label><br>
-                <input type="password" name="confirme" id="confirme"><br>
-            </article>
-            <div class="botao">
-            <button type="button" id="btnVoltas" class="btn btn-secondary">Voltar</button>
-            <button type="submit" id="bntContinuar" class="btn btn-danger">Continuar</button>
-            </div>
+        <div class="input-group">
+            <input type="email" id="email" name="email" required>
+            <label>Email</label>
         </div>
+
+        <div class="input-group">
+            <input type="text" id="nome" name="nome" required>
+            <label>Nome</label>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="user" name="user" required>
+            <label>User</label>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="cpf" name="cpf" maxlength="14" required>
+            <label>CPF</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="senha" name="senha" required>
+            <label>Senha</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="confirme" name="confirme" required>
+            <label>Confirmar senha</label>
+        </div>
+
+        <div class="check">
+            <input type="checkbox" onclick="mostrarSenha()"> Mostrar senha
+        </div>
+
+        <button class="btn" id="btn">Cadastrar</button>
+
+        <div class="footer">
+            <div class="voltar">←</div>
+            <span>Voltar</span>
+        </div>
+
     </form>
-</main>
-    <?php 
+
+</div>
+<?php 
+include "conexa.php";
+
 
 if($_POST) {
 
-    if($_POST['senha'] != $_POST['confirme']) {
-        echo "As senhas não coincidem!";
-    } else {
+        $sql = 'INSERT INTO cadastro (email, nome, nome_user, senha, cpf) 
+                VALUES (?, ?, ?, ?, ?)';  
 
-        $sql = $pdo->prepare('
-        INSERT INTO usuario (email, name, cpf, senha)
-        VALUES (:email, :nome, :cpf, :senha)
-        ');
+        $declara = $pdo->prepare($sql);
 
-        $sql->execute(array(
-            ':email'=>$_POST['email'],
-            ':nome'=>$_POST['nome'],
-            ':cpf'=>$_POST['cpf'],
-            ':senha'=>$_POST['senha']
-        ));
-
-        echo 'Cadastro Realizado';
-    }
+        $resultado = $declara->execute([
+            $_POST['email'], 
+            $_POST['nome'], 
+            $_POST['user'], 
+            $_POST['senha'], 
+            $_POST['cpf']
+        ]);
 }
-    ?>
-    
-<script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
+?>
+
+<script src="script.js"></script>
 
 </body>
-
 </html>

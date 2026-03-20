@@ -1,77 +1,129 @@
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #132041;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container animação */
+.container {
+    animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card */
+.card {
+    width: 450px;
+    padding: 25px;
+    border-radius: 20px;
+    background: #C3D4FF;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+/* Título */
+.card h1 {
+    text-align: center;
+    color: #132041;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.input-group {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    background: #E5EDFF;
+    color: #132041;
+    outline: none;
+}
+
+/* Label animado */
+.input-group label {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    color: #132041;
+    transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -10px;
+    font-size: 12px;
+    color: #0A0F1C;
+}
+
+/* Checkbox */
+.check {
+    margin-bottom: 15px;
+    color: #132041;
+}
+
+/* Botão */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #A8030C;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background: #8e020a;
+}
+
+/* Rodapé */
+.footer {
+    margin-top: 20px;
+    background: #0A0F1C;
+    padding: 15px;
+    border-radius: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: #0f1b36;
 }
 
-main{
-    width: 100%;
+.voltar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #A8030C;
     display: flex;
     justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
-.tudo {
-    display: flex;
-    flex-direction: column;
-    width: 550px;
-    background: #132041;
-    padding: 30px;
-    border-radius: 14px;
+.footer span {
+    color: #fff;
 }
-
-h1{
-  text-align:center;
-  font-size:22px;
-  font-weight:700;
-  margin-bottom:20px;
-  color: #ffffff;
-}
-
-.cards{
-  background:#C3D4FF;
-  border-radius:10px;
-  padding:25px;
-  margin-bottom:20px;
-  
-}
-
-label{
-  display:block;
-  font-size:16px;
-  margin-bottom:6px;
-  color:#1c1c1c;
-}
-
-input{
-  width:100%;
-  height:40px;
-  background:#e9e9e9;
-  border: none;
-  outline: none;
-  border-radius:20px;
-  padding:0 15px;
-  margin-bottom:15px;
-}
-
-/* checkbox */
-.check{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:10px;
-}
-
-.check input{
-  width:auto;
-  height:auto;
-}
-
-/* botões */
-.botao {
-  display: flex;
-  justify-content: space-around;
-  margin-top:10px;
-}
-
