@@ -1,0 +1,48 @@
+header {
+    width: 100%;
+    padding: 0;
+}
+
+#navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #132041;
+    gap: 10px;
+}
+
+#home {
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-bottom: 0;
+    background-color: #A8030C;
+    color: aliceblue;
+    padding: 5px 8px;
+}
+
+#Carrinho_compras {
+    font-size: ;
+    margin-left: auto;
+    border: none;
+    cursor: pointer;
+    border-bottom: 10;
+    background-color: transparent;
+    color: aliceblue;
+}
+
+#suporte {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-bottom: 0;
+    background-color: #A8030C;
+    color: aliceblue;
+    padding: 5px 10px;
+}
+
+#nav_logo {
+    width: 90px;
+    height: 85px;
+}

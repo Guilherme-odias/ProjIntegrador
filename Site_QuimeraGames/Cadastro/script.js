@@ -7,19 +7,29 @@ let confirma = document.getElementById("confirme");
 let check = document.getElementById("verifica");
 
 
-check.addEventListener('click', function() {
+function mostrarSenha() {
 
-    if (senha.getAttribute('type') == 'password' ) {
-        
-        
-
-        senha.setAttribute('type', 'text')
+    if (senha.type === "password") {
+        senha.type = "text";
+        confirma.type = "text";
+    } else {
+        senha.type = "password";
+        confirma.type = "password";
     }
-    
-    else {
-        
-        senha.setAttribute('type', 'password')
+}
+
+function validarForm() {
+    let senha = document.getElementById("senha").value;
+    let confirmar = document.getElementById("confirme").value;
+
+    if(senha !== confirmar){
+        alert("Senhas não coincidem!");
+        return false;
     }
-});
 
+    return true;
+}
 
+function voltarPagina(){
+    window.location.href = "../Entrar/Entrar.php";
+}
