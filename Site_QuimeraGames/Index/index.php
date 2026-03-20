@@ -1,15 +1,10 @@
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QuimeraGames</title>
   <link rel="stylesheet" href="../Css/stylles.css">
 </head>
 <body>
-
-<?php
-include_once "../conexa.php";
-?>
 
 <div class="container">
   <header class="topo">
