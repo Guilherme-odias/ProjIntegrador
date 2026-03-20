@@ -50,7 +50,7 @@
             <input type="checkbox" onclick="mostrarSenha()"> Mostrar senha
         </div>
 
-        <button class="btn" id="btn">Cadastrar</button>
+        <button class="btn" id="btn" name="cadastro">Cadastrar</button>
 
         <div class="footer">
             <div class="voltar">←</div>
@@ -61,7 +61,8 @@
 
 </div>
 <?php 
-include "conexa.php";
+require_once '../conexa.php';
+
 
 
 if($_POST) {
