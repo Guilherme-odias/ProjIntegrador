@@ -16,16 +16,30 @@
 
         <nav id="navbar">
 
-            <img id="nav_logo" src="../imagens/logoproj_quimera.png " alt="🍹">
+            <img id="nav_logo" src="../imagens/logo.png " alt="🍹">
 
             <button id="home">
                 <i class="fas fa-home"></i>
+                Home
             </button>
 
 
             <button id="Carrinho_compras">
                 <i class="fa-solid fa-cart-shopping"></i>
             </button>
+
+            <div class="user-menu">
+                <button id="userBtn">
+                    <img src="../imagens/logo.png" alt="Perfil" class="user-img">
+                </button>
+
+                <div class="dropdown" id="dropdownMenu">
+                    <button>Conta</button>
+                    <button>Pagamento</button>
+                    <button>Meus pedidos</button>
+                    <button>Lista de desejos</button>
+                </div>
+            </div>
 
             <button id="suporte">Suporte</button>
 
@@ -35,19 +49,25 @@
 
         </nav>
 
-
-
-
-
     </header>
 
+    <div id="btn-default" class="btn-default">
 
+        <div class="busca-input">
+            <span>
+                <i class="fa-brands fa-sistrix"></i>
+                Pesquisar loja
+            </span>
+            <input type="text" placeholder="Pesquisar loja">
+        </div>
 
-    <section class="butaosprincipais">
-        <button id="pesquisarLoja">Pesquisar loja</button>
-        <button id="pesquisarLoja">Explorar</button>
-        <button id="pesquisarLoja">Categorias</button>
-    </section>
+        <div id="btn-pesquisar">
+            <!-- <button class="btn-dropdown" id="pesquisarLoja">Pesquisar loja</button> -->
+        </div>
+        <button class="btn-dropdown" id="explorar">Explorar</button>
+        <button class="btn-dropdown" id="categoria">Categorias</button>
+    </div>
+
 
 
     <div class="carousel">
@@ -159,7 +179,7 @@
 
         <div class="primeira_cadastre">
             <label class="primeira">Primeira vez na Quimera?</label>
-            <button class="cad">Cadastre-se</button>
+            <button id="botao_rodape">Cadastre-se</button>
         </div>
 
         <div class="texto">
@@ -169,7 +189,5 @@
         </div>
     </footer>
 </body>
-
-
 
 </html>

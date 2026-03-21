@@ -134,17 +134,7 @@ input {
   background: transparent;
 }
 
-.topo {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  background-color: #132041;
-  height: 85px;
-}
-
-.button {
+/* .button {
   display: flex;
   justify-content: flex-start;
   margin-left: 10px;
@@ -154,30 +144,71 @@ input {
   border: none;
   background: transparent;
   cursor: pointer;
-}
-
-/* #Carrinho_compras {
-  display: flex;
-  border-bottom: 0;
-  justify-content: flex-start;
-  justify-content: space-between;
-  
 } */
 
-#home {
+.btn-default {
   display: flex;
-  
-}
-
-.butaosprincipais {
-  display: flex;
-  justify-content: flex-start;
-  align-content: center;
-  margin-left: 75px;
-  margin-top: 20px;
   gap: 15px;
-
+  margin: 20px 75px;
 }
+
+#pesquisarLoja {
+  background: transparent; 
+  border: 2px solid #A8030C; 
+  border-radius: 25px; 
+  padding: 12px 24px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* .menu-busca { 
+  display: flex; 
+  gap: 20px; 
+  padding: 25px 5%; 
+  background: rgba(19, 32, 65, 0.8);
+} */
+
+.busca-input {
+  flex: 1;
+  max-width: 300px;
+  color: aliceblue;
+  background: rgba(42, 58, 90, 0.8);
+  border-radius: 25px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  border: 2px solid aliceblue;
+  transition: border 0.3s ease;
+}
+.busca-input:hover { 
+  border-color: #e50914; 
+}
+.busca-input input { 
+  background: transparent; 
+  border: none; 
+  color: white; 
+  padding-left: 15px; 
+  outline: none; 
+  font-size: 16px;
+  width: 100%;
+}
+.btn-dropdown { 
+  background: transparent; 
+  border: 2px solid #A8030C; 
+  border-radius: 25px; 
+  padding: 12px 24px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-dropdown:hover { 
+  background: #e50914; 
+  border-color: #e50914;
+}
+
 
 .apresentacao {
   justify-content: flex-start;
@@ -200,89 +231,17 @@ input {
   align-items: center;
   justify-content: center;
   gap: 130px;
-  width: 95.8%;
+  width: 100%;
   height: 10px;
-
   background: linear-gradient(to bottom, #0f2449, #020817);
   padding: 40px 40px;
   color: white;
   margin-top: 260px;
 }
 
-.primeira_cadastre {
+.botao_rodape {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-
-
-@media (max-width:1024px) {
-  .img {
-    width: 110px;
-    height: 110px;
-  }
-
-  .button {
-    font-size: 26px;
-  }
-
-  .button2 {
-    font-size: 22px;
-  }
-
-  .butaosprincipais {
-    gap: 60px;
-  }
-}
-
-/* ------------------- */
-/* TABLET */
-@media (max-width:768px) {
-  .topo {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .button {
-    justify-content: center;
-    font-size: 24px;
-  }
-
-  .button2 {
-    justify-content: center;
-    margin-top: 10px;
-    font-size: 20px;
-  }
-
-  .butaosprincipais {
-    gap: 40px;
-  }
-}
-
-/* ------------------- */
-/* CELULAR */
-@media (max-width:480px) {
-  .img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .button {
-    font-size: 20px;
-    flex-direction: column;
-  }
-
-  .button2 {
-    font-size: 18px;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .butaosprincipais {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
