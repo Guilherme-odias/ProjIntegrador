@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mais Aviadados</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylee.css">
 </head>
 
 <body>
@@ -24,9 +24,159 @@
     </header>
 
     <section class="textao">
-        <h3 class="texto1">Mais vendidos ></h3>
-        <p class="texto2"> Os 20 jogos mais vendidos do momento . . . preço</p>
+
+  <div class="linha-topo">
+    <div class="textos">
+      <h3 class="texto1">Mais vendidos ></h3>
+      <p class="texto2">Os 20 jogos mais vendidos do momento</p>
+    </div>
+
+    <p class="precoo">Preço</p>
+  </div>
+
+</section>
+
+<!-- um milhão de jogos -->
+    <section class="jogos">
+        <h2 class="num">1</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
     </section>
+
+    <section class="jogos">
+        <h2 class="num">2</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">3</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">4</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">5</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">6</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+    
+    <section class="jogos">
+        <h2 class="num">7</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">8</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">9</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">10</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+     <section class="jogos">
+        <h2 class="num">11</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">12</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">13</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">14</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">15</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">16</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+    
+    <section class="jogos">
+        <h2 class="num">17</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">18</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">19</h2>
+        <img class="img" src="../imagens/cyberpunk.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+
+    <section class="jogos">
+        <h2 class="num">20</h2>
+        <img class="img" src="../imagens/sera.jpg">
+        <p>Cyberpunk1910</p>
+        <p class="preco">R$ 69,67</p>
+    </section>
+    
 
 
     <footer>
