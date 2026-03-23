@@ -60,10 +60,10 @@ if(isset($_POST['acao']) && $_POST['acao'] == 'login') {
          if($user){
 
         
-        if($senha == $user['senha']){
+        if($senha == $user['senha'] && $login == $user['login']){
             header("Location: ../Tela_Usuario_Logado/UserLog.html"); exit;
         } else {
-            echo "Senha incorreta!";
+            echo "<script>alert('Senha incorreta!')</script>";
         }
             
 }
