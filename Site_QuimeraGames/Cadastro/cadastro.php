@@ -65,7 +65,17 @@ require_once '../conexa.php';
 
 
 
-if($_POST['acao'] == 'cadastrar') {
+if($_POST) {
+$email = $_POST['email'];
+$user = $_POST['user'];
+$cpf = $_POST['cpf'];
+
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE email = ?");
+$stmt->execute([$_POST['email']]);
+$jaExiste = $stmt->fetchColumn();
+if($jaExiste > 0) {
+    echo 'Ja existe esse cadastro!';
+}
 
         $sql = 'INSERT INTO cadastro (email, nome, nome_user, senha, cpf) 
                 VALUES (?, ?, ?, ?, ?)';  
