@@ -63,7 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="div2">
 <label>Senha:</label>
+<<<<<<< HEAD
 <input type="password" name="senha" required>
+=======
+<input id="senha_usuario" name="senha">
+>>>>>>> b61a2dacc0a8ad4c460e2c8adf2594850333be13
 
 <div class="lembrar">
   <input type="checkbox" id="lembrar">
@@ -71,10 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
     </div>
 
+<<<<<<< HEAD
 
 <button type="submit" class="iniciar_sessao">Iniciar Sessão</button>
 
 </form>
+=======
+<button class="iniciar_sessao" name="acao" value="login">Iniciar Sessão</button>
+>>>>>>> b61a2dacc0a8ad4c460e2c8adf2594850333be13
 
 <a href="#" class="problemas_iniciar">Problemas para iniciar sessão</a>
 
@@ -99,6 +107,32 @@ if (window.location.search.includes("sucesso") || window.location.search.include
 para jogar com milhões de novos amigos.</p>
 </div>
 </div>
+
+<?php 
+require_once '../conexa.php';
+
+if(isset($_POST['acao']) && $_POST['acao'] == 'login') {
+
+    $login = $_POST['login'];
+    $senha = $_POST['senha'];
+
+        $sql = "SELECT * FROM cadastro WHERE email = ? OR nome_user = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$login, $login]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+         if($user){
+
+        
+        if($senha == $user['senha'] && $login == $user['login']){
+            header("Location: ../Tela_Usuario_Logado/UserLog.html"); exit;
+        } else {
+            echo "<script>alert('Senha incorreta!')</script>";
+        }
+            
+}
+}
+?>
 
 </body>
 </html>
