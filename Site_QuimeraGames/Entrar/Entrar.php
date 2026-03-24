@@ -18,14 +18,14 @@
 <input id="nome_usuario">
 
 <label>Senha:</label>
-<input id="senha_usuario">
+<input id="senha_usuario" name="senha">
 
     <div class="lembrar">
   <input type="checkbox" id="lembrar">
   <label for="lembrar">Lembre-me</label>
     </div>
 
-<button class="iniciar_sessao">Iniciar Sessão</button>
+<button class="iniciar_sessao" name="acao" value="login">Iniciar Sessão</button>
 
 <a href="#" class="problemas_iniciar">Problemas para iniciar sessão</a>
     </div>
@@ -43,6 +43,32 @@
  para jogar com milhões de novos amigos.</p>
 </div>
 </div>
+
+<?php 
+require_once '../conexa.php';
+
+if(isset($_POST['acao']) && $_POST['acao'] == 'login') {
+
+    $login = $_POST['login'];
+    $senha = $_POST['senha'];
+
+        $sql = "SELECT * FROM cadastro WHERE email = ? OR nome_user = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$login, $login]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+         if($user){
+
+        
+        if($senha == $user['senha'] && $login == $user['login']){
+            header("Location: ../Tela_Usuario_Logado/UserLog.html"); exit;
+        } else {
+            echo "<script>alert('Senha incorreta!')</script>";
+        }
+            
+}
+}
+?>
 
 </body>
 </html>
