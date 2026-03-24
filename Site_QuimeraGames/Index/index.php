@@ -1,16 +1,20 @@
 <html lang="pt-br">
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QuimeraGames</title>
-  <link rel="stylesheet" href="../Css/Stylles.css">
+  <link rel="stylesheet" href="../Css/stylles.css">
 </head>
+
 <body>
 
-<div class="container">
+  <?php
+  require_once '../conexa.php'; ?>
+
   <header class="topo">
     <div class="topo-esquerda">
       <img class="logo" src="../imagens/logo.png" alt="Logo">
-      <button class="btn-nav active">Home</button>
+      <button class="btn-nav active">Loja</button>
     </div>
 
     <div class="topo-direita">
@@ -19,6 +23,7 @@
     </div>
   </header>
 
+  <div class="container"></div>
   <nav class="menu-busca">
     <div class="busca-input">
       <span>🔍</span>
@@ -32,8 +37,12 @@
     <input type="radio" name="slide" id="s1" checked>
     <input type="radio" name="slide" id="s2">
     <input type="radio" name="slide" id="s3">
+    <input type="radio" name="slide" id="s4">
+    <input type="radio" name="slide" id="s5">
+    <input type="radio" name="slide" id="s6">
+    <input type="radio" name="slide" id="s7">
 
-    <div class="slides">
+    <div class="slides" >
       <div class="slide">
         <div class="main-box">
           <img src="../imagens/cyber.jpg">
@@ -43,12 +52,16 @@
           <img src="../imagens/cyber.jpg">
         </div>
       </div>
-      </div>
+    </div>
 
     <div class="dots">
       <label for="s1"></label>
       <label for="s2"></label>
       <label for="s3"></label>
+      <label for="s4"></label>
+      <label for="s5"></label>
+      <label for="s6"></label>
+      <label for="s7"></label>
     </div>
   </div>
 
@@ -63,9 +76,10 @@
       <img src="../imagens/cyber.jpg">
     </div>
   </section>
-</div>
+  </div>
 
-<footer class="rodape">Rodapé</footer>
+  <footer class="rodape">Rodapé</footer>
 
 </body>
+
 </html>
