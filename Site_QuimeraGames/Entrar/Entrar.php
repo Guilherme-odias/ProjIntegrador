@@ -1,7 +1,6 @@
 <?php
 require_once("../conexa.php");
 
-// evitar cache
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
 
@@ -30,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -38,18 +38,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        .erro-msg {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: red;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            z-index: 999;
+        .conteudo {
+            position: relative;
         }
+
+        .erro-msg {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 999;
+  transition: 0.5s;
+}
     </style>
 </head>
 
@@ -61,9 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="conteudo">
 
-    <!-- ERRO (NÃO EMPURRA) -->
+    <!-- ERRO -->
     <?php if ($erro): ?>
-        <div class="erro-msg">Usuário ou senha incorretos!</div>
+        <div id="erro-msg" class="erro-msg">Usuário ou senha incorretos!</div>
     <?php endif; ?>
 
 <form method="post">
@@ -104,6 +110,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 para jogar com milhões de novos amigos.</p>
 </div>
 </div>
+
+<!-- 🔥 JS QUE FAZ SUMIR -->
+<script>
+setTimeout(() => {
+    const erro = document.getElementById("erro-msg");
+    if (erro) {
+        erro.style.opacity = "0";
+        setTimeout(() => {
+            erro.remove();
+        }, 500);
+    }
+}, 5000);
+</script>
 
 </body>
 </html>
