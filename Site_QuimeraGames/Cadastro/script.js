@@ -18,11 +18,16 @@ function mostrarSenha() {
     }
 }
 
-function validarForm() {
+function validarSenha() {
     let senha = document.getElementById("senha").value;
     let confirmar = document.getElementById("confirme").value;
 
-    if(senha !== confirmar){
+    if (senha.length < 6) {
+        alert("A senha deve ter pelo menos 6 caracteres!");
+        return false;
+    }
+
+    if (senha !== confirmar) {
         alert("Senhas não coincidem!");
         return false;
     }
@@ -31,55 +36,62 @@ function validarForm() {
 }
 
 function voltarPagina(){
-    window.location.href = "../Entrar/Entrar.php";
+    window.location.href = "../Index/index.php";
 }
 
-function validaCPF() {
-  var Soma = 0
-  var Resto
+function validaCPF(cpf) {
+    cpf = cpf.replace(/[^\d]+/g, '');
 
-  var strCPF = String(cpf).replace(/[^\d]/g, '')
-  
-  if (strCPF.length !== 11)
-     return false
-  
-  if ([
-    '00000000000',
-    '11111111111',
-    '22222222222',
-    '33333333333',
-    '44444444444',
-    '55555555555',
-    '66666666666',
-    '77777777777',
-    '88888888888',
-    '99999999999',
-    ].indexOf(strCPF) !== -1)
-    return false
+    if (cpf.length !== 11) return false;
 
-  for (i=1; i<=9; i++)
-    Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+    if (/^(\d)\1+$/.test(cpf)) return false;
 
-  Resto = (Soma * 10) % 11
+    let soma = 0;
+    let resto;
 
-  if ((Resto == 10) || (Resto == 11)) 
-    Resto = 0
+    for (let i = 1; i <= 9; i++)
+        soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
 
-  if (Resto != parseInt(strCPF.substring(9, 10)) )
-    return false
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
 
-  Soma = 0
+    if (resto !== parseInt(cpf.substring(9, 10))) return false;
 
-  for (i = 1; i <= 10; i++)
-    Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i)
+    soma = 0;
 
-  Resto = (Soma * 10) % 11
+    for (let i = 1; i <= 10; i++)
+        soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
 
-  if ((Resto == 10) || (Resto == 11)) 
-    Resto = 0
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
 
-  if (Resto != parseInt(strCPF.substring(10, 11) ) )
-    return false
+    if (resto !== parseInt(cpf.substring(10, 11))) return false;
 
-  return true
+    return true;
+}
+
+function validarEmail() {
+    let email = document.getElementById("email").value;
+    let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regex.test(email)) {
+        alert("Email inválido!");
+        return false;
+    }
+
+    return true;
+}
+
+function validarForm() {
+    let cpf = document.getElementById("cpf").value;
+
+    if (!validarEmail()) return false;
+    if (!validarSenha()) return false;
+
+    if (!validaCPF(cpf)) {
+        alert("CPF inválido!");
+        return false;
+    }
+
+    return true;
 }

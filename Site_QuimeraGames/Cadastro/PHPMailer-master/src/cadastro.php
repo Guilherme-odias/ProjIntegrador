@@ -9,7 +9,13 @@
 </head>
 
 <body>
-
+<?php 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
+?>
 <div class="container">
 
     <form class="card" method="POST" onsubmit="return validarForm()">
@@ -66,33 +72,77 @@ require_once '../conexa.php';
 
 
 if($_POST) {
-$email = $_POST['email'];
-$user = $_POST['user'];
-$cpf = $_POST['cpf'];
 
+// Validação Email
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE email = ?");
-$stmt->execute([$_POST['email']]);
-$jaExiste = $stmt->fetchColumn();
-if($jaExiste > 0) {
-    echo 'Ja existe esse cadastro!';
+$stmt->execute([$email]);
+if($stmt->fetchColumn() > 0){
+    echo "Email já cadastrado!";
+    exit;
 }
-
-        $sql = 'INSERT INTO cadastro (email, nome, nome_user, senha, cpf) 
-                VALUES (?, ?, ?, ?, ?)';  
-
-        $declara = $pdo->prepare($sql);
-
-        $resultado = $declara->execute([
-            $_POST['email'], 
-            $_POST['nome'], 
-            $_POST['user'], 
-            $_POST['senha'], 
-            $_POST['cpf']
-        ]);
-        
-        header("Location: ../Entrar/Entrar.php"); exit;
+// Validação User
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE nome_user = ?");
+$stmt->execute([$user]);
+if($stmt->fetchColumn() > 0){
+    echo "Usuário já existe!";
+    exit;
 }
+// Validação CPF
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE cpf = ?");
+$stmt->execute([$cpf]);
+if($stmt->fetchColumn() > 0){
+    echo "CPF já cadastrado!";
+    exit;
+}
+else {
+    session_start();
 
+// GERAR CÓDIGO
+$codigo = rand(100000, 999999);
+
+// SALVAR NA SESSION
+$_SESSION['cadastro'] = [
+    'email' => $email,
+    'nome' => $nome,
+    'user' => $user,
+    'senha' => $senha, 
+    'cpf' => $cpf
+];
+
+$_SESSION['codigo_verificacao'] = $codigo;
+
+$mail = new PHPMailer(true);
+
+try {
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'quimeraggames@gmail.com';
+    $mail->Password = 'okvj nqpq jgqk cexh';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
+
+    $mail->setFrom('quimeraggames@gmail.com', 'Quimera');
+    $mail->addAddress($email);
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Código de verificação';
+    $mail->Body = "
+        <h2>Bem-vindo ao Quimera 🚀</h2>
+        <p>Seu código de verificação é:</p>
+        <h1 style='color:red;'>$codigo</h1>
+    ";
+
+    $mail->send();
+
+} catch (Exception $e) {
+    echo "Erro: {$mail->ErrorInfo}";
+}
+// REDIRECIONAR
+header("Location: ../Verificar_email/index.php");
+exit;
+}
+}
 ?>
 
 <script src="script.js"></script>

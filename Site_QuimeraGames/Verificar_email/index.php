@@ -9,7 +9,11 @@
 </head>
 
 <body>
+<?php
+session_start();
+?>
 
+<form method="POST">
     <div class="container">
         
 
@@ -22,9 +26,9 @@
     </div>
 
             <div class="butaodumeio">
-                <input type="number" name="name" id="codigo" class="codigo"><br>
+                <input type="text" name="codigo" id="codigo" class="codigo"><br>
 
-                <button class="verificarr">Verificar</but ton>
+                <button type="submit" class="verificarr">Verificar</but ton>
             
                 <button class="reenviar">Reenviar o código</button>
             </div>
@@ -37,7 +41,41 @@
         </footer>
 
     </div>
+</form>
+<?php
 
+if($_POST){
+
+    $codigoDigitado = $_POST['codigo'];
+
+    if($codigoDigitado == $_SESSION['codigo_verificacao']){
+
+        require_once '../conexa.php';
+
+        $dados = $_SESSION['cadastro'];
+
+        $sql = "INSERT INTO cadastro (email, nome, nome_user, senha, cpf) 
+                VALUES (?, ?, ?, ?, ?)";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            $dados['email'],
+            $dados['nome'],
+            $dados['user'],
+            $dados['senha'],
+            $dados['cpf']
+        ]);
+
+        // Limpa a seção
+        session_destroy();
+
+        echo "Cadastro realizado com sucesso!";
+        
+    } else {
+        echo "Código inválido!";
+    }
+}
+?>
 </body>
 
 </html>
