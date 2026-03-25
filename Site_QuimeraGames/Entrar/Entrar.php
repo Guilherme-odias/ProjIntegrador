@@ -1,9 +1,10 @@
 <?php
 require_once("../conexa.php");
 
-// evita cache (ajuda com F5)
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
+
+$erro = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -21,11 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($dados && $senha == $dados["senha"]) {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?sucesso=1");
+        header("Location: ../Index/index.php");
         exit;
     } else {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?erro=1");
-        exit;
+        $erro = true;
     }
 }
 ?>
@@ -36,7 +36,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Entrar</title>
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .conteudo {
+            position: relative;
+        }
+
+        .erro-msg {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 999;
+  transition: 0.5s;
+}
+    </style>
 </head>
+
 <body>
 
 <div class="tela">
@@ -45,13 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="conteudo">
 
-    <!-- MENSAGENS -->
-    <?php if (isset($_GET['erro'])): ?>
-        <p style="color:red;">Usuário ou senha incorretos!</p>
-    <?php endif; ?>
-
-    <?php if (isset($_GET['sucesso'])): ?>
-        <p style="color:green;">Login realizado com sucesso!</p>
+    <!-- ERRO -->
+    <?php if ($erro): ?>
+        <div id="erro-msg" class="erro-msg">Usuário ou senha incorretos!</div>
     <?php endif; ?>
 
 <form method="post">
@@ -63,38 +81,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="div2">
 <label>Senha:</label>
-<<<<<<< HEAD
 <input type="password" name="senha" required>
-=======
-<input id="senha_usuario" name="senha">
->>>>>>> b61a2dacc0a8ad4c460e2c8adf2594850333be13
 
 <div class="lembrar">
   <input type="checkbox" id="lembrar">
   <label for="lembrar">Lembre-me</label>
 </div>
-    </div>
-
-<<<<<<< HEAD
+</div>
 
 <button type="submit" class="iniciar_sessao">Iniciar Sessão</button>
 
 </form>
-=======
-<button class="iniciar_sessao" name="acao" value="login">Iniciar Sessão</button>
->>>>>>> b61a2dacc0a8ad4c460e2c8adf2594850333be13
 
 <a href="#" class="problemas_iniciar">Problemas para iniciar sessão</a>
 
     </div>
 </div>
 </div>
-
-<script>
-if (window.location.search.includes("sucesso") || window.location.search.includes("erro")) {
-    window.history.replaceState({}, document.title, window.location.pathname);
-}
-</script>
 
 <div class="tudoai">
 <div class="primeira_cadastre">
@@ -108,31 +111,18 @@ para jogar com milhões de novos amigos.</p>
 </div>
 </div>
 
-<?php 
-require_once '../conexa.php';
-
-if(isset($_POST['acao']) && $_POST['acao'] == 'login') {
-
-    $login = $_POST['login'];
-    $senha = $_POST['senha'];
-
-        $sql = "SELECT * FROM cadastro WHERE email = ? OR nome_user = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$login, $login]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-         if($user){
-
-        
-        if($senha == $user['senha'] && $login == $user['login']){
-            header("Location: ../Tela_Usuario_Logado/UserLog.html"); exit;
-        } else {
-            echo "<script>alert('Senha incorreta!')</script>";
-        }
-            
-}
-}
-?>
+<!-- 🔥 JS QUE FAZ SUMIR -->
+<script>
+setTimeout(() => {
+    const erro = document.getElementById("erro-msg");
+    if (erro) {
+        erro.style.opacity = "0";
+        setTimeout(() => {
+            erro.remove();
+        }, 500);
+    }
+}, 5000);
+</script>
 
 </body>
 </html>
