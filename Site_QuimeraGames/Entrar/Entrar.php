@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Entrar</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styless.css">
 
     <style>
         .conteudo {
@@ -60,6 +60,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+
+<header class="topo">
+    <div class="topo-esquerda">
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><img class="logo"
+          src="../imagens/logo.png"></a>
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><button
+          class="btn-nav active">Loja</button></a>
+    </div>
+    <div class="topo-direita">
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Entrar/Entrar.php"><button
+          class="btn-login">Entrar</button></a>
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Sac/Suporte.php"><button
+          class="btn-login">Suporte</button></a>
+    </div>
+  </header>
 
 <div class="tela">
 <div class="h1box">
