@@ -101,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="tudoai">
 <div class="primeira_cadastre">
-    <label class="primeira">Primeira vez na Quimera?</label>
-    <button class="cad">Cadastre-se</button>
+    <label class="primeira" >Primeira vez na Quimera?</label>
+    <button class="cad" onclick="window.location.href='../Cadastro/cadastro.php'">Cadastre-se</button>
 </div>
 
 <div class="texto">
