@@ -27,7 +27,7 @@ h1 {
   padding-left: 50px;
   padding-top: 10px;
   background: linear-gradient(to top,#132041,#1b3c91);
-  margin-top: 160px;
+  margin-top: 100px;
 }
 
 .tudoai{
@@ -127,23 +127,26 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px ;
+  padding: 10px ;
   background: rgba(19, 32, 65, 0.95);
   backdrop-filter: blur(10px);
   width: 100%;
+  margin-top: 70px;
+  gap: 20px;
 }
 
 .logo {
   width: 100px;
   height: auto;
   border-radius: 12px;
+  margin-top: 5px;
 }
 
 .topo-esquerda,
 .topo-direita {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
 }
 
 .btn-nav,
@@ -156,6 +159,7 @@ h1 {
   font-weight: 600;
   transition: 0.3s;
   background: rgba(255, 255, 255, 0.05);
+  gap: 30px;
 }
 
 .btn-nav.active,
@@ -173,7 +177,6 @@ h1 {
   color: rgb(0, 0, 0);
   border-radius: 10px;
   font-size: 18px;
-  height: px;
 }
 
 .lembrar {
