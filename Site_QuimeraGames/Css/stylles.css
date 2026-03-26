@@ -149,20 +149,21 @@ body {
 }
 
 .poster-box {
-  width: 50%;
-  height: 100%;
+  width: 45%;
+  height: 150%;
   transition: 0.4s;
 }
 
 .poster-box img {
   width: 100% !important;
-  height: 100% !important;
+  height: 70% !important;
   object-fit: cover;
   display: block;
+  object-position: top center;
 }
 
 .info-box {
-  width: 50%;
+  width: 55%;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -230,9 +231,14 @@ body {
 
 .badge-desconto {
   background: #0074e4;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 5px 10px;
+  border-radius: 4px;
   font-weight: bold;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  font-size: 12px;
 }
 
 .v-antigo {
@@ -313,7 +319,7 @@ body {
 .thumb-wrapper {
   position: relative;
   height: 280px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .thumb-wrapper img {
