@@ -146,8 +146,9 @@ h1 {
 .topo-direita {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 50px;
   padding: 0 20px;
+  margin-right: 20px;
 }
 
 .btn-nav,
