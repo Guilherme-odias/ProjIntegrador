@@ -9,6 +9,22 @@
 </head>
 
 <body>
+
+<header class="topo">
+    <div class="topo-esquerda">
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><img class="logo"
+          src="../imagens/logo.png"></a>
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><button
+          class="btn-nav active">Loja</button></a>
+    </div>
+    <div class="topo-direita">
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Entrar/Entrar.php"><button
+          class="btn-login">Entrar</button></a>
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Sac/Suporte.php"><button
+          class="btn-login">Suporte</button></a>
+    </div>
+  </header>
+
 <?php
 session_start();
 ?>
