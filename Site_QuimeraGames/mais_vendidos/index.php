@@ -26,15 +26,19 @@ $jogos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <header class="topo">
-    <img class="img" src="../imagens/logo.png" alt="🍹">
-
-    <button class="button" id="home">Home</button>
-
-    <section class="button2">
-        <button class="entrar" id="entrarr">Entrar</button>
-        <button class="suporte" id="suportee">Suporte</button>
-    </section>
-</header>
+    <div class="topo-esquerda">
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><img class="logo"
+          src="../imagens/logo.png"></a>
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><button
+          class="btn-nav active">Loja</button></a>
+    </div>
+    <div class="topo-direita">
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Entrar/Entrar.php"><button
+          class="btn-login">Entrar</button></a>
+      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Sac/Suporte.php"><button
+          class="btn-login">Suporte</button></a>
+    </div>
+  </header>
 
 <section class="textao">
   <div class="linha-topo">

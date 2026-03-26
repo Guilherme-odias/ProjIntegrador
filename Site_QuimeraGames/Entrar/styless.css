@@ -121,17 +121,16 @@ h1 {
 
 .problemas_iniciar:hover {
   color: rgb(63, 63, 63);
-}
+} 
 
 .topo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px ;
   background: rgba(19, 32, 65, 0.95);
   backdrop-filter: blur(10px);
   width: 100%;
-  margin-top: 70px;
+  margin-top: 55px;
   gap: 20px;
 }
 
@@ -140,6 +139,7 @@ h1 {
   height: auto;
   border-radius: 12px;
   margin-top: 5px;
+  margin-left: 15px;
 }
 
 .topo-esquerda,
@@ -147,6 +147,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 40px;
+  padding: 0 20px;
 }
 
 .btn-nav,
