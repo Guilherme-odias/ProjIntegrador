@@ -63,15 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <header class="topo">
     <div class="topo-esquerda">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><img class="logo"
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
           src="../imagens/logo.png"></a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><button
-          class="btn-nav active">Loja</button></a>
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><button
+          class="btn-nav active" >Loja</button></a>
     </div>
     <div class="topo-direita">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Entrar/Entrar.php"><button
-          class="btn-login">Entrar</button></a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Sac/Suporte.php"><button
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
           class="btn-login">Suporte</button></a>
     </div>
   </header>
@@ -117,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="tudoai">
 <div class="primeira_cadastre">
     <label class="primeira" >Primeira vez na Quimera?</label>
-    <button class="cad" onclick="window.location.href='../Cadastro/cadastro.php'">Cadastre-se</button>
+    <button class="cad" onclick="window.location.href='../Cadastro/PHPMailer-master/src/cadastro.php'">Cadastre-se</button>
 </div>
 
 <div class="texto">

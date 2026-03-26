@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suporte ao Cliente</title>
+    <title>Verifique seu email</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,15 +12,15 @@
 
 <header class="topo">
     <div class="topo-esquerda">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><img class="logo"
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
           src="../imagens/logo.png"></a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><button
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><button
           class="btn-nav active">Loja</button></a>
     </div>
     <div class="topo-direita">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Entrar/Entrar.php"><button
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Entrar/Entrar.php"><button
           class="btn-login">Entrar</button></a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Sac/Suporte.php"><button
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
           class="btn-login">Suporte</button></a>
     </div>
   </header>
