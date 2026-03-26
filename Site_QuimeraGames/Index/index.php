@@ -86,12 +86,15 @@ try {
                 <h2 class="titulo-jogo"><?php echo htmlspecialchars($jogo['titulo']); ?></h2>
                 <p class="descricao-jogo"><?php echo mb_strimwidth($jogo['informacoes'], 0, 180, "..."); ?></p>
 
+                <div class="card-plataforma" style="margin-bottom: 20px;">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
+                  <span>Windows</span>
+                </div>
+
                 <div class="precos-container">
                   <?php if ($jogo['Valor'] > 0): ?>
-                    <span class="badge-desconto">-10%</span>
                     <div class="col-precos">
-                      <span class="v-antigo">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
-                      <span class="v-novo">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
+                      <span class="v-novo">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
                     </div>
                   <?php else: ?>
                     <span class="v-gratis">Gratuito</span>
