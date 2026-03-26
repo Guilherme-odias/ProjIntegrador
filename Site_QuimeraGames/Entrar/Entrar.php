@@ -63,13 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <header class="topo">
     <div class="topo-esquerda">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><img class="logo"
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
           src="../imagens/logo.png"></a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"><button
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><button
           class="btn-nav active" >Loja</button></a>
     </div>
     <div class="topo-direita">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Sac/Suporte.php"><button
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
           class="btn-login">Suporte</button></a>
     </div>
   </header>
