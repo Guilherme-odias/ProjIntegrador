@@ -73,13 +73,17 @@ h1 {
 }
 
 .inputReclamacao {
+  
   width: 100%;
-  padding-right: 0px;
+  padding: 10px; 
   height: 200px;
   border: none;
   border-radius: 10px;
   outline: none;
+
+  box-sizing: border-box; 
 }
+
 
 .btnEnviar {
   position: absolute;
@@ -88,7 +92,7 @@ h1 {
   border: none;
   background: transparent;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .label {
@@ -127,13 +131,9 @@ h1 {
 }
 
 .btnVoltar {
-  background-color: red;
   border: none;
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  color: rgb(255, 255, 255);
-  font-size: 15px;
+  color: red;
+  font-size: 25px;
   margin-right: 5px;
   margin-top: 20%;
   cursor: pointer;
