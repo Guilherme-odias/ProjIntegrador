@@ -42,6 +42,18 @@ body {
   gap: 20px;
 }
 
+#resultados-busca {
+  padding-top: 20px;
+  min-height: 500px;
+  /* Garante que o rodapé não suba demais */
+}
+
+.erro-busca h2 {
+  color: #999;
+  text-align: center;
+  margin-top: 50px;
+}
+
 .btn-nav,
 .btn-login {
   border: none;
@@ -362,4 +374,195 @@ input[type="radio"] {
   padding: 30px;
   text-align: center;
   margin-top: 60px;
+}
+
+/* --- ESTILOS DOS PAINÉIS DROPDOWN --- */
+.painel-dropdown {
+  background-color: #0b1120;
+  width: 100%;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.1);
+
+  /* CORREÇÃO DO BLOQUEIO DOS CLIQUES E VISIBILIDADE */
+  opacity: 0;
+  transform: translateY(-15px) scale(0.98);
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.painel-dropdown.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+  /* Libera o clique quando aberto */
+}
+
+.titulo-painel {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Painel Explorar */
+.banner-explorar-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.img-banner-explorar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.overlay-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(11, 17, 32, 0.9), rgba(11, 17, 32, 0.3));
+  z-index: 1;
+}
+
+.banner-explorar-container:hover .img-banner-explorar {
+  transform: scale(1.05);
+}
+
+.btn-mais-vendidos-banner {
+  position: relative;
+  z-index: 2;
+  background-color: #c1121f;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-mais-vendidos-banner:hover {
+  background-color: #e50914;
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Painel Categorias com Carrossel */
+.carousel-categorias-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+}
+
+.seta-cat {
+  background: rgba(229, 9, 20, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
+
+.seta-cat:hover {
+  background: #e50914;
+  box-shadow: 0 0 20px rgba(229, 9, 20, 1);
+  transform: scale(1.1);
+}
+
+.categorias-painel-grid {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 15px 5px;
+}
+
+.categorias-painel-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.card-cat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(20% - 12px);
+  min-width: 140px;
+  flex: 0 0 auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.img-cat-wrapper {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  position: relative;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.card-cat-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, filter 0.3s ease;
+  filter: brightness(0.8);
+}
+
+.card-cat-item:hover {
+  transform: translateY(-10px);
+}
+
+.card-cat-item:hover .img-cat-wrapper {
+  border-color: #e50914;
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.5);
+}
+
+.card-cat-item:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.card-cat-item span {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.card-cat-item:hover span {
+  color: #e50914;
 }

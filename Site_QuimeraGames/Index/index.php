@@ -17,7 +17,23 @@ try {
   $stmt_descontos->bindValue(':semana_plus', ($semana_atual + 2), PDO::PARAM_INT);
   $stmt_descontos->execute();
   $jogos_descontos = $stmt_descontos->fetchAll(PDO::FETCH_ASSOC);
+  $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
+  $stmt_categorias->execute();
+  $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
+  // Mapeamento atualizado com base no seu banco de dados
+  $nomes_categorias = [
+    1 => 'Ação',
+    2 => 'Aventura',
+    3 => 'Corrida',
+    4 => 'Estratégia',
+    5 => 'Esporte',
+    6 => 'FPS',
+    7 => 'Luta',
+    8 => 'Terror',
+    9 => 'Sobrevivência',
+    10 => 'RPG'
+  ];
 } catch (PDOException $e) {
   die("Erro na consulta ao banco de dados: " . $e->getMessage());
 }
@@ -58,15 +74,51 @@ try {
   </header>
 
   <div class="container">
-    <nav class="menu-busca">
-      <div class="busca-input">
-        <span>🔍</span>
-        <input type="text" placeholder="Pesquisar loja">
-      </div>
-      <button class="btn-dropdown">Explorar ▾</button>
-      <button class="btn-dropdown">Categorias ▾</button>
-    </nav>
 
+    <div class="menu-wrapper" style="position: relative; z-index: 1000;">
+      <nav class="menu-busca">
+        <div class="busca-input">
+          <span>🔍</span>
+          <input type="text" placeholder="Pesquisar loja">
+        </div>
+        <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
+        <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
+      </nav>
+
+      <div id="painel-explorar" class="painel-dropdown">
+        <div class="banner-explorar-container">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070" alt="Banner Explorar"
+            class="img-banner-explorar">
+          <div class="overlay-banner"></div>
+          <a href="/GitHub/Project_Quimera/Site_QuimeraGames/mais_vendidos/Index.php"
+            class="btn-mais-vendidos-banner">Mais vendidos</a>
+        </div>
+      </div>
+
+      <div id="painel-categorias" class="painel-dropdown">
+        <h3 class="titulo-painel">Gêneros Populares</h3>
+
+        <div class="carousel-categorias-wrapper">
+          <button class="seta-cat esquerda" id="seta-esquerda">&#10094;</button>
+
+          <div class="categorias-painel-grid" id="grid-categorias">
+            <?php foreach ($categorias_bd as $cat): ?>
+              <?php
+              $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros';
+              ?>
+              <div class="card-cat-item">
+                <div class="img-cat-wrapper">
+                  <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
+                </div>
+                <span><?php echo $nome_cat; ?></span>
+              </div>
+            <?php endforeach; ?>
+          </div>
+
+          <button class="seta-cat direita" id="seta-direita">&#10095;</button>
+        </div>
+      </div>
+    </div>
     <div class="carousel-container">
       <?php foreach ($jogos_carousel as $i => $radio): ?>
         <input type="radio" name="slide" id="s<?php echo $i + 1; ?>" <?php echo ($i == 0) ? 'checked' : ''; ?>>
@@ -151,40 +203,12 @@ try {
         <?php endforeach; ?>
       </div>
     </section>
+
   </div>
 
   <footer class="rodape">QuimeraGames &copy; 2026</footer>
 
-  <script>
-    function gerenciarTroca(index, elementoMin) {
-      const slideContainer = document.getElementById('slide' + index);
-      const imgPrincipal = document.getElementById('mainImg' + index);
-      const infoBox = document.getElementById('infoBox' + index);
-      const urlCapaOriginal = imgPrincipal.getAttribute('data-capa');
-
-      const urlTemporaria = imgPrincipal.src;
-      imgPrincipal.src = elementoMin.src;
-      elementoMin.src = urlTemporaria;
-
-      if (imgPrincipal.src === urlCapaOriginal) {
-        slideContainer.classList.remove('cenario-ativo');
-        infoBox.style.opacity = "1";
-        infoBox.style.visibility = "visible";
-      } else {
-        slideContainer.classList.add('cenario-ativo');
-        infoBox.style.opacity = "0";
-        infoBox.style.visibility = "hidden";
-      }
-    }
-
-    let currentSlide = 1;
-    setInterval(() => {
-      currentSlide++;
-      if (currentSlide > 7) currentSlide = 1;
-      const radio = document.getElementById('s' + currentSlide);
-      if (radio) radio.checked = true;
-    }, 7000);
-  </script>
+  <script src="Script.js" defer></script>
 </body>
 
 </html>
