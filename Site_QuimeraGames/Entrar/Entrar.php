@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../conexa.php");
 
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
@@ -22,10 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($dados && $senha == $dados["senha"]) {
-        header("Location: ../Index/index.php");
+
+        $_SESSION['usuario_nome'] = $dados['nome_user'];
+        $_SESSION['usuario_email'] = $dados['email'];
+
+        header("Location: ../Usuario_logado/usuariologado.php");
         exit;
+
     } else {
-        $erro = true;
+        header("Location: Entrar.php?erro=1"); // 🔥 REDIRECIONA
+        exit;
     }
 }
 ?>
@@ -65,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="topo-esquerda">
       <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
           src="../imagens/logo.png"></a>
+
     </div>
     <div class="topo-direita">
       <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
@@ -79,11 +87,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="conteudo">
 
     <!-- ERRO -->
-    <?php if ($erro): ?>
-        <div id="erro-msg" class="erro-msg">Usuário ou senha incorretos!</div>
-    <?php endif; ?>
+<?php if (isset($_GET['erro'])): ?>
+    <div id="erro-msg" class="erro-msg">
+        Usuário ou senha incorretos!
+    </div>
+<?php endif; ?>
 
-<form method="post">
+<script>
+if (window.location.search.includes("erro")) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+}
+</script>
+
+<form method="post" action="Entrar.php">
 
 <div class="div1">
 <label>Nome de usuário ou email:</label>

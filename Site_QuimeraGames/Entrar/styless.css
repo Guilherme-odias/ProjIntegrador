@@ -168,6 +168,23 @@ h1 {
   background: #e50914;
 }
 
+.erro-msg {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  background: #e50914;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+
+  z-index: 9999;
+  opacity: 1;
+  transition: 0.5s;
+}
+
 .conteudo {
   width: 320px;
   display: flex;

@@ -27,6 +27,8 @@ body {
   padding: 15px 5%;
   background: rgba(19, 32, 65, 0.95);
   backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1000;
 }
 
 .btn-icon {
@@ -425,7 +427,7 @@ input[type="radio"] {
   display: none;
   flex-direction: column;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  z-index: 999;
+  z-index: 9999;
 }
 
 .user-menu a {

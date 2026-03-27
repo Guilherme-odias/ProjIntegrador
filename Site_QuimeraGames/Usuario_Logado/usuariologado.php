@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// se não estiver logado, volta pro login
+if (!isset($_SESSION['usuario_nome'])) {
+    header("Location: ../Entrar/Entrar.php");
+    exit;
+}
+
 require_once '../conexa.php';
 
 if (!isset($pdo)) {
@@ -72,13 +80,15 @@ document.addEventListener("click", function(e) {
   <!-- usuario -->
   <div class="user-box" onclick="toggleMenu()">
   <img src="../imagens/aidento.jpg" class="user-img">
-  <span class="user-nome">usuario</span>
-
+<span class="user-nome">
+  <?php echo $_SESSION['usuario_nome']; ?>
+</span>
   <!-- dropdown -->
   <div id="user-menu" class="user-menu">
     <a href="#">Conta</a>
     <a href="#">Pagamento</a>
     <a href="#">Lista de desejo</a>
+    <a href="logout.php">Sair</a>
   </div>
 </div>
 
