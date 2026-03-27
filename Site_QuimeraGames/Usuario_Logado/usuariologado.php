@@ -33,6 +33,23 @@ try {
   <link rel="stylesheet" href="../Usuario_Logado/style.css">
 </head>
 
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("user-menu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+// fecha se clicar fora
+document.addEventListener("click", function(e) {
+  const userBox = document.querySelector(".user-box");
+  const menu = document.getElementById("user-menu");
+
+  if (!userBox.contains(e.target)) {
+    menu.style.display = "none";
+  }
+});
+</script>
+
 <body>
 
   <header class="topo">
@@ -53,10 +70,17 @@ try {
   </button>
 
   <!-- usuario -->
-  <div class="user-box">
-    <img src="../imagens/aidento.jpg" class="user-img">
-    <span class="user-nome" alt="...">Usuario</span>
+  <div class="user-box" onclick="toggleMenu()">
+  <img src="../imagens/aidento.jpg" class="user-img">
+  <span class="user-nome">usuario</span>
+
+  <!-- dropdown -->
+  <div id="user-menu" class="user-menu">
+    <a href="#">Conta</a>
+    <a href="#">Pagamento</a>
+    <a href="#">Lista de desejo</a>
   </div>
+</div>
 
   <!-- suporte -->
   <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"
