@@ -27,6 +27,7 @@
 
 <?php
 session_start();
+
 ?>
 
 <form method="POST">
@@ -38,15 +39,15 @@ session_start();
 
     <div class="parte_cima">
         <h2 class="verif_email">Verifique seu Email</h2>
-        <p class="verif_email_texto">Enviamos um código de verificação no email “xxx@gmail.com”</p>
+        <p class="verif_email_texto">Enviamos um código de verificação no email</p>
     </div>
 
             <div class="butaodumeio">
                 <input type="text" name="codigo" id="codigo" class="codigo"><br>
 
-                <button type="submit" class="verificarr">Verificar</but ton>
+                <button type="submit"  name="verificar"class="verificarr">Verificar</but ton>
             
-                <button class="reenviar">Reenviar o código</button>
+                <button class="reenviar" type="submit" name="reenviar">Reenviar o código</button>
             </div>
             
         </div>
@@ -59,9 +60,8 @@ session_start();
     </div>
 </form>
 <?php
-
-if($_POST){
-
+if(isset($_POST['verificar'])){
+    
     $codigoDigitado = $_POST['codigo'];
 
     if($codigoDigitado == $_SESSION['codigo_verificacao']){
@@ -87,10 +87,49 @@ if($_POST){
 
         echo "Cadastro realizado com sucesso!";
         
-    } else {
+    } 
+        else {
         echo "Código inválido!";
-    }
+        }
+
+        
 }
+if(isset($_POST['reenviar'])){
+    $email = $_SESSION['email_verificacao'] ?? '';
+        $codigo = rand(100000, 999999);
+        $_SESSION['codigo_verificacao'] = $codigo;
+
+        require_once '../PHPMailer/src/PHPMailer.php';
+        require_once '../PHPMailer/src/SMTP.php';
+        require_once '../PHPMailer/src/Exception.php';
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'quimeraggames@gmail.com';
+            $mail->Password = 'okvj nqpq jgqk cexh';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('quimeraggames@gmail.com', 'Quimera');
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Verification code';
+            $mail->Body = "
+                <h2>Bem-vindo ao Quimera 🚀</h2>
+                <p>Seu código de verificação é:</p>
+                <h1 style='color:red;'>$codigo</h1>
+            ";
+            }
+            catch (Exception $e) {
+            echo "Erro: {$mail->ErrorInfo}";
+            }  
+    
+        }
 ?>
 </body>
 
