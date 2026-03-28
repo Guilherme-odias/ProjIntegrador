@@ -9,13 +9,7 @@
 </head>
 
 <body>
-<?php 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-require 'PHPMailer/src/Exception.php';
-?>
+
 <div class="container">
 
     <form class="card" method="POST" onsubmit="return validarForm()">
@@ -56,7 +50,7 @@ require 'PHPMailer/src/Exception.php';
             <input type="checkbox" onclick="mostrarSenha()"> Mostrar senha
         </div>
 
-        <button class="btn" id="btn" name="acao" value="cadastrar">Cadastrar</button>
+        <button class="btn" id="btn" name="acao"  onclick="this.disabled=true; value="cadastrar">Cadastrar</button>
 
         <div class="footer">
             <button type="button" class="voltar" onclick="voltarPagina()">←</button>
@@ -72,26 +66,32 @@ require_once '../conexa.php';
 
 
 if($_POST) {
+$email = $_POST['email'] ?? '';
+$nome  = $_POST['nome'] ?? '';
+$user  = $_POST['user'] ?? '';
+$cpf   = $_POST['cpf'] ?? '';
+$senha = $_POST['senha'] ?? '';
 
 // Validação Email
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE email = ?");
 $stmt->execute([$email]);
 if($stmt->fetchColumn() > 0){
-    echo "Email já cadastrado!";
+    echo "<script>alert('Email já cadastrado!');</script>";
+    
     exit;
 }
 // Validação User
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE nome_user = ?");
 $stmt->execute([$user]);
 if($stmt->fetchColumn() > 0){
-    echo "Usuário já existe!";
+    echo "<script>alert('Usuário já existe!');</script>";
     exit;
 }
 // Validação CPF
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE cpf = ?");
 $stmt->execute([$cpf]);
 if($stmt->fetchColumn() > 0){
-    echo "CPF já cadastrado!";
+    echo "<script>alert('CPF já cadastrado!');</script>";
     exit;
 }
 else {
@@ -110,8 +110,14 @@ $_SESSION['cadastro'] = [
 ];
 
 $_SESSION['codigo_verificacao'] = $codigo;
+$_SESSION['email_verificacao'] = $email;
 
-$mail = new PHPMailer(true);
+
+require_once '../PHPMailer/src/PHPMailer.php';
+require_once '../PHPMailer/src/SMTP.php';
+require_once '../PHPMailer/src/Exception.php';
+
+$mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
 try {
     $mail->isSMTP();
@@ -126,7 +132,7 @@ try {
     $mail->addAddress($email);
 
     $mail->isHTML(true);
-    $mail->Subject = 'Código de verificação';
+    $mail->Subject = 'Verification code';
     $mail->Body = "
         <h2>Bem-vindo ao Quimera 🚀</h2>
         <p>Seu código de verificação é:</p>
@@ -135,14 +141,17 @@ try {
 
     $mail->send();
 
+    header("Location: ../Verificar_email/index.php");
+exit;
+
 } catch (Exception $e) {
     echo "Erro: {$mail->ErrorInfo}";
 }
-// REDIRECIONAR
-header("Location: ../Verificar_email/index.php");
-exit;
+
+
 }
 }
+
 ?>
 
 <script src="script.js"></script>

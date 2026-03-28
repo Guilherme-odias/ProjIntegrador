@@ -9,7 +9,7 @@ let check = document.getElementById("verifica");
 
 function mostrarSenha() {
 
-    if (senha.type === "password") {
+    if (senha.type == "password") {
         senha.type = "text";
         confirma.type = "text";
     } else {
