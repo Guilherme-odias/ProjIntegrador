@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// se não estiver logado, volta pro login
+if (!isset($_SESSION['usuario_nome'])) {
+    header("Location: ../Entrar/Entrar.php");
+    exit;
+}
+
 require_once '../conexa.php';
 
 if (!isset($pdo)) {
@@ -17,23 +25,7 @@ try {
   $stmt_descontos->bindValue(':semana_plus', ($semana_atual + 2), PDO::PARAM_INT);
   $stmt_descontos->execute();
   $jogos_descontos = $stmt_descontos->fetchAll(PDO::FETCH_ASSOC);
-  $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
-  $stmt_categorias->execute();
-  $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
-  // Mapeamento atualizado com base no seu banco de dados
-  $nomes_categorias = [
-    1 => 'Ação',
-    2 => 'Aventura',
-    3 => 'Corrida',
-    4 => 'Estratégia',
-    5 => 'Esporte',
-    6 => 'FPS',
-    7 => 'Luta',
-    8 => 'Terror',
-    9 => 'Sobrevivência',
-    10 => 'RPG'
-  ];
 } catch (PDOException $e) {
   die("Erro na consulta ao banco de dados: " . $e->getMessage());
 }
@@ -45,80 +37,80 @@ try {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QuimeraGames</title>
-  <link rel="stylesheet" href="../Css/stylles.css">
+  <title>QuimeraGames - logado</title>
+  <link rel="stylesheet" href="../Usuario_Logado/style.css">
 </head>
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("user-menu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+// fecha se clicar fora
+document.addEventListener("click", function(e) {
+  const userBox = document.querySelector(".user-box");
+  const menu = document.getElementById("user-menu");
+
+  if (!userBox.contains(e.target)) {
+    menu.style.display = "none";
+  }
+});
+</script>
 
 <body>
 
   <header class="topo">
     <div class="topo-esquerda">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php">
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
         <img class="logo" src="../imagens/logo.png" alt="Logo">
       </a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"
         style="text-decoration: none;">
         <button class="btn-nav active">Loja</button>
       </a>
     </div>
     <div class="topo-direita">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Entrar/Entrar.php"
-        style="text-decoration: none;">
-        <button class="btn-login">Entrar</button>
-      </a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Sac/Suporte.php"
-        style="text-decoration: none;">
-        <button class="btn-login">Suporte</button>
-      </a>
-    </div>
+
+  <!-- carrinho -->
+  <button class="btn-icon" >
+    🛒
+  </button>
+
+  <!-- usuario -->
+  <div class="user-box" onclick="toggleMenu()">
+  <img src="../imagens/aidento.jpg" class="user-img">
+<span class="user-nome">
+  <?php echo $_SESSION['usuario_nome']; ?>
+</span>
+  <!-- dropdown -->
+  <div id="user-menu" class="user-menu">
+    <a href="#">Conta</a>
+    <a href="#">Pagamento</a>
+    <a href="#">Lista de desejo</a>
+    <a href="logout.php">Sair</a>
+  </div>
+</div>
+
+  <!-- suporte -->
+  <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"
+    style="text-decoration: none;">
+    <button class="btn-login">Suporte</button>
+  </a>
+
+</div>
   </header>
 
   <div class="container">
-
-    <div class="menu-wrapper" style="position: relative; z-index: 1000;">
-      <nav class="menu-busca">
-        <div class="busca-input">
-          <span>🔍</span>
-          <input type="text" placeholder="Pesquisar loja">
-        </div>
-        <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
-        <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
-      </nav>
-
-      <div id="painel-explorar" class="painel-dropdown">
-        <div class="banner-explorar-container">
-          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070" alt="Banner Explorar"
-            class="img-banner-explorar">
-          <div class="overlay-banner"></div>
-          <a href="/GitHub/Project_Quimera/Site_QuimeraGames/mais_vendidos/Index.php"
-            class="btn-mais-vendidos-banner">Mais vendidos</a>
-        </div>
+    <nav class="menu-busca">
+      <div class="busca-input">
+        <span>🔍</span>
+        <input type="text" placeholder="Pesquisar loja">
       </div>
+      <button class="btn-dropdown">Explorar ▾</button>
+      <button class="btn-dropdown">Categorias ▾</button>
+    </nav>
 
-      <div id="painel-categorias" class="painel-dropdown">
-        <h3 class="titulo-painel">Gêneros Populares</h3>
-
-        <div class="carousel-categorias-wrapper">
-          <button class="seta-cat esquerda" id="seta-esquerda">&#10094;</button>
-
-          <div class="categorias-painel-grid" id="grid-categorias">
-            <?php foreach ($categorias_bd as $cat): ?>
-              <?php
-              $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros';
-              ?>
-              <div class="card-cat-item">
-                <div class="img-cat-wrapper">
-                  <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
-                </div>
-                <span><?php echo $nome_cat; ?></span>
-              </div>
-            <?php endforeach; ?>
-          </div>
-
-          <button class="seta-cat direita" id="seta-direita">&#10095;</button>
-        </div>
-      </div>
-    </div>
     <div class="carousel-container">
       <?php foreach ($jogos_carousel as $i => $radio): ?>
         <input type="radio" name="slide" id="s<?php echo $i + 1; ?>" <?php echo ($i == 0) ? 'checked' : ''; ?>>
@@ -138,15 +130,12 @@ try {
                 <h2 class="titulo-jogo"><?php echo htmlspecialchars($jogo['titulo']); ?></h2>
                 <p class="descricao-jogo"><?php echo mb_strimwidth($jogo['informacoes'], 0, 180, "..."); ?></p>
 
-                <div class="card-plataforma" style="margin-bottom: 20px;">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
-                  <span>Windows</span>
-                </div>
-
                 <div class="precos-container">
                   <?php if ($jogo['Valor'] > 0): ?>
+                    <span class="badge-desconto">-10%</span>
                     <div class="col-precos">
-                      <span class="v-novo">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
+                      <span class="v-antigo">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
+                      <span class="v-novo">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
                     </div>
                   <?php else: ?>
                     <span class="v-gratis">Gratuito</span>
@@ -203,12 +192,40 @@ try {
         <?php endforeach; ?>
       </div>
     </section>
-
   </div>
 
   <footer class="rodape">QuimeraGames &copy; 2026</footer>
 
-  <script src="Script.js" defer></script>
+  <script>
+    function gerenciarTroca(index, elementoMin) {
+      const slideContainer = document.getElementById('slide' + index);
+      const imgPrincipal = document.getElementById('mainImg' + index);
+      const infoBox = document.getElementById('infoBox' + index);
+      const urlCapaOriginal = imgPrincipal.getAttribute('data-capa');
+
+      const urlTemporaria = imgPrincipal.src;
+      imgPrincipal.src = elementoMin.src;
+      elementoMin.src = urlTemporaria;
+
+      if (imgPrincipal.src === urlCapaOriginal) {
+        slideContainer.classList.remove('cenario-ativo');
+        infoBox.style.opacity = "1";
+        infoBox.style.visibility = "visible";
+      } else {
+        slideContainer.classList.add('cenario-ativo');
+        infoBox.style.opacity = "0";
+        infoBox.style.visibility = "hidden";
+      }
+    }
+
+    let currentSlide = 1;
+    setInterval(() => {
+      currentSlide++;
+      if (currentSlide > 7) currentSlide = 1;
+      const radio = document.getElementById('s' + currentSlide);
+      if (radio) radio.checked = true;
+    }, 7000);
+  </script>
 </body>
 
 </html>

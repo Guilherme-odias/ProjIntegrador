@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suporte ao Cliente</title>
     <link rel="stylesheet" href="Suporte.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -27,27 +28,28 @@
 
             <div>
                 <label class="label">CPF</label>
-                <input type="number" name="cpf" id="cpf" class="inputCpf"><br>
+                <input type="text" name="cpf" id="cpf" class="inputCpf" maxlength="14"><br>
             </div>
 
             
             <label for="freclamacao" class="label"> Escreva a reclamação/sugestão no campo abaixo: </label><br>
             <div class="inputContainer">
-                <input type="text" name="reclamacao" id="reclamacao" class="inputReclamacao">
+                <textarea name="reclamacao" id="reclamacao" class="inputReclamacao"></textarea>
                 <button id="bntContinuar" class="btnEnviar">➤</button>
             </div>
 
         </div>
 
         <footer class="rodape">
-            <button class="btnVoltar" href="">❮</button>
+            
+            <a class="btnVoltar" href="../Index/index.php">
+                <i class="fa-solid fa-circle-arrow-left"></i>
+            </a>
+                
             <label class="labelVoltar"> Voltar </label>
         </footer>
 
     </div>
-
-    
-
 
 
 </body>

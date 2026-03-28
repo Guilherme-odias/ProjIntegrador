@@ -27,7 +27,45 @@ body {
   padding: 15px 5%;
   background: rgba(19, 32, 65, 0.95);
   backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1000;
 }
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+}
+
+.btn-icon:hover {
+  transform: scale(1.2);
+}
+
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.user-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-nome {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
 
 .logo {
   width: 100px;
@@ -40,18 +78,6 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
-}
-
-#resultados-busca {
-  padding-top: 20px;
-  min-height: 500px;
-  /* Garante que o rodapé não suba demais */
-}
-
-.erro-busca h2 {
-  color: #999;
-  text-align: center;
-  margin-top: 50px;
 }
 
 .btn-nav,
@@ -68,6 +94,10 @@ body {
 
 .btn-nav.active {
   background: #e50914;
+}
+
+.btn-login:hover {
+    background: #e50914;
 }
 
 .menu-busca {
@@ -161,21 +191,20 @@ body {
 }
 
 .poster-box {
-  width: 45%;
-  height: 150%;
+  width: 50%;
+  height: 100%;
   transition: 0.4s;
 }
 
 .poster-box img {
   width: 100% !important;
-  height: 70% !important;
+  height: 100% !important;
   object-fit: cover;
   display: block;
-  object-position: top center;
 }
 
 .info-box {
-  width: 55%;
+  width: 50%;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -243,14 +272,9 @@ body {
 
 .badge-desconto {
   background: #0074e4;
-  padding: 5px 10px;
-  border-radius: 4px;
+  padding: 10px 15px;
+  border-radius: 8px;
   font-weight: bold;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 5;
-  font-size: 12px;
 }
 
 .v-antigo {
@@ -331,7 +355,7 @@ body {
 .thumb-wrapper {
   position: relative;
   height: 280px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .thumb-wrapper img {
@@ -376,193 +400,45 @@ input[type="radio"] {
   margin-top: 60px;
 }
 
-/* --- ESTILOS DOS PAINÉIS DROPDOWN --- */
-.painel-dropdown {
-  background-color: #0b1120;
-  width: 100%;
-  padding: 25px;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  z-index: 1000;
-  box-sizing: border-box;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.1);
-
-  /* CORREÇÃO DO BLOQUEIO DOS CLIQUES E VISIBILIDADE */
-  opacity: 0;
-  transform: translateY(-15px) scale(0.98);
-  visibility: hidden;
-  pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.painel-dropdown.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  visibility: visible;
-  pointer-events: auto;
-  /* Libera o clique quando aberto */
-}
-
-.titulo-painel {
-  color: white;
-  margin-bottom: 20px;
-  font-size: 1.3rem;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Painel Explorar */
-.banner-explorar-container {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  border-radius: 12px;
-  overflow: hidden;
+.user-box {
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.img-banner-explorar {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.overlay-banner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(11, 17, 32, 0.9), rgba(11, 17, 32, 0.3));
-  z-index: 1;
-}
-
-.banner-explorar-container:hover .img-banner-explorar {
-  transform: scale(1.05);
-}
-
-.btn-mais-vendidos-banner {
-  position: relative;
-  z-index: 2;
-  background-color: #c1121f;
-  color: white;
-  padding: 15px 40px;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: 800;
-  text-decoration: none;
-  text-transform: uppercase;
-  box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
-  transition: all 0.3s ease;
-}
-
-.btn-mais-vendidos-banner:hover {
-  background-color: #e50914;
-  box-shadow: 0 0 25px rgba(229, 9, 20, 0.8);
-  transform: translateY(-2px);
-}
-
-/* Painel Categorias com Carrossel */
-.carousel-categorias-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  gap: 10px;
-}
-
-.seta-cat {
-  background: rgba(229, 9, 20, 0.8);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+  position: relative;
+  transition: 0.3s;
 }
 
-.seta-cat:hover {
-  background: #e50914;
-  box-shadow: 0 0 20px rgba(229, 9, 20, 1);
-  transform: scale(1.1);
+.user-box:active {
+  background: rgba(255, 255, 255, 0.247);
 }
 
-.categorias-painel-grid {
-  display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 15px 5px;
-}
-
-.categorias-painel-grid::-webkit-scrollbar {
-  display: none;
-}
-
-.card-cat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: calc(20% - 12px);
-  min-width: 140px;
-  flex: 0 0 auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.img-cat-wrapper {
-  width: 100%;
+.user-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: #13192b;
   border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 12px;
-  position: relative;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
+  padding: 10px 0;
+  width: 160px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 9999;
 }
 
-.card-cat-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease, filter 0.3s ease;
-  filter: brightness(0.8);
-}
-
-.card-cat-item:hover {
-  transform: translateY(-10px);
-}
-
-.card-cat-item:hover .img-cat-wrapper {
-  border-color: #e50914;
-  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.5);
-}
-
-.card-cat-item:hover img {
-  transform: scale(1.1);
-  filter: brightness(1.1);
-}
-
-.card-cat-item span {
+.user-menu a {
+  padding: 10px 15px;
   color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: color 0.3s ease;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+  text-align: center;
 }
 
-.card-cat-item:hover span {
-  color: #e50914;
+.user-menu a:hover {
+  background: #1f2a44;
 }
