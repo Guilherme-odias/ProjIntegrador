@@ -85,7 +85,7 @@ document.addEventListener("click", function(e) {
 </span>
   <!-- dropdown -->
   <div id="user-menu" class="user-menu">
-    <a href="#">Conta</a>
+    <a href="../Conta/conta.php">Conta</a>
     <a href="#">Pagamento</a>
     <a href="#">Lista de desejo</a>
     <a href="logout.php">Sair</a>
