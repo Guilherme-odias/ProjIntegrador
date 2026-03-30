@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0b1320;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+}
+
+/* HEADER IGUAL AO LOGADO */
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  background: rgba(19, 32, 65, 0.95);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1000;
+}
+
+.logo {
+  width: 100px;
+  border-radius: 12px;
+}
+
+.topo-esquerda,
+.topo-direita {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-nav,
+.btn-login {
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+}
+
+.btn-nav.active,
+.btn-login:hover {
+  background: #e50914;
+}
+
+/* carrinho */
+.btn-icon {
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-icon:hover {
+    transform: scale(1.4);
+    transition: 0.3s;
+}
+
+/* usuario */
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+}
+
+.user-box:hover {
+  background: rgba(255, 255, 255, 0.171);
+}
+
+.user-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.user-nome {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* dropdown */
+.user-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: #13192b;
+  border-radius: 10px;
+  width: 160px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 9999;
+}
+
+.user-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
+
+.user-menu a:hover {
+  background: #1f2a44;
+}
+
+/* CONTEUDO */
+.container {
+  display: flex;
+  gap: 40px;
+  padding: 50px;
+}
+
+.card {
+  background: #132041;
+  padding: 30px;
+  border-radius: 15px;
+  width: 400px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border-radius: 8px;
+  border: none;
+}
+
+button.salvar {
+  background: #e50914;
+  border: none;
+  padding: 12px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
