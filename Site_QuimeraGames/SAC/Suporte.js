@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // ==========================
             // ENVIO PARA O PHP
             // ==========================
-            fetch('enviar_suporte.php', {
+            fetch('enviar.php', {
                 method: 'POST',
                 body: dados
             })
