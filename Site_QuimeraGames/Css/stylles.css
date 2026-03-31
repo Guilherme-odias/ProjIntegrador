@@ -27,6 +27,10 @@ body {
   padding: 15px 5%;
   background: rgba(19, 32, 65, 0.95);
   backdrop-filter: blur(10px);
+
+  /* Novas regras adicionadas aqui: */
+  position: relative;
+  z-index: 1001;
 }
 
 .logo {
@@ -403,7 +407,12 @@ input[type="radio"] {
   transform: translateY(0) scale(1);
   visibility: visible;
   pointer-events: auto;
-  /* Libera o clique quando aberto */
+
+  /* Novo Brilho: 3 camadas de sombra vermelha e uma borda leve */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(229, 9, 20, 0.3),
+    0 0 80px rgba(229, 9, 20, 0.15);
+  border: 1px solid rgba(229, 9, 20, 0.4);
 }
 
 .titulo-painel {
@@ -484,6 +493,8 @@ input[type="radio"] {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
+  /* Impede o botão de ser esmagado, mantendo-o redondo */
   font-size: 18px;
   cursor: pointer;
   display: flex;
@@ -515,9 +526,11 @@ input[type="radio"] {
 .card-cat-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  /* Texto alinhado à esquerda como na sua foto */
   width: calc(20% - 12px);
-  min-width: 140px;
+  min-width: 180px;
+  /* Aumenta o tamanho geral da miniatura */
   flex: 0 0 auto;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -525,30 +538,33 @@ input[type="radio"] {
 
 .img-cat-wrapper {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 6px;
+  /* Cantos levemente arredondados */
   overflow: hidden;
   margin-bottom: 12px;
   position: relative;
-  border: 2px solid transparent;
   transition: all 0.3s ease;
 }
 
 .card-cat-item img {
   width: 100%;
-  height: 200px;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  /* O segredo do formato vertical da sua foto */
   object-fit: cover;
   display: block;
   transition: transform 0.5s ease, filter 0.3s ease;
-  filter: brightness(0.8);
+  filter: brightness(0.9);
 }
 
 .card-cat-item:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
 }
 
 .card-cat-item:hover .img-cat-wrapper {
-  border-color: #e50914;
-  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.5);
+  transform: scale(1.05);
+  /* Dá um leve zoom na imagem */
+  filter: brightness(1.1);
 }
 
 .card-cat-item:hover img {
@@ -557,12 +573,38 @@ input[type="radio"] {
 }
 
 .card-cat-item span {
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
+  color: #e5e5e5;
+  font-size: 1.15rem;
+  /* Texto maior */
+  font-weight: 500;
+  /* Mais limpo */
   transition: color 0.3s ease;
+  padding-left: 2px;
 }
 
 .card-cat-item:hover span {
-  color: #e50914;
+  color: white;
+}
+
+/* 1. O Overlay que vai escurecer a página inteira */
+.fundo-escuro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  /* Escurece 75% o fundo */
+  backdrop-filter: blur(5px);
+  /* Dá um desfoque moderno nos jogos de trás */
+  z-index: 900;
+  /* Fica logo atrás do menu (que é 1000) */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.fundo-escuro.ativo {
+  opacity: 1;
+  visibility: visible;
 }

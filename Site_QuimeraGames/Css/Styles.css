@@ -1,0 +1,249 @@
+/* =========================================
+   TELA DO JOGO INDIVIDUAL (index_jogo.php)
+========================================= */
+.game-page-container {
+  padding-top: 40px;
+}
+
+.game-page-title {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.game-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* --- Coluna Esquerda --- */
+.game-left-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.main-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.media-thumbnails {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.media-thumbnails img {
+  width: calc(33.333% - 10px);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 0.5;
+}
+
+.media-thumbnails img:hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.game-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 40px;
+}
+
+/* --- Avaliações e Estrelas Felizes --- */
+.game-rating {
+  margin-bottom: 40px;
+}
+
+.game-rating h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.rating-sub {
+  font-size: 0.95rem;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.stars-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nota-numero {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.happy-stars {
+  display: flex;
+  gap: 5px;
+}
+
+.star-icon {
+  font-size: 2rem;
+  transition: 0.3s;
+  cursor: pointer;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.star-icon.active {
+  color: #f1c40f;
+  filter: drop-shadow(0 0 8px rgba(241, 196, 15, 0.5));
+}
+
+.star-icon.inactive {
+  color: #444;
+  filter: grayscale(100%);
+}
+
+.star-icon:hover {
+  transform: scale(1.2) rotate(-10deg);
+}
+
+/* --- Requisitos do Sistema --- */
+.system-requirements h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.req-box {
+  background: #13192b;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.req-icon {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.req-text-block p {
+  font-size: 0.95rem;
+  color: #bbb;
+  line-height: 1.8;
+}
+
+/* --- Coluna Direita --- */
+.game-right-col {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+.side-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.buy-panel {
+  margin-bottom: 25px;
+}
+
+.price-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.badge-desconto-side {
+  background: #0074e4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.price-values {
+  display: flex;
+  flex-direction: column;
+}
+
+.v-old-side {
+  text-decoration: line-through;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.v-new-side {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.btn-action {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  transition: 0.3s;
+}
+
+.btn-buy {
+  background: #c1121f;
+}
+
+.btn-buy:hover { background: #e50914; transform: translateY(-2px); }
+.btn-action:not(.btn-buy):hover { background: rgba(255, 255, 255, 0.15); }
+
+.steam-aviso {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.info-table {
+  background: #13192b;
+  border-radius: 8px;
+  padding: 15px 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row span:first-child {
+  color: #888;
+}
+
+.info-row span:last-child {
+  color: #ddd;
+  text-align: right;
+  max-width: 60%;
+}

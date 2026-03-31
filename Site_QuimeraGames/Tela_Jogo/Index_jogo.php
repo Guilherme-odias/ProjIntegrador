@@ -1,13 +1,15 @@
 <?php
 require_once '../conexa.php';
 
+// Pega o ID da URL
 $id_jogo = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 if ($id_jogo === 0) {
-    die("<h2 style='color:white; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado. Volte para a loja.</h2>");
+    die("<h2 style='color:white; text-align:center; margin-top:50px;'>Jogo não encontrado. Volte para a loja.</h2>");
 }
 
 try {
+    // Busca as informações do jogo E cruza com a tabela de categorias para pegar o nome
     $query = "SELECT j.*, c.tipo_categoria 
               FROM jogos j 
               LEFT JOIN categorias c ON j.id_categoria = c.id_categoria 
@@ -19,17 +21,24 @@ try {
     $jogo = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$jogo) {
-        die("<h2 style='color:white; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado no banco de dados.</h2>");
+        die("<h2 style='color:white; text-align:center; margin-top:50px;'>Jogo não encontrado no banco de dados.</h2>");
     }
 
+    // Tratamento para transformar o link do Drive em link de Embed (Iframe)
     $trailer_url = $jogo['Trailers'];
     if (strpos($trailer_url, 'drive.google.com/file/d/') !== false) {
+        // Troca o /view por /preview para funcionar no iframe
         $trailer_url = preg_replace('/\/view.*$/', '/preview', $trailer_url);
     }
 
+    // Lógica simples de desconto (Ajuste se precisar integrar com a lógica semanal)
     $valor_original = $jogo['Valor'];
-    $tem_desconto = false; // Mude para true se quiser forçar desconto
+    $tem_desconto = false;
     $valor_venda = $valor_original;
+
+    // Se quiser aplicar 10% de desconto fictício para testar o visual, descomente as linhas abaixo:
+    // $tem_desconto = true;
+    // $valor_venda = $valor_original * 0.90;
 
 } catch (PDOException $e) {
     die("Erro na consulta: " . $e->getMessage());
@@ -43,18 +52,19 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($jogo['titulo']); ?> - QuimeraGames</title>
-
     <link rel="stylesheet" href="../Css/stylles.css">
+
+    <link rel="stylesheet" href="../Css/styles.css">
 </head>
 
 <body>
 
     <header class="topo">
         <div class="topo-esquerda">
-            <a href="../Index/index.php">
+            <a href="index.php">
                 <img class="logo" src="../imagens/logo.png" alt="Logo">
             </a>
-            <a href="../Index/index.php" style="text-decoration: none;">
+            <a href="index.php" style="text-decoration: none;">
                 <button class="btn-nav active">Loja</button>
             </a>
         </div>
@@ -168,8 +178,6 @@ try {
     </div>
 
     <footer class="rodape">QuimeraGames &copy; 2026</footer>
-
-    <script src="script_jogo.js" defer></script>
 </body>
 
 </html>

@@ -81,20 +81,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCategorias = document.getElementById('btn-categorias');
     const painelExplorar = document.getElementById('painel-explorar');
     const painelCategorias = document.getElementById('painel-categorias');
+    const overlay = document.getElementById('overlay-escuro'); // Puxando o overlay
+
+    // Função nova para checar se algum menu está aberto
+    function atualizarOverlay() {
+        if (painelExplorar.classList.contains('show') || painelCategorias.classList.contains('show')) {
+            overlay.classList.add('ativo');
+        } else {
+            overlay.classList.remove('ativo');
+        }
+    }
 
     // Função para alternar os painéis
     function togglePainel(painelAtual, painelOutro) {
-        // Se o outro estiver aberto, fecha
         if (painelOutro.classList.contains('show')) {
             painelOutro.classList.remove('show');
         }
-        // Alterna o atual (abre se estiver fechado, fecha se estiver aberto)
         painelAtual.classList.toggle('show');
+        atualizarOverlay(); // Chama a tela escura
     }
 
     if (btnExplorar && painelExplorar) {
         btnExplorar.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita que clique feche imediatamente
+            e.stopPropagation();
             togglePainel(painelExplorar, painelCategorias);
         });
     }
@@ -106,32 +115,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fecha os painéis se clicar fora deles (no resto do site)
+    // Fecha os painéis se clicar fora deles (inclusive clicando no fundo escuro)
     document.addEventListener('click', (e) => {
+        let clicouFora = false;
         if (!painelExplorar.contains(e.target) && e.target !== btnExplorar) {
             painelExplorar.classList.remove('show');
+            clicouFora = true;
         }
         if (!painelCategorias.contains(e.target) && e.target !== btnCategorias) {
             painelCategorias.classList.remove('show');
+            clicouFora = true;
         }
 
-        const gridCategorias = document.getElementById('grid-categorias');
-        const setaEsquerda = document.getElementById('seta-esquerda');
-        const setaDireita = document.getElementById('seta-direita');
-
-        if (gridCategorias && setaEsquerda && setaDireita) {
-            // Quantidade de pixels para rolar a cada clique (Aproximadamente 3 cards)
-            const scrollAmount = 450;
-
-            setaEsquerda.addEventListener('click', (e) => {
-                e.preventDefault(); // Evita recarregar a tela
-                gridCategorias.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            });
-
-            setaDireita.addEventListener('click', (e) => {
-                e.preventDefault();
-                gridCategorias.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            });
+        if (clicouFora) {
+            atualizarOverlay(); // Remove a tela escura se fechou
         }
-    });
+    }); // <-- FECHA O EVENTO DE CLIQUE DO DOCUMENTO AQUI
+
+    // --- LÓGICA DAS SETAS DE CATEGORIAS ---
+    const gridCategorias = document.getElementById('grid-categorias');
+    const setaEsquerda = document.getElementById('seta-esquerda');
+    const setaDireita = document.getElementById('seta-direita');
+
+    if (gridCategorias && setaEsquerda && setaDireita) {
+        // Quantidade de pixels para rolar a cada clique
+        const scrollAmount = 450;
+
+        setaEsquerda.addEventListener('click', (e) => {
+            e.preventDefault();
+            gridCategorias.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        setaDireita.addEventListener('click', (e) => {
+            e.preventDefault();
+            gridCategorias.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    }
 });
