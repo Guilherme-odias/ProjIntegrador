@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('overlay-escuro');
 
     function atualizarOverlay() {
-        if ((painelExplorar && painelExplorar.classList.contains('show')) || 
+        if ((painelExplorar && painelExplorar.classList.contains('show')) ||
             (painelCategorias && painelCategorias.classList.contains('show'))) {
-            if(overlay) overlay.classList.add('ativo');
+            if (overlay) overlay.classList.add('ativo');
         } else {
-            if(overlay) overlay.classList.remove('ativo');
+            if (overlay) overlay.classList.remove('ativo');
         }
     }
 
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (painelOutro && painelOutro.classList.contains('show')) {
             painelOutro.classList.remove('show');
         }
-        if(painelAtual) painelAtual.classList.toggle('show');
+        if (painelAtual) painelAtual.classList.toggle('show');
         atualizarOverlay();
     }
 
@@ -54,29 +54,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =======================================================
-    // 2. LÓGICA DA GALERIA (Miniaturas e Vídeo)
+    // 2. LÓGICA DA GALERIA (Troca sucessiva igual carrossel)
     // =======================================================
     const painelMidia = document.getElementById('painel-midia');
-    const btnVoltarVideo = document.getElementById('btn-voltar-video');
-    const thumbItems = document.querySelectorAll('.thumb-item');
-    
-    // Salva o HTML original (que contém o iframe do trailer)
-    let iframeOriginalHTML = painelMidia ? painelMidia.innerHTML : '';
+    const galeriaThumbnails = document.getElementById('galeria-thumbnails');
 
-    // Quando clica numa imagem da miniatura
-    thumbItems.forEach(thumb => {
-        thumb.addEventListener('click', function() {
-            if(painelMidia) {
-                // Joga a imagem clicada para a tela principal
-                painelMidia.innerHTML = `<img src="${this.src}" style="width:100%; height:100%; object-fit:contain; background:#000;">`;
+    if (painelMidia && galeriaThumbnails) {
+        galeriaThumbnails.addEventListener('click', function (e) {
+            // Verifica o que foi clicado (a imagem ou o botão vermelho do trailer)
+            const clickedThumb = e.target.closest('.thumb-item, .thumb-video-btn');
+            if (!clickedThumb) return;
+
+            // 1. Descobre o que está no Painel Principal agora
+            const mainIframe = painelMidia.querySelector('iframe');
+            const mainImg = painelMidia.querySelector('img');
+
+            let mainType = mainIframe ? 'video' : 'imagem';
+            let mainSrc = mainIframe ? mainIframe.src : mainImg.src;
+
+            // 2. Descobre o que acabou de ser clicado na Miniatura
+            let clickedType = clickedThumb.classList.contains('thumb-video-btn') ? 'video' : 'imagem';
+            let clickedSrc = clickedType === 'video' ? clickedThumb.getAttribute('data-src') : clickedThumb.src;
+
+            // 3. Joga o conteúdo Clicado para o Painel Principal
+            if (clickedType === 'video') {
+                painelMidia.innerHTML = `<iframe src="${clickedSrc}" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+            } else {
+                painelMidia.innerHTML = `<img src="${clickedSrc}" style="width:100%; height:100%; object-fit:contain; background:#000;">`;
             }
-        });
-    });
 
-    // Quando clica no botão "Ver Trailer", restaura o iframe
-    if (btnVoltarVideo) {
-        btnVoltarVideo.addEventListener('click', function() {
-            painelMidia.innerHTML = iframeOriginalHTML;
+            // 4. Joga o que estava no Painel Principal para o lugar da Miniatura (SWAP)
+            if (mainType === 'video') {
+                const btnVideo = document.createElement('div');
+                btnVideo.className = 'thumb-video-btn';
+                btnVideo.setAttribute('data-src', mainSrc); // Salva o link do drive no botão
+                btnVideo.innerHTML = '<span>▶ Ver Trailer</span>';
+                clickedThumb.replaceWith(btnVideo);
+            } else {
+                const newImg = document.createElement('img');
+                newImg.className = 'thumb-item';
+                newImg.src = mainSrc;
+                clickedThumb.replaceWith(newImg);
+            }
         });
     }
 
@@ -85,21 +104,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // =======================================================
     const stars = document.querySelectorAll('.happy-stars .star-icon');
     const msgLogin = document.getElementById('msg-login-rating');
-    
-    // Variável simulando que o usuário NÃO está logado. 
-    // No futuro, você vai alterar isso puxando a sessão do PHP.
-    const usuarioLogado = false; 
+
+    const usuarioLogado = false;
 
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {
             if (!usuarioLogado) {
                 msgLogin.style.display = 'block';
-                return; // Bloqueia o clique
+                return;
             }
 
-            // Se estiver logado, faz a lógica de pintar a estrela
             const notaNumero = document.querySelector('.nota-numero');
-            if(notaNumero) notaNumero.innerText = (index + 1).toFixed(1);
+            if (notaNumero) notaNumero.innerText = (index + 1).toFixed(1);
 
             stars.forEach((s, i) => {
                 if (i <= index) {
@@ -122,27 +138,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCupom && inputCupom && precoFinal) {
         btnCupom.addEventListener('click', () => {
             const cupomDigitado = inputCupom.value.trim().toUpperCase();
-            
-            // Exemplo de cupom válido: QUIMERA15 (dá 15% de desconto extra)
+
             if (cupomDigitado === 'QUIMERA15') {
-                // Pega o valor original salvo no data-valor do HTML
                 let valorBase = parseFloat(precoFinal.getAttribute('data-valor'));
-                let valorComDescontoExtra = valorBase * 0.85; // Tira 15%
-                
-                // Formata para Reais (R$)
+                let valorComDescontoExtra = valorBase * 0.85;
                 let valorFormatado = valorComDescontoExtra.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                
+
                 precoFinal.innerText = 'R$ ' + valorFormatado;
                 msgCupom.innerText = "Cupom de 15% aplicado com sucesso!";
-                msgCupom.style.color = "#4CAF50"; // Verde
-                inputCupom.disabled = true; // Bloqueia pra não usar duas vezes
+                msgCupom.style.color = "#4CAF50";
+                inputCupom.disabled = true;
                 btnCupom.disabled = true;
             } else if (cupomDigitado === '') {
                 msgCupom.innerText = "Digite um cupom válido.";
-                msgCupom.style.color = "#e50914"; // Vermelho
+                msgCupom.style.color = "#e50914";
             } else {
                 msgCupom.innerText = "Cupom inválido ou expirado.";
-                msgCupom.style.color = "#e50914"; // Vermelho
+                msgCupom.style.color = "#e50914";
             }
         });
     }

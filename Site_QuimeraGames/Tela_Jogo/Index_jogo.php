@@ -1,7 +1,7 @@
 <?php
 require_once '../conexa.php';
 
-$id_jogo = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$id_jogo = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 // Verifica se o usuário veio da prateleira de descontos
 $veio_do_desconto = isset($_GET['desconto']) && $_GET['desconto'] == '1';
 
@@ -29,7 +29,7 @@ try {
         $trailer_url = preg_replace('/\/view.*$/', '/preview', $trailer_url);
     }
 
-    $valor_original = (float)$jogo['Valor'];
+    $valor_original = (float) $jogo['Valor'];
     $tem_desconto = $veio_do_desconto;
     $valor_venda = $tem_desconto ? ($valor_original * 0.90) : $valor_original;
 
@@ -51,6 +51,7 @@ try {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,6 +59,7 @@ try {
     <link rel="stylesheet" href="../Css/stylles.css">
     <link rel="stylesheet" href="../Css/styles.css">
 </head>
+
 <body>
 
     <header class="topo">
@@ -81,25 +83,26 @@ try {
 
     <div class="container game-page-container">
         <div class="game-layout">
-            
+
             <div class="game-left-col">
                 <div class="main-media" id="painel-midia">
                     <?php if (!empty($trailer_url)): ?>
-                        <iframe id="video-iframe" src="<?php echo htmlspecialchars($trailer_url); ?>" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        <iframe id="video-iframe" src="<?php echo htmlspecialchars($trailer_url); ?>" width="100%"
+                            height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                     <?php else: ?>
-                        <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" style="width:100%; height:100%; object-fit:cover;">
+                        <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>"
+                            style="width:100%; height:100%; object-fit:contain; background:#000;">
                     <?php endif; ?>
                 </div>
 
-                <div class="media-thumbnails">
+                <div class="media-thumbnails" id="galeria-thumbnails">
                     <?php if (!empty($trailer_url)): ?>
-                        <div class="thumb-video-btn" id="btn-voltar-video">
-                            <span>▶ Ver Trailer</span>
-                        </div>
+                        <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" class="thumb-item" alt="Capa">
                     <?php endif; ?>
-                    <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" class="thumb-item" alt="Capa">
-                    <img src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>" class="thumb-item" alt="Cenário 1">
-                    <img src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>" class="thumb-item" alt="Cenário 2">
+                    <img src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>" class="thumb-item"
+                        alt="Cenário 1">
+                    <img src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>" class="thumb-item"
+                        alt="Cenário 2">
                 </div>
 
                 <div class="game-description card-moderno">
@@ -119,7 +122,8 @@ try {
                             <span class="star-icon active">★</span>
                             <span class="star-icon inactive">★</span>
                         </div>
-                        <span id="msg-login-rating" style="color:#e50914; font-size: 0.85rem; display:none; margin-left:15px;">
+                        <span id="msg-login-rating"
+                            style="color:#e50914; font-size: 0.85rem; display:none; margin-left:15px;">
                             Faça login para avaliar.
                         </span>
                     </div>
@@ -127,16 +131,20 @@ try {
 
                 <div class="system-requirements card-moderno">
                     <h3>Requisitos de sistema</h3>
-                    <div class="req-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="24"> Windows</div>
-                    
+                    <div class="req-icon"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="24">
+                        Windows</div>
+
                     <div class="req-grid">
                         <div class="req-coluna">
                             <h4>Mínimos</h4>
-                            <p><?php echo nl2br(htmlspecialchars(str_replace('Mínimo Requer: ', '', $req_minimo))); ?></p>
+                            <p><?php echo nl2br(htmlspecialchars(str_replace('Mínimo Requer: ', '', $req_minimo))); ?>
+                            </p>
                         </div>
                         <div class="req-coluna">
                             <h4>Recomendados</h4>
-                            <p><?php echo nl2br(htmlspecialchars(str_replace('Recomendado: ', '', $req_recomendado))); ?></p>
+                            <p><?php echo nl2br(htmlspecialchars(str_replace('Recomendado: ', '', $req_recomendado))); ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -153,11 +161,14 @@ try {
                             <?php if ($tem_desconto): ?>
                                 <span class="badge-desconto-side">-10%</span>
                                 <div class="price-values">
-                                    <span class="v-old-side">R$ <?php echo number_format($valor_original, 2, ',', '.'); ?></span>
-                                    <span class="v-new-side" id="preco-final" data-valor="<?php echo $valor_venda; ?>">R$ <?php echo number_format($valor_venda, 2, ',', '.'); ?></span>
+                                    <span class="v-old-side">R$
+                                        <?php echo number_format($valor_original, 2, ',', '.'); ?></span>
+                                    <span class="v-new-side" id="preco-final" data-valor="<?php echo $valor_venda; ?>">R$
+                                        <?php echo number_format($valor_venda, 2, ',', '.'); ?></span>
                                 </div>
                             <?php else: ?>
-                                <span class="v-new-side" id="preco-final" data-valor="<?php echo $valor_original; ?>">R$ <?php echo number_format($valor_original, 2, ',', '.'); ?></span>
+                                <span class="v-new-side" id="preco-final" data-valor="<?php echo $valor_original; ?>">R$
+                                    <?php echo number_format($valor_original, 2, ',', '.'); ?></span>
                             <?php endif; ?>
                         <?php else: ?>
                             <span class="v-new-side">Gratuito</span>
@@ -167,7 +178,7 @@ try {
                     <button class="btn-action btn-buy">Comprar</button>
                     <button class="btn-action btn-cart">Carrinho</button>
                     <button class="btn-action btn-wishlist">Lista de desejo</button>
-                    
+
                     <div class="cupom-area">
                         <p class="cupom-titulo">Possui cupom de desconto?</p>
                         <div class="cupom-input-group">
@@ -182,10 +193,14 @@ try {
                 </div>
 
                 <div class="info-table card-moderno">
-                    <div class="info-row"><span>Distribuidora:</span> <span><?php echo htmlspecialchars($jogo['distribuidora']); ?></span></div>
-                    <div class="info-row"><span>Desenvolvedora:</span> <span><?php echo htmlspecialchars($jogo['desenvolvedora']); ?></span></div>
-                    <div class="info-row"><span>Lançamento:</span> <span><?php echo date('d/m/Y', strtotime($jogo['data_lancamento'])); ?></span></div>
-                    <div class="info-row"><span>Categoria:</span> <span><?php echo htmlspecialchars($jogo['tipo_categoria']); ?></span></div>
+                    <div class="info-row"><span>Distribuidora:</span>
+                        <span><?php echo htmlspecialchars($jogo['distribuidora']); ?></span></div>
+                    <div class="info-row"><span>Desenvolvedora:</span>
+                        <span><?php echo htmlspecialchars($jogo['desenvolvedora']); ?></span></div>
+                    <div class="info-row"><span>Lançamento:</span>
+                        <span><?php echo date('d/m/Y', strtotime($jogo['data_lancamento'])); ?></span></div>
+                    <div class="info-row"><span>Categoria:</span>
+                        <span><?php echo htmlspecialchars($jogo['tipo_categoria']); ?></span></div>
                 </div>
             </div>
 
@@ -195,4 +210,5 @@ try {
     <footer class="rodape">QuimeraGames &copy; 2026</footer>
     <script src="../script_jogo.js" defer></script>
 </body>
+
 </html>
