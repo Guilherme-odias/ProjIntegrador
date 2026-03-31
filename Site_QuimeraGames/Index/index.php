@@ -175,8 +175,7 @@ try {
       <h2>Descontos em destaque ></h2>
       <div class="jogos-grid">
         <?php foreach ($jogos_descontos as $jogo): ?>
-          <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>"
-            style="text-decoration: none; color: inherit; display: block;">
+          <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1" style="text-decoration: none; color: inherit; display: block;">
             <div class="card-jogo-container">
               <div class="thumb-wrapper">
                 <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>">

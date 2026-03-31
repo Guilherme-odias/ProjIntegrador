@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =======================================================
-    // 1. LÓGICA DO CABEÇALHO (Igual ao da página inicial)
+    // 1. LÓGICA DO CABEÇALHO E MENU
     // =======================================================
     const btnExplorar = document.getElementById('btn-explorar');
     const btnCategorias = document.getElementById('btn-categorias');
@@ -53,47 +53,98 @@ document.addEventListener('DOMContentLoaded', () => {
         if (clicouFora) atualizarOverlay();
     });
 
-
     // =======================================================
-    // 2. LÓGICA DAS MINIATURAS (Trocar o vídeo pela imagem)
+    // 2. LÓGICA DA GALERIA (Miniaturas e Vídeo)
     // =======================================================
-    const mainMediaContainer = document.querySelector('.main-media');
-    const thumbnails = document.querySelectorAll('.media-thumbnails img');
+    const painelMidia = document.getElementById('painel-midia');
+    const btnVoltarVideo = document.getElementById('btn-voltar-video');
+    const thumbItems = document.querySelectorAll('.thumb-item');
+    
+    // Salva o HTML original (que contém o iframe do trailer)
+    let iframeOriginalHTML = painelMidia ? painelMidia.innerHTML : '';
 
-    thumbnails.forEach(thumb => {
+    // Quando clica numa imagem da miniatura
+    thumbItems.forEach(thumb => {
         thumb.addEventListener('click', function() {
-            // Quando clica numa miniatura, substitui o iframe/imagem principal pela imagem clicada
-            if(mainMediaContainer) {
-                mainMediaContainer.innerHTML = `<img src="${this.src}" style="width:100%; height:100%; object-fit:cover;">`;
+            if(painelMidia) {
+                // Joga a imagem clicada para a tela principal
+                painelMidia.innerHTML = `<img src="${this.src}" style="width:100%; height:100%; object-fit:contain; background:#000;">`;
             }
         });
     });
 
+    // Quando clica no botão "Ver Trailer", restaura o iframe
+    if (btnVoltarVideo) {
+        btnVoltarVideo.addEventListener('click', function() {
+            painelMidia.innerHTML = iframeOriginalHTML;
+        });
+    }
 
     // =======================================================
-    // 3. LÓGICA DAS ESTRELAS FELIZES (Sistema de Avaliação)
+    // 3. SISTEMA DE AVALIAÇÃO (Apenas Logados)
     // =======================================================
     const stars = document.querySelectorAll('.happy-stars .star-icon');
-    const notaNumero = document.querySelector('.nota-numero');
+    const msgLogin = document.getElementById('msg-login-rating');
+    
+    // Variável simulando que o usuário NÃO está logado. 
+    // No futuro, você vai alterar isso puxando a sessão do PHP.
+    const usuarioLogado = false; 
 
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {
-            // Atualiza o número da nota com base na estrela clicada (ex: clica na 4ª estrela = 4.0)
-            if(notaNumero) {
-                notaNumero.innerText = (index + 1).toFixed(1);
+            if (!usuarioLogado) {
+                msgLogin.style.display = 'block';
+                return; // Bloqueia o clique
             }
 
-            // Pinta as estrelas: deixa amarelas até a que foi clicada, e cinzas as seguintes
+            // Se estiver logado, faz a lógica de pintar a estrela
+            const notaNumero = document.querySelector('.nota-numero');
+            if(notaNumero) notaNumero.innerText = (index + 1).toFixed(1);
+
             stars.forEach((s, i) => {
                 if (i <= index) {
-                    s.classList.add('active');
-                    s.classList.remove('inactive');
+                    s.classList.add('active'); s.classList.remove('inactive');
                 } else {
-                    s.classList.add('inactive');
-                    s.classList.remove('active');
+                    s.classList.add('inactive'); s.classList.remove('active');
                 }
             });
         });
     });
+
+    // =======================================================
+    // 4. LÓGICA DO CUPOM DE DESCONTO
+    // =======================================================
+    const btnCupom = document.getElementById('btn-aplicar-cupom');
+    const inputCupom = document.getElementById('input-cupom');
+    const msgCupom = document.getElementById('msg-cupom');
+    const precoFinal = document.getElementById('preco-final');
+
+    if (btnCupom && inputCupom && precoFinal) {
+        btnCupom.addEventListener('click', () => {
+            const cupomDigitado = inputCupom.value.trim().toUpperCase();
+            
+            // Exemplo de cupom válido: QUIMERA15 (dá 15% de desconto extra)
+            if (cupomDigitado === 'QUIMERA15') {
+                // Pega o valor original salvo no data-valor do HTML
+                let valorBase = parseFloat(precoFinal.getAttribute('data-valor'));
+                let valorComDescontoExtra = valorBase * 0.85; // Tira 15%
+                
+                // Formata para Reais (R$)
+                let valorFormatado = valorComDescontoExtra.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                
+                precoFinal.innerText = 'R$ ' + valorFormatado;
+                msgCupom.innerText = "Cupom de 15% aplicado com sucesso!";
+                msgCupom.style.color = "#4CAF50"; // Verde
+                inputCupom.disabled = true; // Bloqueia pra não usar duas vezes
+                btnCupom.disabled = true;
+            } else if (cupomDigitado === '') {
+                msgCupom.innerText = "Digite um cupom válido.";
+                msgCupom.style.color = "#e50914"; // Vermelho
+            } else {
+                msgCupom.innerText = "Cupom inválido ou expirado.";
+                msgCupom.style.color = "#e50914"; // Vermelho
+            }
+        });
+    }
 
 });
