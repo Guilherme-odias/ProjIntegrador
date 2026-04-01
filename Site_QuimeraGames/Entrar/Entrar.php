@@ -108,13 +108,26 @@ if (window.location.search.includes("erro")) {
 
 <div class="div2">
 <label>Senha:</label>
-<input type="password" name="senha" required>
+<input type="password" id="senha" required>
+
 
 <div class="lembrar">
   <input type="checkbox" id="lembrar">
-  <label for="lembrar">Lembre-me</label>
+  <label for="lembrar">👀</label>
 </div>
 </div>
+
+<script>
+document.getElementById("lembrar").addEventListener("change", function() {
+  const senha = document.getElementById("senha");
+
+  if (this.checked) {
+    senha.type = "text";
+  } else {
+    senha.type = "password";
+  }
+});
+</script>
 
 <button type="submit" class="iniciar_sessao">Iniciar Sessão</button>
 
@@ -129,7 +142,7 @@ if (window.location.search.includes("erro")) {
 <div class="tudoai">
 <div class="primeira_cadastre">
     <label class="primeira" >Primeira vez na Quimera?</label>
-    <button class="cad" onclick="window.location.href='../Cadastro/PHPMailer-master/src/cadastro.php'">Cadastre-se</button>
+    <button class="cad" onclick="window.location.href='../Cadastro/cadastro.php'">Cadastre-se</button>
 </div>
 
 <div class="texto">

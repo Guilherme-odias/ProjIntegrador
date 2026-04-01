@@ -16,7 +16,7 @@ $stmt->execute();
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 function mascararCPF($cpf) {
-    return substr($cpf,0,3) . '***.***-' . substr($cpf,-2);
+    return substr($cpf,0,3) . '.***.***-' . substr($cpf,-2);
 }
 ?>
 
@@ -119,7 +119,7 @@ body {
 .main {
   display: grid;
   align-items: left;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 80px;
   padding: 60px;
 }
