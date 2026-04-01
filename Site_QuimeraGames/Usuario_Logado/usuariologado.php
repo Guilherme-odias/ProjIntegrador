@@ -56,6 +56,7 @@ document.addEventListener("click", function(e) {
     menu.style.display = "none";
   }
 });
+
 </script>
 
 <body>
@@ -71,7 +72,6 @@ document.addEventListener("click", function(e) {
       </a>
     </div>
     <div class="topo-direita">
-
   <!-- carrinho -->
   <button class="btn-icon" >
     🛒
