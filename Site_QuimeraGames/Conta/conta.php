@@ -118,6 +118,7 @@ body {
 /* LAYOUT PRINCIPAL */
 .main {
   display: grid;
+  grid-auto-flow: column;
   align-items: left;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
@@ -293,9 +294,10 @@ input {
 </div>
 </header>
 
-<div class="colunadecorativa"></div>
 
 <div class="main">
+
+<div class="colunadecorativa"></div>
 
   <!-- ESQUERDA -->
   <div class="left">
