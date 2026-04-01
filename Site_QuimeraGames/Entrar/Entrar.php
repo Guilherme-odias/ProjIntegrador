@@ -72,13 +72,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="topo-esquerda">
       <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
           src="../imagens/logo.png"></a>
-
     </div>
     <div class="topo-direita">
       <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
           class="btn-login">Suporte</button></a>
     </div>
-  </header>
+</header>
 
 <div class="tela">
 <div class="h1box">
@@ -108,7 +107,7 @@ if (window.location.search.includes("erro")) {
 
 <div class="div2">
 <label>Senha:</label>
-<input type="password" id="senha" required>
+<input type="password" name="senha" id="senha" required>
 
 
 <div class="lembrar">
