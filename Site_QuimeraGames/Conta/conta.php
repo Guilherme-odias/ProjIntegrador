@@ -240,6 +240,10 @@ input {
   font-weight: 600;
 }
 
+.colunadecorativa {
+  background: #9e5256;
+}
+
 </style>
 </head>
 
@@ -286,6 +290,8 @@ input {
 
 </div>
 </header>
+
+<div class="colunadecorativa"></div>
 
 <div class="main">
 
