@@ -1,0 +1,210 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d121a; /* Azul muito escuro do fundo */
+    color: #ffffff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================
+   CABEÇALHO (TOPO)
+   ========================================= */
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(19, 32, 65, 0.95);
+    padding: 15px 50px;
+}
+
+.topo-esquerda, .topo-direita {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.btn-nav, .btn-login {
+    background: transparent;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+.btn-nav.active {
+    background: #e62429;
+    border-color: #e62429;
+}
+
+.btn-login:hover {
+    background: #1f2937;
+}
+
+.container {
+    max-width: 1100px; /* Define a largura limite para não esticar demais */
+    margin: 0 auto; /* Centraliza a caixa inteira na tela */
+    padding: 40px 20px;
+}
+
+.menu-busca {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.busca-input {
+    display: flex;
+    align-items: center;
+    background: #161f2e;
+    border: 1px solid #30363d;
+    border-radius: 20px;
+    padding: 8px 15px;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.busca-input input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    margin-left: 10px;
+    width: 100%;
+}
+.btn-dropdown {
+  background: transparent;
+  border: 2px solid #e50914;
+  border-radius: 999px;
+  padding: 8px 22px;
+  color: white;
+  cursor: pointer;
+} 
+
+.btn-dropdown:hover {
+    background: #ff1616;
+}
+
+/* =========================================
+   LAYOUT PRINCIPAL - DUAS COLUNAS
+   ========================================= */
+.main-pagamento {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px; /* Espaço garantido entre as duas colunas */
+}
+
+/* COLUNA ESQUERDA - TEXTOS E OPÇÕES */
+.col-dados {
+    flex: 1; /* Preenche o espaço disponível da esquerda */
+    max-width: 600px;
+}
+
+.col-dados h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.descricao-pagamento {
+    color: #8b949e;
+    font-size: 1rem;
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+
+/* SALDO */
+.saldo-container {
+    margin-bottom: 40px;
+}
+
+.label-saldo {
+    font-size: 1.1rem;
+    color: #8b949e;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.valor-saldo {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* MÉTODOS DE PAGAMENTO */
+.metodos-pagamento h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.metodo-card {
+    background-color: #161f2e;
+    border: 1px solid #30363d;
+    padding: 18px 25px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.1rem;
+}
+
+/* Efeito ao passar o mouse */
+.metodo-card:hover {
+    background-color: #1f2937;
+    border-color: #e62429; /* Borda vermelha padrão da loja */
+    transform: translateX(5px); /* Move levemente para a direita */
+}
+
+.icon-placeholder {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+/* COLUNA DIREITA - LOGO */
+.col-logo {
+    width: 380px; /* Largura fixa para manter o alinhamento */
+    display: flex;
+    justify-content: center;
+}
+
+.logo-grande-placeholder {
+    background-color: #161f2e;
+    border: 1px dashed #30363d;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Mantém a caixa perfeitamente quadrada */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    color: #8b949e;
+    font-size: 1.2rem;
+}
+
+/* =========================================
+   RODAPÉ
+   ========================================= */
+.rodape {
+    background: #111823;
+    padding: 30px;
+    text-align: center;
+    margin-top: 60px;
+    width: 100%;
+    color: aliceblue;
+    font-size: 0.9rem;
+    border-top: 1px solid #30363d;
+}

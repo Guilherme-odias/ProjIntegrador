@@ -17,11 +17,11 @@ try {
   $stmt_descontos->bindValue(':semana_plus', ($semana_atual + 2), PDO::PARAM_INT);
   $stmt_descontos->execute();
   $jogos_descontos = $stmt_descontos->fetchAll(PDO::FETCH_ASSOC);
+
   $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
   $stmt_categorias->execute();
   $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
-  // Mapeamento atualizado com base no seu banco de dados
   $nomes_categorias = [
     1 => 'Ação',
     2 => 'Aventura',
@@ -53,25 +53,24 @@ try {
 
   <header class="topo">
     <div class="topo-esquerda">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php">
+      <a href="index.php">
         <img class="logo" src="../imagens/logo.png" alt="Logo">
       </a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Index/index.php"
-        style="text-decoration: none;">
+      <a href="index.php" style="text-decoration: none;">
         <button class="btn-nav active">Loja</button>
       </a>
     </div>
     <div class="topo-direita">
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Entrar/Entrar.php"
-        style="text-decoration: none;">
+      <a href="../Entrar/Entrar.php" style="text-decoration: none;">
         <button class="btn-login">Entrar</button>
       </a>
-      <a href="http://localhost/GitHub/Project_Quimera/Site_QuimeraGames/Sac/Suporte.php"
-        style="text-decoration: none;">
+      <a href="../Sac/Suporte.php" style="text-decoration: none;">
         <button class="btn-login">Suporte</button>
       </a>
     </div>
   </header>
+
+  <div id="overlay-escuro" class="fundo-escuro"></div>
 
   <div class="container">
 
@@ -90,22 +89,17 @@ try {
           <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070" alt="Banner Explorar"
             class="img-banner-explorar">
           <div class="overlay-banner"></div>
-          <a href="/GitHub/Project_Quimera/Site_QuimeraGames/mais_vendidos/Index.php"
-            class="btn-mais-vendidos-banner">Mais vendidos</a>
+          <a href="../mais_vendidos/Index.php" class="btn-mais-vendidos-banner">Mais vendidos</a>
         </div>
       </div>
 
       <div id="painel-categorias" class="painel-dropdown">
         <h3 class="titulo-painel">Gêneros Populares</h3>
-
         <div class="carousel-categorias-wrapper">
           <button class="seta-cat esquerda" id="seta-esquerda">&#10094;</button>
-
           <div class="categorias-painel-grid" id="grid-categorias">
             <?php foreach ($categorias_bd as $cat): ?>
-              <?php
-              $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros';
-              ?>
+              <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
               <div class="card-cat-item">
                 <div class="img-cat-wrapper">
                   <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
@@ -114,11 +108,11 @@ try {
               </div>
             <?php endforeach; ?>
           </div>
-
           <button class="seta-cat direita" id="seta-direita">&#10095;</button>
         </div>
       </div>
     </div>
+
     <div class="carousel-container">
       <?php foreach ($jogos_carousel as $i => $radio): ?>
         <input type="radio" name="slide" id="s<?php echo $i + 1; ?>" <?php echo ($i == 0) ? 'checked' : ''; ?>>
@@ -129,8 +123,10 @@ try {
           <div class="slide" id="slide<?php echo $i + 1; ?>">
             <div class="content-box">
               <div class="poster-box">
-                <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" id="mainImg<?php echo $i + 1; ?>"
-                  data-capa="<?php echo $jogo['Imagens_jogos']; ?>" class="capa-poster">
+                <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>">
+                  <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" id="mainImg<?php echo $i + 1; ?>"
+                    data-capa="<?php echo $jogo['Imagens_jogos']; ?>" class="capa-poster">
+                </a>
               </div>
 
               <div class="info-box" id="infoBox<?php echo $i + 1; ?>">
@@ -152,7 +148,9 @@ try {
                     <span class="v-gratis">Gratuito</span>
                   <?php endif; ?>
                 </div>
-                <button class="btn-comprar-carrossel">COMPRAR AGORA</button>
+                <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration: none;">
+                  <button class="btn-comprar-carrossel">COMPRAR AGORA</button>
+                </a>
               </div>
             </div>
 
@@ -177,29 +175,31 @@ try {
       <h2>Descontos em destaque ></h2>
       <div class="jogos-grid">
         <?php foreach ($jogos_descontos as $jogo): ?>
-          <div class="card-jogo-container">
-            <div class="thumb-wrapper">
-              <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>">
-              <?php if ($jogo['Valor'] > 0): ?>
-                <span class="badge-desconto">-10%</span>
-              <?php endif; ?>
-            </div>
-            <div class="card-info-texto">
-              <h4><?php echo htmlspecialchars($jogo['titulo']); ?></h4>
-              <div class="card-plataforma">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
-                <span>Windows</span>
-              </div>
-              <div class="precos-card">
+          <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1" style="text-decoration: none; color: inherit; display: block;">
+            <div class="card-jogo-container">
+              <div class="thumb-wrapper">
+                <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>">
                 <?php if ($jogo['Valor'] > 0): ?>
-                  <span class="v-old">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
-                  <span class="v-new">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
-                <?php else: ?>
-                  <span class="v-gratis">Gratuito</span>
+                  <span class="badge-desconto">-10%</span>
                 <?php endif; ?>
               </div>
+              <div class="card-info-texto">
+                <h4><?php echo htmlspecialchars($jogo['titulo']); ?></h4>
+                <div class="card-plataforma">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
+                  <span>Windows</span>
+                </div>
+                <div class="precos-card">
+                  <?php if ($jogo['Valor'] > 0): ?>
+                    <span class="v-old">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
+                    <span class="v-new">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
+                  <?php else: ?>
+                    <span class="v-gratis">Gratuito</span>
+                  <?php endif; ?>
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
         <?php endforeach; ?>
       </div>
     </section>

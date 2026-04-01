@@ -1,31 +1,60 @@
 <?php
-// 1. O PHP recebe as variáveis que o JavaScript enviou por POST
-$nome = $_POST['nome'];
-$email = $_POST['email'];
-$cpf = $_POST['cpf'];
-$reclamacao = $_POST['reclamacao'];
-$protocolo = $_POST['protocolo'];
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
-// 2. Configurações do seu e-mail (quem vai receber)
-$para = "SEU_EMAIL_AQUI@dominio.com"; 
-$assunto = "Novo Suporte - Protocolo: " . $protocolo;
+require '../PHPMailer/src/Exception.php';
+require '../PHPMailer/src/PHPMailer.php';
+require '../PHPMailer/src/SMTP.php';
 
-// 3. Montamos o texto que vai no corpo do e-mail
-$mensagem = "Novo contato recebido do sistema de suporte:\n\n";
-$mensagem .= "Nome: " . $nome . "\n";
-$mensagem .= "E-mail: " . $email . "\n";
-$mensagem .= "CPF: " . $cpf . "\n\n";
-$mensagem .= "Mensagem da Reclamação/Sugestão:\n";
-$mensagem .= $reclamacao . "\n";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-// 4. Cabeçalhos básicos para o e-mail não ir pro spam direto
-$cabecalhos = "From: suporte@seusite.com\r\n";
-$cabecalhos .= "Reply-To: " . $email . "\r\n";
+    $nome = htmlspecialchars(trim($_POST['nome']));
+    $email_cliente = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $cpf = htmlspecialchars(trim($_POST['cpf']));
+    $reclamacao = nl2br(htmlspecialchars(trim($_POST['reclamacao'])));
+    $protocolo = htmlspecialchars(trim($_POST['protocolo']));
 
-// 5. O comando mail() tenta enviar. Se der certo, ele avisa o JavaScript com a palavra "sucesso"
-if (mail($para, $assunto, $mensagem, $cabecalhos)) {
-    echo "sucesso";
+    $mail = new PHPMailer(true);
+
+    try {
+        // 🔴 DEBUG (deixe 2 só pra teste)
+        $mail->SMTPDebug = 2;
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'quimeraggames@gmail.com';
+        $mail->Password = 'SUA_SENHA_DE_APP_AQUI';
+
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+        $mail->CharSet = 'UTF-8';
+
+        $mail->setFrom('quimeraggames@gmail.com', 'Equipe QuimeraGames');
+        $mail->addAddress($email_cliente, $nome);
+
+        $mail->isHTML(true);
+        $mail->Subject = "Protocolo: $protocolo";
+
+        $mail->Body = "
+        <h2>Olá, $nome!</h2>
+        <p>Recebemos sua solicitação.</p>
+        <p><strong>Protocolo:</strong> $protocolo</p>
+        <p><strong>CPF:</strong> $cpf</p>
+        <p><strong>Mensagem:</strong><br>$reclamacao</p>
+        ";
+
+        $mail->send();
+
+        // ✔️ RETORNO LIMPO PRO JS
+        echo "sucesso";
+
+    } catch (Exception $e) {
+        // 🔴 MOSTRA ERRO REAL NO CONSOLE (IMPORTANTE)
+        echo "erro: " . $mail->ErrorInfo;
+    }
+
 } else {
-    echo "erro";
+    echo "acesso_negado";
 }
-?>

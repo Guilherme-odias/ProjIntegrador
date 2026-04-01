@@ -15,30 +15,29 @@
         <h1>Suporte ao cliente</h1>
 
 
-        <div class="item">
+        <form class="item" id="formSuporte" action="enviar_suporte.php" method="POST">
             <div>
                 <label class="label">Nome</label>
-                <input type="text" name="name" id="name" class="inputNome"><br>
+                <input type="text" name="nome" id="name" class="inputNome" required><br>
             </div>
 
             <div>
                 <label class="label">Email</label>
-                <input type="text" name="email" id="email" class="inputEmail"><br>
+                <input type="email" name="email" id="email" class="inputEmail" required><br>
             </div>
 
             <div>
                 <label class="label">CPF</label>
-                <input type="text" name="cpf" id="cpf" class="inputCpf" maxlength="14"><br>
+                <input type="text" name="cpf" id="cpf" class="inputCpf" maxlength="14" required><br>
             </div>
 
-            
-            <label for="freclamacao" class="label"> Escreva a reclamação/sugestão no campo abaixo: </label><br>
+            <label for="reclamacao" class="label"> Escreva a reclamação/sugestão no campo abaixo: </label><br>
             <div class="inputContainer">
-                <textarea name="reclamacao" id="reclamacao" class="inputReclamacao"></textarea>
-                <button id="bntContinuar" class="btnEnviar">➤</button>
+                <textarea name="reclamacao" id="reclamacao" class="inputReclamacao" required></textarea>
+                <button type="submit" id="bntContinuar" class="btnEnviar">➤</button>
             </div>
 
-        </div>
+        </form>
 
         <footer class="rodape">
             
@@ -46,12 +45,13 @@
                 <i class="fa-solid fa-circle-arrow-left"></i>
             </a>
                 
-            <label class="labelVoltar"> Voltar </label>
+            <label id="voltar" class="labelVoltar"> Voltar </label>
+            
         </footer>
 
     </div>
 
-
+    <script src="Suporte.js" defer></script>
 </body>
 
 </html>

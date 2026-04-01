@@ -1,119 +1,87 @@
-// Selecionamos o botão de continuar
-const btnEnviar = document.getElementById('bntContinuar');
+document.addEventListener("DOMContentLoaded", function () {
 
-// ==========================================
-// 1. MÁSCARA DO CPF
-// ==========================================
-const inputCpf = document.getElementById('cpf');
+    console.log("JS carregado!");
 
-inputCpf.addEventListener('input', function(event) {
-    let valor = event.target.value;
-    
-    // Tira tudo que não for número
-    valor = valor.replace(/\D/g, '');
-    
-    // Coloca os pontos e o traço
-    valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
-    valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
-    valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    
-    // Atualiza o valor no campo
-    event.target.value = valor;
-});
+    // ==========================
+    // MÁSCARA DO CPF
+    // ==========================
+    const inputCpf = document.getElementById('cpf');
 
-// ==========================================
-// 2. ENVIO DOS DADOS E LIMPEZA DA TELA
-// ==========================================
-const btnEnviar = document.getElementById('bntContinuar');
+    if (inputCpf) {
+        inputCpf.addEventListener('input', function (event) {
+            let valor = event.target.value;
 
-btnEnviar.addEventListener('click', function(event) {
-    event.preventDefault(); 
+            valor = valor.replace(/\D/g, '');
 
-    const nome = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const cpf = document.getElementById('cpf').value;
-    const reclamacao = document.getElementById('reclamacao').value;
+            if (valor.length > 11) {
+                valor = valor.slice(0, 11);
+            }
 
-    if (nome === '' || email === '' || cpf === '' || reclamacao === '') {
-        alert("Preencha todos os campos!");
-        return; 
+            valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+            valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+            valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+            event.target.value = valor;
+        });
     }
 
-    const protocolo = "PRT-" + Math.floor(Math.random() * 1000000);
+    // ==========================
+    // ENVIO DO FORMULÁRIO
+    // ==========================
+    const formSuporte = document.getElementById('formSuporte');
 
-    const dados = new FormData();
-    dados.append('nome', nome);
-    dados.append('email', email);
-    dados.append('cpf', cpf);
-    dados.append('reclamacao', reclamacao);
-    dados.append('protocolo', protocolo);
+    if (formSuporte) {
+        formSuporte.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-    fetch('enviar.php', {
-        method: 'POST',
-        body: dados
-    })
-    .then(resposta => resposta.text())
-    .then(texto => {
-        if (texto.trim() === "sucesso") {
-            alert("Enviado com sucesso! Seu protocolo é: " + protocolo);
-            
-            // Aqui os campos são apagados automaticamente:
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('cpf').value = '';
-            document.getElementById('reclamacao').value = '';
-        } else {
-            alert("Erro ao enviar o e-mail.");
-        }
-    });
-});
+            console.log("Botão clicado!");
 
-btnEnviar.addEventListener('click', function(event) {
-    event.preventDefault(); // Evita que a página recarregue ao clicar
+            const nome = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const cpf = document.getElementById('cpf').value;
+            const reclamacao = document.getElementById('reclamacao').value;
 
-    // 1. Pegamos os valores que o usuário digitou
-    const nome = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const cpf = document.getElementById('cpf').value;
-    const reclamacao = document.getElementById('reclamacao').value;
+            // Validação simples
+            if (!nome || !email || !cpf || !reclamacao) {
+                alert("Preencha todos os campos!");
+                return;
+            }
 
-    // 2. Verificamos se está tudo preenchido
-    if (nome === '' || email === '' || cpf === '' || reclamacao === '') {
-        alert("Preencha todos os campos!");
-        return; // O código para por aqui se tiver erro
+            const protocolo = "QG-" + Math.floor(Math.random() * 1000000);
+
+            const dados = new FormData();
+            dados.append('nome', nome);
+            dados.append('email', email);
+            dados.append('cpf', cpf);
+            dados.append('reclamacao', reclamacao);
+            dados.append('protocolo', protocolo);
+
+            // ==========================
+            // ENVIO PARA O PHP
+            // ==========================
+            fetch('enviar.php', {
+                method: 'POST',
+                body: dados
+            })
+            .then(res => res.text())
+            .then(texto => {
+                console.log("Resposta do PHP:", texto);
+
+                if (texto.includes("sucesso")) {
+                    alert("Enviado com sucesso! Seu protocolo é: " + protocolo);
+
+                    // ✅ LIMPA O FORMULÁRIO
+                    formSuporte.reset();
+
+                } else {
+                    alert("Erro ao enviar: " + texto);
+                }
+            })
+            .catch(erro => {
+                console.error("Erro na requisição:", erro);
+                alert("Erro de conexão com o servidor.");
+            });
+        });
     }
 
-    // 3. Criamos um protocolo simples e profissional
-    const protocolo = "PRT-" + Math.floor(Math.random() * 1000000);
-
-    // 4. Preparamos os dados para a "viagem" até o PHP
-    const dados = new FormData();
-    dados.append('nome', nome);
-    dados.append('email', email);
-    dados.append('cpf', cpf);
-    dados.append('reclamacao', reclamacao);
-    dados.append('protocolo', protocolo);
-
-    
-
-    // 5. Chamamos o arquivo PHP usando o comando 'fetch'
-    fetch('enviar.php', {
-        method: 'POST',
-        body: dados
-    })
-    .then(resposta => resposta.text()) // Lemos o que o PHP respondeu
-    .then(texto => {
-        // Se a resposta do PHP for "sucesso", mostramos o alerta
-        if (texto.trim() === "sucesso") {
-            alert("Enviado com sucesso! Seu protocolo é: " + protocolo);
-            
-            // Limpa os campos da tela
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('cpf').value = '';
-            document.getElementById('reclamacao').value = '';
-        } else {
-            alert("Erro ao enviar o e-mail.");
-        }
-    });
 });
