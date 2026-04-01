@@ -85,11 +85,12 @@ if(isset($_POST['verificar'])){
         // Limpa a seção
         session_destroy();
 
-        echo "Cadastro realizado com sucesso!";
+         header("Location: ../Usuario_Logado/usuariologado.php");
+exit;
         
     } 
         else {
-        echo "Código inválido!";
+        echo "<script>alert('Codigo invalido!');</script>";
         }
 
         
