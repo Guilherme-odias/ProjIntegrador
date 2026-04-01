@@ -331,19 +331,21 @@ input {
 </div>
 
 <script>
-function toggleMenu(){
-  const m = document.getElementById("menu");
-  m.style.display = m.style.display === "flex" ? "none" : "flex";
+function toggleMenu() {
+  const menu = document.getElementById("user-menu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
 
-document.addEventListener("click", function(e){
-  const box = document.querySelector(".user-box");
-  const menu = document.getElementById("menu");
+// fecha se clicar fora
+document.addEventListener("click", function(e) {
+  const userBox = document.querySelector(".user-box");
+  const menu = document.getElementById("user-menu");
 
-  if(!box.contains(e.target)){
+  if (!userBox.contains(e.target)) {
     menu.style.display = "none";
   }
 });
+
 </script>
 
 </body>
