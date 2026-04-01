@@ -54,47 +54,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =======================================================
-    // 2. LÓGICA DA GALERIA (Troca sucessiva igual carrossel)
+    // 2. LÓGICA DA GALERIA (SWAP DINÂMICO PERFEITO)
     // =======================================================
-    const painelMidia = document.getElementById('painel-midia');
     const galeriaThumbnails = document.getElementById('galeria-thumbnails');
+    const painelMidia = document.getElementById('painel-midia');
+    const videoContainer = document.getElementById('media-video-container');
+    const imageContainer = document.getElementById('media-image-container');
+    const iframeVideo = document.getElementById('video-iframe');
+    const mainImage = document.getElementById('main-image');
 
-    if (painelMidia && galeriaThumbnails) {
+    if (galeriaThumbnails && painelMidia) {
         galeriaThumbnails.addEventListener('click', function (e) {
-            // Verifica o que foi clicado (a imagem ou o botão vermelho do trailer)
-            const clickedThumb = e.target.closest('.thumb-item, .thumb-video-btn');
-            if (!clickedThumb) return;
+            // Busca a div envolvente (.thumb-wrapper) que recebeu o clique
+            const clickedWrapper = e.target.closest('.thumb-wrapper');
+            if (!clickedWrapper) return;
 
-            // 1. Descobre o que está no Painel Principal agora
-            const mainIframe = painelMidia.querySelector('iframe');
-            const mainImg = painelMidia.querySelector('img');
+            // 1. Pega os dados do que foi CLICADO
+            const clickedType = clickedWrapper.dataset.type;
+            const clickedSrc = clickedWrapper.dataset.src;
 
-            let mainType = mainIframe ? 'video' : 'imagem';
-            let mainSrc = mainIframe ? mainIframe.src : mainImg.src;
+            // 2. Pega os dados de quem está no TELÃO PRINCIPAL
+            const mainType = painelMidia.dataset.type;
+            const mainSrc = painelMidia.dataset.src;
 
-            // 2. Descobre o que acabou de ser clicado na Miniatura
-            let clickedType = clickedThumb.classList.contains('thumb-video-btn') ? 'video' : 'imagem';
-            let clickedSrc = clickedType === 'video' ? clickedThumb.getAttribute('data-src') : clickedThumb.src;
+            // 3. TROCA OS DADOS (SWAP)
+            painelMidia.dataset.type = clickedType;
+            painelMidia.dataset.src = clickedSrc;
 
-            // 3. Joga o conteúdo Clicado para o Painel Principal
+            clickedWrapper.dataset.type = mainType;
+            clickedWrapper.dataset.src = mainSrc;
+
+            // 4. ATUALIZA O VISUAL DO TELÃO PRINCIPAL
             if (clickedType === 'video') {
-                painelMidia.innerHTML = `<iframe src="${clickedSrc}" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+                videoContainer.style.display = 'block';
+                imageContainer.style.display = 'none';
+                iframeVideo.src = clickedSrc;
             } else {
-                painelMidia.innerHTML = `<img src="${clickedSrc}" style="width:100%; height:100%; object-fit:contain; background:#000;">`;
+                videoContainer.style.display = 'none';
+                imageContainer.style.display = 'block';
+                mainImage.src = clickedSrc;
+                
+                // Pausa o vídeo recarregando o iframe caso o trailer desça para as miniaturas
+                if (iframeVideo && iframeVideo.src !== '') {
+                    iframeVideo.src = iframeVideo.src;
+                }
             }
 
-            // 4. Joga o que estava no Painel Principal para o lugar da Miniatura (SWAP)
+            // 5. ATUALIZA O VISUAL DA MINIATURA CLICADA
             if (mainType === 'video') {
-                const btnVideo = document.createElement('div');
-                btnVideo.className = 'thumb-video-btn';
-                btnVideo.setAttribute('data-src', mainSrc); // Salva o link do drive no botão
-                btnVideo.innerHTML = '<span>▶ Ver Trailer</span>';
-                clickedThumb.replaceWith(btnVideo);
+                // Se o que estava no telão era o vídeo, a miniatura vira o botão de trailer
+                // Ajuste as classes CSS aqui conforme o estilo do seu botão original
+                clickedWrapper.innerHTML = `
+                    <div class="thumb-video-btn" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#222; color:#fff; border-radius:4px;">
+                        <span>▶ Trailer</span>
+                    </div>`;
             } else {
-                const newImg = document.createElement('img');
-                newImg.className = 'thumb-item';
-                newImg.src = mainSrc;
-                clickedThumb.replaceWith(newImg);
+                // Se o que estava no telão era imagem, a miniatura recebe essa imagem
+                clickedWrapper.innerHTML = `
+                    <img src="${mainSrc}" class="thumb-item" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Cenário">
+                `;
             }
         });
     }
@@ -105,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const stars = document.querySelectorAll('.happy-stars .star-icon');
     const msgLogin = document.getElementById('msg-login-rating');
 
-    const usuarioLogado = false;
+    const usuarioLogado = false; // Quando tiver PHP de sessão, mude para true
 
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {

@@ -85,24 +85,45 @@ try {
         <div class="game-layout">
 
             <div class="game-left-col">
-                <div class="main-media" id="painel-midia">
+                
+                <div class="main-media" id="painel-midia" 
+                     data-type="<?php echo !empty($trailer_url) ? 'video' : 'image'; ?>" 
+                     data-src="<?php echo !empty($trailer_url) ? htmlspecialchars($trailer_url) : htmlspecialchars($jogo['Imagens_jogos']); ?>">
+                    
                     <?php if (!empty($trailer_url)): ?>
-                        <iframe id="video-iframe" src="<?php echo htmlspecialchars($trailer_url); ?>" width="100%"
-                            height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        <div id="media-video-container" style="display:block; width:100%; height:100%;">
+                            <iframe id="video-iframe" src="<?php echo htmlspecialchars($trailer_url); ?>" width="100%"
+                                height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        </div>
+                        <div id="media-image-container" style="display:none; width:100%; height:100%;">
+                            <img id="main-image" src=""
+                                style="width:100%; height:100%; object-fit:contain; background:#000;">
+                        </div>
                     <?php else: ?>
-                        <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>"
-                            style="width:100%; height:100%; object-fit:contain; background:#000;">
+                        <div id="media-video-container" style="display:none; width:100%; height:100%;">
+                            <iframe id="video-iframe" src="" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        </div>
+                        <div id="media-image-container" style="display:block; width:100%; height:100%;">
+                            <img id="main-image" src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>"
+                                style="width:100%; height:100%; object-fit:contain; background:#000;">
+                        </div>
                     <?php endif; ?>
                 </div>
 
                 <div class="media-thumbnails" id="galeria-thumbnails">
                     <?php if (!empty($trailer_url)): ?>
-                        <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" class="thumb-item" alt="Capa">
+                        <div class="thumb-wrapper" data-type="image" data-src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" style="cursor:pointer; position:relative;">
+                            <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" class="thumb-item" alt="Capa" style="width:100%; height:100%; object-fit:cover; display:block;">
+                        </div>
                     <?php endif; ?>
-                    <img src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>" class="thumb-item"
-                        alt="Cenário 1">
-                    <img src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>" class="thumb-item"
-                        alt="Cenário 2">
+
+                    <div class="thumb-wrapper" data-type="image" data-src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>" style="cursor:pointer; position:relative;">
+                        <img src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>" class="thumb-item" alt="Cenário 1" style="width:100%; height:100%; object-fit:cover; display:block;">
+                    </div>
+                    
+                    <div class="thumb-wrapper" data-type="image" data-src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>" style="cursor:pointer; position:relative;">
+                        <img src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>" class="thumb-item" alt="Cenário 2" style="width:100%; height:100%; object-fit:cover; display:block;">
+                    </div>
                 </div>
 
                 <div class="game-description card-moderno">
@@ -194,13 +215,17 @@ try {
 
                 <div class="info-table card-moderno">
                     <div class="info-row"><span>Distribuidora:</span>
-                        <span><?php echo htmlspecialchars($jogo['distribuidora']); ?></span></div>
+                        <span><?php echo htmlspecialchars($jogo['distribuidora']); ?></span>
+                    </div>
                     <div class="info-row"><span>Desenvolvedora:</span>
-                        <span><?php echo htmlspecialchars($jogo['desenvolvedora']); ?></span></div>
+                        <span><?php echo htmlspecialchars($jogo['desenvolvedora']); ?></span>
+                    </div>
                     <div class="info-row"><span>Lançamento:</span>
-                        <span><?php echo date('d/m/Y', strtotime($jogo['data_lancamento'])); ?></span></div>
+                        <span><?php echo date('d/m/Y', strtotime($jogo['data_lancamento'])); ?></span>
+                    </div>
                     <div class="info-row"><span>Categoria:</span>
-                        <span><?php echo htmlspecialchars($jogo['tipo_categoria']); ?></span></div>
+                        <span><?php echo htmlspecialchars($jogo['tipo_categoria']); ?></span>
+                    </div>
                 </div>
             </div>
 
