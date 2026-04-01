@@ -1,4 +1,4 @@
-// 1. Funções Globais (precisam estar fora para o onclick do HTML funcionar)
+// 1. Funções Globais
 function gerenciarTroca(index, elementoMin) {
     const slideContainer = document.getElementById('slide' + index);
     const imgPrincipal = document.getElementById('mainImg' + index);
@@ -23,34 +23,32 @@ function gerenciarTroca(index, elementoMin) {
     }
 }
 
-// 2. Lógica de Busca e Auto-slide (espera o HTML carregar)
+// 2. Lógica Principal
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- LÓGICA DE BUSCA ---
     const inputBusca = document.querySelector('.busca-input input');
     const carrossel = document.querySelector('.carousel-container');
     const secaoDescontos = document.querySelector('.secao');
     const containerGeral = document.querySelector('.container');
 
-    // Criar o container de resultados apenas uma vez
     let containerResultados = document.getElementById('resultados-busca');
-    if (!containerResultados) {
+    if (!containerResultados && containerGeral) {
         containerResultados = document.createElement('div');
         containerResultados.id = 'resultados-busca';
         containerResultados.style.display = 'none';
         containerGeral.appendChild(containerResultados);
-
     }
 
-    // Lógica da Busca Dinâmica
     if (inputBusca) {
         inputBusca.addEventListener('input', function () {
             const query = this.value.trim();
 
             if (query.length > 0) {
-                carrossel.style.display = 'none';
-                secaoDescontos.style.display = 'none';
-                containerResultados.style.display = 'block';
+                if (carrossel) carrossel.style.display = 'none';
+                if (secaoDescontos) secaoDescontos.style.display = 'none';
+                if (containerResultados) containerResultados.style.display = 'block';
 
-                // IMPORTANTE: Verifique se o caminho do busca_jogos.php está correto
                 fetch(`busca_jogos.php?query=${encodeURIComponent(query)}`)
                     .then(response => response.text())
                     .then(html => {
@@ -58,14 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                     .catch(err => console.error("Erro na busca:", err));
             } else {
-                carrossel.style.display = 'block';
-                secaoDescontos.style.display = 'block';
-                containerResultados.style.display = 'none';
+                if (carrossel) carrossel.style.display = 'block';
+                if (secaoDescontos) secaoDescontos.style.display = 'block';
+                if (containerResultados) containerResultados.style.display = 'none';
             }
         });
     }
 
-    // Lógica do Auto-slide
+    // --- LÓGICA DO AUTO-SLIDE ---
     let currentSlide = 1;
     setInterval(() => {
         currentSlide++;
@@ -81,24 +79,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCategorias = document.getElementById('btn-categorias');
     const painelExplorar = document.getElementById('painel-explorar');
     const painelCategorias = document.getElementById('painel-categorias');
-    const overlay = document.getElementById('overlay-escuro'); // Puxando o overlay
+    const overlay = document.getElementById('overlay-escuro');
 
-    // Função nova para checar se algum menu está aberto
     function atualizarOverlay() {
-        if (painelExplorar.classList.contains('show') || painelCategorias.classList.contains('show')) {
-            overlay.classList.add('ativo');
+        if ((painelExplorar && painelExplorar.classList.contains('show')) ||
+            (painelCategorias && painelCategorias.classList.contains('show'))) {
+            if (overlay) overlay.classList.add('ativo');
         } else {
-            overlay.classList.remove('ativo');
+            if (overlay) overlay.classList.remove('ativo');
         }
     }
 
-    // Função para alternar os painéis
     function togglePainel(painelAtual, painelOutro) {
-        if (painelOutro.classList.contains('show')) {
+        if (painelOutro && painelOutro.classList.contains('show')) {
             painelOutro.classList.remove('show');
         }
-        painelAtual.classList.toggle('show');
-        atualizarOverlay(); // Chama a tela escura
+        if (painelAtual) painelAtual.classList.toggle('show');
+        atualizarOverlay();
     }
 
     if (btnExplorar && painelExplorar) {
@@ -115,22 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fecha os painéis se clicar fora deles (inclusive clicando no fundo escuro)
     document.addEventListener('click', (e) => {
         let clicouFora = false;
-        if (!painelExplorar.contains(e.target) && e.target !== btnExplorar) {
+        if (painelExplorar && !painelExplorar.contains(e.target) && e.target !== btnExplorar) {
             painelExplorar.classList.remove('show');
             clicouFora = true;
         }
-        if (!painelCategorias.contains(e.target) && e.target !== btnCategorias) {
+        if (painelCategorias && !painelCategorias.contains(e.target) && e.target !== btnCategorias) {
             painelCategorias.classList.remove('show');
             clicouFora = true;
         }
-
-        if (clicouFora) {
-            atualizarOverlay(); // Remove a tela escura se fechou
-        }
-    }); // <-- FECHA O EVENTO DE CLIQUE DO DOCUMENTO AQUI
+        if (clicouFora) atualizarOverlay();
+    });
 
     // --- LÓGICA DAS SETAS DE CATEGORIAS ---
     const gridCategorias = document.getElementById('grid-categorias');
@@ -138,14 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const setaDireita = document.getElementById('seta-direita');
 
     if (gridCategorias && setaEsquerda && setaDireita) {
-        // Quantidade de pixels para rolar a cada clique
         const scrollAmount = 450;
-
         setaEsquerda.addEventListener('click', (e) => {
             e.preventDefault();
             gridCategorias.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         });
-
         setaDireita.addEventListener('click', (e) => {
             e.preventDefault();
             gridCategorias.scrollBy({ left: scrollAmount, behavior: 'smooth' });
