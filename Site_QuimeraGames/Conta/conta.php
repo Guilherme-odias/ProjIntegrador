@@ -241,7 +241,9 @@ input {
 }
 
 .colunadecorativa {
-  background: #9e5256;
+  background: #7a5759;
+  width: 300px;
+  height: 1000px;
 }
 
 </style>
@@ -253,10 +255,10 @@ input {
 
 <header class="topo">
   <div class="topo-esquerda">
-      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Usuario_Logado/usuariologado.php">
         <img class="logo" src="../imagens/logo.png" alt="Logo">
       </a>
-      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Usuario_Logado/usuariologado.php"
         style="text-decoration: none;">
         <button class="btn-nav active">Loja</button>
       </a>
