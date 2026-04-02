@@ -121,8 +121,9 @@ body {
   grid-auto-flow: column;
   align-items: left;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
   padding: 60px;
+  transform: scale(1.3);
+  margin-right: 400px;
 }
 
 /* ESQUERDA */
@@ -131,6 +132,7 @@ body {
   flex-direction: column;
   align-items: left;
   gap: 20px;
+  margin-bottom: 40px;
 }
 
 .avatar-wrapper {
@@ -158,8 +160,10 @@ body {
 }
 
 .cpf {
-  font-size: 14px;
+  margin-top: -10px;
+  font-size: 16px;
   color: #bbb;
+  margin-left: 55px;
 }
 
 /* DIREITA */
@@ -171,13 +175,15 @@ body {
 /* GRID FORM */
 .form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 30px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
+  width: 600px;
 }
 
 label {
@@ -195,13 +201,13 @@ input {
 
 /* botão */
 .btn-update {
-  grid-column: span 2;
-  width: 150px;
-  padding: 12px;
-  border-radius: 10px;
+  width: 140px;
+  padding: 8px;
+  border-radius: 14px;
   border: none;
   background: #888;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .btn-update:hover {
@@ -242,9 +248,25 @@ input {
 }
 
 .colunadecorativa {
-  background: #7a5759;
-  width: 300px;
-  height: 1000px;
+  background: #415485;
+  width: 180px;
+  height: 650px;
+  margin-left: 100px;
+  margin-top: 33px ;
+}
+
+.leftright {
+  flex-direction: column;
+  margin-right: 900px;
+  margin-left: -50px;
+  margin-top: 90px;
+}
+
+.rodape {
+  background: rgba(19, 32, 65, 0.95);
+  padding: 30px;
+  text-align: center;
+  margin-top: 43px;
 }
 
 </style>
@@ -299,6 +321,7 @@ input {
 
 <div class="colunadecorativa"></div>
 
+<div class="leftright">
   <!-- ESQUERDA -->
   <div class="left">
     <div class="avatar-wrapper">
@@ -337,6 +360,7 @@ input {
 
     </div>
   </div>
+</div>
 
 </div>
 
@@ -357,6 +381,8 @@ document.addEventListener("click", function(e) {
 });
 
 </script>
+
+  <footer class="rodape">QuimeraGames &copy; 2026</footer>
 
 </body>
 </html>
