@@ -233,7 +233,7 @@ try {
     </div>
 
     <footer class="rodape">QuimeraGames &copy; 2026</footer>
-    <script src="../script_jogo.js" defer></script>
+    <script src="Script_jogo.js" defer></script>
 </body>
 
 </html>
