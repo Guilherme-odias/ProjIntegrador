@@ -10,12 +10,23 @@
 </head>
 
 <body>
+    <!-- <header class="topo">
+        <div class="topo-esquerda">
+        <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
+            src="../imagens/logo.png"></a>
+
+        </div>
+        <div class="topo-direita">
+        <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
+            class="btn-login">Suporte</button></a>
+        </div>
+    </header> -->
 
     <div class="container">
         <h1>Suporte ao cliente</h1>
 
 
-        <form class="item" id="formSuporte" action="enviar_suporte.php" method="POST">
+        <form class="item" id="formSuporte" action="enviar.php" method="POST">
             <div>
                 <label class="label">Nome</label>
                 <input type="text" name="nome" id="name" class="inputNome" required><br>
@@ -49,6 +60,17 @@
             
         </footer>
 
+    </div>
+
+    <div id="modalSucesso" class="modal-overlay">
+        <div class="modal-content">
+            <div class="icon-check">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>Solicitação Enviada</h2>
+            <p>Seu protocolo é: <br> <strong id="numeroProtocolo"></strong></p>
+            <button id="btnFecharModal">OK</button>
+        </div>
     </div>
 
     <script src="Suporte.js" defer></script>
