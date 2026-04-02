@@ -259,7 +259,7 @@ input {
   flex-direction: column;
   margin-right: 900px;
   margin-left: -50px;
-  margin-top: 90px;
+  margin-top: 70px;
 }
 
 .rodape {
@@ -267,6 +267,22 @@ input {
   padding: 30px;
   text-align: center;
   margin-top: 43px;
+}
+
+.cruzdemalta1 {
+  background: #67718b;
+  width: 00px;
+  height: 0px;
+  margin-left: 100px;
+  margin-top: 33px ;
+}
+
+.cruzdemalta2 {
+  background: #67718b;
+  width: 1px;
+  height: 2px;
+  margin-left: 100px;
+  margin-top: 33px ;
 }
 
 </style>
@@ -321,13 +337,16 @@ input {
 
 <div class="colunadecorativa"></div>
 
+<div class="cruzdemalta1"></div>
+<div class="cruzdemata2"></div>
+
 <div class="leftright">
   <!-- ESQUERDA -->
   <div class="left">
     <div class="avatar-wrapper">
       <img src="../imagens/aidento.jpg" class="avatar">
       <button class="btn-edit">✏️</button>
-      
+
     </div>
 
     <div class="cpf">
