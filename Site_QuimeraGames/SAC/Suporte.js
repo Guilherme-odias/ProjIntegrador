@@ -2,9 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log("JS carregado!");
 
-    // ==========================
-    // MÁSCARA DO CPF
-    // ==========================
     const inputCpf = document.getElementById('cpf');
 
     if (inputCpf) {
@@ -25,9 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ==========================
-    // ENVIO DO FORMULÁRIO
-    // ==========================
     const formSuporte = document.getElementById('formSuporte');
 
     if (formSuporte) {
@@ -41,13 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const cpf = document.getElementById('cpf').value;
             const reclamacao = document.getElementById('reclamacao').value;
 
-            // Validação simples
             if (!nome || !email || !cpf || !reclamacao) {
                 alert("Preencha todos os campos!");
                 return;
             }
 
-            const protocolo = "QG-" + Math.floor(Math.random() * 1000000);
+            const protocolo = Math.floor(Math.random() * 1000000);
 
             const dados = new FormData();
             dados.append('nome', nome);
@@ -56,9 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
             dados.append('reclamacao', reclamacao);
             dados.append('protocolo', protocolo);
 
-            // ==========================
-            // ENVIO PARA O PHP
-            // ==========================
             fetch('enviar.php', {
                 method: 'POST',
                 body: dados
@@ -68,10 +58,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Resposta do PHP:", texto);
 
                 if (texto.includes("sucesso")) {
-                    alert("Enviado com sucesso! Seu protocolo é: " + protocolo);
+                    
+                    // Pega os elementos do modal no HTML
+                    const modal = document.getElementById('modalSucesso');
+                    const spanProtocolo = document.getElementById('numeroProtocolo');
+                    const btnFechar = document.getElementById('btnFecharModal');
 
-                    // ✅ LIMPA O FORMULÁRIO
-                    formSuporte.reset();
+                    // Coloca o número do protocolo na tela
+                    spanProtocolo.textContent = protocolo;
+
+                    // Mostra o modal (muda de none para flex)
+                    modal.style.display = 'flex';
+
+                    // O que acontece quando clica no OK do Modal
+                    btnFechar.onclick = function() {
+                        modal.style.display = 'none'; 
+                        formSuporte.reset(); 
+                    };
 
                 } else {
                     alert("Erro ao enviar: " + texto);
