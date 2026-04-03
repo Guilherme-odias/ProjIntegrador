@@ -9,8 +9,19 @@
 </head>
 
 <body>
+    <header class="topo">
+    <div class="topo-esquerda">
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
+          src="../imagens/logo.png"></a>
+    </div>
+    <div class="topo-direita">
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
+          class="btn-login">Suporte</button></a>
+    </div>
+</header>
 
-<div class="container">
+<div class="h1box">
+<div class="conteudo">
 
     <form class="card" method="POST" onsubmit="return validarForm()">
 
@@ -58,7 +69,20 @@
         </div>
 
     </form>
+<div class="rodape">
+        <div class="primeira_cadastre">
+    <label class="primeira" >Já tem uma conta?
+        Faça login para continuar.</label>
+    <button class="cad" onclick="window.location.href='../Entrar/entrar.php'">Entrar</button>
+    </div>
 
+    <div class="texto">
+    <p>É gratuito e fácil. Descubra milhares de jogos
+    para jogar com milhões de novos amigos.</p>
+    </div>
+</div>
+
+</div>
 </div>
 <?php 
 require_once '../conexa.php';

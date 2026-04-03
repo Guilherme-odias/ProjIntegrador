@@ -15,6 +15,44 @@ $stmt->execute();
 
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$msg = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $novo_user = $_POST['nome_user'];
+
+    // 🧠 NOVO: se for igual ao atual
+    if ($novo_user === $usuario['nome_user']) {
+        $msg = "⚠️ Nenhuma alteração feita.";
+    } else {
+
+        // verifica se já existe OUTRO usuário com esse nome
+        $check = $pdo->prepare("SELECT * FROM cadastro WHERE nome_user = :nome_user AND email != :email");
+        $check->bindParam(":nome_user", $novo_user);
+        $check->bindParam(":email", $email);
+        $check->execute();
+
+        if ($check->rowCount() > 0) {
+            $msg = "❌ Esse nome de usuário já existe!";
+        } else {
+
+            // atualiza no banco
+            $update = $pdo->prepare("UPDATE cadastro SET nome_user = :nome_user WHERE email = :email");
+            $update->bindParam(":nome_user", $novo_user);
+            $update->bindParam(":email", $email);
+            $update->execute();
+
+            // atualiza sessão
+            $_SESSION['usuario_nome'] = $novo_user;
+
+            $msg = "✅ Nome de usuário atualizado com sucesso!";
+
+            // atualiza na tela
+            $usuario['nome_user'] = $novo_user;
+        }
+    }
+}
+
 function mascararCPF($cpf) {
     return substr($cpf,0,3) . '.***.***-' . substr($cpf,-2);
 }
@@ -123,7 +161,8 @@ body {
   grid-template-columns: 1fr 1fr;
   padding: 60px;
   transform: scale(1.3);
-  margin-right: 400px;
+  margin-right: 380px;
+  transform-origin: top left;
 }
 
 /* ESQUERDA */
@@ -249,7 +288,7 @@ input {
 
 .colunadecorativa {
   background: #415485;
-  width: 180px;
+  width: 210px;
   height: 650px;
   margin-left: 100px;
   margin-top: 33px ;
@@ -271,18 +310,24 @@ input {
 
 .cruzdemalta1 {
   background: #67718b;
-  width: 00px;
-  height: 0px;
-  margin-left: 100px;
-  margin-top: 33px ;
+  width: 1500px;
+  height: 100px;
+  margin-left: 200px;
+  margin-top: 250px ;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .cruzdemalta2 {
   background: #67718b;
-  width: 1px;
-  height: 2px;
-  margin-left: 100px;
-  margin-top: 33px ;
+  width: 100px;
+  height: 650px;
+  margin-left: 700px;
+  margin-top: 93px ;
+  position: absolute;
+  z-index:-1;
+  pointer-events: none;
 }
 
 </style>
@@ -338,7 +383,7 @@ input {
 <div class="colunadecorativa"></div>
 
 <div class="cruzdemalta1"></div>
-<div class="cruzdemata2"></div>
+<div class="cruzdemalta2"></div>
 
 <div class="leftright">
   <!-- ESQUERDA -->
@@ -358,24 +403,33 @@ input {
   <div class="right">
     <h1>Configurações</h1>
 
-    <div class="form">
+    <form method="POST" class="form">
 
       <div class="field">
         <label>Apelido de usuário</label>
-        <input value="<?php echo $usuario['nome_user']; ?>">
+        <input name="nome_user" value="<?php echo $usuario['nome_user']; ?>">
       </div>
 
       <div class="field">
         <label>Nome</label>
-        <input value="<?php echo $usuario['nome']; ?>">
+        <input value="<?php echo $usuario['nome']; ?>" readonly>
       </div>
 
       <div class="field">
         <label>Email</label>
-        <input value="<?php echo $usuario['email']; ?>">
+        <input value="<?php echo $usuario['email']; ?>" readonly>
       </div>
 
-      <button class="btn-update">Atualizar</button>
+      <button type="submit" class="btn-update">Atualizar</button>
+
+<?php if ($msg): ?>
+  <p style="margin-bottom: 15px; font-weight: bold;">
+    <?php echo $msg; ?>
+  </p>
+<?php endif; ?>
+
+</form>
+
 
     </div>
   </div>
