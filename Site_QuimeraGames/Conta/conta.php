@@ -86,6 +86,8 @@ body {
   align-items: center;
   padding: 15px 5%;
   background: rgba(19,32,65,0.95);
+  z-index: 10;
+  position: relative;
 }
 
 .logo { width: 100px; }
@@ -163,6 +165,8 @@ body {
   transform: scale(1.3);
   margin-right: 380px;
   transform-origin: top left;
+  margin-top: -121px;
+  margin-left: -210px;
 }
 
 /* ESQUERDA */
@@ -170,7 +174,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: left;
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 40px;
 }
 
@@ -289,9 +293,10 @@ input {
 .colunadecorativa {
   background: #415485;
   width: 210px;
-  height: 650px;
+  height: 601px;
   margin-left: 100px;
   margin-top: 33px ;
+  z-index: -999;
 }
 
 .leftright {
@@ -305,14 +310,14 @@ input {
   background: rgba(19, 32, 65, 0.95);
   padding: 30px;
   text-align: center;
-  margin-top: 43px;
+  margin-top: 146px;
 }
 
 .cruzdemalta1 {
   background: #67718b;
-  width: 1500px;
+  width: 1260px;
   height: 100px;
-  margin-left: 200px;
+  margin-left: 370px;
   margin-top: 250px ;
   position: absolute;
   z-index: -1;
@@ -322,11 +327,11 @@ input {
 .cruzdemalta2 {
   background: #67718b;
   width: 100px;
-  height: 650px;
+  height: 601px;
   margin-left: 700px;
   margin-top: 93px ;
   position: absolute;
-  z-index:-1;
+  z-index: -1;
   pointer-events: none;
 }
 
