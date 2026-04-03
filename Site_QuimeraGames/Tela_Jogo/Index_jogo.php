@@ -1,4 +1,9 @@
 <?php
+// Força o PHP a mostrar os erros na tela para não ficar tela branca
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once '../conexa.php';
 
 $id_jogo = isset($_GET['id']) ? (int) $_GET['id'] : 0;
@@ -6,7 +11,7 @@ $id_jogo = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $veio_do_desconto = isset($_GET['desconto']) && $_GET['desconto'] == '1';
 
 if ($id_jogo === 0) {
-    die("<h2 style='color:white; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado. Volte para a loja.</h2>");
+    die("<h2 style='color:black; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado na URL. Volte para a loja.</h2>");
 }
 
 try {
@@ -21,11 +26,12 @@ try {
     $jogo = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$jogo) {
-        die("<h2 style='color:white; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado no banco de dados.</h2>");
+        die("<h2 style='color:black; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado no banco de dados. (ID pesquisado: $id_jogo)</h2>");
     }
 
-    $trailer_url = $jogo['Trailers'];
-    if (strpos($trailer_url, 'drive.google.com/file/d/') !== false) {
+    // CORREÇÃO: Verifica se existe trailer antes de tentar ler
+    $trailer_url = isset($jogo['Trailers']) ? $jogo['Trailers'] : '';
+    if (!empty($trailer_url) && strpos($trailer_url, 'drive.google.com/file/d/') !== false) {
         $trailer_url = preg_replace('/\/view.*$/', '/preview', $trailer_url);
     }
 
@@ -33,8 +39,8 @@ try {
     $tem_desconto = $veio_do_desconto;
     $valor_venda = $tem_desconto ? ($valor_original * 0.90) : $valor_original;
 
-    // Lógica para separar Mínimo e Recomendado
-    $req_texto = $jogo['req_sistema'] ?? '';
+    // Lógica para separar Mínimo e Recomendado com proteção contra NULL
+    $req_texto = isset($jogo['req_sistema']) ? $jogo['req_sistema'] : '';
     $pos_rec = strpos($req_texto, 'Recomendado');
     if ($pos_rec !== false) {
         $req_minimo = substr($req_texto, 0, $pos_rec);
@@ -45,7 +51,7 @@ try {
     }
 
 } catch (PDOException $e) {
-    die("Erro na consulta: " . $e->getMessage());
+    die("<h2 style='color:black;'>Erro na consulta: " . $e->getMessage() . "</h2>");
 }
 ?>
 
@@ -85,11 +91,11 @@ try {
         <div class="game-layout">
 
             <div class="game-left-col">
-                
-                <div class="main-media" id="painel-midia" 
-                     data-type="<?php echo !empty($trailer_url) ? 'video' : 'image'; ?>" 
-                     data-src="<?php echo !empty($trailer_url) ? htmlspecialchars($trailer_url) : htmlspecialchars($jogo['Imagens_jogos']); ?>">
-                    
+
+                <div class="main-media" id="painel-midia"
+                    data-type="<?php echo !empty($trailer_url) ? 'video' : 'image'; ?>"
+                    data-src="<?php echo !empty($trailer_url) ? htmlspecialchars($trailer_url) : htmlspecialchars($jogo['Imagens_jogos']); ?>">
+
                     <?php if (!empty($trailer_url)): ?>
                         <div id="media-video-container" style="display:block; width:100%; height:100%;">
                             <iframe id="video-iframe" src="<?php echo htmlspecialchars($trailer_url); ?>" width="100%"
@@ -101,7 +107,8 @@ try {
                         </div>
                     <?php else: ?>
                         <div id="media-video-container" style="display:none; width:100%; height:100%;">
-                            <iframe id="video-iframe" src="" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                            <iframe id="video-iframe" src="" width="100%" height="100%" frameborder="0"
+                                allow="autoplay; fullscreen" allowfullscreen></iframe>
                         </div>
                         <div id="media-image-container" style="display:block; width:100%; height:100%;">
                             <img id="main-image" src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>"
@@ -112,17 +119,26 @@ try {
 
                 <div class="media-thumbnails" id="galeria-thumbnails">
                     <?php if (!empty($trailer_url)): ?>
-                        <div class="thumb-wrapper" data-type="image" data-src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" style="cursor:pointer; position:relative;">
-                            <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" class="thumb-item" alt="Capa" style="width:100%; height:100%; object-fit:cover; display:block;">
+                        <div class="thumb-wrapper" data-type="image"
+                            data-src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>"
+                            style="cursor:pointer; position:relative;">
+                            <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" class="thumb-item" alt="Capa"
+                                style="width:100%; height:100%; object-fit:cover; display:block;">
                         </div>
                     <?php endif; ?>
 
-                    <div class="thumb-wrapper" data-type="image" data-src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>" style="cursor:pointer; position:relative;">
-                        <img src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>" class="thumb-item" alt="Cenário 1" style="width:100%; height:100%; object-fit:cover; display:block;">
+                    <div class="thumb-wrapper" data-type="image"
+                        data-src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>"
+                        style="cursor:pointer; position:relative;">
+                        <img src="<?php echo htmlspecialchars($jogo['Imagens_cen1']); ?>" class="thumb-item"
+                            alt="Cenário 1" style="width:100%; height:100%; object-fit:cover; display:block;">
                     </div>
-                    
-                    <div class="thumb-wrapper" data-type="image" data-src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>" style="cursor:pointer; position:relative;">
-                        <img src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>" class="thumb-item" alt="Cenário 2" style="width:100%; height:100%; object-fit:cover; display:block;">
+
+                    <div class="thumb-wrapper" data-type="image"
+                        data-src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>"
+                        style="cursor:pointer; position:relative;">
+                        <img src="<?php echo htmlspecialchars($jogo['Imagens_cen2']); ?>" class="thumb-item"
+                            alt="Cenário 2" style="width:100%; height:100%; object-fit:cover; display:block;">
                     </div>
                 </div>
 
