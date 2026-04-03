@@ -100,12 +100,15 @@ try {
           <div class="categorias-painel-grid" id="grid-categorias">
             <?php foreach ($categorias_bd as $cat): ?>
               <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
-              <div class="card-cat-item">
+
+              <a href="../Categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
+                style="text-decoration: none; color: inherit;">
                 <div class="img-cat-wrapper">
                   <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
                 </div>
                 <span><?php echo $nome_cat; ?></span>
-              </div>
+              </a>
+
             <?php endforeach; ?>
           </div>
           <button class="seta-cat direita" id="seta-direita">&#10095;</button>
@@ -175,7 +178,8 @@ try {
       <h2>Descontos em destaque ></h2>
       <div class="jogos-grid">
         <?php foreach ($jogos_descontos as $jogo): ?>
-          <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1" style="text-decoration: none; color: inherit; display: block;">
+          <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1"
+            style="text-decoration: none; color: inherit; display: block;">
             <div class="card-jogo-container">
               <div class="thumb-wrapper">
                 <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>">
