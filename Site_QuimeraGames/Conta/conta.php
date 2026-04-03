@@ -458,6 +458,10 @@ document.addEventListener("click", function(e) {
   }
 });
 
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+}
+
 </script>
 
   <footer class="rodape">QuimeraGames &copy; 2026</footer>
