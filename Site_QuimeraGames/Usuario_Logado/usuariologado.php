@@ -73,7 +73,7 @@ document.addEventListener("click", function(e) {
     </div>
     <div class="topo-direita">
   <!-- carrinho -->
-  <button class="btn-icon" >
+  <button class="btn-icon">
     🛒
   </button>
 
@@ -102,14 +102,48 @@ document.addEventListener("click", function(e) {
   </header>
 
   <div class="container">
-    <nav class="menu-busca">
-      <div class="busca-input">
-        <span>🔍</span>
-        <input type="text" placeholder="Pesquisar loja">
+
+    <div class="menu-wrapper" style="position: relative; z-index: 1000;">
+      <nav class="menu-busca">
+        <div class="busca-input">
+          <span>🔍</span>
+          <input type="text" placeholder="Pesquisar loja">
+        </div>
+        <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
+        <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
+      </nav>
+
+      <div id="painel-explorar" class="painel-dropdown">
+        <div class="banner-explorar-container">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070" alt="Banner Explorar"
+            class="img-banner-explorar">
+          <div class="overlay-banner"></div>
+          <a href="../mais_vendidos/Index.php" class="btn-mais-vendidos-banner">Mais vendidos</a>
+        </div>
       </div>
-      <button class="btn-dropdown">Explorar ▾</button>
-      <button class="btn-dropdown">Categorias ▾</button>
-    </nav>
+
+      <div id="painel-categorias" class="painel-dropdown">
+        <h3 class="titulo-painel">Gêneros Populares</h3>
+        <div class="carousel-categorias-wrapper">
+          <button class="seta-cat esquerda" id="seta-esquerda">&#10094;</button>
+          <div class="categorias-painel-grid" id="grid-categorias">
+            <?php foreach ($categorias_bd as $cat): ?>
+              <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
+
+              <a href="../Categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
+                style="text-decoration: none; color: inherit;">
+                <div class="img-cat-wrapper">
+                  <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
+                </div>
+                <span><?php echo $nome_cat; ?></span>
+              </a>
+
+            <?php endforeach; ?>
+          </div>
+          <button class="seta-cat direita" id="seta-direita">&#10095;</button>
+        </div>
+      </div>
+    </div>
 
     <div class="carousel-container">
       <?php foreach ($jogos_carousel as $i => $radio): ?>
@@ -121,8 +155,10 @@ document.addEventListener("click", function(e) {
           <div class="slide" id="slide<?php echo $i + 1; ?>">
             <div class="content-box">
               <div class="poster-box">
-                <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" id="mainImg<?php echo $i + 1; ?>"
-                  data-capa="<?php echo $jogo['Imagens_jogos']; ?>" class="capa-poster">
+                <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>">
+                  <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" id="mainImg<?php echo $i + 1; ?>"
+                    data-capa="<?php echo $jogo['Imagens_jogos']; ?>" class="capa-poster">
+                </a>
               </div>
 
               <div class="info-box" id="infoBox<?php echo $i + 1; ?>">
@@ -130,18 +166,23 @@ document.addEventListener("click", function(e) {
                 <h2 class="titulo-jogo"><?php echo htmlspecialchars($jogo['titulo']); ?></h2>
                 <p class="descricao-jogo"><?php echo mb_strimwidth($jogo['informacoes'], 0, 180, "..."); ?></p>
 
+                <div class="card-plataforma" style="margin-bottom: 20px;">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
+                  <span>Windows</span>
+                </div>
+
                 <div class="precos-container">
                   <?php if ($jogo['Valor'] > 0): ?>
-                    <span class="badge-desconto">-10%</span>
                     <div class="col-precos">
-                      <span class="v-antigo">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
-                      <span class="v-novo">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
+                      <span class="v-novo">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
                     </div>
                   <?php else: ?>
                     <span class="v-gratis">Gratuito</span>
                   <?php endif; ?>
                 </div>
-                <button class="btn-comprar-carrossel">COMPRAR AGORA</button>
+                <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration: none;">
+                  <button class="btn-comprar-carrossel">COMPRAR AGORA</button>
+                </a>
               </div>
             </div>
 
@@ -166,66 +207,43 @@ document.addEventListener("click", function(e) {
       <h2>Descontos em destaque ></h2>
       <div class="jogos-grid">
         <?php foreach ($jogos_descontos as $jogo): ?>
-          <div class="card-jogo-container">
-            <div class="thumb-wrapper">
-              <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>">
-              <?php if ($jogo['Valor'] > 0): ?>
-                <span class="badge-desconto">-10%</span>
-              <?php endif; ?>
-            </div>
-            <div class="card-info-texto">
-              <h4><?php echo htmlspecialchars($jogo['titulo']); ?></h4>
-              <div class="card-plataforma">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
-                <span>Windows</span>
-              </div>
-              <div class="precos-card">
+          <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1"
+            style="text-decoration: none; color: inherit; display: block;">
+            <div class="card-jogo-container">
+              <div class="thumb-wrapper">
+                <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>">
                 <?php if ($jogo['Valor'] > 0): ?>
-                  <span class="v-old">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
-                  <span class="v-new">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
-                <?php else: ?>
-                  <span class="v-gratis">Gratuito</span>
+                  <span class="badge-desconto">-10%</span>
                 <?php endif; ?>
               </div>
+              <div class="card-info-texto">
+                <h4><?php echo htmlspecialchars($jogo['titulo']); ?></h4>
+                <div class="card-plataforma">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
+                  <span>Windows</span>
+                </div>
+                <div class="precos-card">
+                  <?php if ($jogo['Valor'] > 0): ?>
+                    <span class="v-old">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
+                    <span class="v-new">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
+                  <?php else: ?>
+                    <span class="v-gratis">Gratuito</span>
+                  <?php endif; ?>
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
         <?php endforeach; ?>
       </div>
     </section>
+
   </div>
 
   <footer class="rodape">QuimeraGames &copy; 2026</footer>
 
-  <script>
-    function gerenciarTroca(index, elementoMin) {
-      const slideContainer = document.getElementById('slide' + index);
-      const imgPrincipal = document.getElementById('mainImg' + index);
-      const infoBox = document.getElementById('infoBox' + index);
-      const urlCapaOriginal = imgPrincipal.getAttribute('data-capa');
+  <script src="script.js" defer></script>
 
-      const urlTemporaria = imgPrincipal.src;
-      imgPrincipal.src = elementoMin.src;
-      elementoMin.src = urlTemporaria;
 
-      if (imgPrincipal.src === urlCapaOriginal) {
-        slideContainer.classList.remove('cenario-ativo');
-        infoBox.style.opacity = "1";
-        infoBox.style.visibility = "visible";
-      } else {
-        slideContainer.classList.add('cenario-ativo');
-        infoBox.style.opacity = "0";
-        infoBox.style.visibility = "hidden";
-      }
-    }
-
-    let currentSlide = 1;
-    setInterval(() => {
-      currentSlide++;
-      if (currentSlide > 7) currentSlide = 1;
-      const radio = document.getElementById('s' + currentSlide);
-      if (radio) radio.checked = true;
-    }, 7000);
-  </script>
 </body>
 
 </html>
