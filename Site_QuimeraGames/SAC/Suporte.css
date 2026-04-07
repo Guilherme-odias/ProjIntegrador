@@ -27,60 +27,6 @@ h1 {
   overflow: hidden;
 }
 
-/* .topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  backdrop-filter: blur(10px);
-  width: 100%;
-  margin-top: 55px;
-  gap: 20px;
-}
-
-.logo {
-  width: 100px;
-  height: auto;
-  border-radius: 12px;
-  margin-top: 5px;
-  margin-left: 15px;
-}
-
-.topo-esquerda,
-.topo-direita {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  padding: 0 20px;
-  margin-right: 20px;
-}
-
-.btn-nav,
-.btn-login {
-  border: none;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
-  background: rgba(255, 255, 255, 0.05);
-  gap: 30px;
-}
-
-.btn-nav.active,
-.btn-login:hover {
-  background: #e50914;
-} */
-
-.item {
-  width: 100%;
-  height: 500px;
-  background: #c3d4ffb7;
-  border-radius: 14px;
-  padding: 10px;
-  position: relative;
-  z-index: 1;
-}
 
 .inputNome {
   width: 310px;

@@ -10,17 +10,18 @@
 </head>
 
 <body>
-    <!-- <header class="topo">
+    <header class="topo">
         <div class="topo-esquerda">
-        <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
-            src="../imagens/logo.png"></a>
-
+            <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
+                <img class="logo" src="../imagens/logo.png" alt="Logo Quimera Games">
+            </a>
         </div>
         <div class="topo-direita">
-        <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
-            class="btn-login">Suporte</button></a>
+            <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php">
+                <button class="btn-login">Suporte</button>
+            </a>
         </div>
-    </header> -->
+    </header>
 
     <div class="container">
         <h1>Suporte ao cliente</h1>
