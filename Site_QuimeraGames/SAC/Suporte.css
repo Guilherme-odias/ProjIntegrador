@@ -235,6 +235,27 @@ h1 {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
+.bloco-erro {
+    background: #4a1010;
+    border-left: 4px solid #e63b2e;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.bloco-erro ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #f5a5a5;
+    font-size: 13px;
+}
+
+.bloco-erro ul li {
+    margin: 4px 0;
+}
+
 /* Animação suave para o modal aparecer */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.9); }
