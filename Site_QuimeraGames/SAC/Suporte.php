@@ -11,16 +11,16 @@
 
 <body>
     <header class="topo">
+        
         <div class="topo-esquerda">
             <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
                 <img class="logo" src="../imagens/logo.png" alt="Logo Quimera Games">
             </a>
-        </div>
-        <div class="topo-direita">
-            <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php">
-                <button class="btn-login">Suporte</button>
+            <a href="#">
+                <button class="btn-loja">Loja</button>
             </a>
         </div>
+       
     </header>
 
     <div class="container">
