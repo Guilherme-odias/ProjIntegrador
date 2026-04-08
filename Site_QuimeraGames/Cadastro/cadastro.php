@@ -28,32 +28,32 @@
         <h1>Tela Cadastro</h1>
 
         <div class="input-group">
-            <input type="email" id="email" name="email" required>
+            <input type="email" placeholder=" " id="email" name="email" required>
             <label>Email</label>
         </div>
 
         <div class="input-group">
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" placeholder=" " id="nome" name="nome" required>
             <label>Nome</label>
         </div>
 
         <div class="input-group">
-            <input type="text" id="user" name="user" required>
+            <input type="text" placeholder=" " id="user" name="user" required>
             <label>User</label>
         </div>
 
         <div class="input-group">
-            <input type="text" id="cpf" name="cpf" maxlength="14" required>
+            <input type="text" placeholder=" " id="cpf" name="cpf" maxlength="14" required>
             <label>CPF</label>
         </div>
 
         <div class="input-group">
-            <input type="password" id="senha" name="senha" required>
+            <input type="password" placeholder=" " id="senha" name="senha" required>
             <label>Senha</label>
         </div>
 
         <div class="input-group">
-            <input type="password" id="confirme" name="confirme" required>
+            <input type="password" placeholder=" "id="confirme" name="confirme" required>
             <label>Confirmar senha</label>
         </div>
 
