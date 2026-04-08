@@ -26,6 +26,22 @@ try {
   $stmt_descontos->execute();
   $jogos_descontos = $stmt_descontos->fetchAll(PDO::FETCH_ASSOC);
 
+  $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
+  $stmt_categorias->execute();
+  $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
+
+  $nomes_categorias = [
+    1 => 'Ação',
+    2 => 'Aventura',
+    3 => 'Corrida',
+    4 => 'Estratégia',
+    5 => 'Esporte',
+    6 => 'FPS',
+    7 => 'Luta',
+    8 => 'Terror',
+    9 => 'Sobrevivência',
+    10 => 'RPG'
+  ];
 } catch (PDOException $e) {
   die("Erro na consulta ao banco de dados: " . $e->getMessage());
 }
@@ -105,10 +121,10 @@ document.addEventListener("click", function(e) {
 
     <div class="menu-wrapper" style="position: relative; z-index: 1000;">
       <nav class="menu-busca">
-        <div class="busca-input">
-          <span>🔍</span>
-          <input type="text" placeholder="Pesquisar loja">
-        </div>
+        <form action="../Busca/search.php" method="GET" class="busca-input">
+  <span>🔍</span>
+  <input type="text" name="query" placeholder="Pesquisar loja" required>
+        </form>
         <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
         <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
       </nav>
@@ -243,6 +259,73 @@ document.addEventListener("click", function(e) {
 
   <script src="script.js" defer></script>
 
+  <?php
+require_once '../conexa.php';
+
+// Pega o que o usuário digitou na barra de pesquisa
+$query = isset($_GET['query']) ? trim($_GET['query']) : '';
+
+if ($query === '') {
+    echo "<p style='color: white;'>Digite algo para pesquisar.</p>";
+    exit;
+}
+
+try {
+    // Busca no banco de dados os jogos que contenham o texto digitado no título
+    $stmt = $pdo->prepare("SELECT * FROM jogos WHERE titulo LIKE :busca LIMIT 18");
+    $stmt->bindValue(':busca', '%' . $query . '%', PDO::PARAM_STR);
+    $stmt->execute();
+    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Se encontrou algum jogo, monta a grade de cartões
+    if (count($resultados) > 0) {
+        echo '<div class="jogos-grid">';
+
+        foreach ($resultados as $jogo) {
+            $id = $jogo['id_play'];
+            $titulo = htmlspecialchars($jogo['titulo']);
+            $imagem = htmlspecialchars($jogo['Imagens_jogos']);
+            $valor = $jogo['Valor'];
+
+            // Lógica de exibição de preço (Gratuito ou Pago)
+            if ($valor > 0) {
+                $preco_html = '<span class="v-new">R$ ' . number_format($valor, 2, ',', '.') . '</span>';
+            } else {
+                $preco_html = '<span class="v-gratis" style="color:#4CAF50; font-weight:bold;">Gratuito</span>';
+            }
+
+            // O Cartão do jogo (Igual aos descontos em destaque) apontando para a Tela do Jogo
+            echo '
+            <a href="../Tela_Jogo/index_jogo.php?id=' . $id . '" style="text-decoration: none; color: inherit; display: block;">
+                <div class="card-jogo-container">
+                    <div class="thumb-wrapper">
+                        <img src="' . $imagem . '" alt="' . $titulo . '">
+                    </div>
+                    <div class="card-info-texto">
+                        <h4>' . $titulo . '</h4>
+                        <div class="card-plataforma">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
+                            <span>Windows</span>
+                        </div>
+                        <div class="precos-card">
+                            ' . $preco_html . '
+                        </div>
+                    </div>
+                </div>
+            </a>';
+        }
+        echo '</div>';
+    } else {
+        // Se não encontrar nada, mostra uma mensagem amigável
+        echo "<h3 style='color: #aaa; text-align: center; margin-top: 60px; font-weight: normal;'>
+                Nenhum jogo encontrado para \"<strong style='color:white;'>" . htmlspecialchars($query) . "</strong>\".
+              </h3>";
+    }
+
+} catch (PDOException $e) {
+    echo "<p style='color: red;'>Erro na busca: " . $e->getMessage() . "</p>";
+}
+?>
 
 </body>
 

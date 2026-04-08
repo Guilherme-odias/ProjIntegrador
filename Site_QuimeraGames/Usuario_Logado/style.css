@@ -669,3 +669,15 @@ input[type="radio"] {
   opacity: 1;
   visibility: visible;
 }
+
+#resultados-busca {
+  padding-top: 20px;
+  min-height: 500px;
+  /* Garante que o rodapé não suba demais */
+}
+
+.erro-busca h2 {
+  color: #999;
+  text-align: center;
+  margin-top: 50px;
+}
