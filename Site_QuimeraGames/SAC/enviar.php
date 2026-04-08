@@ -1,68 +1,88 @@
 <?php
+header('Content-Type: application/json');
+
 require_once '../PHPMailer/src/PHPMailer.php';
 require_once '../PHPMailer/src/SMTP.php';
 require_once '../PHPMailer/src/Exception.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    echo json_encode(['sucesso' => false, 'erro' => 'Acesso negado.']);
+    exit;
+}
 
-    $nome = $_POST['nome'] ?? '';
-    $email_cliente = $_POST['email'] ?? '';
-    $cpf = $_POST['cpf'] ?? '';
-    $reclamacao = $_POST['reclamacao'] ?? '';
-    $protocolo = $_POST['protocolo'] ?? '';
+// ========================
+// SANITIZAÇÃO
+// ========================
+$nome      = htmlspecialchars(trim($_POST['nome'] ?? ''));
+$email     = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+$cpf       = preg_replace('/[^\d]/', '', $_POST['cpf'] ?? '');
+$mensagem  = htmlspecialchars(trim($_POST['reclamacao'] ?? ''));
 
-    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+// ========================
+// VALIDAÇÃO NO BACKEND
+// ========================
+if (strlen($nome) < 3) {
+    echo json_encode(['sucesso' => false, 'erro' => 'Nome inválido.']); exit;
+}
+if (!$email) {
+    echo json_encode(['sucesso' => false, 'erro' => 'E-mail inválido.']); exit;
+}
+if (strlen($cpf) !== 11) {
+    echo json_encode(['sucesso' => false, 'erro' => 'CPF inválido.']); exit;
+}
+if (strlen($mensagem) < 20) {
+    echo json_encode(['sucesso' => false, 'erro' => 'Mensagem muito curta.']); exit;
+}
 
-    try {
+// ========================
+// GERA PROTOCOLO NO BACKEND
+// ========================
+$protocolo = strtoupper(substr(md5(uniqid(rand(), true)), 0, 8));
 
-        $mail->SMTPDebug = 0; 
+// ========================
+// ENVIO DO E-MAIL
+// ========================
+$mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'quimeraggames@gmail.com';
+try {
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'quimeraggames@gmail.com';
+    $mail->Password   = 'okvj nqpq jgqk cexh';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port       = 587;
+    $mail->CharSet    = 'UTF-8';
+    $mail->SMTPDebug  = 0;
 
-        $mail->Password = 'okvj nqpq jgqk cexh'; 
+    $mail->setFrom('quimeraggames@gmail.com', 'Equipe QuimeraGames');
+    $mail->addAddress($email, $nome);
 
-        $mail->SMTPSecure = 'tls'; 
-        $mail->Port = 587;
+    $mail->isHTML(true);
+    $mail->Subject = "Recebemos sua solicitação - Protocolo: $protocolo";
 
-        $mail->CharSet = 'UTF-8'; 
-  
-        $mail->setFrom('quimeraggames@gmail.com', 'Equipe QuimeraGames');
-        
-        $mail->addAddress($email_cliente, $nome);
+    $texto_reclamacao = nl2br(htmlspecialchars($mensagem));
 
-        $mail->isHTML(true);
-        $mail->Subject = "Recebemos sua reclamação - Protocolo: $protocolo";
-        
-        $texto_reclamacao = nl2br(htmlspecialchars($reclamacao));
+    $mail->Body = "
+        <div style='font-family: Arial, sans-serif; color: #333;'>
+            <h2>Olá, $nome!</h2>
+            <p>Confirmamos o recebimento da sua mensagem.</p>
+            <hr>
+            <p><strong>Protocolo:</strong> $protocolo</p>
+            <p><strong>CPF informado:</strong> $cpf</p>
+            <p><strong>Sua mensagem:</strong></p>
+            <blockquote style='background:#f4f4f4; padding:10px; border-left:5px solid #ccc;'>
+                $texto_reclamacao
+            </blockquote>
+            <hr>
+            <p>Nossa equipe entrará em contato em breve.</p>
+        </div>
+    ";
 
-        $mail->Body = "
-            <div style='font-family: Arial, sans-serif; color: #333;'>
-                <h2>Olá, $nome!</h2>
-                <p>Confirmamos o recebimento da sua mensagem em nosso sistema.</p>
-                <hr>
-                <p><strong>Número do Protocolo:</strong> $protocolo</p>
-                <p><strong>CPF informado:</strong> $cpf</p>
-                <p><strong>Sua mensagem:</strong></p>
-                <blockquote style='background: #f4f4f4; padding: 10px; border-left: 5px solid #ccc;'>
-                    $texto_reclamacao
-                </blockquote>
-                <hr>
-                <p>Nossa equipe analisará sua solicitação e entrará em contato em breve.</p>
-            </div>
-        ";
+    $mail->send();
+    echo json_encode(['sucesso' => true, 'protocolo' => $protocolo]);
 
-        $mail->send();
-        
-        echo "sucesso";
-
-    } catch (Exception $e) {
-        echo "erro: " . $mail->ErrorInfo;
-    }
-
-} else {
-    echo "acesso_negado";
+} catch (Exception $e) {
+    echo json_encode(['sucesso' => false, 'erro' => 'Erro ao enviar e-mail: ' . $mail->ErrorInfo]);
 }
 ?>

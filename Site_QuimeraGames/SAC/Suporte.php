@@ -16,7 +16,7 @@
             <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
                 <img class="logo" src="../imagens/logo.png" alt="Logo Quimera Games">
             </a>
-            <a href="#">
+            <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
                 <button class="btn-loja">Loja</button>
             </a>
         </div>
@@ -26,6 +26,9 @@
     <div class="container">
         <h1>Suporte ao cliente</h1>
 
+        <div id="blocoErro" class="bloco-erro" style="display:none;">
+            <ul id="listaErros"></ul>
+        </div>
 
         <form class="item" id="formSuporte" action="enviar.php" method="POST">
             <div>
