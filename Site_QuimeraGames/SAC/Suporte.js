@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function setStatus(id, valido) {
         document.getElementById(id).style.outline = valido
             ? '2px solid #4caf50'
-            : '2px solid #e63b2e';
+            : '1px solid #e63b2e';
     }
 
     function mostrarErros(erros) {

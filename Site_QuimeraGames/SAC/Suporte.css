@@ -237,8 +237,8 @@ h1 {
 
 .bloco-erro {
     background: #4a1010;
-    border-left: 4px solid #e63b2e;
-    border-radius: 8px;
+    border-left: 5px solid #e63b2e;
+    border-radius: 4px;
     padding: 10px 16px;
     margin-bottom: 10px;
     width: 100%;

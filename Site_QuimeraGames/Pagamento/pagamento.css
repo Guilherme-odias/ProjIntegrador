@@ -196,6 +196,100 @@ body {
 }
 
 /* =========================================
+   NOVOS ESTILOS: FORMULÁRIO E IMAGEM DO JOGO
+   ========================================= */
+
+/* Ajustes no card para os Radio Buttons */
+.metodo-card input[type="radio"] {
+    margin-right: 15px;
+    accent-color: #e62429; /* Cor principal da QuimeraGames */
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Áreas de formulário que alternam */
+.form-dinamico {
+    display: none; /* Oculto por padrão */
+    background-color: #161f2e;
+    border: 1px solid #30363d;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 15px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Classe que o JavaScript adiciona para exibir */
+.form-dinamico.ativo {
+    display: flex; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Campos de digitação (Inputs) */
+.input-form {
+    background-color: #0d121a;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    outline: none;
+    transition: 0.2s;
+}
+
+.input-form:focus {
+    border-color: #e62429;
+}
+
+.linha-inputs {
+    display: flex;
+    gap: 15px;
+}
+
+.texto-info {
+    color: #8b949e;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Botão de Finalizar */
+.btn-finalizar {
+    background-color: #e62429;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-finalizar:hover {
+    background-color: #ff1616;
+}
+
+/* Imagem do Jogo (Substitui o placeholder) */
+.imagem-jogo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1; /* Mantém o formato quadrado como era o placeholder */
+    object-fit: cover; /* Garante que a imagem preencha o quadrado sem distorcer */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid #30363d;
+}
+
+/* =========================================
    RODAPÉ
    ========================================= */
 .rodape {
