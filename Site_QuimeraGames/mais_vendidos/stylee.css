@@ -22,8 +22,10 @@ input { display: none; }
   background: rgba(19, 32, 65, 0.95);
   backdrop-filter: blur(10px);
   width: 100%;
-  gap: 20px;
+  gap: 30px;
 }
+
+
 
 .logo {
   width: 100px;
@@ -132,11 +134,6 @@ input { display: none; }
   font-size: 17px;
 }
 
-.precoo {
-  font-size: 17px;
-  margin-right: 400px;
-  margin-top: 40px;
-}
 
 .jogos {
   display: flex;
@@ -212,3 +209,109 @@ input { display: none; }
     color: #cfd6e6;
 }
 
+.menu-busca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.busca-input {
+  width: 360px;
+  background: rgba(42, 58, 90, 0.8);
+  border-radius: 999px;
+  padding: 8px 16px;
+  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.busca-input input {
+  background: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+  outline: none;
+}
+
+.btn-dropdown {
+  background: transparent;
+  border: 2px solid #e50914;
+  border-radius: 999px;
+  padding: 8px 22px;
+  color: white;
+  cursor: pointer;
+}
+
+.painel-dropdown {
+  background-color: #0b1120;
+  width: 100%;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.1);
+
+  /* CORREÇÃO DO BLOQUEIO DOS CLIQUES E VISIBILIDADE */
+  opacity: 0;
+  transform: translateY(-15px) scale(0.98);
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.painel-dropdown.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+
+  /* Novo Brilho: 3 camadas de sombra vermelha e uma borda leve */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(229, 9, 20, 0.3),
+    0 0 80px rgba(229, 9, 20, 0.15);
+  border: 1px solid rgba(229, 9, 20, 0.4);
+}
+
+.banner-explorar-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.img-banner-explorar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.overlay-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(11, 17, 32, 0.9), rgba(11, 17, 32, 0.3));
+  z-index: 1;
+}
+
+.banner-explorar-container:hover .img-banner-explorar {
+  transform: scale(1.05);
+}
+
+.menu-wrapper {
+  margin-left: 150px;
+  margin-top: 10px
+}
