@@ -73,10 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
           src="../imagens/logo.png"></a>
     </div>
-    <div class="topo-direita">
-      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"><button
-          class="btn-login">Suporte</button></a>
-    </div>
 </header>
 
 <div class="tela">
@@ -132,7 +128,7 @@ document.getElementById("lembrar").addEventListener("change", function() {
 
 </form>
 
-<a href="#" class="problemas_iniciar">Problemas para iniciar sessão</a>
+<a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php" class="problemas_iniciar">Problemas para iniciar sessão</a>
 
     </div>
 </div>

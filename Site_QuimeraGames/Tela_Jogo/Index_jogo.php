@@ -1,13 +1,15 @@
 <?php
-// Força o PHP a mostrar os erros na tela para não ficar tela branca
+// Força o PHP a mostrar os erros
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+session_start();
 
 require_once '../conexa.php';
 
+// PADRONIZAÇÃO: Usamos 'usuario_nome' que é o que você já usa no usuariologado.php
+$logado = isset($_SESSION['usuario_nome']);
 $id_jogo = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-// Verifica se o usuário veio da prateleira de descontos
 $veio_do_desconto = isset($_GET['desconto']) && $_GET['desconto'] == '1';
 
 if ($id_jogo === 0) {
@@ -29,7 +31,6 @@ try {
         die("<h2 style='color:black; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado no banco de dados. (ID pesquisado: $id_jogo)</h2>");
     }
 
-    // CORREÇÃO: Verifica se existe trailer antes de tentar ler
     $trailer_url = isset($jogo['Trailers']) ? $jogo['Trailers'] : '';
     if (!empty($trailer_url) && strpos($trailer_url, 'drive.google.com/file/d/') !== false) {
         $trailer_url = preg_replace('/\/view.*$/', '/preview', $trailer_url);
@@ -39,7 +40,6 @@ try {
     $tem_desconto = $veio_do_desconto;
     $valor_venda = $tem_desconto ? ($valor_original * 0.90) : $valor_original;
 
-    // Lógica para separar Mínimo e Recomendado com proteção contra NULL
     $req_texto = isset($jogo['req_sistema']) ? $jogo['req_sistema'] : '';
     $pos_rec = strpos($req_texto, 'Recomendado');
     if ($pos_rec !== false) {
@@ -68,19 +68,35 @@ try {
 
 <body>
 
+    <div id="dados-sessao" data-logado="<?php echo $logado ? 'true' : 'false'; ?>" data-jogo="<?php echo $id_jogo; ?>">
+    </div>
     <header class="topo">
         <div class="topo-esquerda">
-            <a href="../Index/index.php">
+            <a href="<?php echo $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php'; ?>">
                 <img class="logo" src="../imagens/logo.png" alt="Logo">
             </a>
-            <a href="../Index/index.php" style="text-decoration: none;">
+            <a href="<?php echo $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php'; ?>"
+                style="text-decoration: none;">
                 <button class="btn-nav active">Loja</button>
             </a>
         </div>
         <div class="topo-direita">
-            <a href="../Entrar/Entrar.php" style="text-decoration: none;">
-                <button class="btn-login">Entrar</button>
-            </a>
+            <?php if ($logado): ?>
+                <button class="btn-icon" onclick="location.href='../Usuario_Logado/carrinho.php'">🛒</button>
+                <div class="user-box" style="display: flex; align-items: center; gap: 8px; color: white;">
+                    <img src="../imagens/aidento.jpg" class="user-img"
+                        style="width: 30px; height: 30px; border-radius: 50%;">
+                    <span class="user-nome"><?php echo $_SESSION['usuario_nome']; ?></span>
+                </div>
+                <a href="../Usuario_Logado/logout.php" style="text-decoration: none;">
+                    <button class="btn-login">Sair</button>
+                </a>
+            <?php else: ?>
+                <a href="../Entrar/Entrar.php" style="text-decoration: none;">
+                    <button class="btn-login">Entrar</button>
+                </a>
+            <?php endif; ?>
+
             <a href="../Sac/Suporte.php" style="text-decoration: none;">
                 <button class="btn-login">Suporte</button>
             </a>
@@ -88,6 +104,9 @@ try {
     </header>
 
     <div class="container game-page-container">
+        <div id="dados-sessao" data-logado="<?php echo $logado ? 'true' : 'false'; ?>"
+            data-jogo="<?php echo $id_jogo; ?>"></div>
+
         <div class="game-layout">
 
             <div class="game-left-col">
@@ -212,9 +231,9 @@ try {
                         <?php endif; ?>
                     </div>
 
-                    <button class="btn-action btn-buy">Comprar</button>
-                    <button class="btn-action btn-cart">Carrinho</button>
-                    <button class="btn-action btn-wishlist">Lista de desejo</button>
+                    <button class="btn-action btn-buy" id="btn-comprar-agora">Comprar</button>
+                    <button class="btn-action btn-cart" id="btn-add-carrinho">Carrinho</button>
+                    <button class="btn-action btn-wishlist" id="btn-add-wishlist">Lista de desejo</button>
 
                     <div class="cupom-area">
                         <p class="cupom-titulo">Possui cupom de desconto?</p>

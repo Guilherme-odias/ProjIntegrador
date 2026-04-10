@@ -56,7 +56,7 @@
 
         <footer class="rodape">
             
-            <a class="btnVoltar" href="../Index/index.php">
+            <a class="btnVoltar" href="../Usuario_Logado/usuariologado.php">
                 <i class="fa-solid fa-circle-arrow-left"></i>
             </a>
                 
