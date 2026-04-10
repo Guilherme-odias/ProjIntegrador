@@ -67,7 +67,7 @@ try {
 
 .btn-categorias {
   background: transparent;
-  border: 2px solid red;
+  border: 2px solid white;
   color: white;
   padding: 10px 18px;
   border-radius: 30px;
@@ -176,20 +176,48 @@ try {
 
 <!-- 🔥 HEADER ORIGINAL -->
 <header class="topo">
-    <div>
-        <img class="logo" src="../imagens/logo.png">
-    </div>
-
-    <div class="topo2">
-        <button class="btn-login">Entrar</button>
-        <button class="btn-login">Suporte</button>
-    </div>
+  <div class="topo-esquerda">
+    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
+     <img class="logo" src="../imagens/logo.png"></a> 
+    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
+      <button class="btn-nav active">Loja</button></a> </div> <div class="topo-direita"> 
+    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Entrar/Entrar.php">
+     <button class="btn-login">Entrar</button></a> 
+    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php">
+      <button class="btn-login">Suporte</button></a> 
+  </div> 
 </header>
+
+
+
+
+<div class="menu-wrapper" style="position: relative; z-index: 1000;">
+      <nav class="menu-busca">
+        <div class="busca-input">
+          <span>🔍</span>
+          <input type="text" placeholder="Pesquisar loja">
+        </div>
+        <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
+        <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
+      </nav>
+
+      <div id="painel-explorar" class="painel-dropdown">
+        <div class="banner-explorar-container">
+          <img src="" alt="Banner Explorar"
+            class="img-banner-explorar">
+          <div class="overlay-banner"></div>
+          <a href="../mais_vendidos/Index.php" class="btn-mais-vendidos-banner">Mais vendidos</a>
+        </div>
+      </div>
+</div>
+
+
+
 
 <!-- 🔥 FILTRO -->
 <div class="dropdown">
   <button class="btn-categorias" onclick="toggleCategorias()">
-    Categorias ▾
+    Categorias Mais Vendidos ▾
   </button>
 
   <div id="menu-categorias" class="menu-categorias">
