@@ -22,8 +22,10 @@ input { display: none; }
   background: rgba(19, 32, 65, 0.95);
   backdrop-filter: blur(10px);
   width: 100%;
-  gap: 20px;
+  gap: 30px;
 }
+
+
 
 .logo {
   width: 100px;
@@ -132,11 +134,6 @@ input { display: none; }
   font-size: 17px;
 }
 
-.precoo {
-  font-size: 17px;
-  margin-right: 400px;
-  margin-top: 40px;
-}
 
 .jogos {
   display: flex;
