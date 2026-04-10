@@ -95,18 +95,18 @@ document.addEventListener("click", function(e) {
 
   <!-- usuario -->
   <div class="user-box" onclick="toggleMenu()">
-  <img src="../imagens/aidento.jpg" class="user-img">
-<span class="user-nome">
-  <?php echo $_SESSION['usuario_nome']; ?>
-</span>
-  <!-- dropdown -->
-  <div id="user-menu" class="user-menu">
-    <a href="../Conta/conta.php">Conta</a>
-    <a href="#">Pagamento</a>
-    <a href="#">Lista de desejo</a>
-    <a href="logout.php">Sair</a>
+        <img src="../imagens/aidento.jpg" class="user-img">
+        <span class="user-nome">
+          <?php echo $_SESSION['usuario_nome']; ?>
+        </span>
+      <!-- dropdown -->
+      <div id="user-menu" class="user-menu">
+        <a href="../Conta/conta.php">Conta</a>
+        <a href="#">Pagamento</a>
+        <a href="#">Lista de desejo</a>
+        <a href="logout.php">Sair</a>
+      </div>
   </div>
-</div>
 
   <!-- suporte -->
   <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"

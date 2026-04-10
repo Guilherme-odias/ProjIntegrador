@@ -71,6 +71,7 @@ try {
     <div id="dados-sessao" data-logado="<?php echo $logado ? 'true' : 'false'; ?>" data-jogo="<?php echo $id_jogo; ?>">
     </div>
     <header class="topo">
+   
         <div class="topo-esquerda">
             <a href="<?php echo $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php'; ?>">
                 <img class="logo" src="../imagens/logo.png" alt="Logo">
@@ -83,13 +84,22 @@ try {
         <div class="topo-direita">
             <?php if ($logado): ?>
                 <button class="btn-icon" onclick="location.href='../Usuario_Logado/carrinho.php'">🛒</button>
-                <div class="user-box" style="display: flex; align-items: center; gap: 8px; color: white;">
-                    <img src="../imagens/aidento.jpg" class="user-img"
-                        style="width: 30px; height: 30px; border-radius: 50%;">
-                    <span class="user-nome"><?php echo $_SESSION['usuario_nome']; ?></span>
+                <div class="user-box" onclick="toggleMenu()">
+                        <img src="../imagens/aidento.jpg" class="user-img">
+                        <span class="user-nome">
+                        <?php echo $_SESSION['usuario_nome']; ?>
+                        </span>
+                    <!-- dropdown -->
+                    <div id="user-menu" class="user-menu">
+                        <a href="../Conta/conta.php">Conta</a>
+                        <a href="#">Pagamento</a>
+                        <a href="#">Lista de desejo</a>
+                        <a href="logout.php">Sair</a>
+                    </div>
                 </div>
+
                 <a href="../Usuario_Logado/logout.php" style="text-decoration: none;">
-                    <button class="btn-login">Sair</button>
+                    
                 </a>
             <?php else: ?>
                 <a href="../Entrar/Entrar.php" style="text-decoration: none;">
@@ -269,6 +279,25 @@ try {
 
     <footer class="rodape">QuimeraGames &copy; 2026</footer>
     <script src="Script_jogo.js" defer></script>
+
+    <script>
+function toggleMenu() {
+  const menu = document.getElementById("user-menu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+// fecha se clicar fora
+document.addEventListener("click", function(e) {
+  const userBox = document.querySelector(".user-box");
+  const menu = document.getElementById("user-menu");
+
+  if (!userBox.contains(e.target)) {
+    menu.style.display = "none";
+  }
+});
+
+</script>
+
 </body>
 
 </html>

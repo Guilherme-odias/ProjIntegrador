@@ -26,7 +26,7 @@ body {
   align-items: center;
   padding: 15px 5%;
   background: rgba(19, 32, 65, 0.95);
-  backdrop-filter: blur(10px);
+  /*backdrop-filter: blur(10px);*/
   position: relative;
   z-index: 1000;
 }
@@ -656,7 +656,7 @@ input[type="radio"] {
   height: 100vh;
   background: rgba(0, 0, 0, 0.75);
   /* Escurece 75% o fundo */
-  backdrop-filter: blur(5px);
+  /*backdrop-filter: blur(5px);*/
   /* Dá um desfoque moderno nos jogos de trás */
   z-index: 900;
   /* Fica logo atrás do menu (que é 1000) */
