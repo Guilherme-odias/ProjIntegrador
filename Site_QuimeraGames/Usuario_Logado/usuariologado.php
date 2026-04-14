@@ -3,8 +3,8 @@ session_start();
 
 // se não estiver logado, volta pro login
 if (!isset($_SESSION['usuario_nome'])) {
-    header("Location: ../Entrar/Entrar.php");
-    exit;
+  header("Location: ../Entrar/Entrar.php");
+  exit;
 }
 
 require_once '../conexa.php';
@@ -15,6 +15,18 @@ if (!isset($pdo)) {
 
 try {
   $semana_atual = (int) date('W');
+
+  $id_user_logado = $_SESSION['id_user'] ?? 0; // Pega o ID do usuário
+
+  // 1. Conta quantos itens tem no Carrinho deste usuário
+  $stmt_conta_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+  $stmt_conta_cart->execute([$id_user_logado]);
+  $qtd_carrinho = $stmt_conta_cart->fetchColumn();
+
+  // 2. Conta quantos itens tem na Lista de Desejos
+  $stmt_conta_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+  $stmt_conta_wish->execute([$id_user_logado]);
+  $qtd_wishlist = $stmt_conta_wish->fetchColumn();
 
   $stmt_carousel = $pdo->prepare("SELECT * FROM jogos ORDER BY MOD(id_play, :semana) LIMIT 7");
   $stmt_carousel->bindValue(':semana', $semana_atual, PDO::PARAM_INT);
@@ -58,20 +70,20 @@ try {
 </head>
 
 <script>
-function toggleMenu() {
-  const menu = document.getElementById("user-menu");
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-}
-
-// fecha se clicar fora
-document.addEventListener("click", function(e) {
-  const userBox = document.querySelector(".user-box");
-  const menu = document.getElementById("user-menu");
-
-  if (!userBox.contains(e.target)) {
-    menu.style.display = "none";
+  function toggleMenu() {
+    const menu = document.getElementById("user-menu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   }
-});
+
+  // fecha se clicar fora
+  document.addEventListener("click", function (e) {
+    const userBox = document.querySelector(".user-box");
+    const menu = document.getElementById("user-menu");
+
+    if (!userBox.contains(e.target)) {
+      menu.style.display = "none";
+    }
+  });
 
 </script>
 
@@ -88,33 +100,44 @@ document.addEventListener("click", function(e) {
       </a>
     </div>
     <div class="topo-direita">
-  <!-- carrinho -->
-  <button class="btn-icon">
-    🛒
-  </button>
 
-  <!-- usuario -->
-  <div class="user-box" onclick="toggleMenu()">
+      <div style="position: relative; display: inline-block;">
+        <button type="button" class="btn-icon" onclick="window.location.href='carrinho.php'">🛒</button>
+
+        <?php if ($qtd_carrinho > 0): ?>
+          <span class="badge-carrinho"><?php echo $qtd_carrinho; ?></span>
+        <?php endif; ?>
+      </div>
+
+      <div class="user-box" onclick="toggleMenu()">
         <img src="../imagens/aidento.jpg" class="user-img">
         <span class="user-nome">
           <?php echo $_SESSION['usuario_nome']; ?>
         </span>
-      <!-- dropdown -->
-      <div id="user-menu" class="user-menu">
-        <a href="../Conta/conta.php">Conta</a>
-        <a href="#">Pagamento</a>
-        <a href="#">Lista de desejo</a>
-        <a href="logout.php">Sair</a>
+
+        <div id="user-menu" class="user-menu">
+          <a href="../Conta/conta.php">Conta</a>
+          <a href="#">Pagamento</a>
+
+          <a href="../Usuario_Logado/wishlist.php"
+            style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
+            Lista de desejo
+            <?php if ($qtd_wishlist > 0): ?>
+              <span class="badge-wishlist"><?php echo $qtd_wishlist; ?></span>
+            <?php endif; ?>
+          </a>
+
+          <a href="logout.php">Sair</a>
+        </div>
       </div>
-  </div>
 
-  <!-- suporte -->
-  <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php"
-    style="text-decoration: none;">
-    <button class="btn-login">Suporte</button>
-  </a>
+      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php" style="text-decoration: none;">
+        <button class="btn-login">Suporte</button>
+      </a>
 
-</div>
+    </div>
+
+    </div>
   </header>
 
   <div class="container">
@@ -122,12 +145,15 @@ document.addEventListener("click", function(e) {
     <div class="menu-wrapper" style="position: relative; z-index: 1000;">
       <nav class="menu-busca">
         <div class="busca-input">
-  <span>🔍</span>
-  <input type="text" name="query" placeholder="Pesquisar loja" required>
-</div>
+          <span>🔍</span>
+          <input type="text" name="query" placeholder="Pesquisar loja" required>
+        </div>
         <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
         <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
       </nav>
+
+      <div id="resultados-busca"
+        style="display: none; width: 100%; max-width: 1400px; margin: 0 auto; padding: 20px; color: white;"></div>
 
       <div id="painel-explorar" class="painel-dropdown">
         <div class="banner-explorar-container">
@@ -257,7 +283,7 @@ document.addEventListener("click", function(e) {
 
   <footer class="rodape">QuimeraGames &copy; 2026</footer>
 
-    <script src="script.js" defer></script>
+  <script src="../Usuario_Logado/script.js" defer></script>
 
 
 
