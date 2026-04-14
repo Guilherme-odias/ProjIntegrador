@@ -64,7 +64,7 @@
         <button class="btn" id="btn" name="acao"  onclick="this.disabled=true; value="cadastrar">Cadastrar</button>
 
         <div class="footer">
-            <button type="button" class="voltar" onclick="voltarPagina()">←</button>
+            <button type="button" class="voltar" onclick="window.location.href='../Index/index.php'">←</button>
             <span>Voltar</span>
         </div>
 

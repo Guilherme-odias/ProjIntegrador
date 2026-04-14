@@ -1,4 +1,9 @@
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once '../conexa.php';
 
 $id_categoria = isset($_GET['id']) ? (int) $_GET['id'] : 0;
@@ -50,6 +55,8 @@ try {
 <body>
 
     <header class="topo">
+<!-- usuario Não logado -->
+        <?php if (!isset($_SESSION['usuario_nome'])): ?>
         <div class="topo-esquerda">
             <a href="../Index/index.php">
                 <img class="logo" src="../imagens/logo.png" alt="Logo">
@@ -66,6 +73,43 @@ try {
                 <button class="btn-login">Suporte</button>
             </a>
         </div>
+
+
+
+    <?php else: ?>
+
+          <!-- usuario Logado -->
+
+        <div class="topo-esquerda">
+            <a href="../Usuario_Logado/usuariologado.php">
+            <img class="logo" src="../imagens/logo.png" alt="Logo">
+            </a>
+            <a href="../Usuario_Logado/usuariologado.php" style="text-decoration: none;">
+            <button class="btn-nav active">Loja</button>
+            </a>
+        </div>
+
+        <div class="topo-direita">
+            <div class="user-box" onclick="toggleMenu()">
+                <img src="../imagens/aidento.jpg" class="user-img" alt="Usuário">
+                <span class="user-nome">
+                    <?php echo htmlspecialchars($_SESSION['usuario_nome'], ENT_QUOTES, 'UTF-8'); ?>
+                </span>
+
+                <!-- Dropdown -->
+                <div id="user-menu" class="user-menu">
+                    <a href="../Conta/conta.php">Conta</a>
+                    <a href="#">Pagamento</a>
+                    <a href="#">Lista de desejo</a>
+                    <a href="../logout.php">Sair</a>
+                </div>
+            </div>
+
+            <a href="../Sac/Suporte.php" style="text-decoration: none;">
+                <button class="btn-login">Suporte</button>
+            </a>
+        </div>
+<?php endif; ?>
     </header>
 
     <div class="container">

@@ -1,13 +1,7 @@
-// Senha original
-let senha = document.getElementById("senha");
-
-// Senha confirmada
-let confirma = document.getElementById("confirme");
-
-let check = document.getElementById("verifica");
-
-
 function mostrarSenha() {
+
+    let senha = document.getElementById("senha");
+    let confirma = document.getElementById("confirme");
 
     if (senha.type == "password") {
         senha.type = "text";
@@ -19,21 +13,17 @@ function mostrarSenha() {
 }
 
 function validarSenha() {
-    let senha = document.getElementById("senha").value;
+    let senhaValor = document.getElementById("senha").value;
     let confirmar = document.getElementById("confirme").value;
 
-    if (senha.length < 6) {
-        alert("A senha deve ter pelo menos 6 caracteres!");
-        return false;
-    }
-
-    if (senha !== confirmar) {
-        alert("Senhas não coincidem!");
+    if (senhaValor !== confirmar) {
+        alert("As senhas não coincidem!");
         return false;
     }
 
     return true;
 }
+
 
 function voltarPagina(){
     window.location.href = "../Index/index.php";
