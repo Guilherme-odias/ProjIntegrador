@@ -1,11 +1,7 @@
-// =========================================
 // VARIÁVEL GLOBAL DO TIMER PIX
-// =========================================
 var pixInterval = null;
 
-// =========================================
 // INICIALIZAÇÃO
-// =========================================
 document.addEventListener('DOMContentLoaded', function () {
 
     // Troca de método de pagamento
@@ -68,9 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// =========================================
 // ENTRADA PRINCIPAL — chamada pelo onclick
-// =========================================
 function iniciarPagamento() {
     var m = document.querySelector('input[name="metodo"]:checked').value;
     if (m === 'cartao') {
@@ -83,9 +77,7 @@ function iniciarPagamento() {
     }
 }
 
-// =========================================
 // VALIDAÇÃO DO CARTÃO
-// =========================================
 function showErr(id, show) {
     var el = document.getElementById(id);
     if (el) el.style.display = show ? 'block' : 'none';
@@ -124,11 +116,8 @@ function validarCartao() {
     }
 
     return ok;
-}
 
-// =========================================
 // FECHAR OVERLAYS
-// =========================================
 function fecharTudo() {
     ['ov-cartao', 'ov-pix', 'ov-boleto'].forEach(function (id) {
         var el = document.getElementById(id);
@@ -140,9 +129,7 @@ function fecharTudo() {
     }
 }
 
-// =========================================
 // HELPERS STEPS DO CARTÃO
-// =========================================
 function setStep(n) {
     for (var i = 1; i <= 3; i++) {
         var s = document.getElementById('s' + i);
@@ -156,9 +143,7 @@ function setStep(n) {
     }
 }
 
-// =========================================
 // FLUXO CARTÃO
-// =========================================
 function fluxoCartao() {
     document.getElementById('ov-cartao').classList.add('show');
     setStep(1);
@@ -233,9 +218,7 @@ function cartaoFase3() {
         '<button class="btn-modal-primary" onclick="fecharTudo()">Concluir</button>';
 }
 
-// =========================================
 // FLUXO PIX
-// =========================================
 function fluxoPix() {
     document.getElementById('ov-pix').classList.add('show');
     document.getElementById('pix-body').innerHTML =
@@ -329,9 +312,8 @@ function simularPagamentoPix() {
     }, 2500);
 }
 
-// =========================================
 // FLUXO BOLETO
-// =========================================
+
 var BOLETO_NUMERO = '3474.07297 25003.671230 01000.038007 4 10010000019990';
 
 function fluxoBoleto() {
