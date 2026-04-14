@@ -367,3 +367,4 @@ function copiarBoleto(btn) {
         btn.style.borderColor = '#e62429';
     }, 2500);
 }
+}
