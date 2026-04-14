@@ -35,7 +35,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   padding: 6px 12px;
   border-radius: 20px;
 }
@@ -77,7 +77,7 @@ body {
 }
 
 .btn-login:hover {
-    background: #e50914;
+  background: #e50914;
 }
 
 .menu-busca {
@@ -252,9 +252,14 @@ body {
 
 .badge-desconto {
   background: #0074e4;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 5px 10px;
+  border-radius: 4px;
   font-weight: bold;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  font-size: 12px;
 }
 
 .v-antigo {
@@ -384,7 +389,7 @@ input[type="radio"] {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   padding: 6px 12px;
   border-radius: 20px;
   cursor: pointer;
@@ -406,7 +411,7 @@ input[type="radio"] {
   width: 160px;
   display: none;
   flex-direction: column;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 9999;
 }
 
@@ -680,4 +685,32 @@ input[type="radio"] {
   color: #999;
   text-align: center;
   margin-top: 50px;
+}
+
+/* Balãozinho do Carrinho */
+.badge-carrinho {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: #e62429;
+  /* Cor vermelha gamer */
+  color: white;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  /* Impede de clicar no balão sem querer */
+}
+
+/* Balãozinho da Lista de Desejos (Dentro do Menu) */
+.badge-wishlist {
+  background-color: #e62429;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-left: 10px;
 }

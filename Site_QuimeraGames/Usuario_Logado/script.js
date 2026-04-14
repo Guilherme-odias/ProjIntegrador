@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (secaoDescontos) secaoDescontos.style.display = 'none';
                 if (containerResultados) containerResultados.style.display = 'block';
 
-                fetch(`busca_jogos.php?query=${encodeURIComponent(query)}`)
+                fetch(`../Index/busca_jogos.php?query=${encodeURIComponent(query)}`)
                     .then(response => response.text())
                     .then(html => {
                         containerResultados.innerHTML = `<h2 style="color:white; margin-bottom:20px;">Resultados para: "${query}"</h2>` + html;

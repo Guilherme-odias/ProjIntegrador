@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../conexa.php");
 
 $categoria = isset($_GET['categoria']) ? (int) $_GET['categoria'] : 0;
@@ -58,13 +59,7 @@ try {
 
 <style>
 
-
 /* 🔥 DROPDOWN */
-.dropdown {
-  margin: 30px 200px;
-  position: relative;
-}
-
 .btn-categorias {
   background: transparent;
   border: 2px solid white;
@@ -72,11 +67,13 @@ try {
   padding: 10px 18px;
   border-radius: 30px;
   cursor: pointer;
+  border-color: #e50914
 }
 
 .menu-categorias {
   position: absolute;
-  top: 50px;
+  top: 55px;
+  margin-left: 15px;
   background: #13192b;
   border-radius: 10px;
   display: none;
@@ -105,16 +102,19 @@ try {
 }
 
 /* CARD */
+
 .card-jogo {
   background: #0f1b35;
   border-radius: 15px;
   overflow: hidden;
   position: relative;
-  transition: 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-jogo:hover {
-  transform: scale(1.05);
+  transform: scale(1.12) translateY(-5px);
+  z-index: 10;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
 }
 
 /* IMG */
@@ -122,25 +122,14 @@ try {
   width: 100%;
   height: 160px;
   object-fit: cover;
+  position: relative;
+  z-index: 1;
 }
 
-/* VIDEO */
-.card-jogo video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: none;
-}
-
-.card-jogo:hover video {
-  display: block;
-}
+/* HOVER SUAVE (SEM PISCAR) */
 
 .card-jogo:hover img {
-  display: none;
+  opacity: 1;
 }
 
 /* INFO */
@@ -163,6 +152,7 @@ try {
   padding: 5px 10px;
   border-radius: 8px;
   font-size: 12px;
+  z-index: 5;
 }
 
 .topo2 {
@@ -177,58 +167,50 @@ try {
 <!-- 🔥 HEADER ORIGINAL -->
 <header class="topo">
   <div class="topo-esquerda">
-    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
+    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Usuario_Logado/usuariologado.php">
      <img class="logo" src="../imagens/logo.png"></a> 
-    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php">
-      <button class="btn-nav active">Loja</button></a> </div> <div class="topo-direita"> 
-    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Entrar/Entrar.php">
-     <button class="btn-login">Entrar</button></a> 
-    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php">
-      <button class="btn-login">Suporte</button></a> 
-  </div> 
+    <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Usuario_Logado/usuariologado.php">
+      <button class="btn-nav active">Loja</button></a> 
+    </div> 
+
+    <div class="topo-direita">
+
+<?php if (isset($_SESSION['usuario_nome'])): ?>
+
+  <!-- carrinho -->
+  <button class="btn-icon">🛒</button>
+
+  <!-- usuario -->
+  <div class="user-box" onclick="toggleMenu()">
+    <img src="../imagens/aidento.jpg" class="user-img">
+    <span class="user-nome">
+      <?php echo $_SESSION['usuario_nome']; ?>
+    </span>
+
+    <div id="user-menu" class="user-menu">
+      <a href="../Conta/conta.php">Conta</a>
+      <a href="#">Pagamento</a>
+      <a href="#">Lista de desejo</a>
+      <a href="../Usuario_Logado/logout.php">Sair</a>
+    </div>
+  </div>
+
+<?php else: ?>
+
+  <a href="../Entrar/Entrar.php">
+    <button class="btn-login">Entrar</button>
+  </a>
+
+<?php endif; ?>
+
+<a href="../Sac/Suporte.php">
+  <button class="btn-login">Suporte</button>
+</a>
+
+</div>
 </header>
 
-
-
-
-<div class="menu-wrapper" style="position: relative; z-index: 1000;">
-      <nav class="menu-busca">
-        <div class="busca-input">
-          <span>🔍</span>
-          <input type="text" placeholder="Pesquisar loja">
-        </div>
-        <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
-        <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
-      </nav>
-
-      <div id="painel-explorar" class="painel-dropdown">
-        <div class="banner-explorar-container">
-          <img src="" alt="Banner Explorar"
-            class="img-banner-explorar">
-          <div class="overlay-banner"></div>
-          <a href="../mais_vendidos/Index.php" class="btn-mais-vendidos-banner">Mais vendidos</a>
-        </div>
-      </div>
-</div>
-
-
-
-
-<!-- 🔥 FILTRO -->
-<div class="dropdown">
-  <button class="btn-categorias" onclick="toggleCategorias()">
-    Categorias Mais Vendidos ▾
-  </button>
-
-  <div id="menu-categorias" class="menu-categorias">
-    <a href="Index.php">Todos</a>
-    <?php foreach ($nomes_categorias as $id => $nome): ?>
-      <a href="?categoria=<?php echo $id; ?>"><?php echo $nome; ?></a>
-    <?php endforeach; ?>
-  </div>
-</div>
-
-<!-- 🔥 TITULO -->
+ <div class="categorias_textao">
 <div class="textao">
   <h2 class="texto1">
     <?php 
@@ -242,8 +224,21 @@ try {
 
   <p class="texto2">Top jogos mais vendidos da loja</p>
 </div>
+<div class="botaocat">
+  <button class="btn-categorias" onclick="toggleCategorias()">
+    Categorias Mais Vendidos ▾
+  </button>
 
-<!-- 🔥 GRID -->
+  <div id="menu-categorias" class="menu-categorias">
+    <a href="Index.php">Todos</a>
+    <?php foreach ($nomes_categorias as $id => $nome): ?>
+      <a href="?categoria=<?php echo $id; ?>"><?php echo $nome; ?></a>
+    <?php endforeach; ?>
+  </div>
+</div>
+    </div>
+
+
 <div class="grid-jogos">
 
 <?php foreach ($jogos as $jogo): ?>
@@ -257,12 +252,6 @@ try {
     </div>
 
     <img src="<?php echo $jogo['Imagens_jogos']; ?>">
-
-    <?php if (!empty($jogo['Trailers'])): ?>
-        <video muted loop onmouseover="this.play()" onmouseout="this.pause(); this.currentTime=0;">
-            <source src="<?php echo $jogo['Trailers']; ?>" type="video/mp4">
-        </video>
-    <?php endif; ?>
 
     <div class="card-info">
         <h4><?php echo $jogo['titulo']; ?></h4>
@@ -296,6 +285,20 @@ document.addEventListener("click", function(e) {
   const menu = document.getElementById("menu-categorias");
 
   if (!dropdown.contains(e.target)) {
+    menu.style.display = "none";
+  }
+});
+
+function toggleMenu() {
+  const menu = document.getElementById("user-menu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+document.addEventListener("click", function(e) {
+  const userBox = document.querySelector(".user-box");
+  const menu = document.getElementById("user-menu");
+
+  if (userBox && !userBox.contains(e.target)) {
     menu.style.display = "none";
   }
 });

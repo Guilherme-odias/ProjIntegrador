@@ -1,16 +1,31 @@
 <?php
 session_start();
+require_once '../conexa.php';
 
-$preco_jogo = "199,90";
-$imagem_jogo = "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400&h=400&auto=format&fit=crop";
+$preco_jogo  = "0,00";
+$imagem_jogo = "../imagens/logo.png";
+$titulo_jogo = "Jogo não encontrado";
 
-if (isset($_GET['id_jogo'])) {
-    $id_jogo = $_GET['id_jogo'];
-    // $stmt = $pdo->prepare("SELECT preco, imagem_url FROM jogos WHERE id = :id");
-    // $stmt->execute(['id' => $id_jogo]);
-    // $jogo = $stmt->fetch();
-    // $preco_jogo = $jogo['preco'];
-    // $imagem_jogo = $jogo['imagem_url'];
+if (isset($_GET['id_jogo'], $_GET['preco'])) {
+    $id_jogo   = (int) $_GET['id_jogo'];
+    $preco_raw = (float) $_GET['preco'];
+    $preco_jogo = number_format($preco_raw, 2, ',', '.');
+
+    $_SESSION['preco_compra']    = $preco_raw;
+    $_SESSION['id_jogo_compra']  = $id_jogo;
+
+    try {
+        $stmt = $pdo->prepare("SELECT titulo, Imagens_jogos FROM jogos WHERE id_play = :id");
+        $stmt->bindValue(':id', $id_jogo, PDO::PARAM_INT);
+        $stmt->execute();
+        $jogo = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($jogo) {
+            $imagem_jogo = $jogo['Imagens_jogos'];
+            $titulo_jogo = $jogo['titulo'];
+        }
+    } catch (PDOException $e) {
+        $titulo_jogo = "Erro ao buscar jogo";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -20,6 +35,9 @@ if (isset($_GET['id_jogo'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento - QuimeraGames</title>
     <link rel="stylesheet" href="pagamento.css">
+    <script>
+        const PRECO_JOGO = "<?php echo $preco_jogo; ?>";
+    </script>
 </head>
 <body>
 
@@ -44,8 +62,11 @@ if (isset($_GET['id_jogo'])) {
             <p class="descricao-pagamento">Aqui você pode configurar formas de pagamento, visualizar seu saldo e gerenciá-lo.</p>
 
             <div class="saldo-container">
-                <span class="label-saldo">Saldo da conta</span>
-                <h2 class="valor-saldo">R$ 0,00</h2>
+                <span class="label-saldo">Você está comprando</span>
+                <h2 class="valor-saldo"><?php echo htmlspecialchars($titulo_jogo); ?></h2>
+                <span style="font-size:1.4rem; color:#e50914; font-weight:bold;">
+                    R$ <?php echo $preco_jogo; ?>
+                </span>
             </div>
 
             <div id="form-pagamento" class="metodos-pagamento">
