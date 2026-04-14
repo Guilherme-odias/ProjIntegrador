@@ -58,6 +58,10 @@ try {
 <!DOCTYPE html>
 <html lang="pt-br">
 
+<div id="dados-sessao" data-logado="<?php echo isset($_SESSION['usuario_nome']) ? 'true' : 'false'; ?>"
+    data-jogo="<?php echo $id_jogo; ?>" style="display: none;">
+</div>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,10 +72,10 @@ try {
 
 <body>
 
-    <div id="dados-sessao" data-logado="<?php echo $logado ? 'true' : 'false'; ?>" data-jogo="<?php echo $id_jogo; ?>">
-    </div>
     <header class="topo">
-   
+
+
+
         <div class="topo-esquerda">
             <a href="<?php echo $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php'; ?>">
                 <img class="logo" src="../imagens/logo.png" alt="Logo">
@@ -85,21 +89,21 @@ try {
             <?php if ($logado): ?>
                 <button class="btn-icon" onclick="location.href='../Usuario_Logado/carrinho.php'">🛒</button>
                 <div class="user-box" onclick="toggleMenu()">
-                        <img src="../imagens/aidento.jpg" class="user-img">
-                        <span class="user-nome">
+                    <img src="../imagens/aidento.jpg" class="user-img">
+                    <span class="user-nome">
                         <?php echo $_SESSION['usuario_nome']; ?>
-                        </span>
+                    </span>
                     <!-- dropdown -->
                     <div id="user-menu" class="user-menu">
                         <a href="../Conta/conta.php">Conta</a>
-                        <a href="#">Pagamento</a>
+                        <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php">Pagamento</a>
                         <a href="#">Lista de desejo</a>
                         <a href="logout.php">Sair</a>
                     </div>
                 </div>
 
                 <a href="../Usuario_Logado/logout.php" style="text-decoration: none;">
-                    
+
                 </a>
             <?php else: ?>
                 <a href="../Entrar/Entrar.php" style="text-decoration: none;">
@@ -240,8 +244,10 @@ try {
                             <span class="v-new-side">Gratuito</span>
                         <?php endif; ?>
                     </div>
-
-                    <button class="btn-action btn-buy" id="btn-comprar-agora">Comprar</button>
+                    
+                    <button href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php" class="btn-action btn-buy" id="btn-comprar-agora">
+                        Comprar
+                    </button>
                     <button class="btn-action btn-cart" id="btn-add-carrinho">Carrinho</button>
                     <button class="btn-action btn-wishlist" id="btn-add-wishlist">Lista de desejo</button>
 
@@ -281,22 +287,22 @@ try {
     <script src="Script_jogo.js" defer></script>
 
     <script>
-function toggleMenu() {
-  const menu = document.getElementById("user-menu");
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-}
+        function toggleMenu() {
+            const menu = document.getElementById("user-menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
 
-// fecha se clicar fora
-document.addEventListener("click", function(e) {
-  const userBox = document.querySelector(".user-box");
-  const menu = document.getElementById("user-menu");
+        // fecha se clicar fora
+        document.addEventListener("click", function (e) {
+            const userBox = document.querySelector(".user-box");
+            const menu = document.getElementById("user-menu");
 
-  if (!userBox.contains(e.target)) {
-    menu.style.display = "none";
-  }
-});
+            if (!userBox.contains(e.target)) {
+                menu.style.display = "none";
+            }
+        });
 
-</script>
+    </script>
 
 </body>
 

@@ -152,7 +152,9 @@ try {
                   <?php endif; ?>
                 </div>
                 <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration: none;">
-                  <button class="btn-comprar-carrossel">COMPRAR AGORA</button>
+                  <button class="btn-comprar-carrossel">
+                    COMPRAR AGORA
+                  </button>
                 </a>
               </div>
             </div>

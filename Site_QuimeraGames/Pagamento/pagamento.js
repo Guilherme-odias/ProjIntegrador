@@ -348,7 +348,7 @@ function fluxoBoleto() {
             '<p>Pague até o vencimento em qualquer banco, lotérica ou aplicativo bancário.</p>' +
             '<div class="info-box">' +
             '<p>Vencimento: <strong>' + venc + '</strong></p>' +
-            '<p>Valor: <strong>R$ 199,90</strong></p>' +
+            '<p>Valor: <strong>R$ ' + PRECO_JOGO + '</strong></p>' +    
             '<p style="margin-top:10px">Linha digitável:</p>' +
             '</div>' +
             '<div class="boleto-code">' + BOLETO_NUMERO + '</div>' +

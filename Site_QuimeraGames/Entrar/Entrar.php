@@ -27,6 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['usuario_nome'] = $dados['nome_user'];
         $_SESSION['usuario_email'] = $dados['email'];
 
+        $_SESSION['id_user'] = $dados['id'] ?? $dados['ID'] ?? $dados['id_usuario'] ?? current($dados);
+
         header("Location: ../Usuario_logado/usuariologado.php");
         exit;
 
