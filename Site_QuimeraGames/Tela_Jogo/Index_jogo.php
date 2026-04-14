@@ -96,7 +96,7 @@ try {
                     <!-- dropdown -->
                     <div id="user-menu" class="user-menu">
                         <a href="../Conta/conta.php">Conta</a>
-                        <a href="#">Pagamento</a>
+                        <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php">Pagamento</a>
                         <a href="#">Lista de desejo</a>
                         <a href="logout.php">Sair</a>
                     </div>
@@ -244,8 +244,10 @@ try {
                             <span class="v-new-side">Gratuito</span>
                         <?php endif; ?>
                     </div>
-
-                    <button class="btn-action btn-buy" id="btn-comprar-agora">Comprar</button>
+                    
+                    <button href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php" class="btn-action btn-buy" id="btn-comprar-agora">
+                        Comprar
+                    </button>
                     <button class="btn-action btn-cart" id="btn-add-carrinho">Carrinho</button>
                     <button class="btn-action btn-wishlist" id="btn-add-wishlist">Lista de desejo</button>
 

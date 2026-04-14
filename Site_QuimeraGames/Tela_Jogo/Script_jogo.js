@@ -18,7 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listeners dos botões de ação
     document.getElementById('btn-add-carrinho')?.addEventListener('click', () => gerenciarAcao('add_carrinho'));
     document.getElementById('btn-add-wishlist')?.addEventListener('click', () => gerenciarAcao('add_wishlist'));
-    document.getElementById('btn-comprar-agora')?.addEventListener('click', () => gerenciarAcao('add_carrinho'));
+    document.getElementById('btn-comprar-agora')?.addEventListener('click', () => {
+    if (!logado) {
+        window.location.href = '../Entrar/Entrar.php';
+        return;
+    }
+    const precoEl = document.getElementById('preco-final');
+    const preco = precoEl ? precoEl.getAttribute('data-valor') : '0';
+    window.location.href = `../Pagamento/pagamento.php?id_jogo=${idJogo}&preco=${preco}`;
+});
 
 
     // =======================================================

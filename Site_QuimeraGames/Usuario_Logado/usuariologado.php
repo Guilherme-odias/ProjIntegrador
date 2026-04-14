@@ -114,6 +114,7 @@ try {
         <span class="user-nome">
           <?php echo $_SESSION['usuario_nome']; ?>
         </span>
+<<<<<<< Updated upstream
 
         <div id="user-menu" class="user-menu">
           <a href="../Conta/conta.php">Conta</a>
@@ -129,6 +130,14 @@ try {
 
           <a href="logout.php">Sair</a>
         </div>
+=======
+      <!-- dropdown -->
+      <div id="user-menu" class="user-menu">
+        <a href="../Conta/conta.php">Conta</a>
+        <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php">Pagamento</a>
+        <a href="#">Lista de desejo</a>
+        <a href="logout.php">Sair</a>
+>>>>>>> Stashed changes
       </div>
 
       <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php" style="text-decoration: none;">
