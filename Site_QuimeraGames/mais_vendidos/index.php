@@ -152,6 +152,7 @@ try {
   padding: 5px 10px;
   border-radius: 8px;
   font-size: 12px;
+  z-index: 5;
 }
 
 .topo2 {
