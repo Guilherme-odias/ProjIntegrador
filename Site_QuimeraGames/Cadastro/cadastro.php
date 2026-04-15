@@ -101,7 +101,6 @@ $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE email = ?");
 $stmt->execute([$email]);
 if($stmt->fetchColumn() > 0){
     echo "<script>alert('Email já cadastrado!');</script>";
-    
     exit;
 }
 // Validação User
@@ -121,10 +120,10 @@ if($stmt->fetchColumn() > 0){
 else {
     session_start();
 
-// GERAR CÓDIGO
+// Gerar o codigo
 $codigo = rand(100000, 999999);
 
-// SALVAR NA SESSION
+// Salvar os dados em uma seção
 $_SESSION['cadastro'] = [
     'email' => $email,
     'nome' => $nome,
@@ -171,8 +170,6 @@ exit;
 } catch (Exception $e) {
     echo "Erro: {$mail->ErrorInfo}";
 }
-
-
 }
 }
 
