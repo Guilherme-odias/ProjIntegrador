@@ -1,7 +1,5 @@
-// VARIÁVEL GLOBAL DO TIMER PIX
 var pixInterval = null;
 
-// INICIALIZAÇÃO
 document.addEventListener('DOMContentLoaded', function () {
 
     // Troca de método de pagamento — UM único listener por radio
@@ -19,21 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 boleto: document.getElementById('mc-boleto')
             };
 
-            // Esconde todos os formulários e remove seleção de todos os cards
+            // remove seleção dos cards
             Object.values(forms).forEach(function (f) { f.classList.remove('ativo'); });
             Object.values(cards).forEach(function (c) { c.classList.remove('sel'); });
 
-            // Exibe o formulário e marca o card do método escolhido
+            //  marca o card escolhido
             forms[e.target.value].classList.add('ativo');
             cards[e.target.value].classList.add('sel');
         });
     });
 
-    // Marca cartão como selecionado ao carregar
+    // marca cartão como selecionado
     var mcCartao = document.getElementById('mc-cartao');
     if (mcCartao) mcCartao.classList.add('sel');
 
-    // Máscara número do cartão (grupos de 4 dígitos)
+    // Máscara do cartão
     var numCartao = document.getElementById('num-cartao');
     if (numCartao) {
         numCartao.addEventListener('input', function () {
@@ -42,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Máscara validade MM/AA
+    // Máscara de validade
     var valCartao = document.getElementById('val-cartao');
     if (valCartao) {
         valCartao.addEventListener('input', function () {
@@ -52,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Fechar overlay ao clicar fora do modal
+    // Fechar ao clicar fora do modal
     document.querySelectorAll('.overlay').forEach(function (ov) {
         ov.addEventListener('click', function (e) {
             if (e.target === ov) fecharTudo();
@@ -129,8 +127,6 @@ function fecharTudo() {
     }
 }
 
-// HELPERS STEPS DO CARTÃO
-
 function setStep(n) {
     for (var i = 1; i <= 3; i++) {
         var s = document.getElementById('s' + i);
@@ -144,7 +140,7 @@ function setStep(n) {
     }
 }
 
-// FLUXO CARTÃO
+// FLUXO DO CARTÃO
 
 function fluxoCartao() {
     document.getElementById('ov-cartao').classList.add('show');
@@ -315,7 +311,7 @@ function simularPagamentoPix() {
     }, 2500);
 }
 
-// FLUXO BOLETO
+// FLUXO DO BOLETO
 
 var BOLETO_NUMERO = '3474.07297 25003.671230 01000.038007 4 10010000019990';
 
