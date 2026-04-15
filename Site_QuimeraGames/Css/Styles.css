@@ -164,66 +164,68 @@
     padding: 15px;
     border-radius: 8px;
 }
+
 .btn-icon {
-  background: transparent;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-  transition: 0.3s;
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
 }
+
 .user-menu {
-  position: absolute;
-  top: 45px;
-  right: 0;
-  background: #13192b;
-  border-radius: 10px;
-  padding: 10px 0;
-  width: 160px;
-  display: none;
-  flex-direction: column;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  z-index: 9999;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: #13192b;
+    border-radius: 10px;
+    padding: 10px 0;
+    width: 160px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
 }
+
 .user-img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
 }
+
 .user-menu a {
-  padding: 10px 15px;
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  transition: 0.2s;
-  text-align: center;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+    text-align: center;
 }
 
 .user-menu a:hover {
-  background: #1f2a44;
+    background: #1f2a44;
 }
 
 .user-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.05);
-  padding: 6px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  position: relative;
-  transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
 }
 
 .user-box:active {
-  background: rgba(255, 255, 255, 0.247);
+    background: rgba(255, 255, 255, 0.247);
 }
 
-
-
 .btn-icon:hover {
-  transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .req-coluna h4 {
@@ -258,7 +260,6 @@
     height: auto;
     max-height: 280px;
     object-fit: contain;
-    /* Garante que a imagem caiba inteira sem cortar */
     display: block;
 }
 
@@ -327,6 +328,20 @@
 .btn-action:not(.btn-buy):hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
+}
+
+/* Novo Estilo para o Botão Inteligente da Wishlist */
+.btn-epic-wishlist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-epic-wishlist.active {
+    background: rgba(230, 36, 41, 0.1);
+    border: 1px solid rgba(230, 36, 41, 0.5);
+    color: #e62429;
 }
 
 /* Cupom de Desconto */

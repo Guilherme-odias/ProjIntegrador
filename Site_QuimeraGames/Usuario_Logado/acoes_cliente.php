@@ -2,11 +2,13 @@
 session_start();
 require_once '../conexa.php';
 
-// Recuperação segura do ID caso a sessão expire
+// Proteção: Garante que o ID do usuário está na sessão
 if (!isset($_SESSION['id_user']) && isset($_SESSION['usuario_email'])) {
     $stmt = $pdo->prepare("SELECT id_user FROM cadastro WHERE email = ?");
     $stmt->execute([$_SESSION['usuario_email']]);
-    $_SESSION['id_user'] = $stmt->fetchColumn();
+    $id = $stmt->fetchColumn();
+    if ($id)
+        $_SESSION['id_user'] = $id;
 }
 
 if (empty($_SESSION['id_user'])) {
@@ -17,17 +19,29 @@ if (empty($_SESSION['id_user'])) {
 $id_user = $_SESSION['id_user'];
 $id_play = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $acao = $_GET['acao'] ?? '';
+
+// Grava a página exata de onde o usuário clicou
 $pagina_anterior = $_SERVER['HTTP_REFERER'] ?? '../Usuario_Logado/usuariologado.php';
 
 if ($id_play > 0) {
-    // CARRINHO
+
+    // --- LÓGICA DO CARRINHO ---
     if ($acao == 'add_carrinho') {
-        $sql = "INSERT IGNORE INTO carrinho (id_usuario, id_play) VALUES (?, ?)";
-        $pdo->prepare($sql)->execute([$id_user, $id_play]);
+        $check = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ? AND id_play = ?");
+        $check->execute([$id_user, $id_play]);
+        if ($check->fetchColumn() == 0) {
+            $pdo->prepare("INSERT INTO carrinho (id_usuario, id_play) VALUES (?, ?)")->execute([$id_user, $id_play]);
+        }
+        header("Location: " . $pagina_anterior);
+        exit;
+    } elseif ($acao == 'del_carrinho') {
+        // Sem o LIMIT 1 (Evita a tela branca)
+        $pdo->prepare("DELETE FROM carrinho WHERE id_usuario = ? AND id_play = ?")->execute([$id_user, $id_play]);
         header("Location: " . $pagina_anterior);
         exit;
     }
-    // WISHLIST (Lógica de ADICIONAR/REMOVER ao clicar)
+
+    // --- LÓGICA DA LISTA DE DESEJOS ---
     elseif ($acao == 'add_wishlist') {
         $check = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ? AND id_play = ?");
         $check->execute([$id_user, $id_play]);
@@ -39,6 +53,14 @@ if ($id_play > 0) {
         }
         header("Location: " . $pagina_anterior);
         exit;
+    } elseif ($acao == 'del_wishlist') {
+        // Sem o LIMIT 1 (Evita a tela branca)
+        $pdo->prepare("DELETE FROM lista_desejos WHERE id_user = ? AND id_play = ?")->execute([$id_user, $id_play]);
+        header("Location: " . $pagina_anterior);
+        exit;
     }
 }
+
+// Redirecionamento de segurança final
+header("Location: " . $pagina_anterior);
 exit;

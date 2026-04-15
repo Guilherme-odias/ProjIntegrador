@@ -6,29 +6,36 @@ require_once '../conexa.php';
 $logado = isset($_SESSION['usuario_nome']);
 $id_user_logado = $_SESSION['id_user'] ?? 0;
 
-// 2. Faz a contagem para os balõezinhos (Badge)
-$qtd_carrinho = 0;
-$qtd_wishlist = 0;
-
-if ($logado && $id_user_logado > 0) {
-    // Conta Carrinho (tabela usa id_usuario)
-    $stmt_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
-    $stmt_cart->execute([$id_user_logado]);
-    $qtd_carrinho = $stmt_cart->fetchColumn();
-
-    // Conta Wishlist (tabela usa id_user)
-    $stmt_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
-    $stmt_wish->execute([$id_user_logado]);
-    $qtd_wishlist = $stmt_wish->fetchColumn();
-}
-
-// PADRONIZAÇÃO: Usamos 'usuario_nome' que é o que você já usa no usuariologado.php
-$logado = isset($_SESSION['usuario_nome']);
+// 2. Pega os dados do jogo
 $id_jogo = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $veio_do_desconto = isset($_GET['desconto']) && $_GET['desconto'] == '1';
 
 if ($id_jogo === 0) {
     die("<h2 style='color:black; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado na URL. Volte para a loja.</h2>");
+}
+
+// 3. Faz a contagem para os balõezinhos (Badge) e checa Lista de Desejos
+$qtd_carrinho = 0;
+$qtd_wishlist = 0;
+$ta_na_lista = false;
+
+if ($logado && $id_user_logado > 0) {
+    // Conta Carrinho
+    $stmt_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+    $stmt_cart->execute([$id_user_logado]);
+    $qtd_carrinho = $stmt_cart->fetchColumn();
+
+    // Conta Wishlist
+    $stmt_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+    $stmt_wish->execute([$id_user_logado]);
+    $qtd_wishlist = $stmt_wish->fetchColumn();
+
+    // Verifica se ESTE jogo está na Lista de Desejos
+    $stmt_check_lista = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ? AND id_play = ?");
+    $stmt_check_lista->execute([$id_user_logado, $id_jogo]);
+    if ($stmt_check_lista->fetchColumn() > 0) {
+        $ta_na_lista = true;
+    }
 }
 
 try {
@@ -73,23 +80,17 @@ try {
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<div id="dados-sessao" data-logado="<?php echo isset($_SESSION['usuario_nome']) ? 'true' : 'false'; ?>"
-    data-jogo="<?php echo $id_jogo; ?>" style="display: none;">
-</div>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($jogo['titulo']); ?> - QuimeraGames</title>
     <link rel="stylesheet" href="../Css/stylles.css">
-    <link rel="stylesheet" href="../Css/styles.css">
+    <link rel="stylesheet" href="../Css/Styles.css">
 </head>
 
 <body>
 
     <header class="topo">
-
-
 
         <div class="topo-esquerda">
             <a href="<?php echo $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php'; ?>">
@@ -279,12 +280,27 @@ try {
                         <?php endif; ?>
                     </div>
 
-                    <button href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php"
-                        class="btn-action btn-buy" id="btn-comprar-agora">
+                    <button class="btn-action btn-buy" id="btn-comprar-agora">
                         Comprar
                     </button>
                     <button class="btn-action btn-cart" id="btn-add-carrinho">Carrinho</button>
-                    <button class="btn-action btn-wishlist" id="btn-add-wishlist">Lista de desejo</button>
+
+                    <button class="btn-action btn-epic-wishlist <?php echo $ta_na_lista ? 'active' : ''; ?>"
+                        id="btn-add-wishlist">
+                        <?php if ($ta_na_lista): ?>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="#e62429" stroke="#e62429" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            Na Lista de Desejos
+                        <?php else: ?>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            Lista de desejo
+                        <?php endif; ?>
+                    </button>
 
                     <div class="cupom-area">
                         <p class="cupom-titulo">Possui cupom de desconto?</p>
