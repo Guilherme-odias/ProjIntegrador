@@ -139,14 +139,14 @@ if (isset($_GET['id_jogo'], $_GET['preco'])) {
 <footer class="rodape">QuimeraGames &copy; 2026</footer>
 
 
-<!-- ===== OVERLAY PIX ===== -->
+<!-- Cartão PIX -->
 <div class="overlay" id="ov-pix">
     <div class="modal">
         <div id="pix-body"></div>
     </div>
 </div>
 
-<!-- ===== OVERLAY BOLETO ===== -->
+<!-- Cartão BOLETO -->
 <div class="overlay" id="ov-boleto">
     <div class="modal">
         <div id="boleto-body"></div>

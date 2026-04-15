@@ -10,9 +10,7 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* =========================================
-   CABEÇALHO
-   ========================================= */
+/* CABEÇALHO */
 .topo {
     display: flex;
     justify-content: space-between;
@@ -63,9 +61,7 @@ body {
     background: #e62429;
 }
 
-/* =========================================
-   CONTAINER
-   ========================================= */
+/* CONTAINER */
 .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -99,9 +95,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* =========================================
-   LAYOUT PRINCIPAL
-   ========================================= */
+/* LAYOUT PRINCIPAL */
 .main-pagamento {
     display: flex;
     justify-content: space-between;
@@ -144,9 +138,7 @@ body {
     margin: 0;
 }
 
-/* =========================================
-   MÉTODOS DE PAGAMENTO
-   ========================================= */
+/* MÉTODOS DE PAGAMENTO */
 .metodos-pagamento h3 {
     font-size: 1.5rem;
     margin-bottom: 20px;
@@ -189,9 +181,7 @@ body {
     margin-right: 15px;
 }
 
-/* =========================================
-   FORMULÁRIOS DINÂMICOS
-   ========================================= */
+/* FORMULÁRIOS DINÂMICOS */
 .form-dinamico {
     display: none;
     background-color: #161f2e;
@@ -261,9 +251,7 @@ body {
     display: none;
 }
 
-/* =========================================
-   BOTÃO FINALIZAR
-   ========================================= */
+/* BOTÃO FINALIZAR */
 .btn-finalizar {
     background-color: #e62429;
     color: white;
@@ -282,9 +270,7 @@ body {
     background-color: #c0181d;
 }
 
-/* =========================================
-   IMAGEM DO JOGO
-   ========================================= */
+/* IMAGEM DO JOGO */
 .col-logo {
     width: 380px;
     display: flex;
@@ -299,9 +285,7 @@ body {
     border: 1px solid #30363d;
 }
 
-/* =========================================
-   RODAPÉ
-   ========================================= */
+/* RODAPÉ */
 .rodape {
     background: #111823;
     padding: 30px;
@@ -312,9 +296,7 @@ body {
     border-top: 1px solid #30363d;
 }
 
-/* =========================================
-   OVERLAY / MODAL
-   ========================================= */
+/* OVERLAY / MODAL */
 .overlay {
     display: none;
     position: fixed;

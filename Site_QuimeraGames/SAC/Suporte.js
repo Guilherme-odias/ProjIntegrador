@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ========================
-    // MÁSCARA DO CPF
-    // ========================
     const inputCpf = document.getElementById('cpf');
     if (inputCpf) {
         inputCpf.addEventListener('input', function (event) {
@@ -14,9 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ========================
-    // FUNÇÕES DE VALIDAÇÃO
-    // ========================
     function validarNome(nome) {
         return nome.trim().length >= 3 && /^[a-zA-ZÀ-ÿ\s]+$/.test(nome.trim());
     }
@@ -42,9 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return resto === parseInt(cpf[10]);
     }
 
-    // ========================
-    // FEEDBACK VISUAL
-    // ========================
     function setStatus(id, valido) {
         document.getElementById(id).style.outline = valido
             ? '2px solid #4caf50'
@@ -68,9 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('listaErros').innerHTML = '';
     }
 
-    // ========================
-    // ENVIO DO FORMULÁRIO
-    // ========================
     const formSuporte = document.getElementById('formSuporte');
 
     if (formSuporte) {
