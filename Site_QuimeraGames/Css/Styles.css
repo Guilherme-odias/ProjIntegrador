@@ -164,68 +164,161 @@
     padding: 15px;
     border-radius: 8px;
 }
-
 .btn-icon {
-    background: transparent;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
-    transition: 0.3s;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
 }
-
 .user-menu {
-    position: absolute;
-    top: 45px;
-    right: 0;
-    background: #13192b;
-    border-radius: 10px;
-    padding: 10px 0;
-    width: 160px;
-    display: none;
-    flex-direction: column;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    z-index: 9999;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: #13192b;
+  border-radius: 10px;
+  padding: 10px 0;
+  width: 160px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 9999;
+}
+.user-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.user-img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
+
+.card-cat-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  /* O segredo do formato vertical da sua foto */
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, filter 0.3s ease;
+  filter: brightness(0.9);
+}
+
+.card-cat-item:hover {
+  transform: translateY(-8px);
+}
+.img-cat-wrapper {
+  width: 100%;
+  border-radius: 6px;
+  /* Cantos levemente arredondados */
+  overflow: hidden;
+  margin-bottom: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.carousel-container {
+  width: 100%;
+  position: relative;
+  height: 520px;
+  /* Altura mantida conforme sua preferência */
+  margin-top: 20px;
+  padding-bottom: 60px;
+}
+
+.painel-dropdown {
+  background-color: #0b1120;
+  width: 100%;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.1);
+
+  /* CORREÇÃO DO BLOQUEIO DOS CLIQUES E VISIBILIDADE */
+  opacity: 0;
+  transform: translateY(-15px) scale(0.98);
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.painel-dropdown.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+
+  /* Novo Brilho: 3 camadas de sombra vermelha e uma borda leve */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(229, 9, 20, 0.3),
+    0 0 80px rgba(229, 9, 20, 0.15);
+  border: 1px solid rgba(229, 9, 20, 0.4);
+}
+
+
+.card-cat-item:hover .img-cat-wrapper {
+  transform: scale(1.05);
+  /* Dá um leve zoom na imagem */
+  filter: brightness(1.1);
+}
+
+.card-cat-item:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.card-cat-item span {
+  color: #e5e5e5;
+  font-size: 1.15rem;
+  /* Texto maior */
+  font-weight: 500;
+  /* Mais limpo */
+  transition: color 0.3s ease;
+  padding-left: 2px;
+}
+
+.card-cat-item:hover span {
+  color: white;
 }
 
 .user-menu a {
-    padding: 10px 15px;
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.2s;
-    text-align: center;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+  text-align: center;
 }
 
 .user-menu a:hover {
-    background: #1f2a44;
+  background: #1f2a44;
 }
 
 .user-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 6px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    position: relative;
-    transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
 }
 
 .user-box:active {
-    background: rgba(255, 255, 255, 0.247);
+  background: rgba(255, 255, 255, 0.247);
 }
 
+
+
 .btn-icon:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .req-coluna h4 {
@@ -260,6 +353,7 @@
     height: auto;
     max-height: 280px;
     object-fit: contain;
+    /* Garante que a imagem caiba inteira sem cortar */
     display: block;
 }
 
@@ -328,20 +422,6 @@
 .btn-action:not(.btn-buy):hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
-}
-
-/* Novo Estilo para o Botão Inteligente da Wishlist */
-.btn-epic-wishlist {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.btn-epic-wishlist.active {
-    background: rgba(230, 36, 41, 0.1);
-    border: 1px solid rgba(230, 36, 41, 0.5);
-    color: #e62429;
 }
 
 /* Cupom de Desconto */

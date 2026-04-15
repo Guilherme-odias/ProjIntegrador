@@ -40,6 +40,32 @@ try {
     die("Erro na consulta: " . $e->getMessage());
 }
 ?>
+<?php
+try {
+  $semana_atual = (int) date('W');
+
+  $id_user_logado = $_SESSION['id_user'] ?? 0; // Pega o ID do usuário
+
+  $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
+  $stmt_categorias->execute();
+  $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
+
+  $nomes_categorias = [
+    1 => 'Ação',
+    2 => 'Aventura',
+    3 => 'Corrida',
+    4 => 'Estratégia',
+    5 => 'Esporte',
+    6 => 'FPS',
+    7 => 'Luta',
+    8 => 'Terror',
+    9 => 'Sobrevivência',
+    10 => 'RPG'
+  ];
+} catch (PDOException $e) {
+  die("Erro na consulta ao banco de dados: " . $e->getMessage());
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -115,17 +141,38 @@ try {
     <div class="container">
         <div class="menu-wrapper" style="position: relative; z-index: 1000; padding-top: 20px;">
             <nav class="menu-busca">
-                <div class="busca-input">
-                    <span>🔍</span>
-                    <input type="text" placeholder="Pesquisar loja" disabled style="opacity: 0.5; cursor: not-allowed;"
-                        title="Use o filtro lateral nesta página">
-                </div>
-                <button class="btn-dropdown" id="btn-explorar"
-                    onclick="window.location.href='../Index/index.php'">Explorar ▾</button>
-                <button class="btn-dropdown" id="btn-categorias"
-                    onclick="window.location.href='../Index/index.php'">Categorias ▾</button>
+
+                <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
+                 <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
             </nav>
         </div>
+
+        <div id="painel-categorias" class="painel-dropdown">
+            <h3 class="titulo-painel">Gêneros Populares</h3>
+            <div class="carousel-categorias-wrapper">
+                <button class="seta-cat esquerda" id="seta-esquerda">&#10094;</button>
+            <div class="categorias-painel-grid" id="grid-categorias">
+            <?php foreach ($categorias_bd as $cat): ?>
+              <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
+
+              <a href="../Categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
+                style="text-decoration: none; color: inherit;">
+                <div class="img-cat-wrapper">
+                  <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
+                </div>
+                <span><?php echo $nome_cat; ?></span>
+              </a>
+
+            <?php endforeach; ?>
+          </div>
+            <button class="seta-cat direita" id="seta-direita">&#10095;</button>
+        </div>
+    </div>
+
+
+    
+
+
 
         <div class="categoria-container">
             <div class="conteudo-jogos">

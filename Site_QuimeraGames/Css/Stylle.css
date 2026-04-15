@@ -54,6 +54,146 @@
     border-color: rgba(255, 255, 255, 0.1);
 }
 
+/* --- ESTILOS DOS PAINÉIS DROPDOWN --- */
+.painel-dropdown {
+  background-color: #0b1120;
+  width: 100%;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.1);
+
+  /* CORREÇÃO DO BLOQUEIO DOS CLIQUES E VISIBILIDADE */
+  opacity: 0;
+  transform: translateY(-15px) scale(0.98);
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.painel-dropdown.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+
+  /* Novo Brilho: 3 camadas de sombra vermelha e uma borda leve */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(229, 9, 20, 0.3),
+    0 0 80px rgba(229, 9, 20, 0.15);
+  border: 1px solid rgba(229, 9, 20, 0.4);
+}
+
+
+
+/* --- CARROSSEL: CORREÇÃO DE SOBREPOSIÇÃO --- */
+.carousel-container {
+  width: 100%;
+  position: relative;
+  height: 520px;
+  /* Altura mantida conforme sua preferência */
+  margin-top: 20px;
+  padding-bottom: 60px;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  /* Fixa todos os slides no mesmo ponto inicial */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  opacity: 0;
+  /* Esconde todos */
+  visibility: hidden;
+  transition: opacity 0.6s ease;
+  z-index: 1;
+}
+
+/* Mostra apenas o slide selecionado pelo rádio botão */
+#s1:checked~.slides #slide1,
+#s2:checked~.slides #slide2,
+#s3:checked~.slides #slide3,
+#s4:checked~.slides #slide4,
+#s5:checked~.slides #slide5,
+#s6:checked~.slides #slide6,
+#s7:checked~.slides #slide7 {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+
+.card-cat-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  /* O segredo do formato vertical da sua foto */
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, filter 0.3s ease;
+  filter: brightness(0.9);
+}
+
+.card-cat-item:hover {
+  transform: translateY(-8px);
+}
+.img-cat-wrapper {
+  width: 100%;
+  border-radius: 6px;
+  /* Cantos levemente arredondados */
+  overflow: hidden;
+  margin-bottom: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.card-cat-item:hover .img-cat-wrapper {
+  transform: scale(1.05);
+  /* Dá um leve zoom na imagem */
+  filter: brightness(1.1);
+}
+
+.card-cat-item:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.card-cat-item span {
+  color: #e5e5e5;
+  font-size: 1.15rem;
+  /* Texto maior */
+  font-weight: 500;
+  /* Mais limpo */
+  transition: color 0.3s ease;
+  padding-left: 2px;
+}
+
+.card-cat-item:hover span {
+  color: white;
+}
+
+
+.carousel-categorias-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+}
+
 .thumb-wrapper {
     position: relative;
     width: 100%;
