@@ -10,17 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit;
 }
 
-// ========================
-// SANITIZAÇÃO
-// ========================
 $nome      = htmlspecialchars(trim($_POST['nome'] ?? ''));
 $email     = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
 $cpf       = preg_replace('/[^\d]/', '', $_POST['cpf'] ?? '');
 $mensagem  = htmlspecialchars(trim($_POST['reclamacao'] ?? ''));
 
-// ========================
-// VALIDAÇÃO NO BACKEND
-// ========================
 if (strlen($nome) < 3) {
     echo json_encode(['sucesso' => false, 'erro' => 'Nome inválido.']); exit;
 }
@@ -34,14 +28,8 @@ if (strlen($mensagem) < 20) {
     echo json_encode(['sucesso' => false, 'erro' => 'Mensagem muito curta.']); exit;
 }
 
-// ========================
-// GERA PROTOCOLO NO BACKEND
-// ========================
 $protocolo = strtoupper(substr(md5(uniqid(rand(), true)), 0, 8));
 
-// ========================
-// ENVIO DO E-MAIL
-// ========================
 $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
 try {

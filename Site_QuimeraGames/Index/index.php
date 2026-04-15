@@ -1,5 +1,11 @@
 <?php
+session_start();
 require_once '../conexa.php';
+
+if (isset($_SESSION['id_user'])) {
+    header("Location: ../Usuario_Logado/usuariologado.php");
+    exit;
+}
 
 if (!isset($pdo)) {
   die("Erro: A variável de conexão \$pdo não foi encontrada no conexa.php.");

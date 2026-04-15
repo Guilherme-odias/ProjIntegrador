@@ -4,6 +4,15 @@ require_once '../conexa.php';
 
 $id_user = $_SESSION['id_user'] ?? 0;
 
+// CONTAGEM PARA OS BADGES
+$stmt_conta_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+$stmt_conta_cart->execute([$id_user]);
+$qtd_carrinho = $stmt_conta_cart->fetchColumn();
+
+$stmt_conta_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+$stmt_conta_wish->execute([$id_user]);
+$qtd_wishlist = $stmt_conta_wish->fetchColumn();
+
 // Busca os jogos que estão na lista de desejos desse usuário
 $query = "SELECT j.* FROM jogos j 
           INNER JOIN lista_desejos ld ON j.id_play = ld.id_play 
@@ -15,23 +24,113 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Minha Lista de Desejos</title>
-    <link rel="stylesheet" href="style.css"> <style>
-        .main-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
-        .empty-state { text-align: center; margin-top: 100px; }
-        .sad-icon { font-size: 80px; display: block; margin-bottom: 20px; opacity: 0.5; }
-        .btn-red { background: #c1121f; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin-top: 20px; }
-        .wish-item { background: #13192b; display: flex; align-items: center; padding: 20px; border-radius: 10px; margin-bottom: 15px; position: relative; }
-        .wish-item img { width: 100px; height: 140px; object-fit: cover; border-radius: 5px; margin-right: 20px; }
-        .wish-info h3 { font-size: 20px; margin-bottom: 10px; }
-        .wish-price { margin-left: auto; font-size: 22px; font-weight: bold; margin-right: 40px; }
-        .wish-actions { position: absolute; bottom: 15px; right: 20px; display: flex; gap: 20px; }
-        .wish-actions a { color: #aaa; text-decoration: underline; font-size: 14px; }
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .main-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .empty-state {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .sad-icon {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .btn-red {
+            background: #c1121f;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .wish-item {
+            background: #13192b;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .wish-item img {
+            width: 100px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .wish-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .wish-price {
+            margin-left: auto;
+            font-size: 22px;
+            font-weight: bold;
+            margin-right: 40px;
+        }
+
+        .wish-actions {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .wish-actions a {
+            color: #aaa;
+            text-decoration: underline;
+            font-size: 14px;
+        }
     </style>
 </head>
+
 <body>
+
+    <header class="topo">
+        <div class="topo-esquerda">
+            <a href="usuariologado.php"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
+            <a href="usuariologado.php" style="text-decoration: none;"><button class="btn-nav">Loja</button></a>
+        </div>
+        <div class="topo-direita">
+            <div style="position: relative; display: inline-block;">
+                <button type="button" class="btn-icon" onclick="window.location.href='carrinho.php'">🛒</button>
+                <?php if ($qtd_carrinho > 0): ?>
+                    <span
+                        style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
+                <?php endif; ?>
+            </div>
+            <a href="wishlist.php" style="color: white; text-decoration: none; margin-left: 20px;">
+                Lista de Desejos
+                <?php if ($qtd_wishlist > 0): ?>
+                    <span
+                        style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 5px;"><?php echo $qtd_wishlist; ?></span>
+                <?php endif; ?>
+            </a>
+            <a href="logout.php" style="color: white; text-decoration: none; margin-left: 20px;">Sair</a>
+        </div>
+    </header>
+
     <div class="main-container">
         <h2>Minha lista de desejo</h2><br>
 
@@ -60,4 +159,5 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
     </div>
 </body>
+
 </html>

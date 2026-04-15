@@ -15,15 +15,13 @@ if (!isset($pdo)) {
 
 try {
   $semana_atual = (int) date('W');
+  $id_user_logado = $_SESSION['id_user'] ?? 0;
 
-  $id_user_logado = $_SESSION['id_user'] ?? 0; // Pega o ID do usuário
-
-  // 1. Conta quantos itens tem no Carrinho deste usuário
+  // CONTAGEM PARA OS BADGES
   $stmt_conta_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
   $stmt_conta_cart->execute([$id_user_logado]);
   $qtd_carrinho = $stmt_conta_cart->fetchColumn();
 
-  // 2. Conta quantos itens tem na Lista de Desejos
   $stmt_conta_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
   $stmt_conta_wish->execute([$id_user_logado]);
   $qtd_wishlist = $stmt_conta_wish->fetchColumn();
@@ -74,17 +72,13 @@ try {
     const menu = document.getElementById("user-menu");
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   }
-
-  // fecha se clicar fora
   document.addEventListener("click", function (e) {
     const userBox = document.querySelector(".user-box");
     const menu = document.getElementById("user-menu");
-
     if (!userBox.contains(e.target)) {
       menu.style.display = "none";
     }
   });
-
 </script>
 
 <body>
@@ -103,9 +97,9 @@ try {
 
       <div style="position: relative; display: inline-block;">
         <button type="button" class="btn-icon" onclick="window.location.href='carrinho.php'">🛒</button>
-
         <?php if ($qtd_carrinho > 0): ?>
-          <span class="badge-carrinho"><?php echo $qtd_carrinho; ?></span>
+          <span
+            style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
         <?php endif; ?>
       </div>
 
@@ -118,15 +112,14 @@ try {
         <div id="user-menu" class="user-menu">
           <a href="../Conta/conta.php">Conta</a>
           <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php">Pagamento</a>
-
-          <a href="../Usuario_Logado/wishlist.php"
+          <a href="wishlist.php"
             style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
             Lista de desejo
             <?php if ($qtd_wishlist > 0): ?>
-              <span class="badge-wishlist"><?php echo $qtd_wishlist; ?></span>
+              <span
+                style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;"><?php echo $qtd_wishlist; ?></span>
             <?php endif; ?>
           </a>
-
           <a href="logout.php">Sair</a>
         </div>
       </div>
@@ -134,8 +127,6 @@ try {
       <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php" style="text-decoration: none;">
         <button class="btn-login">Suporte</button>
       </a>
-
-    </div>
 
     </div>
   </header>
@@ -264,7 +255,7 @@ try {
                   <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
                   <span>Windows</span>
                 </div>
-                <div class="precos-card">
+                <div class=\"precos-card\">
                   <?php if ($jogo['Valor'] > 0): ?>
                     <span class="v-old">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
                     <span class="v-new">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
@@ -282,11 +273,7 @@ try {
   </div>
 
   <footer class="rodape">QuimeraGames &copy; 2026</footer>
-
   <script src="../Usuario_Logado/script.js" defer></script>
-
-
-
 </body>
 
 </html>
