@@ -4,30 +4,26 @@ var pixInterval = null;
 // INICIALIZAÇÃO
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Troca de método de pagamento
+    // Troca de método de pagamento — UM único listener por radio
     var radios = document.querySelectorAll('input[name="metodo"]');
     radios.forEach(function (r) {
-        // Dentro do seu radios.forEach no DOMContentLoaded:
-        r.addEventListener('change', function (e) {
-            // ... código existente ...
-
-            // Remove a classe 'sel' de todos e adiciona no pai do rádio atual
-            document.querySelectorAll('.metodo-card').forEach(card => card.classList.remove('sel'));
-            e.target.closest('.metodo-card').classList.add('sel');
-        });
         r.addEventListener('change', function (e) {
             var forms = {
                 cartao: document.getElementById('dados-cartao'),
-                pix: document.getElementById('dados-pix'),
+                pix:    document.getElementById('dados-pix'),
                 boleto: document.getElementById('dados-boleto')
             };
             var cards = {
                 cartao: document.getElementById('mc-cartao'),
-                pix: document.getElementById('mc-pix'),
+                pix:    document.getElementById('mc-pix'),
                 boleto: document.getElementById('mc-boleto')
             };
+
+            // Esconde todos os formulários e remove seleção de todos os cards
             Object.values(forms).forEach(function (f) { f.classList.remove('ativo'); });
             Object.values(cards).forEach(function (c) { c.classList.remove('sel'); });
+
+            // Exibe o formulário e marca o card do método escolhido
             forms[e.target.value].classList.add('ativo');
             cards[e.target.value].classList.add('sel');
         });
@@ -37,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var mcCartao = document.getElementById('mc-cartao');
     if (mcCartao) mcCartao.classList.add('sel');
 
-    // Máscara número do cartão
+    // Máscara número do cartão (grupos de 4 dígitos)
     var numCartao = document.getElementById('num-cartao');
     if (numCartao) {
         numCartao.addEventListener('input', function () {
@@ -56,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Fechar overlay ao clicar fora
+    // Fechar overlay ao clicar fora do modal
     document.querySelectorAll('.overlay').forEach(function (ov) {
         ov.addEventListener('click', function (e) {
             if (e.target === ov) fecharTudo();
@@ -64,7 +60,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// ENTRADA PRINCIPAL — chamada pelo onclick
+// ENTRADA PRINCIPAL
+
 function iniciarPagamento() {
     var m = document.querySelector('input[name="metodo"]:checked').value;
     if (m === 'cartao') {
@@ -78,6 +75,7 @@ function iniciarPagamento() {
 }
 
 // VALIDAÇÃO DO CARTÃO
+
 function showErr(id, show) {
     var el = document.getElementById(id);
     if (el) el.style.display = show ? 'block' : 'none';
@@ -116,8 +114,10 @@ function validarCartao() {
     }
 
     return ok;
+} 
 
 // FECHAR OVERLAYS
+
 function fecharTudo() {
     ['ov-cartao', 'ov-pix', 'ov-boleto'].forEach(function (id) {
         var el = document.getElementById(id);
@@ -130,6 +130,7 @@ function fecharTudo() {
 }
 
 // HELPERS STEPS DO CARTÃO
+
 function setStep(n) {
     for (var i = 1; i <= 3; i++) {
         var s = document.getElementById('s' + i);
@@ -144,6 +145,7 @@ function setStep(n) {
 }
 
 // FLUXO CARTÃO
+
 function fluxoCartao() {
     document.getElementById('ov-cartao').classList.add('show');
     setStep(1);
@@ -219,6 +221,7 @@ function cartaoFase3() {
 }
 
 // FLUXO PIX
+
 function fluxoPix() {
     document.getElementById('ov-pix').classList.add('show');
     document.getElementById('pix-body').innerHTML =
@@ -330,7 +333,7 @@ function fluxoBoleto() {
             '<p>Pague até o vencimento em qualquer banco, lotérica ou aplicativo bancário.</p>' +
             '<div class="info-box">' +
             '<p>Vencimento: <strong>' + venc + '</strong></p>' +
-            '<p>Valor: <strong>R$ ' + PRECO_JOGO + '</strong></p>' +    
+            '<p>Valor: <strong>R$ ' + PRECO_JOGO + '</strong></p>' +
             '<p style="margin-top:10px">Linha digitável:</p>' +
             '</div>' +
             '<div class="boleto-code">' + BOLETO_NUMERO + '</div>' +
@@ -366,5 +369,4 @@ function copiarBoleto(btn) {
         btn.style.color = '#e62429';
         btn.style.borderColor = '#e62429';
     }, 2500);
-}
 }
