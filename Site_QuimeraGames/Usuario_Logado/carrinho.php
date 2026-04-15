@@ -4,6 +4,16 @@ require_once '../conexa.php';
 
 $id_user = $_SESSION['id_user'] ?? 0;
 
+// CONTAGEM PARA OS BADGES
+$stmt_conta_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+$stmt_conta_cart->execute([$id_user]);
+$qtd_carrinho = $stmt_conta_cart->fetchColumn();
+
+$stmt_conta_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+$stmt_conta_wish->execute([$id_user]);
+$qtd_wishlist = $stmt_conta_wish->fetchColumn();
+
+// BUSCA OS ITENS DO CARRINHO
 $query = "SELECT j.* FROM jogos j 
           INNER JOIN carrinho c ON j.id_play = c.id_play 
           WHERE c.id_usuario = :u";
@@ -16,21 +26,93 @@ $total = 0;
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Meu Carrinho</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .cart-layout { display: flex; gap: 30px; max-width: 1200px; margin: 50px auto; padding: 0 20px; }
-        .cart-list { flex: 2; }
-        .cart-summary { flex: 1; background: #13192b; padding: 25px; border-radius: 10px; height: fit-content; }
-        .cart-item { background: #13192b; display: flex; padding: 15px; border-radius: 10px; margin-bottom: 15px; align-items: center; position: relative; }
-        .cart-item img { width: 80px; margin-right: 15px; }
-        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; }
-        .btn-checkout { width: 100%; background: #c1121f; border: none; color: white; padding: 15px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .cart-layout {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .cart-list {
+            flex: 2;
+        }
+
+        .cart-summary {
+            flex: 1;
+            background: #13192b;
+            padding: 25px;
+            border-radius: 10px;
+            height: fit-content;
+        }
+
+        .cart-item {
+            background: #13192b;
+            display: flex;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+            position: relative;
+        }
+
+        .cart-item img {
+            width: 80px;
+            margin-right: 15px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background: #c1121f;
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
     </style>
 </head>
+
 <body>
+
+    <header class="topo">
+        <div class="topo-esquerda">
+            <a href="usuariologado.php"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
+            <a href="usuariologado.php" style="text-decoration: none;"><button class="btn-nav">Loja</button></a>
+        </div>
+        <div class="topo-direita">
+            <div style="position: relative; display: inline-block;">
+                <button type="button" class="btn-icon" onclick="window.location.href='carrinho.php'">🛒</button>
+                <?php if ($qtd_carrinho > 0): ?>
+                    <span
+                        style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
+                <?php endif; ?>
+            </div>
+            <a href="wishlist.php" style="color: white; text-decoration: none; margin-left: 20px;">
+                Lista de Desejos
+                <?php if ($qtd_wishlist > 0): ?>
+                    <span
+                        style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 5px;"><?php echo $qtd_wishlist; ?></span>
+                <?php endif; ?>
+            </a>
+            <a href="logout.php" style="color: white; text-decoration: none; margin-left: 20px;">Sair</a>
+        </div>
+    </header>
+
     <div class="cart-layout">
         <div class="cart-list">
             <h2>Meu Carrinho</h2><br>
@@ -41,7 +123,8 @@ $total = 0;
                     <a href="usuariologado.php" class="btn-red">Comprar jogos</a>
                 </div>
             <?php else: ?>
-                <?php foreach ($itens as $j): $total += $j['Valor']; ?>
+                <?php foreach ($itens as $j):
+                    $total += $j['Valor']; ?>
                     <div class="cart-item">
                         <img src="<?= $j['Imagens_jogos'] ?>">
                         <div>
@@ -49,7 +132,8 @@ $total = 0;
                             <small>R$ <?= number_format($j['Valor'], 2, ',', '.') ?></small>
                         </div>
                         <div style="margin-left: auto;">
-                            <a href="acoes_cliente.php?id=<?= $j['id_play'] ?>&acao=del_carrinho" style="color: #888;">Remover</a>
+                            <a href="acoes_cliente.php?id=<?= $j['id_play'] ?>&acao=del_carrinho"
+                                style="color: #888;">Remover</a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -57,14 +141,16 @@ $total = 0;
         </div>
 
         <?php if (!empty($itens)): ?>
-        <div class="cart-summary">
-            <h3>Resumo de jogos</h3><br>
-            <div class="summary-row"><span>Preço</span> <span>R$ <?= number_format($total, 2, ',', '.') ?></span></div>
-            <hr style="opacity: 0.1; margin-bottom: 15px;">
-            <div class="summary-row" style="font-weight: bold;"><span>Subtotal</span> <span>R$ <?= number_format($total, 2, ',', '.') ?></span></div>
-            <button class="btn-checkout">Finalizar compra</button>
-        </div>
+            <div class="cart-summary">
+                <h3>Resumo de jogos</h3><br>
+                <div class="summary-row"><span>Preço</span> <span>R$ <?= number_format($total, 2, ',', '.') ?></span></div>
+                <hr style="opacity: 0.1; margin-bottom: 15px;">
+                <div class="summary-row" style="font-weight: bold;"><span>Subtotal</span> <span>R$
+                        <?= number_format($total, 2, ',', '.') ?></span></div>
+                <button class="btn-checkout">Finalizar compra</button>
+            </div>
         <?php endif; ?>
     </div>
 </body>
+
 </html>

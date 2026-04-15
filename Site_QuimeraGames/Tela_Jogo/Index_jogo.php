@@ -1,11 +1,26 @@
 <?php
-// Força o PHP a mostrar os erros
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 session_start();
-
 require_once '../conexa.php';
+
+// 1. Define as variáveis primeiro (Resolve o Erro da linha 11)
+$logado = isset($_SESSION['usuario_nome']);
+$id_user_logado = $_SESSION['id_user'] ?? 0;
+
+// 2. Faz a contagem para os balõezinhos (Badge)
+$qtd_carrinho = 0;
+$qtd_wishlist = 0;
+
+if ($logado && $id_user_logado > 0) {
+    // Conta Carrinho (tabela usa id_usuario)
+    $stmt_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+    $stmt_cart->execute([$id_user_logado]);
+    $qtd_carrinho = $stmt_cart->fetchColumn();
+
+    // Conta Wishlist (tabela usa id_user)
+    $stmt_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+    $stmt_wish->execute([$id_user_logado]);
+    $qtd_wishlist = $stmt_wish->fetchColumn();
+}
 
 // PADRONIZAÇÃO: Usamos 'usuario_nome' que é o que você já usa no usuariologado.php
 $logado = isset($_SESSION['usuario_nome']);
@@ -87,24 +102,42 @@ try {
         </div>
         <div class="topo-direita">
             <?php if ($logado): ?>
-                <button class="btn-icon" onclick="location.href='../Usuario_Logado/carrinho.php'">🛒</button>
+
+                <div style="position: relative; display: inline-block;">
+                    <button class="btn-icon" onclick="location.href='../Usuario_Logado/carrinho.php'">🛒</button>
+                    <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
+                        <span class="badge-carrinho"
+                            style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;">
+                            <?php echo $qtd_carrinho; ?>
+                        </span>
+                    <?php endif; ?>
+                </div>
+
                 <div class="user-box" onclick="toggleMenu()">
                     <img src="../imagens/aidento.jpg" class="user-img">
                     <span class="user-nome">
                         <?php echo $_SESSION['usuario_nome']; ?>
                     </span>
-                    <!-- dropdown -->
                     <div id="user-menu" class="user-menu">
                         <a href="../Conta/conta.php">Conta</a>
-                        <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php">Pagamento</a>
-                        <a href="#">Lista de desejo</a>
-                        <a href="logout.php">Sair</a>
+                        <a
+                            href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php">Pagamento</a>
+
+                        <a href="../Usuario_Logado/wishlist.php"
+                            style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
+                            Lista de desejo
+                            <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
+                                <span class="badge-wishlist"
+                                    style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;">
+                                    <?php echo $qtd_wishlist; ?>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+
+                        <a href="../Usuario_Logado/logout.php">Sair</a>
                     </div>
                 </div>
 
-                <a href="../Usuario_Logado/logout.php" style="text-decoration: none;">
-
-                </a>
             <?php else: ?>
                 <a href="../Entrar/Entrar.php" style="text-decoration: none;">
                     <button class="btn-login">Entrar</button>
@@ -115,6 +148,7 @@ try {
                 <button class="btn-login">Suporte</button>
             </a>
         </div>
+
     </header>
 
     <div class="container game-page-container">
@@ -244,8 +278,9 @@ try {
                             <span class="v-new-side">Gratuito</span>
                         <?php endif; ?>
                     </div>
-                    
-                    <button href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php" class="btn-action btn-buy" id="btn-comprar-agora">
+
+                    <button href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php"
+                        class="btn-action btn-buy" id="btn-comprar-agora">
                         Comprar
                     </button>
                     <button class="btn-action btn-cart" id="btn-add-carrinho">Carrinho</button>
