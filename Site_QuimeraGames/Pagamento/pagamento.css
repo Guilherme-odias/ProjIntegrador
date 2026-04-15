@@ -95,7 +95,6 @@ body {
     font-size: 0.9rem;
 }
 
-/* LAYOUT PRINCIPAL */
 .main-pagamento {
     display: flex;
     justify-content: space-between;
@@ -296,7 +295,7 @@ body {
     border-top: 1px solid #30363d;
 }
 
-/* OVERLAY / MODAL */
+/* MODAL */
 .overlay {
     display: none;
     position: fixed;
@@ -338,7 +337,6 @@ body {
     margin-bottom: 16px;
 }
 
-/* STEPS */
 .steps {
     display: flex;
     align-items: center;
@@ -396,7 +394,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* SPINNER */
 .spinner {
     width: 48px;
     height: 48px;
@@ -451,7 +448,7 @@ body {
     margin: 12px 0;
 }
 
-/* PIX QR */
+/* PIX */
 .qr-container {
     background: #ffffff;
     border-radius: 12px;
@@ -542,7 +539,6 @@ body {
 
 .btn-modal-ghost:hover { border-color: #fff; color: #fff; }
 
-/* INFO BOX */
 .info-box {
     background: #0d121a;
     border: 1px solid #30363d;
