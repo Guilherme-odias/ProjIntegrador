@@ -42,28 +42,28 @@ try {
 ?>
 <?php
 try {
-    $semana_atual = (int) date('W');
+  $semana_atual = (int) date('W');
 
-    $id_user_logado = $_SESSION['id_user'] ?? 0; // Pega o ID do usuário
+  $id_user_logado = $_SESSION['id_user'] ?? 0; // Pega o ID do usuário
 
-    $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
-    $stmt_categorias->execute();
-    $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
+  $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
+  $stmt_categorias->execute();
+  $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
-    $nomes_categorias = [
-        1 => 'Ação',
-        2 => 'Aventura',
-        3 => 'Corrida',
-        4 => 'Estratégia',
-        5 => 'Esporte',
-        6 => 'FPS',
-        7 => 'Luta',
-        8 => 'Terror',
-        9 => 'Sobrevivência',
-        10 => 'RPG'
-    ];
+  $nomes_categorias = [
+    1 => 'Ação',
+    2 => 'Aventura',
+    3 => 'Corrida',
+    4 => 'Estratégia',
+    5 => 'Esporte',
+    6 => 'FPS',
+    7 => 'Luta',
+    8 => 'Terror',
+    9 => 'Sobrevivência',
+    10 => 'RPG'
+  ];
 } catch (PDOException $e) {
-    die("Erro na consulta ao banco de dados: " . $e->getMessage());
+  die("Erro na consulta ao banco de dados: " . $e->getMessage());
 }
 ?>
 
@@ -81,67 +81,61 @@ try {
 <body>
 
     <header class="topo">
-        <?php
-        // Verifica se está logado e define o link da logo/loja
-        $logado = isset($_SESSION['usuario_nome']);
-        $link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
-        ?>
-
+<!-- usuario Não logado -->
+        <?php if (!isset($_SESSION['usuario_nome'])): ?>
         <div class="topo-esquerda">
-            <a href="<?php echo $link_home; ?>">
+            <a href="../Index/index.php">
                 <img class="logo" src="../imagens/logo.png" alt="Logo">
             </a>
-            <a href="<?php echo $link_home; ?>" style="text-decoration: none;">
+            <a href="../Index/index.php" style="text-decoration: none;">
                 <button class="btn-nav active">Loja</button>
+            </a>
+        </div>
+        <div class="topo-direita">
+            <a href="../Entrar/Entrar.php" style="text-decoration: none;">
+                <button class="btn-login">Entrar</button>
+            </a>
+            <a href="../Sac/Suporte.php" style="text-decoration: none;">
+                <button class="btn-login">Suporte</button>
+            </a>
+        </div>
+
+
+
+    <?php else: ?>
+
+          <!-- usuario Logado -->
+
+        <div class="topo-esquerda">
+            <a href="../Usuario_Logado/usuariologado.php">
+            <img class="logo" src="../imagens/logo.png" alt="Logo">
+            </a>
+            <a href="../Usuario_Logado/usuariologado.php" style="text-decoration: none;">
+            <button class="btn-nav active">Loja</button>
             </a>
         </div>
 
         <div class="topo-direita">
-            <?php if ($logado): ?>
-                <div style="position: relative; display: inline-block;">
-                    <button type="button" class="btn-icon"
-                        onclick="window.location.href='../Usuario_Logado/carrinho.php'">🛒</button>
-                    <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
-                        <span
-                            style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;">
-                            <?php echo $qtd_carrinho; ?>
-                        </span>
-                    <?php endif; ?>
+            <div class="user-box" onclick="toggleMenu()">
+                <img src="../imagens/aidento.jpg" class="user-img" alt="Usuário">
+                <span class="user-nome">
+                    <?php echo htmlspecialchars($_SESSION['usuario_nome'], ENT_QUOTES, 'UTF-8'); ?>
+                </span>
+
+                <!-- Dropdown -->
+                <div id="user-menu" class="user-menu">
+                    <a href="../Conta/conta.php">Conta</a>
+                    <a href="#">Pagamento</a>
+                    <a href="#">Lista de desejo</a>
+                    <a href="../logout.php">Sair</a>
                 </div>
-
-                <div class="user-box" onclick="toggleMenu()">
-                    <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
-                    <span class="user-nome">
-                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
-                    </span>
-
-                    <div id="user-menu" class="user-menu">
-                        <a href="../Conta/conta.php">Conta</a>
-                        <a href="../Pagamento/pagamento.php">Pagamento</a>
-                        <a href="../Usuario_Logado/wishlist.php"
-                            style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
-                            Lista de desejo
-                            <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
-                                <span
-                                    style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;">
-                                    <?php echo $qtd_wishlist; ?>
-                                </span>
-                            <?php endif; ?>
-                        </a>
-                        <a href="../Usuario_Logado/logout.php">Sair</a>
-                    </div>
-                </div>
-
-            <?php else: ?>
-                <a href="../Entrar/Entrar.php" style="text-decoration: none;">
-                    <button class="btn-login">Entrar</button>
-                </a>
-            <?php endif; ?>
+            </div>
 
             <a href="../Sac/Suporte.php" style="text-decoration: none;">
                 <button class="btn-login">Suporte</button>
             </a>
         </div>
+<?php endif; ?>
     </header>
 
     <div class="container">
@@ -149,7 +143,7 @@ try {
             <nav class="menu-busca">
 
                 <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
-                <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
+                 <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
             </nav>
         </div>
 
@@ -157,26 +151,26 @@ try {
             <h3 class="titulo-painel">Gêneros Populares</h3>
             <div class="carousel-categorias-wrapper">
                 <button class="seta-cat esquerda" id="seta-esquerda">&#10094;</button>
-                <div class="categorias-painel-grid" id="grid-categorias">
-                    <?php foreach ($categorias_bd as $cat): ?>
-                        <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
+            <div class="categorias-painel-grid" id="grid-categorias">
+            <?php foreach ($categorias_bd as $cat): ?>
+              <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
 
-                        <a href="../Categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
-                            style="text-decoration: none; color: inherit;">
-                            <div class="img-cat-wrapper">
-                                <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
-                            </div>
-                            <span><?php echo $nome_cat; ?></span>
-                        </a>
-
-                    <?php endforeach; ?>
+              <a href="../Categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
+                style="text-decoration: none; color: inherit;">
+                <div class="img-cat-wrapper">
+                  <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
                 </div>
-                <button class="seta-cat direita" id="seta-direita">&#10095;</button>
-            </div>
+                <span><?php echo $nome_cat; ?></span>
+              </a>
+
+            <?php endforeach; ?>
+          </div>
+            <button class="seta-cat direita" id="seta-direita">&#10095;</button>
         </div>
+    </div>
 
 
-
+    
 
 
 
@@ -263,7 +257,9 @@ try {
         </div>
     </div>
 
-    <footer class="rodape">QuimeraGames &copy; 2026</footer>
+    <footer class="rodape" style="text-align:center; padding:20px; background:#11152b; color:white; margin-top:40px;">
+        QuimeraGames &copy; 2026
+    </footer>
 
     <script src="script_categorias.js"></script>
 </body>
