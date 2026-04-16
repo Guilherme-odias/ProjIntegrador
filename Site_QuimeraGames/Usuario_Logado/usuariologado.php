@@ -67,67 +67,67 @@ try {
   <link rel="stylesheet" href="../Usuario_Logado/style.css">
 </head>
 
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("user-menu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-  document.addEventListener("click", function (e) {
-    const userBox = document.querySelector(".user-box");
-    const menu = document.getElementById("user-menu");
-    if (!userBox.contains(e.target)) {
-      menu.style.display = "none";
-    }
-  });
-</script>
-
 <body>
 
   <header class="topo">
+    <?php
+    $logado = isset($_SESSION['usuario_nome']);
+    $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
+    ?>
+
     <div class="topo-esquerda">
-      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Usuario_Logado/usuariologado.php">
+      <a href="<?php echo $link_home; ?>">
         <img class="logo" src="../imagens/logo.png" alt="Logo">
       </a>
-      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Usuario_Logado/usuariologado.php"
-        style="text-decoration: none;">
+      <a href="<?php echo $link_home; ?>" style="text-decoration: none;">
         <button class="btn-nav active">Loja</button>
       </a>
     </div>
+
     <div class="topo-direita">
-
-      <div style="position: relative; display: inline-block;">
-        <button type="button" class="btn-icon" onclick="window.location.href='carrinho.php'">🛒</button>
-        <?php if ($qtd_carrinho > 0): ?>
-          <span
-            style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
-        <?php endif; ?>
-      </div>
-
-      <div class="user-box" onclick="toggleMenu()">
-        <img src="../imagens/aidento.jpg" class="user-img">
-        <span class="user-nome">
-          <?php echo $_SESSION['usuario_nome']; ?>
-        </span>
-
-        <div id="user-menu" class="user-menu">
-          <a href="../Conta/conta.php">Conta</a>
-          <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php">Pagamento</a>
-          <a href="wishlist.php"
-            style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
-            Lista de desejo
-            <?php if ($qtd_wishlist > 0): ?>
-              <span
-                style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;"><?php echo $qtd_wishlist; ?></span>
-            <?php endif; ?>
-          </a>
-          <a href="logout.php">Sair</a>
+      <?php if ($logado): ?>
+        <div style="position: relative; display: inline-block;">
+          <button type="button" class="btn-icon" onclick="window.location.href='carrinho.php'">🛒</button>
+          <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
+            <span
+              style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;">
+              <?php echo $qtd_carrinho; ?>
+            </span>
+          <?php endif; ?>
         </div>
-      </div>
 
-      <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Sac/Suporte.php" style="text-decoration: none;">
+        <div class="user-box" onclick="toggleMenu()">
+          <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+          <span class="user-nome">
+            <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+          </span>
+
+          <div id="user-menu" class="user-menu">
+            <a href="../Conta/conta.php">Conta</a>
+            <a href="../Pagamento/pagamento.php">Pagamento</a>
+            <a href="wishlist.php"
+              style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
+              Lista de desejo
+              <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
+                <span
+                  style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;">
+                  <?php echo $qtd_wishlist; ?>
+                </span>
+              <?php endif; ?>
+            </a>
+            <a href="logout.php">Sair</a>
+          </div>
+        </div>
+
+      <?php else: ?>
+        <a href="../Entrar/Entrar.php" style="text-decoration: none;">
+          <button class="btn-login">Entrar</button>
+        </a>
+      <?php endif; ?>
+
+      <a href="../Sac/Suporte.php" style="text-decoration: none;">
         <button class="btn-login">Suporte</button>
       </a>
-
     </div>
   </header>
 
@@ -255,7 +255,7 @@ try {
                   <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" width="16">
                   <span>Windows</span>
                 </div>
-                <div class=\"precos-card\">
+                <div class="precos-card">
                   <?php if ($jogo['Valor'] > 0): ?>
                     <span class="v-old">R$ <?php echo number_format($jogo['Valor'], 2, ',', '.'); ?></span>
                     <span class="v-new">R$ <?php echo number_format($jogo['Valor'] * 0.90, 2, ',', '.'); ?></span>
@@ -273,7 +273,25 @@ try {
   </div>
 
   <footer class="rodape">QuimeraGames &copy; 2026</footer>
+
   <script src="../Usuario_Logado/script.js" defer></script>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("user-menu");
+      if (menu) {
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+      }
+    }
+
+    document.addEventListener("click", function (e) {
+      const userBox = document.querySelector(".user-box");
+      const menu = document.getElementById("user-menu");
+      if (userBox && menu && !userBox.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
+  </script>
 </body>
 
 </html>

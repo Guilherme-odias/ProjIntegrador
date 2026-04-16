@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-add-carrinho')?.addEventListener('click', () => gerenciarAcao('add_carrinho'));
     document.getElementById('btn-add-wishlist')?.addEventListener('click', () => gerenciarAcao('add_wishlist'));
     document.getElementById('btn-comprar-agora')?.addEventListener('click', () => {
-    if (!logado) {
-        window.location.href = '../Entrar/Entrar.php';
-        return;
-    }
-    const precoEl = document.getElementById('preco-final');
-    const preco = precoEl ? precoEl.getAttribute('data-valor') : '0';
-    window.location.href = `../Pagamento/pagamento.php?id_jogo=${idJogo}&preco=${preco}`;
-});
+        if (!logado) {
+            window.location.href = '../Entrar/Entrar.php';
+            return;
+        }
+        const precoEl = document.getElementById('preco-final');
+        const preco = precoEl ? precoEl.getAttribute('data-valor') : '0';
+        window.location.href = `../Pagamento/pagamento.php?id_jogo=${idJogo}&preco=${preco}`;
+    });
 
 
     // =======================================================
@@ -118,6 +118,23 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             msgCupom.innerText = "Cupom inválido.";
             msgCupom.style.color = "#e50914";
+        }
+    });
+
+    // Função para abrir/fechar o menu do avatar
+    function toggleMenu() {
+        const menu = document.getElementById("user-menu");
+        if (menu) {
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+    }
+
+    // Fecha o menu ao clicar fora dele
+    document.addEventListener("click", function (e) {
+        const userBox = document.querySelector(".user-box");
+        const menu = document.getElementById("user-menu");
+        if (userBox && menu && !userBox.contains(e.target)) {
+            menu.style.display = "none";
         }
     });
 });

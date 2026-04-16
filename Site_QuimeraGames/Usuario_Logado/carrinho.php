@@ -90,26 +90,66 @@ $total = 0;
 <body>
 
     <header class="topo">
+        <?php
+        // Verifica se está logado e define o link da logo/loja
+        $logado = isset($_SESSION['usuario_nome']);
+        $link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+        ?>
+
         <div class="topo-esquerda">
-            <a href="usuariologado.php"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
-            <a href="usuariologado.php" style="text-decoration: none;"><button class="btn-nav">Loja</button></a>
-        </div>
-        <div class="topo-direita">
-            <div style="position: relative; display: inline-block;">
-                <button type="button" class="btn-icon" onclick="window.location.href='carrinho.php'">🛒</button>
-                <?php if ($qtd_carrinho > 0): ?>
-                    <span
-                        style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
-                <?php endif; ?>
-            </div>
-            <a href="wishlist.php" style="color: white; text-decoration: none; margin-left: 20px;">
-                Lista de Desejos
-                <?php if ($qtd_wishlist > 0): ?>
-                    <span
-                        style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 5px;"><?php echo $qtd_wishlist; ?></span>
-                <?php endif; ?>
+            <a href="<?php echo $link_home; ?>">
+                <img class="logo" src="../imagens/logo.png" alt="Logo">
             </a>
-            <a href="logout.php" style="color: white; text-decoration: none; margin-left: 20px;">Sair</a>
+            <a href="<?php echo $link_home; ?>" style="text-decoration: none;">
+                <button class="btn-nav active">Loja</button>
+            </a>
+        </div>
+
+        <div class="topo-direita">
+            <?php if ($logado): ?>
+                <div style="position: relative; display: inline-block;">
+                    <button type="button" class="btn-icon"
+                        onclick="window.location.href='../Usuario_Logado/carrinho.php'">🛒</button>
+                    <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
+                        <span
+                            style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;">
+                            <?php echo $qtd_carrinho; ?>
+                        </span>
+                    <?php endif; ?>
+                </div>
+
+                <div class="user-box" onclick="toggleMenu()">
+                    <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+                    <span class="user-nome">
+                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                    </span>
+
+                    <div id="user-menu" class="user-menu">
+                        <a href="../Conta/conta.php">Conta</a>
+                        <a href="../Pagamento/pagamento.php">Pagamento</a>
+                        <a href="../Usuario_Logado/wishlist.php"
+                            style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
+                            Lista de desejo
+                            <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
+                                <span
+                                    style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;">
+                                    <?php echo $qtd_wishlist; ?>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+                        <a href="../Usuario_Logado/logout.php">Sair</a>
+                    </div>
+                </div>
+
+            <?php else: ?>
+                <a href="../Entrar/Entrar.php" style="text-decoration: none;">
+                    <button class="btn-login">Entrar</button>
+                </a>
+            <?php endif; ?>
+
+            <a href="../Sac/Suporte.php" style="text-decoration: none;">
+                <button class="btn-login">Suporte</button>
+            </a>
         </div>
     </header>
 
