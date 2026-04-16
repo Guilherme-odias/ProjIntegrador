@@ -1,3 +1,4 @@
+```php
 <?php
 session_start();
 require_once("../conexa.php");
@@ -9,50 +10,68 @@ if (!isset($_SESSION['usuario_nome'])) {
 
 $email = $_SESSION['usuario_email'];
 
+/* BUSCA USUARIO */
 $stmt = $pdo->prepare("SELECT * FROM cadastro WHERE email = :email");
 $stmt->bindParam(":email", $email);
 $stmt->execute();
-
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $msg = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+/* 📸 UPLOAD FOTO */
+if (isset($_POST['upload_foto'])) {
+
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+
+        $ext = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
+        $nomeArquivo = uniqid() . "." . $ext;
+
+        $caminho = "../uploads/" . $nomeArquivo;
+
+        move_uploaded_file($_FILES['foto']['tmp_name'], $caminho);
+
+        $updateFoto = $pdo->prepare("UPDATE cadastro SET url_foto = :foto WHERE email = :email");
+        $updateFoto->bindParam(":foto", $caminho);
+        $updateFoto->bindParam(":email", $email);
+        $updateFoto->execute();
+
+        $usuario['url_foto'] = $caminho;
+        $msg = "✅ Foto atualizada!";
+    }
+}
+
+/* ✏️ ATUALIZAR NOME */
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['upload_foto'])) {
 
     $novo_user = $_POST['nome_user'];
 
-    // 🧠 NOVO: se for igual ao atual
     if ($novo_user === $usuario['nome_user']) {
         $msg = "⚠️ Nenhuma alteração feita.";
     } else {
 
-        // verifica se já existe OUTRO usuário com esse nome
         $check = $pdo->prepare("SELECT * FROM cadastro WHERE nome_user = :nome_user AND email != :email");
         $check->bindParam(":nome_user", $novo_user);
         $check->bindParam(":email", $email);
         $check->execute();
 
         if ($check->rowCount() > 0) {
-            $msg = "❌ Esse nome de usuário já existe!";
+            $msg = "❌ Esse nome já existe!";
         } else {
 
-            // atualiza no banco
             $update = $pdo->prepare("UPDATE cadastro SET nome_user = :nome_user WHERE email = :email");
             $update->bindParam(":nome_user", $novo_user);
             $update->bindParam(":email", $email);
             $update->execute();
 
-            // atualiza sessão
             $_SESSION['usuario_nome'] = $novo_user;
-
-            $msg = "✅ Nome de usuário atualizado com sucesso!";
-
-            // atualiza na tela
             $usuario['nome_user'] = $novo_user;
+
+            $msg = "✅ Nome atualizado!";
         }
     }
 }
 
+/* CPF */
 function mascararCPF($cpf) {
     return substr($cpf,0,3) . '.***.***-' . substr($cpf,-2);
 }
@@ -73,7 +92,10 @@ function mascararCPF($cpf) {
   box-sizing: border-box;
 }
 
+/* BASE */
 body {
+  height: 100vh;
+  overflow: hidden;
   background: #0b1320;
   font-family: 'Segoe UI', sans-serif;
   color: white;
@@ -85,12 +107,14 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 5%;
-  background: rgba(19,32,65,0.95);
-  z-index: 10;
-  position: relative;
+  background: rgba(19, 32, 65, 0.95);
+  backdrop-filter: blur(10px);
 }
 
-.logo { width: 100px; }
+.logo {
+  width: 100px;
+  border-radius: 12px;
+}
 
 .topo-esquerda,
 .topo-direita {
@@ -99,16 +123,34 @@ body {
   gap: 20px;
 }
 
+.btn-nav,
 .btn-login {
-  padding: 10px 20px;
-  border-radius: 20px;
   border: none;
-  background: rgba(255,255,255,0.05);
   color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
   cursor: pointer;
+  font-weight: 600;
+  background: rgba(255,255,255,0.05);
+  transition: 0.3s;
 }
 
-.btn-login:hover { background: #e50914; }
+.btn-nav.active,
+.btn-login:hover {
+  background: #e50914;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-icon:hover {
+  transform: scale(1.3);
+}
 
 /* USER */
 .user-box {
@@ -134,20 +176,15 @@ body {
   right: 0;
   background: #13192b;
   border-radius: 10px;
-  padding: 10px 0;
   width: 160px;
   display: none;
   flex-direction: column;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  z-index: 9999;
 }
 
 .user-menu a {
-  padding: 10px 15px;
+  padding: 10px;
   color: white;
   text-decoration: none;
-  font-size: 14px;
-  transition: 0.2s;
   text-align: center;
 }
 
@@ -155,192 +192,83 @@ body {
   background: #1f2a44;
 }
 
-/* LAYOUT PRINCIPAL */
-.main {
-  display: grid;
-  grid-auto-flow: column;
-  align-items: left;
-  grid-template-columns: 1fr 1fr;
-  padding: 60px;
-  transform: scale(1.3);
-  margin-right: 380px;
-  transform-origin: top left;
-  margin-top: -121px;
-  margin-left: -210px;
+/* CONTEUDO */
+.container {
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ESQUERDA */
-.left {
+/* CARD */
+.card-conta {
+  display: flex;
+  gap: 60px;
+  background: linear-gradient(145deg, #132041, #0f1a35);
+  padding: 50px;
+  border-radius: 25px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+}
+
+/* PERFIL */
+.perfil {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  gap: 10px;
-  margin-bottom: 40px;
-}
-
-.avatar-wrapper {
-  position: relative;
+  align-items: center;
+  gap: 15px;
 }
 
 .avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 15px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
   object-fit: cover;
 }
 
-.btn-edit {
-  position: left;
-  bottom: 10px;
-  right: 10px;
-  margin-left: 20px;
-  background: #ccc;
+.btn-foto {
+  background: rgba(255,255,255,0.1);
   border: none;
-  border-radius: 8px;
-  padding: 6px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  color: white;
   cursor: pointer;
-  size: 
 }
 
-.cpf {
-  margin-top: -10px;
-  font-size: 16px;
-  color: #bbb;
-  margin-left: 55px;
-}
-
-/* DIREITA */
-.right h1 {
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-/* GRID FORM */
-.form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 30px;
-}
-
-.field {
+/* INFO */
+.info {
   display: flex;
   flex-direction: column;
-  width: 600px;
-}
-
-label {
-  margin-bottom: 6px;
-  font-size: 14px;
+  gap: 10px;
+  width: 300px;
 }
 
 input {
-  padding: 12px 15px;
-  border-radius: 20px;
+  padding: 10px;
+  border-radius: 10px;
   border: none;
-  background: #2a2a2a;
+  background: #1f2a44;
   color: white;
 }
 
-/* botão */
-.btn-update {
-  width: 140px;
-  padding: 8px;
-  border-radius: 14px;
+button[type="submit"] {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
   border: none;
-  background: #888;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.btn-update:hover {
-  background: #aaa;
-}
-
-.btn-nav {
-  border: none;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.btn-nav.active {
   background: #e50914;
-}
-
-.btn-icon {
-  background: transparent;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
   color: white;
-  transition: 0.3s;
+  cursor: pointer;
 }
 
-.btn-icon:hover {
-  transform: scale(1.2);
-}
-
-.user-nome {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.colunadecorativa {
-  background: #415485;
-  width: 210px;
-  height: 601px;
-  margin-left: 100px;
-  margin-top: 33px ;
-  z-index: -999;
-}
-
-.leftright {
-  flex-direction: column;
-  margin-right: 900px;
-  margin-left: -50px;
-  margin-top: 70px;
-}
-
-.rodape {
-  background: rgba(19, 32, 65, 0.95);
-  padding: 30px;
-  text-align: center;
-  margin-top: 146px;
-}
-
-.cruzdemalta1 {
-  background: #67718b;
-  width: 1260px;
-  height: 100px;
-  margin-left: 370px;
-  margin-top: 250px ;
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.cruzdemalta2 {
-  background: #67718b;
-  width: 100px;
-  height: 601px;
-  margin-left: 700px;
-  margin-top: 93px ;
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
+.msg {
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 </style>
 </head>
 
 <body>
-
-
 
 <header class="topo">
   <div class="topo-esquerda">
@@ -382,64 +310,43 @@ input {
 </div>
 </header>
 
+<div class="container">
+  <div class="card-conta">
 
-<div class="main">
+    <!-- FOTO -->
+    <div class="perfil">
+      <form method="POST" enctype="multipart/form-data">
+        <img src="<?php echo $usuario['url_foto']; ?>" class="avatar">
 
-<div class="colunadecorativa"></div>
+        <input type="file" name="foto" id="foto" hidden>
 
-<div class="cruzdemalta1"></div>
-<div class="cruzdemalta2"></div>
+        <label for="foto" class="btn-foto">Trocar foto</label>
+        <button type="submit" name="upload_foto" class="btn-foto">Salvar</button>
+      </form>
 
-<div class="leftright">
-  <!-- ESQUERDA -->
-  <div class="left">
-    <div class="avatar-wrapper">
-      <img src="../imagens/aidento.jpg" class="avatar">
-      <button class="btn-edit">✏️</button>
-
+      <div class="cpf">
+        CPF: <?php echo mascararCPF($usuario['cpf']); ?>
+      </div>
     </div>
 
-    <div class="cpf">
-      CPF: <?php echo mascararCPF($usuario['cpf']); ?>
-    </div>
-  </div>
+    <!-- INFO -->
+    <div class="info">
+      <h2>Configurações</h2>
 
-  <!-- DIREITA -->
-  <div class="right">
-    <h1>Configurações</h1>
-
-    <form method="POST" class="form">
-
-      <div class="field">
-        <label>Apelido de usuário</label>
+      <form method="POST">
         <input name="nome_user" value="<?php echo $usuario['nome_user']; ?>">
-      </div>
-
-      <div class="field">
-        <label>Nome</label>
         <input value="<?php echo $usuario['nome']; ?>" readonly>
-      </div>
-
-      <div class="field">
-        <label>Email</label>
         <input value="<?php echo $usuario['email']; ?>" readonly>
-      </div>
 
-      <button type="submit" class="btn-update">Atualizar</button>
+        <button type="submit">Atualizar</button>
+      </form>
 
-<?php if ($msg): ?>
-  <p style="margin-bottom: 15px; font-weight: bold;">
-    <?php echo $msg; ?>
-  </p>
-<?php endif; ?>
-
-</form>
-
-
+      <?php if ($msg): ?>
+        <p class="msg"><?php echo $msg; ?></p>
+      <?php endif; ?>
     </div>
-  </div>
-</div>
 
+  </div>
 </div>
 
 <script>
@@ -447,24 +354,8 @@ function toggleMenu() {
   const menu = document.getElementById("user-menu");
   menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
-
-// fecha se clicar fora
-document.addEventListener("click", function(e) {
-  const userBox = document.querySelector(".user-box");
-  const menu = document.getElementById("user-menu");
-
-  if (!userBox.contains(e.target)) {
-    menu.style.display = "none";
-  }
-});
-
-if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
-}
-
 </script>
-
-  <footer class="rodape">QuimeraGames &copy; 2026</footer>
 
 </body>
 </html>
+```
