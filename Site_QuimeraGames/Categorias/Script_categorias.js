@@ -51,91 +51,107 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (inputBusca) inputBusca.addEventListener('input', aplicarFiltros);
     checkboxes.forEach(chk => chk.addEventListener('change', aplicarFiltros));
-    });
+});
 
 
-  function toggleMenu() {
+function toggleMenu() {
     const menu = document.getElementById("user-menu");
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
+}
 
-  // fecha se clicar fora
-  document.addEventListener("click", function (e) {
+// fecha se clicar fora
+document.addEventListener("click", function (e) {
     const userBox = document.querySelector(".user-box");
     const menu = document.getElementById("user-menu");
 
     if (!userBox.contains(e.target)) {
-      menu.style.display = "none";
+        menu.style.display = "none";
     }
-  });
-  
-  
-    // --- LÓGICA DOS BOTÕES EXPLORAR E CATEGORIAS ---
-    const btnExplorar = document.getElementById('btn-explorar');
-    const btnCategorias = document.getElementById('btn-categorias');
-    const painelExplorar = document.getElementById('painel-explorar');
-    const painelCategorias = document.getElementById('painel-categorias');
-    const overlay = document.getElementById('overlay-escuro');
+});
 
-    function atualizarOverlay() {
-        if ((painelExplorar && painelExplorar.classList.contains('show')) ||
-            (painelCategorias && painelCategorias.classList.contains('show'))) {
-            if (overlay) overlay.classList.add('ativo');
-        } else {
-            if (overlay) overlay.classList.remove('ativo');
-        }
+
+// --- LÓGICA DOS BOTÕES EXPLORAR E CATEGORIAS ---
+const btnExplorar = document.getElementById('btn-explorar');
+const btnCategorias = document.getElementById('btn-categorias');
+const painelExplorar = document.getElementById('painel-explorar');
+const painelCategorias = document.getElementById('painel-categorias');
+const overlay = document.getElementById('overlay-escuro');
+
+function atualizarOverlay() {
+    if ((painelExplorar && painelExplorar.classList.contains('show')) ||
+        (painelCategorias && painelCategorias.classList.contains('show'))) {
+        if (overlay) overlay.classList.add('ativo');
+    } else {
+        if (overlay) overlay.classList.remove('ativo');
     }
+}
 
-    function togglePainel(painelAtual, painelOutro) {
-        if (painelOutro && painelOutro.classList.contains('show')) {
-            painelOutro.classList.remove('show');
-        }
-        if (painelAtual) painelAtual.classList.toggle('show');
-        atualizarOverlay();
+function togglePainel(painelAtual, painelOutro) {
+    if (painelOutro && painelOutro.classList.contains('show')) {
+        painelOutro.classList.remove('show');
     }
+    if (painelAtual) painelAtual.classList.toggle('show');
+    atualizarOverlay();
+}
 
-    if (btnExplorar && painelExplorar) {
-        btnExplorar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            togglePainel(painelExplorar, painelCategorias);
-        });
-    }
-
-    if (btnCategorias && painelCategorias) {
-        btnCategorias.addEventListener('click', (e) => {
-            e.stopPropagation();
-            togglePainel(painelCategorias, painelExplorar);
-        });
-    }
-
-    document.addEventListener('click', (e) => {
-        let clicouFora = false;
-        if (painelExplorar && !painelExplorar.contains(e.target) && e.target !== btnExplorar) {
-            painelExplorar.classList.remove('show');
-            clicouFora = true;
-        }
-        if (painelCategorias && !painelCategorias.contains(e.target) && e.target !== btnCategorias) {
-            painelCategorias.classList.remove('show');
-            clicouFora = true;
-        }
-        if (clicouFora) atualizarOverlay();
+if (btnExplorar && painelExplorar) {
+    btnExplorar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePainel(painelExplorar, painelCategorias);
     });
+}
 
-    // --- LÓGICA DAS SETAS DE CATEGORIAS ---
-    const gridCategorias = document.getElementById('grid-categorias');
-    const setaEsquerda = document.getElementById('seta-esquerda');
-    const setaDireita = document.getElementById('seta-direita');
+if (btnCategorias && painelCategorias) {
+    btnCategorias.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePainel(painelCategorias, painelExplorar);
+    });
+}
 
-    if (gridCategorias && setaEsquerda && setaDireita) {
-        const scrollAmount = 450;
-        setaEsquerda.addEventListener('click', (e) => {
-            e.preventDefault();
-            gridCategorias.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
-        setaDireita.addEventListener('click', (e) => {
-            e.preventDefault();
-            gridCategorias.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
+document.addEventListener('click', (e) => {
+    let clicouFora = false;
+    if (painelExplorar && !painelExplorar.contains(e.target) && e.target !== btnExplorar) {
+        painelExplorar.classList.remove('show');
+        clicouFora = true;
     }
+    if (painelCategorias && !painelCategorias.contains(e.target) && e.target !== btnCategorias) {
+        painelCategorias.classList.remove('show');
+        clicouFora = true;
+    }
+    if (clicouFora) atualizarOverlay();
+});
 
+// --- LÓGICA DAS SETAS DE CATEGORIAS ---
+const gridCategorias = document.getElementById('grid-categorias');
+const setaEsquerda = document.getElementById('seta-esquerda');
+const setaDireita = document.getElementById('seta-direita');
+
+if (gridCategorias && setaEsquerda && setaDireita) {
+    const scrollAmount = 450;
+    setaEsquerda.addEventListener('click', (e) => {
+        e.preventDefault();
+        gridCategorias.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+    setaDireita.addEventListener('click', (e) => {
+        e.preventDefault();
+        gridCategorias.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+}
+
+// Função para abrir/fechar o menu do avatar
+function toggleMenu() {
+    const menu = document.getElementById("user-menu");
+    if (menu) {
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+}
+
+// Fecha o menu ao clicar fora dele
+document.addEventListener("click", function (e) {
+    const userBox = document.querySelector(".user-box");
+    const menu = document.getElementById("user-menu");
+    if (userBox && menu && !userBox.contains(e.target)) {
+        menu.style.display = "none";
+    }
+});
 
