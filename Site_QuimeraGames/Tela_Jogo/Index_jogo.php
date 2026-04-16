@@ -91,23 +91,28 @@ try {
 <body>
 
     <header class="topo">
+        <?php
+        // Verifica se está logado e define o link da logo/loja
+        $logado = isset($_SESSION['usuario_nome']);
+        $link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+        ?>
 
         <div class="topo-esquerda">
-            <a href="<?php echo $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php'; ?>">
+            <a href="<?php echo $link_home; ?>">
                 <img class="logo" src="../imagens/logo.png" alt="Logo">
             </a>
-            <a href="<?php echo $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php'; ?>"
-                style="text-decoration: none;">
+            <a href="<?php echo $link_home; ?>" style="text-decoration: none;">
                 <button class="btn-nav active">Loja</button>
             </a>
         </div>
+
         <div class="topo-direita">
             <?php if ($logado): ?>
-
                 <div style="position: relative; display: inline-block;">
-                    <button class="btn-icon" onclick="location.href='../Usuario_Logado/carrinho.php'">🛒</button>
+                    <button type="button" class="btn-icon"
+                        onclick="window.location.href='../Usuario_Logado/carrinho.php'">🛒</button>
                     <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
-                        <span class="badge-carrinho"
+                        <span
                             style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;">
                             <?php echo $qtd_carrinho; ?>
                         </span>
@@ -115,26 +120,24 @@ try {
                 </div>
 
                 <div class="user-box" onclick="toggleMenu()">
-                    <img src="../imagens/aidento.jpg" class="user-img">
+                    <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
                     <span class="user-nome">
-                        <?php echo $_SESSION['usuario_nome']; ?>
+                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
                     </span>
+
                     <div id="user-menu" class="user-menu">
                         <a href="../Conta/conta.php">Conta</a>
-                        <a
-                            href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Pagamento/pagamento.php">Pagamento</a>
-
+                        <a href="../Pagamento/pagamento.php">Pagamento</a>
                         <a href="../Usuario_Logado/wishlist.php"
                             style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
                             Lista de desejo
                             <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
-                                <span class="badge-wishlist"
+                                <span
                                     style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;">
                                     <?php echo $qtd_wishlist; ?>
                                 </span>
                             <?php endif; ?>
                         </a>
-
                         <a href="../Usuario_Logado/logout.php">Sair</a>
                     </div>
                 </div>
@@ -149,7 +152,6 @@ try {
                 <button class="btn-login">Suporte</button>
             </a>
         </div>
-
     </header>
 
     <div class="container game-page-container">
