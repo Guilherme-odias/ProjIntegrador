@@ -340,31 +340,52 @@ button[type="submit"]:hover {
   font-weight: bold;
 }
 
-.trocarfoto_salvar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+html, body { min-height: 100vh; display: flex; flex-direction: column; margin: 0; }
+.container, .main-pagamento, .categoria-container { flex: 1; } /* Empurra o rodapé pro fundo no Pesquisar */
+
+.topo-universal {
+    display: flex !important; justify-content: space-between !important; align-items: center !important;
+    padding: 15px 5% !important; background: rgba(19, 32, 65, 0.95) !important; width: 100% !important;
+    box-sizing: border-box !important; position: relative !important; z-index: 1000 !important;
 }
+.topo-universal .logo { width: 100px !important; height: auto !important; border-radius: 12px !important; }
+.topo-universal .topo-esquerda, .topo-universal .topo-direita { display: flex !important; align-items: center !important; gap: 20px !important; }
+.topo-universal .btn-nav, .topo-universal .btn-login {
+    border: none !important; color: white !important; padding: 12px 24px !important; border-radius: 25px !important;
+    cursor: pointer !important; font-weight: 600 !important; background: rgba(255, 255, 255, 0.05) !important;
+    font-size: 15px !important; text-decoration: none !important;
+}
+.topo-universal .btn-nav.active, .topo-universal .btn-login:hover { background: #e62429 !important; }
+
+/* ÍCONES E USUÁRIO (Para ficar igualzinho à imagem 3) */
+.topo-universal .btn-icon { background: transparent !important; border: none !important; font-size: 26px !important; cursor: pointer !important; color: white !important; padding: 0 !important; }
+.topo-universal .user-box { display: flex !important; align-items: center !important; gap: 10px !important; background: rgba(255,255,255,0.05) !important; padding: 6px 15px !important; border-radius: 20px !important; cursor: pointer !important; position: relative !important; transition: 0.3s !important; }
+.topo-universal .user-box:hover { background: rgba(255,255,255,0.1) !important; }
+.topo-universal .user-img { width: 32px !important; height: 32px !important; border-radius: 50% !important; object-fit: cover !important; margin: 0 !important; }
+.topo-universal .user-nome { font-size: 15px !important; font-weight: 600 !important; color: white !important; margin: 0 !important; font-family: sans-serif !important;}
+
+/* DROPDOWN MENU */
+.topo-universal .user-menu { position: absolute !important; top: 50px !important; right: 0 !important; background: #13192b !important; border-radius: 10px !important; padding: 10px 0 !important; width: 180px !important; display: none; flex-direction: column !important; box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important; z-index: 9999 !important; }
+.topo-universal .user-menu a { padding: 12px 20px !important; color: white !important; text-decoration: none !important; font-size: 14px !important; text-align: left !important; display: flex !important; justify-content: space-between !important; align-items: center !important; font-family: sans-serif !important;}
+.topo-universal .user-menu a:hover { background: #1f2a44 !important; }
+
+/* BADGES (Bolinhas Vermelhas) */
+.badge-bolinha { background: #e62429 !important; color: white !important; border-radius: 50% !important; padding: 2px 6px !important; font-size: 11px !important; font-weight: bold !important; }
+
+/* RODAPÉ BLINDADO */
+.rodape-universal { background: #111823 !important; color: #cdd5e0 !important; text-align: center !important; padding: 30px !important; border-top: 1px solid #30363d !important; width: 100% !important; box-sizing: border-box !important; margin-top: auto !important; font-family: sans-serif !important;}
+
 
 </style>
 </head>
 
 <body>
 
-<header class="topo">
-    <?php
-    // Verifica se está logado e define o link da logo/loja
-    $logado = isset($_SESSION['usuario_nome']);
-    $link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
-    ?>
-
+  <header class="topo-universal">
     <div class="topo-esquerda">
-      <a href="<?php echo $link_home; ?>">
-        <img class="logo" src="../imagens/logo.png" alt="Logo">
-      </a>
-      <a href="<?php echo $link_home; ?>" style="text-decoration: none;">
-        <button class="btn-nav active">Loja</button>
-      </a>
+      <a href="<?php echo $link_home; ?>"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
+      <a href="<?php echo $link_home; ?>" style="text-decoration: none;"><button
+          class="btn-nav active">Loja</button></a>
     </div>
 
     <div class="topo-direita">
@@ -373,45 +394,32 @@ button[type="submit"]:hover {
           <button type="button" class="btn-icon"
             onclick="window.location.href='../Usuario_Logado/carrinho.php'">🛒</button>
           <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
-            <span
-              style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;">
-              <?php echo $qtd_carrinho; ?>
-            </span>
+            <span class="badge-bolinha"
+              style="position: absolute; top: -8px; right: -12px; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
           <?php endif; ?>
         </div>
 
         <div class="user-box" onclick="toggleMenu()">
-          <img src="<?php echo $usuario['url_foto']; ?>" class="user-img">
-          <span class="user-nome">
-            <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
-          </span>
+          <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+          <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
           <div id="user-menu" class="user-menu">
             <a href="../Conta/conta.php">Conta</a>
             <a href="../Pagamento/pagamento.php">Pagamento</a>
-            <a href="../Usuario_Logado/wishlist.php"
-              style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
+            <a href="../Usuario_Logado/wishlist.php">
               Lista de desejo
               <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
-                <span
-                  style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;">
-                  <?php echo $qtd_wishlist; ?>
-                </span>
+                <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
               <?php endif; ?>
             </a>
             <a href="../Usuario_Logado/logout.php">Sair</a>
           </div>
         </div>
-
       <?php else: ?>
-        <a href="../Entrar/Entrar.php" style="text-decoration: none;">
-          <button class="btn-login">Entrar</button>
-        </a>
+        <a href="../Entrar/Entrar.php" style="text-decoration: none;"><button class="btn-login">Entrar</button></a>
       <?php endif; ?>
 
-      <a href="../Sac/Suporte.php" style="text-decoration: none;">
-        <button class="btn-login">Suporte</button>
-      </a>
+      <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
     </div>
   </header>
 
@@ -424,9 +432,10 @@ button[type="submit"]:hover {
         <img src="<?php echo $usuario['url_foto']; ?>" class="avatar">
 
         <input type="file" name="foto" id="foto" hidden>
-
+<span class="trocarfoto_salvar">
         <label for="foto" class="btn-foto">Trocar foto</label>
         <button type="submit" name="upload_foto" class="btn-foto">Salvar</button>
+      </span>
       </form>
 
       <div class="cpf">
@@ -468,9 +477,19 @@ button[type="submit"]:hover {
 
 <script>
 function toggleMenu() {
-  const menu = document.getElementById("user-menu");
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    const menu = document.getElementById("user-menu");
+    if (menu) {
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
 }
+
+document.addEventListener("click", function (e) {
+    const userBox = document.querySelector(".user-box");
+    const menu = document.getElementById("user-menu");
+    if (userBox && menu && !userBox.contains(e.target)) {
+        menu.style.display = "none";
+    }
+
 </script>
 
 </body>
