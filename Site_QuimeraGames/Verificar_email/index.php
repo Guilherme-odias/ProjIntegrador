@@ -70,8 +70,8 @@ if(isset($_POST['verificar'])){
 
         $dados = $_SESSION['cadastro'];
 
-        $sql = "INSERT INTO cadastro (email, nome, nome_user, senha, cpf) 
-                VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO cadastro (email, tipo_user, nome, nome_user, senha, cpf) 
+                VALUES (?, 'comum', ?, ?, ?, ?)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([

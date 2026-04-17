@@ -1,7 +1,7 @@
 function mostrarSenha() {
 
-    let senha = document.getElementById("senha");
-    let confirma = document.getElementById("confirme");
+    const senha = document.getElementById("senha");
+    const confirma = document.getElementById("confirme");
 
     if (senha.type == "password") {
         senha.type = "text";
@@ -13,10 +13,35 @@ function mostrarSenha() {
 }
 
 function validarSenha() {
-    let senhaValor = document.getElementById("senha").value;
-    let confirmar = document.getElementById("confirme").value;
+    const senha = document.getElementById("senha").value;
+    const confirmar = document.getElementById("confirme").value;
+    
+if (senha.length < 8) {
+        alert("A senha deve ter no mínimo 8 caracteres.");
+        return false;
+    }
 
-    if (senhaValor !== confirmar) {
+    if (!/[A-Z]/.test(senha)) {
+        alert("A senha deve conter pelo menos uma letra MAIÚSCULA.");
+        return false;
+    }
+
+    if (!/[a-z]/.test(senha)) {
+        alert("A senha deve conter pelo menos uma letra minúscula.");
+        return false;
+    }
+
+    if (!/[0-9]/.test(senha)) {
+        alert("A senha deve conter pelo menos um número.");
+        return false;
+    }
+
+    if (!/[\W]/.test(senha)) {
+        alert("A senha deve conter pelo menos um caractere especial.");
+        return false;
+    }
+
+    if (senha !== confirmar) {
         alert("As senhas não coincidem!");
         return false;
     }

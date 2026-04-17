@@ -24,12 +24,17 @@
 <div class="conteudo">
 
     <form class="card" method="POST" onsubmit="return validarForm()">
-
+    <?$nome_padrao = "comum"; ?>
         <h1>Tela Cadastro</h1>
 
         <div class="input-group">
             <input type="email" placeholder=" " id="email" name="email" required>
             <label>Email</label>
+        </div>
+        
+        <div class="input-group">
+            <input type="hidden" id="comum" name="comum" value="<?php echo $nome_padrao; ?>">
+            
         </div>
 
         <div class="input-group">
@@ -56,6 +61,7 @@
             <input type="password" placeholder=" "id="confirme" name="confirme" required>
             <label>Confirmar senha</label>
         </div>
+
 
         <div class="check">
             <input type="checkbox" onclick="mostrarSenha()"> Mostrar senha
@@ -88,13 +94,17 @@
 require_once '../conexa.php';
 
 
-
+$tipo_comum = "comum";
 if($_POST) {
+
+
 $email = $_POST['email'] ?? '';
+$comum = $_POST['comum'] ?? $tipo_comum;
 $nome  = $_POST['nome'] ?? '';
 $user  = $_POST['user'] ?? '';
 $cpf   = $_POST['cpf'] ?? '';
 $senha = $_POST['senha'] ?? '';
+
 
 // Validação Email
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE email = ?");
@@ -126,10 +136,12 @@ $codigo = rand(100000, 999999);
 // Salvar os dados em uma seção
 $_SESSION['cadastro'] = [
     'email' => $email,
+    'comum' => $comum,
     'nome' => $nome,
     'user' => $user,
     'senha' => $senha, 
     'cpf' => $cpf
+    
 ];
 
 $_SESSION['codigo_verificacao'] = $codigo;
