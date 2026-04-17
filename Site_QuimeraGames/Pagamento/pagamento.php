@@ -2,6 +2,23 @@
 session_start();
 require_once '../conexa.php';
 
+
+// CONTAGEM PARA OS BADGES (Cole isso no topo dos seus arquivos PHP)
+$qtd_carrinho = 0;
+$qtd_wishlist = 0;
+if (isset($_SESSION['id_user'])) {
+    $stmt_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+    $stmt_cart->execute([$_SESSION['id_user']]);
+    $qtd_carrinho = $stmt_cart->fetchColumn();
+
+    $stmt_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+    $stmt_wish->execute([$_SESSION['id_user']]);
+    $qtd_wishlist = $stmt_wish->fetchColumn();
+}
+$logado = isset($_SESSION['usuario_nome']);
+$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+
+
 $preco_jogo = "0,00";
 $imagem_jogo = "../imagens/logo.png";
 $titulo_jogo = "Jogo não encontrado";
@@ -43,20 +60,11 @@ if (isset($_GET['id_jogo'], $_GET['preco'])) {
 
 <body>
 
-    <header class="topo">
-        <?php
-        // Verifica se está logado e define o link da logo/loja
-        $logado = isset($_SESSION['usuario_nome']);
-        $link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
-        ?>
-
+    <header class="topo-universal">
         <div class="topo-esquerda">
-            <a href="<?php echo $link_home; ?>">
-                <img class="logo" src="../imagens/logo.png" alt="Logo">
-            </a>
-            <a href="<?php echo $link_home; ?>" style="text-decoration: none;">
-                <button class="btn-nav active">Loja</button>
-            </a>
+            <a href="<?php echo $link_home; ?>"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
+            <a href="<?php echo $link_home; ?>" style="text-decoration: none;"><button
+                    class="btn-nav active">Loja</button></a>
         </div>
 
         <div class="topo-direita">
@@ -65,45 +73,32 @@ if (isset($_GET['id_jogo'], $_GET['preco'])) {
                     <button type="button" class="btn-icon"
                         onclick="window.location.href='../Usuario_Logado/carrinho.php'">🛒</button>
                     <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
-                        <span
-                            style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;">
-                            <?php echo $qtd_carrinho; ?>
-                        </span>
+                        <span class="badge-bolinha"
+                            style="position: absolute; top: -8px; right: -12px; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
                     <?php endif; ?>
                 </div>
 
                 <div class="user-box" onclick="toggleMenu()">
                     <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
-                    <span class="user-nome">
-                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
-                    </span>
+                    <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
                     <div id="user-menu" class="user-menu">
                         <a href="../Conta/conta.php">Conta</a>
                         <a href="../Pagamento/pagamento.php">Pagamento</a>
-                        <a href="../Usuario_Logado/wishlist.php"
-                            style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
+                        <a href="../Usuario_Logado/wishlist.php">
                             Lista de desejo
                             <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
-                                <span
-                                    style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;">
-                                    <?php echo $qtd_wishlist; ?>
-                                </span>
+                                <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
                             <?php endif; ?>
                         </a>
                         <a href="../Usuario_Logado/logout.php">Sair</a>
                     </div>
                 </div>
-
             <?php else: ?>
-                <a href="../Entrar/Entrar.php" style="text-decoration: none;">
-                    <button class="btn-login">Entrar</button>
-                </a>
+                <a href="../Entrar/Entrar.php" style="text-decoration: none;"><button class="btn-login">Entrar</button></a>
             <?php endif; ?>
 
-            <a href="../Sac/Suporte.php" style="text-decoration: none;">
-                <button class="btn-login">Suporte</button>
-            </a>
+            <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
         </div>
     </header>
 

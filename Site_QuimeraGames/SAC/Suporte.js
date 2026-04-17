@@ -52,11 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
             lista.appendChild(li);
         });
         bloco.style.display = 'block';
+        bloco.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     function limparErros() {
         document.getElementById('blocoErro').style.display = 'none';
         document.getElementById('listaErros').innerHTML = '';
+    }
+
+    function setBtnLoading(loading) {
+        const btn = document.getElementById('bntContinuar');
+        btn.disabled = loading;
+        btn.textContent = loading ? '⏳' : '➤';
     }
 
     const formSuporte = document.getElementById('formSuporte');
@@ -65,17 +72,24 @@ document.addEventListener("DOMContentLoaded", function () {
         formSuporte.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const nome      = document.getElementById('name').value;
-            const email     = document.getElementById('email').value;
-            const cpf       = document.getElementById('cpf').value;
+            const nome       = document.getElementById('name').value;
+            const email      = document.getElementById('email').value;
+            const cpf        = document.getElementById('cpf').value;
             const reclamacao = document.getElementById('reclamacao').value;
 
             const erros = [];
 
             if (!validarNome(nome))            { erros.push('Nome inválido (mín. 3 letras, sem números).'); setStatus('name', false); }
-            if (!validarEmail(email))           { erros.push('E-mail inválido.');                           setStatus('email', false); }
-            if (!validarCPF(cpf))               { erros.push('CPF inválido.');                              setStatus('cpf', false); }
-            if (reclamacao.trim().length < 20)  { erros.push('Mensagem muito curta (mín. 20 caracteres).'); setStatus('reclamacao', false); }
+            else                               { setStatus('name', true); }
+
+            if (!validarEmail(email))          { erros.push('E-mail inválido.');                            setStatus('email', false); }
+            else                               { setStatus('email', true); }
+
+            if (!validarCPF(cpf))              { erros.push('CPF inválido.');                               setStatus('cpf', false); }
+            else                               { setStatus('cpf', true); }
+
+            if (reclamacao.trim().length < 20) { erros.push('Mensagem muito curta (mín. 20 caracteres).');  setStatus('reclamacao', false); }
+            else                               { setStatus('reclamacao', true); }
 
             if (erros.length > 0) {
                 mostrarErros(erros);
@@ -83,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             limparErros();
+            setBtnLoading(true);
 
             const dados = new FormData();
             dados.append('nome', nome);
@@ -96,10 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(function (res) { return res.json(); })
             .then(function (data) {
+                setBtnLoading(false);
                 if (data.sucesso) {
-                    const modal        = document.getElementById('modalSucesso');
+                    const modal         = document.getElementById('modalSucesso');
                     const spanProtocolo = document.getElementById('numeroProtocolo');
-                    const btnFechar    = document.getElementById('btnFecharModal');
+                    const btnFechar     = document.getElementById('btnFecharModal');
 
                     spanProtocolo.textContent = data.protocolo;
                     modal.style.display = 'flex';
@@ -116,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch(function () {
+                setBtnLoading(false);
                 mostrarErros(['Erro de conexão com o servidor.']);
             });
         });

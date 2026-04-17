@@ -164,161 +164,165 @@
     padding: 15px;
     border-radius: 8px;
 }
+
 .btn-icon {
-  background: transparent;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-  transition: 0.3s;
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
 }
+
 .user-menu {
-  position: absolute;
-  top: 45px;
-  right: 0;
-  background: #13192b;
-  border-radius: 10px;
-  padding: 10px 0;
-  width: 160px;
-  display: none;
-  flex-direction: column;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  z-index: 9999;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: #13192b;
+    border-radius: 10px;
+    padding: 10px 0;
+    width: 160px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
 }
+
 .user-img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 
 .card-cat-item img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 4;
-  /* O segredo do formato vertical da sua foto */
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease, filter 0.3s ease;
-  filter: brightness(0.9);
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    /* O segredo do formato vertical da sua foto */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    filter: brightness(0.9);
 }
 
 .card-cat-item:hover {
-  transform: translateY(-8px);
+    transform: translateY(-8px);
 }
+
 .img-cat-wrapper {
-  width: 100%;
-  border-radius: 6px;
-  /* Cantos levemente arredondados */
-  overflow: hidden;
-  margin-bottom: 12px;
-  position: relative;
-  transition: all 0.3s ease;
+    width: 100%;
+    border-radius: 6px;
+    /* Cantos levemente arredondados */
+    overflow: hidden;
+    margin-bottom: 12px;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .carousel-container {
-  width: 100%;
-  position: relative;
-  height: 520px;
-  /* Altura mantida conforme sua preferência */
-  margin-top: 20px;
-  padding-bottom: 60px;
+    width: 100%;
+    position: relative;
+    height: 520px;
+    /* Altura mantida conforme sua preferência */
+    margin-top: 20px;
+    padding-bottom: 60px;
 }
 
 .painel-dropdown {
-  background-color: #0b1120;
-  width: 100%;
-  padding: 25px;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  z-index: 1000;
-  box-sizing: border-box;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.1);
+    background-color: #0b1120;
+    width: 100%;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.1);
 
-  /* CORREÇÃO DO BLOQUEIO DOS CLIQUES E VISIBILIDADE */
-  opacity: 0;
-  transform: translateY(-15px) scale(0.98);
-  visibility: hidden;
-  pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* CORREÇÃO DO BLOQUEIO DOS CLIQUES E VISIBILIDADE */
+    opacity: 0;
+    transform: translateY(-15px) scale(0.98);
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .painel-dropdown.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  visibility: visible;
-  pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+    pointer-events: auto;
 
-  /* Novo Brilho: 3 camadas de sombra vermelha e uma borda leve */
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9),
-    0 0 40px rgba(229, 9, 20, 0.3),
-    0 0 80px rgba(229, 9, 20, 0.15);
-  border: 1px solid rgba(229, 9, 20, 0.4);
+    /* Novo Brilho: 3 camadas de sombra vermelha e uma borda leve */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9),
+        0 0 40px rgba(229, 9, 20, 0.3),
+        0 0 80px rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.4);
 }
 
 
 .card-cat-item:hover .img-cat-wrapper {
-  transform: scale(1.05);
-  /* Dá um leve zoom na imagem */
-  filter: brightness(1.1);
+    transform: scale(1.05);
+    /* Dá um leve zoom na imagem */
+    filter: brightness(1.1);
 }
 
 .card-cat-item:hover img {
-  transform: scale(1.1);
-  filter: brightness(1.1);
+    transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
 .card-cat-item span {
-  color: #e5e5e5;
-  font-size: 1.15rem;
-  /* Texto maior */
-  font-weight: 500;
-  /* Mais limpo */
-  transition: color 0.3s ease;
-  padding-left: 2px;
+    color: #e5e5e5;
+    font-size: 1.15rem;
+    /* Texto maior */
+    font-weight: 500;
+    /* Mais limpo */
+    transition: color 0.3s ease;
+    padding-left: 2px;
 }
 
 .card-cat-item:hover span {
-  color: white;
+    color: white;
 }
 
 .user-menu a {
-  padding: 10px 15px;
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  transition: 0.2s;
-  text-align: center;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+    text-align: center;
 }
 
 .user-menu a:hover {
-  background: #1f2a44;
+    background: #1f2a44;
 }
 
 .user-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.05);
-  padding: 6px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  position: relative;
-  transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
 }
 
 .user-box:active {
-  background: rgba(255, 255, 255, 0.247);
+    background: rgba(255, 255, 255, 0.247);
 }
 
 
 
 .btn-icon:hover {
-  transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .req-coluna h4 {
@@ -502,4 +506,171 @@
     text-align: right;
     max-width: 60%;
     font-weight: 500;
+}
+
+html,
+body {
+    min-height: 100vh !important;
+    height: auto !important;
+    /* ISSO DESTRANCA A TELA E RESOLVE O BUG DO RODAPÉ */
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+}
+
+/* Garante que o conteúdo central possa crescer e empurrar o rodapé */
+.container,
+.main-container,
+.cart-layout,
+.wish-container {
+    flex: 1 0 auto !important;
+}
+
+/* ========================================== */
+/* TOPO E MENU DO USUÁRIO */
+/* ========================================== */
+.topo-universal {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 15px 5% !important;
+    background: rgba(19, 32, 65, 0.95) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 1000 !important;
+}
+
+.topo-universal .logo {
+    width: 100px !important;
+    height: auto !important;
+    border-radius: 12px !important;
+}
+
+.topo-universal .topo-esquerda,
+.topo-universal .topo-direita {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+.topo-universal .btn-nav,
+.topo-universal .btn-login {
+    border: none !important;
+    color: white !important;
+    padding: 12px 24px !important;
+    border-radius: 25px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+}
+
+.topo-universal .btn-nav.active,
+.topo-universal .btn-login:hover {
+    background: #e62429 !important;
+}
+
+.topo-universal .btn-icon {
+    background: transparent !important;
+    border: none !important;
+    font-size: 26px !important;
+    cursor: pointer !important;
+    color: white !important;
+    padding: 0 !important;
+}
+
+.topo-universal .user-box {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding: 6px 15px !important;
+    border-radius: 20px !important;
+    cursor: pointer !important;
+    position: relative !important;
+    transition: 0.3s !important;
+}
+
+.topo-universal .user-box:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.topo-universal .user-img {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+}
+
+.topo-universal .user-nome {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin: 0 !important;
+    font-family: sans-serif !important;
+}
+
+.topo-universal .user-menu {
+    position: absolute !important;
+    top: 50px !important;
+    right: 0 !important;
+    background: #13192b !important;
+    border-radius: 10px !important;
+    padding: 10px 0 !important;
+    width: 180px !important;
+    display: none;
+    flex-direction: column !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+    z-index: 9999 !important;
+}
+
+.topo-universal .user-menu a {
+    padding: 12px 20px !important;
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    text-align: left !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-family: sans-serif !important;
+}
+
+.topo-universal .user-menu a:hover {
+    background: #1f2a44 !important;
+}
+
+.badge-bolinha {
+    background: #e62429 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    padding: 2px 6px !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+}
+
+/* ========================================== */
+/* RODAPÉ E RESULTADO DE BUSCA */
+/* ========================================== */
+.rodape-universal {
+    background: #111823 !important;
+    color: #cdd5e0 !important;
+    text-align: center !important;
+    padding: 30px !important;
+    border-top: 1px solid #30363d !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: auto !important;
+    font-family: sans-serif !important;
+    flex-shrink: 0 !important;
+    /* Impede que o rodapé seja esmagado pelos jogos */
+}
+
+#resultados-busca {
+    height: auto !important;
+    /* Garante que a caixa de resultados também cresça solta */
+    overflow: visible !important;
 }
