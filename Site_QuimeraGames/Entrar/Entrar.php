@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header class="topo">
         <div class="topo-esquerda">
             <a href="http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Index/index.php"><img class="logo"
-                    src="../imagens/logo.png"></a>
+                src="../imagens/logo.png"></a>
         </div>
     </header>
 
