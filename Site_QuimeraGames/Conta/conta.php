@@ -100,12 +100,29 @@ body {
   color: white;
 }
 
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url('../imagens/logo.png');
+  background-size: 180px;
+  background-repeat: repeat;
+
+  opacity: 0.04;
+
+  transform: rotate(-15deg) scale(1.2);
+
+  pointer-events: none;
+  z-index: -2;
+}
+
 /* HEADER */
 .topo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 5%;
+  padding: 18px 6%;
   background: rgba(19, 32, 65, 0.95);
   backdrop-filter: blur(10px);
 }
@@ -202,66 +219,131 @@ body {
 /* CARD */
 .card-conta {
   display: flex;
-  gap: 60px;
-  background: linear-gradient(145deg, #132041, #0f1a35);
-  padding: 50px;
-  border-radius: 25px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  align-items: center;
+  gap: 90px;
+  background: linear-gradient(160deg, #132041, #0f1a35);
+  padding: 70px 90px;
+  border-radius: 30px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.05);
+  min-width: 900px;
 }
+
 
 /* PERFIL */
 .perfil {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
 }
 
 .avatar {
-  width: 160px;
-  height: 160px;
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
   object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.1);
+  transition: 0.3s;
+}
+
+.avatar:hover {
+  transform: scale(1.03);
 }
 
 .btn-foto {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.08);
   border: none;
-  padding: 8px 15px;
-  border-radius: 10px;
+  padding: 10px 18px;
+  border-radius: 12px;
   color: white;
   cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.btn-foto:hover {
+  background: #e50914;
+}
+
+.cpf {
+  color: #aaa;
+  font-size: 13px;
 }
 
 /* INFO */
 .info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 300px;
+  gap: 18px;
+  width: 380px;
+}
+
+.info h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.form-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.campo label {
+  font-size: 13px;
+  color: #aaa;
 }
 
 input {
-  padding: 10px;
-  border-radius: 10px;
+  padding: 14px;
+  border-radius: 12px;
   border: none;
   background: #1f2a44;
   color: white;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #e50914;
+  background: #263558;
 }
 
 button[type="submit"] {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 10px;
+  margin-top: 15px;
+  padding: 14px;
+  border-radius: 12px;
   border: none;
   background: #e50914;
   color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(229,9,20,0.5);
 }
 
 .msg {
   margin-top: 10px;
   font-weight: bold;
+}
+
+.trocarfoto_salvar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 </style>
@@ -354,14 +436,26 @@ button[type="submit"] {
 
     <!-- INFO -->
     <div class="info">
-      <h2>Configurações</h2>
+      <h2>Configurações da Conta</h2>
 
-      <form method="POST">
-        <input name="nome_user" value="<?php echo $usuario['nome_user']; ?>">
-        <input value="<?php echo $usuario['nome']; ?>" readonly>
-        <input value="<?php echo $usuario['email']; ?>" readonly>
+      <form method="POST" class="form-info">
 
-        <button type="submit">Atualizar</button>
+        <div class="campo">
+          <label>Apelido de usuário</label>
+          <input name="nome_user" value="<?php echo $usuario['nome_user']; ?>">
+        </div>
+
+        <div class="campo">
+          <label>Nome completo</label>
+          <input value="<?php echo $usuario['nome']; ?>" readonly>
+        </div>
+
+        <div class="campo">
+          <label>Email</label>
+          <input value="<?php echo $usuario['email']; ?>" readonly>
+        </div>
+
+        <button type="submit">Atualizar dados</button>
       </form>
 
       <?php if ($msg): ?>
@@ -381,4 +475,4 @@ function toggleMenu() {
 
 </body>
 </html>
-```
+
