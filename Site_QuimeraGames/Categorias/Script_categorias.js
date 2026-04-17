@@ -138,7 +138,6 @@ if (gridCategorias && setaEsquerda && setaDireita) {
     });
 }
 
-// Função para abrir/fechar o menu do avatar
 function toggleMenu() {
     const menu = document.getElementById("user-menu");
     if (menu) {
@@ -146,7 +145,6 @@ function toggleMenu() {
     }
 }
 
-// Fecha o menu ao clicar fora dele
 document.addEventListener("click", function (e) {
     const userBox = document.querySelector(".user-box");
     const menu = document.getElementById("user-menu");

@@ -9,6 +9,21 @@ if (!isset($_SESSION['usuario_nome'])) {
 
 require_once '../conexa.php';
 
+// CONTAGEM PARA OS BADGES (Cole isso no topo dos seus arquivos PHP)
+$qtd_carrinho = 0;
+$qtd_wishlist = 0;
+if (isset($_SESSION['id_user'])) {
+  $stmt_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+  $stmt_cart->execute([$_SESSION['id_user']]);
+  $qtd_carrinho = $stmt_cart->fetchColumn();
+
+  $stmt_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+  $stmt_wish->execute([$_SESSION['id_user']]);
+  $qtd_wishlist = $stmt_wish->fetchColumn();
+}
+$logado = isset($_SESSION['usuario_nome']);
+$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+
 if (!isset($pdo)) {
   die("Erro: A variável de conexão \$pdo não foi encontrada no conexa.php.");
 }
@@ -16,15 +31,6 @@ if (!isset($pdo)) {
 try {
   $semana_atual = (int) date('W');
   $id_user_logado = $_SESSION['id_user'] ?? 0;
-
-  // CONTAGEM PARA OS BADGES
-  $stmt_conta_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
-  $stmt_conta_cart->execute([$id_user_logado]);
-  $qtd_carrinho = $stmt_conta_cart->fetchColumn();
-
-  $stmt_conta_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
-  $stmt_conta_wish->execute([$id_user_logado]);
-  $qtd_wishlist = $stmt_conta_wish->fetchColumn();
 
   $stmt_carousel = $pdo->prepare("SELECT * FROM jogos ORDER BY MOD(id_play, :semana) LIMIT 7");
   $stmt_carousel->bindValue(':semana', $semana_atual, PDO::PARAM_INT);
@@ -69,65 +75,45 @@ try {
 
 <body>
 
-  <header class="topo">
-    <?php
-    $logado = isset($_SESSION['usuario_nome']);
-    $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
-    ?>
-
+  <header class="topo-universal">
     <div class="topo-esquerda">
-      <a href="<?php echo $link_home; ?>">
-        <img class="logo" src="../imagens/logo.png" alt="Logo">
-      </a>
-      <a href="<?php echo $link_home; ?>" style="text-decoration: none;">
-        <button class="btn-nav active">Loja</button>
-      </a>
+      <a href="<?php echo $link_home; ?>"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
+      <a href="<?php echo $link_home; ?>" style="text-decoration: none;"><button
+          class="btn-nav active">Loja</button></a>
     </div>
 
     <div class="topo-direita">
       <?php if ($logado): ?>
         <div style="position: relative; display: inline-block;">
-          <button type="button" class="btn-icon" onclick="window.location.href='carrinho.php'">🛒</button>
+          <button type="button" class="btn-icon"
+            onclick="window.location.href='../Usuario_Logado/carrinho.php'">🛒</button>
           <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
-            <span
-              style="position: absolute; top: -5px; right: -8px; background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; pointer-events: none;">
-              <?php echo $qtd_carrinho; ?>
-            </span>
+            <span class="badge-bolinha"
+              style="position: absolute; top: -8px; right: -12px; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
           <?php endif; ?>
         </div>
 
         <div class="user-box" onclick="toggleMenu()">
           <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
-          <span class="user-nome">
-            <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
-          </span>
+          <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
           <div id="user-menu" class="user-menu">
             <a href="../Conta/conta.php">Conta</a>
             <a href="../Pagamento/pagamento.php">Pagamento</a>
-            <a href="wishlist.php"
-              style="display:flex; justify-content: space-between; align-items: center; padding:10px;">
+            <a href="../Usuario_Logado/wishlist.php">
               Lista de desejo
               <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
-                <span
-                  style="background: #e62429; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 10px;">
-                  <?php echo $qtd_wishlist; ?>
-                </span>
+                <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
               <?php endif; ?>
             </a>
-            <a href="logout.php">Sair</a>
+            <a href="../Usuario_Logado/logout.php">Sair</a>
           </div>
         </div>
-
       <?php else: ?>
-        <a href="../Entrar/Entrar.php" style="text-decoration: none;">
-          <button class="btn-login">Entrar</button>
-        </a>
+        <a href="../Entrar/Entrar.php" style="text-decoration: none;"><button class="btn-login">Entrar</button></a>
       <?php endif; ?>
 
-      <a href="../Sac/Suporte.php" style="text-decoration: none;">
-        <button class="btn-login">Suporte</button>
-      </a>
+      <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
     </div>
   </header>
 
@@ -170,7 +156,6 @@ try {
                 </div>
                 <span><?php echo $nome_cat; ?></span>
               </a>
-
             <?php endforeach; ?>
           </div>
           <button class="seta-cat direita" id="seta-direita">&#10095;</button>
@@ -272,18 +257,14 @@ try {
 
   </div>
 
-  <footer class="rodape">QuimeraGames &copy; 2026</footer>
+
 
   <script src="../Usuario_Logado/script.js" defer></script>
-
   <script>
     function toggleMenu() {
       const menu = document.getElementById("user-menu");
-      if (menu) {
-        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-      }
+      if (menu) menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
-
     document.addEventListener("click", function (e) {
       const userBox = document.querySelector(".user-box");
       const menu = document.getElementById("user-menu");
@@ -292,6 +273,7 @@ try {
       }
     });
   </script>
+  <footer class="rodape-universal">QuimeraGames &copy; 2026</footer>
 </body>
 
 </html>
