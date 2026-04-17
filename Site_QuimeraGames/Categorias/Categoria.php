@@ -6,6 +6,23 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once '../conexa.php';
 
+
+// CONTAGEM PARA OS BADGES (Cole isso no topo dos seus arquivos PHP)
+$qtd_carrinho = 0;
+$qtd_wishlist = 0;
+if (isset($_SESSION['id_user'])) {
+    $stmt_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+    $stmt_cart->execute([$_SESSION['id_user']]);
+    $qtd_carrinho = $stmt_cart->fetchColumn();
+
+    $stmt_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+    $stmt_wish->execute([$_SESSION['id_user']]);
+    $qtd_wishlist = $stmt_wish->fetchColumn();
+}
+$logado = isset($_SESSION['usuario_nome']);
+$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+
+
 $id_categoria = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 if ($id_categoria === 0) {
@@ -42,28 +59,28 @@ try {
 ?>
 <?php
 try {
-  $semana_atual = (int) date('W');
+    $semana_atual = (int) date('W');
 
-  $id_user_logado = $_SESSION['id_user'] ?? 0; // Pega o ID do usuário
+    $id_user_logado = $_SESSION['id_user'] ?? 0; // Pega o ID do usuário
 
-  $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
-  $stmt_categorias->execute();
-  $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
+    $stmt_categorias = $pdo->prepare("SELECT id_categoria, MIN(Imagens_jogos) as capa FROM jogos GROUP BY id_categoria");
+    $stmt_categorias->execute();
+    $categorias_bd = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
-  $nomes_categorias = [
-    1 => 'Ação',
-    2 => 'Aventura',
-    3 => 'Corrida',
-    4 => 'Estratégia',
-    5 => 'Esporte',
-    6 => 'FPS',
-    7 => 'Luta',
-    8 => 'Terror',
-    9 => 'Sobrevivência',
-    10 => 'RPG'
-  ];
+    $nomes_categorias = [
+        1 => 'Ação',
+        2 => 'Aventura',
+        3 => 'Corrida',
+        4 => 'Estratégia',
+        5 => 'Esporte',
+        6 => 'FPS',
+        7 => 'Luta',
+        8 => 'Terror',
+        9 => 'Sobrevivência',
+        10 => 'RPG'
+    ];
 } catch (PDOException $e) {
-  die("Erro na consulta ao banco de dados: " . $e->getMessage());
+    die("Erro na consulta ao banco de dados: " . $e->getMessage());
 }
 ?>
 
@@ -80,62 +97,46 @@ try {
 
 <body>
 
-    <header class="topo">
-<!-- usuario Não logado -->
-        <?php if (!isset($_SESSION['usuario_nome'])): ?>
+    <header class="topo-universal">
         <div class="topo-esquerda">
-            <a href="../Index/index.php">
-                <img class="logo" src="../imagens/logo.png" alt="Logo">
-            </a>
-            <a href="../Index/index.php" style="text-decoration: none;">
-                <button class="btn-nav active">Loja</button>
-            </a>
-        </div>
-        <div class="topo-direita">
-            <a href="../Entrar/Entrar.php" style="text-decoration: none;">
-                <button class="btn-login">Entrar</button>
-            </a>
-            <a href="../Sac/Suporte.php" style="text-decoration: none;">
-                <button class="btn-login">Suporte</button>
-            </a>
-        </div>
-
-
-
-    <?php else: ?>
-
-          <!-- usuario Logado -->
-
-        <div class="topo-esquerda">
-            <a href="../Usuario_Logado/usuariologado.php">
-            <img class="logo" src="../imagens/logo.png" alt="Logo">
-            </a>
-            <a href="../Usuario_Logado/usuariologado.php" style="text-decoration: none;">
-            <button class="btn-nav active">Loja</button>
-            </a>
+            <a href="<?php echo $link_home; ?>"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
+            <a href="<?php echo $link_home; ?>" style="text-decoration: none;"><button
+                    class="btn-nav active">Loja</button></a>
         </div>
 
         <div class="topo-direita">
-            <div class="user-box" onclick="toggleMenu()">
-                <img src="../imagens/aidento.jpg" class="user-img" alt="Usuário">
-                <span class="user-nome">
-                    <?php echo htmlspecialchars($_SESSION['usuario_nome'], ENT_QUOTES, 'UTF-8'); ?>
-                </span>
-
-                <!-- Dropdown -->
-                <div id="user-menu" class="user-menu">
-                    <a href="../Conta/conta.php">Conta</a>
-                    <a href="#">Pagamento</a>
-                    <a href="#">Lista de desejo</a>
-                    <a href="../logout.php">Sair</a>
+            <?php if ($logado): ?>
+                <div style="position: relative; display: inline-block;">
+                    <button type="button" class="btn-icon"
+                        onclick="window.location.href='../Usuario_Logado/carrinho.php'">🛒</button>
+                    <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
+                        <span class="badge-bolinha"
+                            style="position: absolute; top: -8px; right: -12px; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
+                    <?php endif; ?>
                 </div>
-            </div>
 
-            <a href="../Sac/Suporte.php" style="text-decoration: none;">
-                <button class="btn-login">Suporte</button>
-            </a>
+                <div class="user-box" onclick="toggleMenu()">
+                    <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+                    <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
+
+                    <div id="user-menu" class="user-menu">
+                        <a href="../Conta/conta.php">Conta</a>
+                        <a href="../Pagamento/pagamento.php">Pagamento</a>
+                        <a href="../Usuario_Logado/wishlist.php">
+                            Lista de desejo
+                            <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
+                                <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
+                            <?php endif; ?>
+                        </a>
+                        <a href="../Usuario_Logado/logout.php">Sair</a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <a href="../Entrar/Entrar.php" style="text-decoration: none;"><button class="btn-login">Entrar</button></a>
+            <?php endif; ?>
+
+            <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
         </div>
-<?php endif; ?>
     </header>
 
     <div class="container">
@@ -143,7 +144,7 @@ try {
             <nav class="menu-busca">
 
                 <button class="btn-dropdown" id="btn-explorar">Explorar ▾</button>
-                 <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
+                <button class="btn-dropdown" id="btn-categorias">Categorias ▾</button>
             </nav>
         </div>
 
@@ -151,26 +152,26 @@ try {
             <h3 class="titulo-painel">Gêneros Populares</h3>
             <div class="carousel-categorias-wrapper">
                 <button class="seta-cat esquerda" id="seta-esquerda">&#10094;</button>
-            <div class="categorias-painel-grid" id="grid-categorias">
-            <?php foreach ($categorias_bd as $cat): ?>
-              <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
+                <div class="categorias-painel-grid" id="grid-categorias">
+                    <?php foreach ($categorias_bd as $cat): ?>
+                        <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
 
-              <a href="../Categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
-                style="text-decoration: none; color: inherit;">
-                <div class="img-cat-wrapper">
-                  <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
+                        <a href="../Categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
+                            style="text-decoration: none; color: inherit;">
+                            <div class="img-cat-wrapper">
+                                <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
+                            </div>
+                            <span><?php echo $nome_cat; ?></span>
+                        </a>
+
+                    <?php endforeach; ?>
                 </div>
-                <span><?php echo $nome_cat; ?></span>
-              </a>
-
-            <?php endforeach; ?>
-          </div>
-            <button class="seta-cat direita" id="seta-direita">&#10095;</button>
+                <button class="seta-cat direita" id="seta-direita">&#10095;</button>
+            </div>
         </div>
-    </div>
 
 
-    
+
 
 
 
@@ -257,9 +258,7 @@ try {
         </div>
     </div>
 
-    <footer class="rodape" style="text-align:center; padding:20px; background:#11152b; color:white; margin-top:40px;">
-        QuimeraGames &copy; 2026
-    </footer>
+    <footer class="rodape-universal">QuimeraGames &copy; 2026</footer>
 
     <script src="script_categorias.js"></script>
 </body>

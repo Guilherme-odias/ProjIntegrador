@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
         r.addEventListener('change', function (e) {
             var forms = {
                 cartao: document.getElementById('dados-cartao'),
-                pix:    document.getElementById('dados-pix'),
+                pix: document.getElementById('dados-pix'),
                 boleto: document.getElementById('dados-boleto')
             };
             var cards = {
                 cartao: document.getElementById('mc-cartao'),
-                pix:    document.getElementById('mc-pix'),
+                pix: document.getElementById('mc-pix'),
                 boleto: document.getElementById('mc-boleto')
             };
 
@@ -112,7 +112,7 @@ function validarCartao() {
     }
 
     return ok;
-} 
+}
 
 // FECHAR OVERLAYS
 
@@ -366,3 +366,18 @@ function copiarBoleto(btn) {
         btn.style.borderColor = '#e62429';
     }, 2500);
 }
+
+function toggleMenu() {
+    const menu = document.getElementById("user-menu");
+    if (menu) {
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+}
+
+document.addEventListener("click", function (e) {
+    const userBox = document.querySelector(".user-box");
+    const menu = document.getElementById("user-menu");
+    if (userBox && menu && !userBox.contains(e.target)) {
+        menu.style.display = "none";
+    }
+});

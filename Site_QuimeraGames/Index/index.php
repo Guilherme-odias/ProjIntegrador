@@ -2,9 +2,25 @@
 session_start();
 require_once '../conexa.php';
 
+// CONTAGEM PARA OS BADGES (Cole isso no topo dos seus arquivos PHP)
+$qtd_carrinho = 0;
+$qtd_wishlist = 0;
 if (isset($_SESSION['id_user'])) {
-    header("Location: ../Usuario_Logado/usuariologado.php");
-    exit;
+  $stmt_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+  $stmt_cart->execute([$_SESSION['id_user']]);
+  $qtd_carrinho = $stmt_cart->fetchColumn();
+
+  $stmt_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+  $stmt_wish->execute([$_SESSION['id_user']]);
+  $qtd_wishlist = $stmt_wish->fetchColumn();
+}
+$logado = isset($_SESSION['usuario_nome']);
+$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+
+
+if (isset($_SESSION['id_user'])) {
+  header("Location: ../Usuario_Logado/usuariologado.php");
+  exit;
 }
 
 if (!isset($pdo)) {
@@ -57,22 +73,45 @@ try {
 
 <body>
 
-  <header class="topo">
+  <header class="topo-universal">
     <div class="topo-esquerda">
-      <a href="index.php">
-        <img class="logo" src="../imagens/logo.png" alt="Logo">
-      </a>
-      <a href="index.php" style="text-decoration: none;">
-        <button class="btn-nav active">Loja</button>
-      </a>
+      <a href="<?php echo $link_home; ?>"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
+      <a href="<?php echo $link_home; ?>" style="text-decoration: none;"><button
+          class="btn-nav active">Loja</button></a>
     </div>
+
     <div class="topo-direita">
-      <a href="../Entrar/Entrar.php" style="text-decoration: none;">
-        <button class="btn-login">Entrar</button>
-      </a>
-      <a href="../Sac/Suporte.php" style="text-decoration: none;">
-        <button class="btn-login">Suporte</button>
-      </a>
+      <?php if ($logado): ?>
+        <div style="position: relative; display: inline-block;">
+          <button type="button" class="btn-icon"
+            onclick="window.location.href='../Usuario_Logado/carrinho.php'">🛒</button>
+          <?php if (isset($qtd_carrinho) && $qtd_carrinho > 0): ?>
+            <span class="badge-bolinha"
+              style="position: absolute; top: -8px; right: -12px; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
+          <?php endif; ?>
+        </div>
+
+        <div class="user-box" onclick="toggleMenu()">
+          <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+          <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
+
+          <div id="user-menu" class="user-menu">
+            <a href="../Conta/conta.php">Conta</a>
+            <a href="../Pagamento/pagamento.php">Pagamento</a>
+            <a href="../Usuario_Logado/wishlist.php">
+              Lista de desejo
+              <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
+                <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
+              <?php endif; ?>
+            </a>
+            <a href="../Usuario_Logado/logout.php">Sair</a>
+          </div>
+        </div>
+      <?php else: ?>
+        <a href="../Entrar/Entrar.php" style="text-decoration: none;"><button class="btn-login">Entrar</button></a>
+      <?php endif; ?>
+
+      <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
     </div>
   </header>
 
@@ -218,7 +257,10 @@ try {
 
   </div>
 
-  <footer class="rodape">QuimeraGames &copy; 2026</footer>
+  <footer class="rodape"
+    style="text-align: center; padding: 30px; background: #111823; color: #cdd5e0; border-top: 1px solid #30363d; margin-top: 60px;">
+    QuimeraGames &copy; 2026
+  </footer>
 
   <script src="Script.js" defer></script>
 </body>

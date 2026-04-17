@@ -1,6 +1,22 @@
 <?php
 require_once '../conexa.php';
 
+// CONTAGEM PARA OS BADGES (Cole isso no topo dos seus arquivos PHP)
+$qtd_carrinho = 0;
+$qtd_wishlist = 0;
+if (isset($_SESSION['id_user'])) {
+    $stmt_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+    $stmt_cart->execute([$_SESSION['id_user']]);
+    $qtd_carrinho = $stmt_cart->fetchColumn();
+
+    $stmt_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+    $stmt_wish->execute([$_SESSION['id_user']]);
+    $qtd_wishlist = $stmt_wish->fetchColumn();
+}
+$logado = isset($_SESSION['usuario_nome']);
+$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+
+
 // Pega o que o usuário digitou na barra de pesquisa
 $query = isset($_GET['query']) ? trim($_GET['query']) : '';
 
