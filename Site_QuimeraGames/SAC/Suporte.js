@@ -105,11 +105,34 @@ document.addEventListener("DOMContentLoaded", function () {
             dados.append('cpf', cpf);
             dados.append('reclamacao', reclamacao);
 
+            // ✅ AbortController para timeout de 20s no fetch
+            const controller = new AbortController();
+            const timeoutId  = setTimeout(function () { controller.abort(); }, 20000);
+
             fetch('enviar.php', {
                 method: 'POST',
-                body: dados
+                body: dados,
+                signal: controller.signal
             })
-            .then(function (res) { return res.json(); })
+            .then(function (res) {
+                clearTimeout(timeoutId);
+
+                // ✅ Verifica status HTTP antes de tentar parsear JSON
+                if (!res.ok) {
+                    return res.text().then(function (txt) {
+                        throw new Error('Servidor retornou erro ' + res.status + ': ' + txt.substring(0, 200));
+                    });
+                }
+
+                return res.text().then(function (txt) {
+                    try {
+                        return JSON.parse(txt);
+                    } catch (e) {
+                        // ✅ Se o PHP retornou HTML de erro em vez de JSON, mostra mensagem útil
+                        throw new Error('Resposta inesperada do servidor. Verifique os logs do PHP. Detalhe: ' + txt.substring(0, 300));
+                    }
+                });
+            })
             .then(function (data) {
                 setBtnLoading(false);
                 if (data.sucesso) {
@@ -131,9 +154,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     mostrarErros([data.erro || 'Erro ao enviar. Tente novamente.']);
                 }
             })
-            .catch(function () {
+            .catch(function (err) {
+                clearTimeout(timeoutId);
                 setBtnLoading(false);
-                mostrarErros(['Erro de conexão com o servidor.']);
+
+                if (err.name === 'AbortError') {
+                    mostrarErros(['Tempo limite excedido. O servidor demorou muito para responder.']);
+                } else {
+                    // ✅ Mostra o erro real em vez de mensagem genérica
+                    mostrarErros([err.message || 'Erro de conexão com o servidor.']);
+                }
             });
         });
     }

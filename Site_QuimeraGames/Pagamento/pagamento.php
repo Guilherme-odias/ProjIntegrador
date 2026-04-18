@@ -108,8 +108,7 @@ if (isset($_GET['id_jogo'], $_GET['preco'])) {
         <main class="main-pagamento">
             <div class="col-dados">
                 <h1>Configurações de pagamento</h1>
-                <p class="descricao-pagamento">Aqui você pode configurar formas de pagamento, visualizar seu saldo e
-                    gerenciá-lo.</p>
+                <p class="descricao-pagamento"></p>
 
                 <div class="saldo-container">
                     <span class="label-saldo">Você está comprando</span>

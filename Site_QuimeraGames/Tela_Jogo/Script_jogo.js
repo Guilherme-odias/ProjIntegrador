@@ -109,9 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const cupomDigitado = inputCupom.value.trim().toUpperCase();
         if (cupomDigitado === 'QUIMERA15') {
             let valorBase = parseFloat(precoFinal.getAttribute('data-valor'));
-            let valorNovo = (valorBase * 0.85).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            precoFinal.innerText = 'R$ ' + valorNovo;
-            msgCupom.innerText = "Cupom aplicado!";
+            let valorNovo = (valorBase * 0.85).toFixed(2);
+            let valorFormatado = parseFloat(valorNovo).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            precoFinal.setAttribute('data-valor', valorNovo); // atualiza o valor real usado na URL
+            precoFinal.innerText = 'R$ ' + valorFormatado;
+            msgCupom.innerText = "Cupom aplicado! (-15%)";
             msgCupom.style.color = "#4CAF50";
             inputCupom.disabled = true;
             btnCupom.disabled = true;
