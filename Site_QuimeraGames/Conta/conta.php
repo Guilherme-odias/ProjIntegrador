@@ -17,6 +17,9 @@ $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $msg = "";
 
+$logado = isset($_SESSION['usuario_nome']);
+$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+
 /* 📸 UPLOAD FOTO */
 if (isset($_POST['upload_foto'])) {
 
@@ -111,7 +114,7 @@ body::before {
 
   opacity: 0.04;
 
-  transform: rotate(-15deg) scale(1.2);
+  transform: rotate(-10deg) scale(1.3);
 
   pointer-events: none;
   z-index: -2;
@@ -233,9 +236,8 @@ body::before {
 /* PERFIL */
 .perfil {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
 }
 
 .avatar {
@@ -269,7 +271,9 @@ body::before {
 .cpf {
   color: #aaa;
   font-size: 13px;
+  margin-top: 10px;
 }
+
 
 /* INFO */
 .info {
@@ -340,6 +344,17 @@ button[type="submit"]:hover {
   font-weight: bold;
 }
 
+.trocarfoto_salvar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 170px;
+}
+
+.trocarfoto_salvar .btn-foto {
+  width: 120px;
+  text-align: center;
+}
+
 html, body { min-height: 100vh; display: flex; flex-direction: column; margin: 0; }
 .container, .main-pagamento, .categoria-container { flex: 1; } /* Empurra o rodapé pro fundo no Pesquisar */
 
@@ -400,7 +415,7 @@ html, body { min-height: 100vh; display: flex; flex-direction: column; margin: 0
         </div>
 
         <div class="user-box" onclick="toggleMenu()">
-          <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+          <img src="<?php echo $usuario['url_foto'] . '?v=' . time(); ?>" class="user-img">
           <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
           <div id="user-menu" class="user-menu">
@@ -423,26 +438,30 @@ html, body { min-height: 100vh; display: flex; flex-direction: column; margin: 0
     </div>
   </header>
 
+
 <div class="container">
   <div class="card-conta">
 
     <!-- FOTO -->
-    <div class="perfil">
-      <form method="POST" enctype="multipart/form-data">
-        <img src="<?php echo $usuario['url_foto']; ?>" class="avatar">
+<div class="perfil">
 
-        <input type="file" name="foto" id="foto" hidden>
-<span class="trocarfoto_salvar">
-        <label for="foto" class="btn-foto">Trocar foto</label>
-        <button type="submit" name="upload_foto" class="btn-foto">Salvar</button>
-      </span>
-      </form>
+  <div class="perfil-esquerda">
+    <form id="formFoto" method="POST" enctype="multipart/form-data">
+      <img src="<?php echo $usuario['url_foto']; ?>" class="avatar">
+      <input type="file" name="foto" id="foto" hidden>
+    </form>
 
-      <div class="cpf">
-        CPF: <?php echo mascararCPF($usuario['cpf']); ?>
-      </div>
+    <div class="cpf">
+      CPF: <?php echo mascararCPF($usuario['cpf']); ?>
     </div>
+  </div>
 
+  <div class="trocarfoto_salvar">
+    <label for="foto" class="btn-foto">Trocar foto</label>
+    <button type="submit" form="formFoto" name="upload_foto" class="btn-foto">Salvar</button>
+  </div>
+
+</div>
     <!-- INFO -->
     <div class="info">
       <h2>Configurações da Conta</h2>
@@ -489,7 +508,7 @@ document.addEventListener("click", function (e) {
     if (userBox && menu && !userBox.contains(e.target)) {
         menu.style.display = "none";
     }
-
+});
 </script>
 
 </body>
