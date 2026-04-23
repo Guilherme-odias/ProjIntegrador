@@ -2,7 +2,6 @@ var pixInterval = null;
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Troca de método de pagamento — UM único listener por radio
     var radios = document.querySelectorAll('input[name="metodo"]');
     radios.forEach(function (r) {
         r.addEventListener('change', function (e) {
@@ -16,22 +15,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 pix: document.getElementById('mc-pix'),
                 boleto: document.getElementById('mc-boleto')
             };
-
-            // remove seleção dos cards
             Object.values(forms).forEach(function (f) { f.classList.remove('ativo'); });
             Object.values(cards).forEach(function (c) { c.classList.remove('sel'); });
-
-            //  marca o card escolhido
             forms[e.target.value].classList.add('ativo');
             cards[e.target.value].classList.add('sel');
         });
     });
 
-    // marca cartão como selecionado
     var mcCartao = document.getElementById('mc-cartao');
     if (mcCartao) mcCartao.classList.add('sel');
 
-    // Máscara do cartão
     var numCartao = document.getElementById('num-cartao');
     if (numCartao) {
         numCartao.addEventListener('input', function () {
@@ -40,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Máscara de validade
     var valCartao = document.getElementById('val-cartao');
     if (valCartao) {
         valCartao.addEventListener('input', function () {
@@ -50,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Fechar ao clicar fora do modal
     document.querySelectorAll('.overlay').forEach(function (ov) {
         ov.addEventListener('click', function (e) {
             if (e.target === ov) fecharTudo();
@@ -58,8 +49,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// ENTRADA PRINCIPAL
+// ── REGISTRAR COMPRA NO BANCO ─────────────────────────────
+function registrarCompra(metodo, codigo) {
+    var fd = new FormData();
+    fd.append('metodo', metodo);
+    fd.append('codigo', codigo);
 
+    fetch('confirmar_compra.php', { method: 'POST', body: fd })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+            if (!d.sucesso) {
+                console.warn('Aviso biblioteca:', d.msg);
+            } else {
+                console.log('Compra registrada:', d.msg);
+            }
+        })
+        .catch(function (e) { console.error('Erro ao registrar compra:', e); });
+}
+
+// ENTRADA PRINCIPAL
 function iniciarPagamento() {
     var m = document.querySelector('input[name="metodo"]:checked').value;
     if (m === 'cartao') {
@@ -73,7 +81,6 @@ function iniciarPagamento() {
 }
 
 // VALIDAÇÃO DO CARTÃO
-
 function showErr(id, show) {
     var el = document.getElementById(id);
     if (el) el.style.display = show ? 'block' : 'none';
@@ -115,7 +122,6 @@ function validarCartao() {
 }
 
 // FECHAR OVERLAYS
-
 function fecharTudo() {
     ['ov-cartao', 'ov-pix', 'ov-boleto'].forEach(function (id) {
         var el = document.getElementById(id);
@@ -141,7 +147,6 @@ function setStep(n) {
 }
 
 // FLUXO DO CARTÃO
-
 function fluxoCartao() {
     document.getElementById('ov-cartao').classList.add('show');
     setStep(1);
@@ -157,12 +162,7 @@ function cartaoFase1() {
         '<div class="prog-wrap"><div class="prog-bar" id="pb1" style="width:0%"></div></div>' +
         '<p class="prog-label" id="pl1">Conectando ao banco...</p>';
 
-    var msgs = [
-        'Conectando ao banco...',
-        'Validando número do cartão...',
-        'Verificando titularidade...',
-        'Checando limite disponível...'
-    ];
+    var msgs = ['Conectando ao banco...', 'Validando número do cartão...', 'Verificando titularidade...', 'Checando limite disponível...'];
     var pct = 0, mi = 0;
     var iv = setInterval(function () {
         pct += 7;
@@ -183,13 +183,7 @@ function cartaoFase2() {
         '<div class="prog-wrap"><div class="prog-bar" id="pb2" style="width:0%"></div></div>' +
         '<p class="prog-label" id="pl2">Iniciando transação segura...</p>';
 
-    var msgs = [
-        'Iniciando transação segura...',
-        'Comunicando com a operadora...',
-        'Autenticando 3D Secure...',
-        'Aguardando aprovação da operadora...',
-        'Finalizando...'
-    ];
+    var msgs = ['Iniciando transação segura...', 'Comunicando com a operadora...', 'Autenticando 3D Secure...', 'Aguardando aprovação da operadora...', 'Finalizando...'];
     var pct = 0, mi = 0;
     var iv = setInterval(function () {
         pct += 4;
@@ -204,6 +198,10 @@ function cartaoFase2() {
 function cartaoFase3() {
     setStep(3);
     var codigo = '#QG-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+
+    // ✅ REGISTRA A COMPRA NO BANCO
+    registrarCompra('cartao', codigo);
+
     document.getElementById('cartao-body').innerHTML =
         '<div class="check-circle">&#10003;</div>' +
         '<h2 style="color:#22c55e">Pagamento aprovado!</h2>' +
@@ -217,7 +215,6 @@ function cartaoFase3() {
 }
 
 // FLUXO PIX
-
 function fluxoPix() {
     document.getElementById('ov-pix').classList.add('show');
     document.getElementById('pix-body').innerHTML =
@@ -298,6 +295,10 @@ function simularPagamentoPix() {
 
     setTimeout(function () {
         var idPix = 'E' + Math.random().toString().substr(2, 23).toUpperCase();
+
+        // ✅ REGISTRA A COMPRA NO BANCO
+        registrarCompra('pix', idPix);
+
         document.getElementById('pix-body').innerHTML =
             '<div class="check-circle">&#10003;</div>' +
             '<h2 style="color:#22c55e">Pix confirmado!</h2>' +
@@ -312,7 +313,6 @@ function simularPagamentoPix() {
 }
 
 // FLUXO DO BOLETO
-
 var BOLETO_NUMERO = '3474.07297 25003.671230 01000.038007 4 10010000019990';
 
 function fluxoBoleto() {
