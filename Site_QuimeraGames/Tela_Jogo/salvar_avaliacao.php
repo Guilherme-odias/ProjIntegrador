@@ -9,7 +9,7 @@ $id_play = (int)$_POST['id_play'];
 $nota = (int)$_POST['nota'];
 
 // Verifica se o usuário já avaliou para atualizar ou inserir
-$stmt = $pdo->prepare("SELECT id_avaliacao FROM avaliacoes WHERE id_user = ? AND id_play = ?");
+$stmt = $pdo->prepare("SELECT id_avaliacao FROM avaliacao WHERE id_user = ? AND id_play = ?");
 $stmt->execute([$id_user, $id_play]);
 
 if ($stmt->fetch()) {
