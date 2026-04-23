@@ -28,12 +28,12 @@ if (isset($_POST['upload_foto'])) {
         $ext = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
         $nomeArquivo = uniqid() . "." . $ext;
 
-        $caminho = "../uploads/" . $nomeArquivo;
+        $caminhoFisico = "../uploads/" . $nomeArquivo;
 
-        move_uploaded_file($_FILES['foto']['tmp_name'], $caminho);
+        move_uploaded_file($_FILES['foto']['tmp_name'], $caminhoFisico);
 
         $updateFoto = $pdo->prepare("UPDATE cadastro SET url_foto = :foto WHERE email = :email");
-        $updateFoto->bindParam(":foto", $caminho);
+        $updateFoto->bindParam(":foto", $nomeArquivo);
         $updateFoto->bindParam(":email", $email);
         $updateFoto->execute();
 
