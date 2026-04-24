@@ -12,7 +12,7 @@ if ($id_jogo === 0) {
 
 // 2. Consulta a média das avaliações (usando try-catch para evitar erro fatal)
 try {
-    $stmt_media = $pdo->prepare("SELECT AVG(nota) as media FROM avaliacoes WHERE id_play = :id");
+    $stmt_media = $pdo->prepare("SELECT AVG(nota) as media FROM avaliacao WHERE id_play = :id");
     $stmt_media->bindValue(':id', $id_jogo, PDO::PARAM_INT);
     $stmt_media->execute();
     $dados = $stmt_media->fetch(PDO::FETCH_ASSOC);
@@ -145,6 +145,7 @@ try {
                                 <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
                             <?php endif; ?>
                         </a>
+                        <a href="../Usuario_Logado/meus_pedidos.php">Meus Pedidos</a>
                         <a href="../Usuario_Logado/logout.php">Sair</a>
                     </div>
                 </div>

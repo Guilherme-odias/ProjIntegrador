@@ -61,13 +61,14 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
                     <div id="user-menu" class="user-menu">
                         <a href="../Conta/conta.php">Conta</a>
                         <a href="../Pagamento/pagamento.php">Pagamento</a>
-                        <a href="wishlist.php">
+                        <a href="../Usuario_Logado/wishlist.php">
                             Lista de desejo
                             <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
                                 <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
                             <?php endif; ?>
                         </a>
-                        <a href="logout.php">Sair</a>
+                        <a href="../Usuario_Logado/meus_pedidos.php">Meus Pedidos</a>
+                        <a href="../Usuario_Logado/logout.php">Sair</a>
                     </div>
                 </div>
             <?php else: ?>

@@ -91,6 +91,7 @@ if (isset($_GET['id_jogo'], $_GET['preco'])) {
                                 <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
                             <?php endif; ?>
                         </a>
+                        <a href="../Usuario_Logado/meus_pedidos.php">Meus Pedidos</a>
                         <a href="../Usuario_Logado/logout.php">Sair</a>
                     </div>
                 </div>
