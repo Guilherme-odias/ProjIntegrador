@@ -31,6 +31,11 @@ $usuario = $stmt_user->fetch(PDO::FETCH_ASSOC);
 // 3. Definições de sessão e badges
 $logado = isset($_SESSION['usuario_nome']);
 $id_user_logado = $_SESSION['id_user'] ?? 0;
+
+$link_home = $logado 
+    ? '../Usuario_Logado/usuariologado.php' 
+    : '../Index/index.php';
+
 $veio_do_desconto = isset($_GET['desconto']) && $_GET['desconto'] == '1';
 
 $qtd_carrinho = 0;
