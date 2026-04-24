@@ -148,7 +148,7 @@ if (isset($_GET['id_jogo'], $_GET['preco'])) {
                         <span class="error-msg" id="err-nome">Informe o nome igual ao cartão</span>
                         <div class="linha-inputs">
                             <input type="text" placeholder="MM/AA" class="input-form" id="val-cartao" maxlength="5">
-                            <input type="text" placeholder="CVV" class="input-form" id="cvv-cartao" maxlength="4">
+                            <input type="text" placeholder="CVV" class="input-form" id="cvv-cartao" maxlength="3">
                         </div>
                         <span class="error-msg" id="err-valcvv">Data de validade ou CVV inválido</span>
                     </div>

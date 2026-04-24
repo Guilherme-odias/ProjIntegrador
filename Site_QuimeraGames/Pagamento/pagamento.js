@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
         r.addEventListener('change', function (e) {
             var forms = {
                 cartao: document.getElementById('dados-cartao'),
-                pix: document.getElementById('dados-pix'),
+                pix:    document.getElementById('dados-pix'),
                 boleto: document.getElementById('dados-boleto')
             };
             var cards = {
                 cartao: document.getElementById('mc-cartao'),
-                pix: document.getElementById('mc-pix'),
+                pix:    document.getElementById('mc-pix'),
                 boleto: document.getElementById('mc-boleto')
             };
             Object.values(forms).forEach(function (f) { f.classList.remove('ativo'); });
@@ -42,6 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    var cvvCartao = document.getElementById('cvv-cartao');
+    if (cvvCartao) {
+        cvvCartao.addEventListener('input', function () {
+            // A expressão regular /\D/g remove tudo o que não for dígito (0-9)
+            cvvCartao.value = cvvCartao.value.replace(/\D/g, '');
+        });
+    }
+
     document.querySelectorAll('.overlay').forEach(function (ov) {
         ov.addEventListener('click', function (e) {
             if (e.target === ov) fecharTudo();
@@ -50,26 +58,38 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ── REGISTRAR COMPRA NO BANCO ─────────────────────────────
+// Retorna uma Promise para que os fluxos possam aguardar o resultado
 function registrarCompra(metodo, codigo) {
     var fd = new FormData();
     fd.append('metodo', metodo);
     fd.append('codigo', codigo);
 
-    fetch('confirmar_compra.php', { method: 'POST', body: fd })
-        .then(function (r) { return r.json(); })
+    // Caminho relativo ao próprio arquivo — ajuste se necessário
+    return fetch('confirmar_compra.php', { method: 'POST', body: fd })
+        .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
         .then(function (d) {
             if (!d.sucesso) {
-                console.warn('Aviso biblioteca:', d.msg);
+                console.warn('Aviso ao registrar compra:', d.msg);
             } else {
-                console.log('Compra registrada:', d.msg);
+                console.log('Compra registrada com sucesso:', d.msg);
             }
+            return d;
         })
-        .catch(function (e) { console.error('Erro ao registrar compra:', e); });
+        .catch(function (e) {
+            console.error('Erro ao registrar compra:', e);
+            return { sucesso: false, msg: e.message };
+        });
 }
 
-// ENTRADA PRINCIPAL
+// ── ENTRADA PRINCIPAL ─────────────────────────────────────
 function iniciarPagamento() {
-    var m = document.querySelector('input[name="metodo"]:checked').value;
+    var checked = document.querySelector('input[name="metodo"]:checked');
+    if (!checked) return;
+    var m = checked.value;
+
     if (m === 'cartao') {
         if (!validarCartao()) return;
         fluxoCartao();
@@ -80,7 +100,7 @@ function iniciarPagamento() {
     }
 }
 
-// VALIDAÇÃO DO CARTÃO
+// ── VALIDAÇÃO DO CARTÃO ───────────────────────────────────
 function showErr(id, show) {
     var el = document.getElementById(id);
     if (el) el.style.display = show ? 'block' : 'none';
@@ -121,7 +141,7 @@ function validarCartao() {
     return ok;
 }
 
-// FECHAR OVERLAYS
+// ── FECHAR OVERLAYS ───────────────────────────────────────
 function fecharTudo() {
     ['ov-cartao', 'ov-pix', 'ov-boleto'].forEach(function (id) {
         var el = document.getElementById(id);
@@ -146,7 +166,7 @@ function setStep(n) {
     }
 }
 
-// FLUXO DO CARTÃO
+// ── FLUXO CARTÃO ──────────────────────────────────────────
 function fluxoCartao() {
     document.getElementById('ov-cartao').classList.add('show');
     setStep(1);
@@ -199,22 +219,36 @@ function cartaoFase3() {
     setStep(3);
     var codigo = '#QG-' + Math.random().toString(36).substr(2, 8).toUpperCase();
 
-    // ✅ REGISTRA A COMPRA NO BANCO
-    registrarCompra('cartao', codigo);
-
+    // Mostra spinner enquanto aguarda confirmação do banco
     document.getElementById('cartao-body').innerHTML =
-        '<div class="check-circle">&#10003;</div>' +
-        '<h2 style="color:#22c55e">Pagamento aprovado!</h2>' +
-        '<p>Sua compra foi concluída com sucesso. O recibo foi enviado para o seu e-mail cadastrado.</p>' +
-        '<div class="badge-success">&#10003; Transação aprovada</div>' +
-        '<div class="info-box">' +
-        '<p>Código da transação</p>' +
-        '<p><strong style="font-family:monospace">' + codigo + '</strong></p>' +
-        '</div>' +
-        '<button class="btn-modal-primary" onclick="fecharTudo()">Concluir</button>';
+        '<div class="spinner"></div>' +
+        '<h2>Registrando compra...</h2>' +
+        '<p>Aguarde, estamos salvando sua compra.</p>';
+
+    registrarCompra('cartao', codigo).then(function (resultado) {
+        if (resultado && resultado.sucesso) {
+            document.getElementById('cartao-body').innerHTML =
+                '<div class="check-circle">&#10003;</div>' +
+                '<h2 style="color:#22c55e">Pagamento aprovado!</h2>' +
+                '<p>Sua compra foi concluída. O jogo já está disponível na sua biblioteca.</p>' +
+                '<div class="badge-success">&#10003; Transação aprovada</div>' +
+                '<div class="info-box">' +
+                '<p>Código da transação</p>' +
+                '<p><strong style="font-family:monospace">' + codigo + '</strong></p>' +
+                '</div>' +
+                '<button class="btn-modal-primary" onclick="fecharTudo()">Concluir</button>';
+        } else {
+            var msgErro = (resultado && resultado.msg) ? resultado.msg : 'Erro desconhecido';
+            document.getElementById('cartao-body').innerHTML =
+                '<div class="x-circle">&#10005;</div>' +
+                '<h2 style="color:#e62429">Erro ao registrar</h2>' +
+                '<p>O pagamento foi processado, mas houve um erro ao salvar: <strong>' + msgErro + '</strong></p>' +
+                '<button class="btn-modal-ghost" onclick="fecharTudo()">Fechar</button>';
+        }
+    });
 }
 
-// FLUXO PIX
+// ── FLUXO PIX ─────────────────────────────────────────────
 function fluxoPix() {
     document.getElementById('ov-pix').classList.add('show');
     document.getElementById('pix-body').innerHTML =
@@ -288,31 +322,41 @@ function copiarChavePix(btn) {
 
 function simularPagamentoPix() {
     if (pixInterval) { clearInterval(pixInterval); pixInterval = null; }
+
     document.getElementById('pix-body').innerHTML =
         '<div class="spinner"></div>' +
         '<h2>Confirmando pagamento</h2>' +
         '<p>Verificando a transação no sistema Pix...</p>';
 
+    var idPix = 'E' + Math.random().toString().substr(2, 23).toUpperCase();
+
+    // Aguarda 2,5s de simulação e depois registra no banco
     setTimeout(function () {
-        var idPix = 'E' + Math.random().toString().substr(2, 23).toUpperCase();
-
-        // ✅ REGISTRA A COMPRA NO BANCO
-        registrarCompra('pix', idPix);
-
-        document.getElementById('pix-body').innerHTML =
-            '<div class="check-circle">&#10003;</div>' +
-            '<h2 style="color:#22c55e">Pix confirmado!</h2>' +
-            '<p>Pagamento recebido e confirmado com sucesso. Sua compra está garantida.</p>' +
-            '<div class="badge-success">&#10003; Pix aprovado</div>' +
-            '<div class="info-box">' +
-            '<p>ID da transação Pix</p>' +
-            '<p><strong style="font-family:monospace;font-size:0.78rem">' + idPix + '</strong></p>' +
-            '</div>' +
-            '<button class="btn-modal-primary" onclick="fecharTudo()">Concluir</button>';
+        registrarCompra('pix', idPix).then(function (resultado) {
+            if (resultado && resultado.sucesso) {
+                document.getElementById('pix-body').innerHTML =
+                    '<div class="check-circle">&#10003;</div>' +
+                    '<h2 style="color:#22c55e">Pix confirmado!</h2>' +
+                    '<p>Pagamento recebido e confirmado. O jogo já está na sua biblioteca.</p>' +
+                    '<div class="badge-success">&#10003; Pix aprovado</div>' +
+                    '<div class="info-box">' +
+                    '<p>ID da transação Pix</p>' +
+                    '<p><strong style="font-family:monospace;font-size:0.78rem">' + idPix + '</strong></p>' +
+                    '</div>' +
+                    '<button class="btn-modal-primary" onclick="fecharTudo()">Concluir</button>';
+            } else {
+                var msgErro = (resultado && resultado.msg) ? resultado.msg : 'Erro desconhecido';
+                document.getElementById('pix-body').innerHTML =
+                    '<div class="x-circle">&#10005;</div>' +
+                    '<h2 style="color:#e62429">Erro ao registrar</h2>' +
+                    '<p>Pagamento recebido, mas falha ao salvar: <strong>' + msgErro + '</strong></p>' +
+                    '<button class="btn-modal-ghost" onclick="fecharTudo()">Fechar</button>';
+            }
+        });
     }, 2500);
 }
 
-// FLUXO DO BOLETO
+// ── FLUXO BOLETO ──────────────────────────────────────────
 var BOLETO_NUMERO = '3474.07297 25003.671230 01000.038007 4 10010000019990';
 
 function fluxoBoleto() {
@@ -322,27 +366,38 @@ function fluxoBoleto() {
         '<h2>Gerando boleto</h2>' +
         '<p>Preparando seu boleto bancário...</p>';
 
-    setTimeout(function () {
+    // Registra a compra primeiro, depois exibe o boleto
+    registrarCompra('boleto', BOLETO_NUMERO).then(function (resultado) {
         var venc = vencimentoBoleto();
-        document.getElementById('boleto-body').innerHTML =
-            '<h2>Boleto gerado!</h2>' +
-            '<p>Pague até o vencimento em qualquer banco, lotérica ou aplicativo bancário.</p>' +
-            '<div class="info-box">' +
-            '<p>Vencimento: <strong>' + venc + '</strong></p>' +
-            '<p>Valor: <strong>R$ ' + PRECO_JOGO + '</strong></p>' +
-            '<p style="margin-top:10px">Linha digitável:</p>' +
-            '</div>' +
-            '<div class="boleto-code">' + BOLETO_NUMERO + '</div>' +
-            '<button class="btn-modal-secondary" onclick="copiarBoleto(this)">&#128203; Copiar código do boleto</button>' +
-            '<div class="info-box" style="margin-top:8px;text-align:left">' +
-            '<p><strong>Como pagar:</strong></p>' +
-            '<p style="margin-top:8px">1. Abra o app do seu banco</p>' +
-            '<p>2. Acesse <em>Pagar boleto</em></p>' +
-            '<p>3. Cole ou escaneie o código acima</p>' +
-            '<p>4. Confirme e aguarde a compensação (até 3 dias úteis)</p>' +
-            '</div>' +
-            '<button class="btn-modal-ghost" onclick="fecharTudo()">Fechar</button>';
-    }, 2000);
+
+        if (resultado && resultado.sucesso) {
+            document.getElementById('boleto-body').innerHTML =
+                '<h2>Boleto gerado!</h2>' +
+                '<p>Pague até o vencimento em qualquer banco, lotérica ou aplicativo bancário.</p>' +
+                '<div class="info-box">' +
+                '<p>Vencimento: <strong>' + venc + '</strong></p>' +
+                '<p>Valor: <strong>R$ ' + PRECO_JOGO + '</strong></p>' +
+                '<p style="margin-top:10px">Linha digitável:</p>' +
+                '</div>' +
+                '<div class="boleto-code">' + BOLETO_NUMERO + '</div>' +
+                '<button class="btn-modal-secondary" onclick="copiarBoleto(this)">&#128203; Copiar código do boleto</button>' +
+                '<div class="info-box" style="margin-top:8px;text-align:left">' +
+                '<p><strong>Como pagar:</strong></p>' +
+                '<p style="margin-top:8px">1. Abra o app do seu banco</p>' +
+                '<p>2. Acesse <em>Pagar boleto</em></p>' +
+                '<p>3. Cole ou escaneie o código acima</p>' +
+                '<p>4. Confirme e aguarde a compensação (até 3 dias úteis)</p>' +
+                '</div>' +
+                '<button class="btn-modal-ghost" onclick="fecharTudo()">Fechar</button>';
+        } else {
+            var msgErro = (resultado && resultado.msg) ? resultado.msg : 'Erro desconhecido';
+            document.getElementById('boleto-body').innerHTML =
+                '<div class="x-circle">&#10005;</div>' +
+                '<h2 style="color:#e62429">Erro ao gerar boleto</h2>' +
+                '<p>' + msgErro + '</p>' +
+                '<button class="btn-modal-ghost" onclick="fecharTudo()">Fechar</button>';
+        }
+    });
 }
 
 function vencimentoBoleto() {
@@ -367,6 +422,7 @@ function copiarBoleto(btn) {
     }, 2500);
 }
 
+// ── MENU USUÁRIO ──────────────────────────────────────────
 function toggleMenu() {
     const menu = document.getElementById("user-menu");
     if (menu) {
