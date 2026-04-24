@@ -16,7 +16,7 @@
             </div>
 
             <div class="user-box" onclick="toggleMenu()">
-                <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+                <img src="../uploads/<?php echo $usuario['url_foto']; ?>?v=<?php echo time(); ?>" class="user-img">
                 <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
                 <div id="user-menu" class="user-menu">

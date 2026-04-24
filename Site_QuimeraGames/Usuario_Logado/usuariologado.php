@@ -24,6 +24,11 @@ if (isset($_SESSION['id_user'])) {
 $logado = isset($_SESSION['usuario_nome']);
 $link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
 
+$stmt_user = $pdo->prepare("SELECT url_foto FROM cadastro WHERE email = :email");
+$stmt_user->bindParam(":email", $_SESSION['usuario_email']);
+$stmt_user->execute();
+$usuario = $stmt_user->fetch(PDO::FETCH_ASSOC);
+
 if (!isset($pdo)) {
   die("Erro: A variável de conexão \$pdo não foi encontrada no conexa.php.");
 }
@@ -94,7 +99,11 @@ try {
         </div>
 
         <div class="user-box" onclick="toggleMenu()">
-          <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+          
+          <img src="<?php echo !empty($usuario['url_foto']) 
+  ? '../uploads/' . $usuario['url_foto'] . '?v=' . time()
+  : '../imagens/aidento.jpg'; ?>" class="user-img">
+
           <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
           <div id="user-menu" class="user-menu">

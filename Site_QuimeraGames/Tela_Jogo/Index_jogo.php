@@ -23,6 +23,11 @@ try {
     $media_nota = '0.0';
 }
 
+$stmt_user = $pdo->prepare("SELECT url_foto FROM cadastro WHERE email = :email");
+$stmt_user->bindParam(":email", $_SESSION['usuario_email']);
+$stmt_user->execute();
+$usuario = $stmt_user->fetch(PDO::FETCH_ASSOC);
+
 // 3. Definições de sessão e badges
 $logado = isset($_SESSION['usuario_nome']);
 $id_user_logado = $_SESSION['id_user'] ?? 0;
@@ -133,7 +138,9 @@ try {
                 </div>
 
                 <div class="user-box" onclick="toggleMenu()">
-                    <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+                    <img src="<?php echo !empty($usuario['url_foto']) 
+  ? '../uploads/' . $usuario['url_foto'] . '?v=' . time()
+  : '../imagens/aidento.jpg'; ?>" class="user-img">
                     <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
                     <div id="user-menu" class="user-menu">

@@ -30,6 +30,7 @@ $biblioteca = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+
     <?php include '../includes/header_index.php'; ?>
 
     <main class="container" style="margin-top: 100px;">
