@@ -31,7 +31,9 @@ $biblioteca = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 
-    <?php include '../includes/header_index.php'; ?>
+<header>
+    <?php include_once '../header_global/header_index.php' ?>
+</header>
 
     <main class="container" style="margin-top: 100px;">
         <h2>Minha Biblioteca</h2>
