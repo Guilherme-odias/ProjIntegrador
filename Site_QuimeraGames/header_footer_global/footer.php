@@ -1,0 +1,1 @@
+<footer class="rodape-universal">QuimeraGames &copy; 2026</footer>

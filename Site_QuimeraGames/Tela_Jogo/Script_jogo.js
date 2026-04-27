@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('btn-add-carrinho')?.addEventListener('click', () => gerenciarAcao('add_carrinho'));
     document.getElementById('btn-add-wishlist')?.addEventListener('click', () => gerenciarAcao('add_wishlist'));
-    
+
     document.getElementById('btn-comprar-agora')?.addEventListener('click', () => {
         if (!logado) {
             window.location.href = '../Entrar/Entrar.php';
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (jaTemDesconto && inputCupom) {
         inputCupom.placeholder = "Promoção ativa (Cupom indisponível)";
         inputCupom.disabled = true;
-        if(btnCupom) btnCupom.disabled = true;
+        if (btnCupom) btnCupom.disabled = true;
     }
 
     btnCupom?.addEventListener('click', () => {
@@ -147,5 +147,20 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+});
 
-}   );
+function toggleMenu() {
+    const menu = document.getElementById("user-menu");
+    if (menu) {
+        menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+}
+
+// Fecha o menu se clicar fora
+document.addEventListener("click", function (e) {
+    const userBox = document.querySelector(".user-box");
+    const menu = document.getElementById("user-menu");
+    if (userBox && menu && !userBox.contains(e.target)) {
+        menu.style.display = "none";
+    }
+});
