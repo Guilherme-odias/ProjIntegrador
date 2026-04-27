@@ -7,7 +7,6 @@ $logado = isset($_SESSION['usuario_nome']);
 $id_user = $_SESSION['id_user'] ?? 0;
 $email_user = $_SESSION['usuario_email'] ?? '';
 
-<<<<<<< HEAD
 $usuario = [];
 
 if ($id_user > 0) {
@@ -16,9 +15,6 @@ if ($id_user > 0) {
     $usuario = $stmt_user->fetch(PDO::FETCH_ASSOC) ?? [];
 }
 
-=======
-// 2. Inicializa variáveis para evitar erros no header
->>>>>>> 535cc67a270ac6aeb994a59032734eea96fabf79
 $qtd_carrinho = 0;
 $qtd_wishlist = 0;
 $usuario = ['url_foto' => ''];
@@ -62,7 +58,6 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
 
 <body>
 
-<<<<<<< HEAD
     <header class="topo-universal">
         <div class="topo-esquerda">
             <a href="<?php echo $link_home; ?>"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
@@ -106,10 +101,6 @@ class="user-img" alt="Avatar">
             <?php endif; ?>
             <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
         </div>
-=======
-    <header>
-        <?php include '../header_footer_global/header.php'; ?>
->>>>>>> 535cc67a270ac6aeb994a59032734eea96fabf79
     </header>
 
     <div class="wish-container">

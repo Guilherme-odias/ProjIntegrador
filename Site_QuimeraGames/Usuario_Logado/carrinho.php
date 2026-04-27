@@ -7,7 +7,6 @@ $logado = isset($_SESSION['usuario_nome']);
 $id_user = $_SESSION['id_user'] ?? 0;
 $email_user = $_SESSION['usuario_email'] ?? '';
 
-<<<<<<< HEAD
 $usuario = [];
 
 if ($id_user > 0) {
@@ -17,9 +16,6 @@ if ($id_user > 0) {
 }
 
 // CONTAGEM PARA OS BADGES
-=======
-// 2. Inicializa variáveis
->>>>>>> 535cc67a270ac6aeb994a59032734eea96fabf79
 $qtd_carrinho = 0;
 $qtd_wishlist = 0;
 $usuario = ['url_foto' => '']; // Valor inicial vazio
@@ -66,7 +62,6 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
     <header>
         <?php include '../header_footer_global/header.php'; ?>
 
-<<<<<<< HEAD
         <div class="topo-direita">
             <?php if ($logado): ?>
                 <div style="position: relative; display: inline-block;">
@@ -103,8 +98,6 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
             <?php endif; ?>
             <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
         </div>
-=======
->>>>>>> 535cc67a270ac6aeb994a59032734eea96fabf79
     </header>
 
     <div class="cart-layout">
