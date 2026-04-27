@@ -66,12 +66,12 @@
             lb_titulo.AutoSize = true;
             lb_titulo.BackColor = Color.FromArgb(168, 3, 12);
             lb_titulo.FlatStyle = FlatStyle.Popup;
-            lb_titulo.Font = new Font("SansSerif", 14.2499981F, FontStyle.Italic, GraphicsUnit.Point, 2);
+            lb_titulo.Font = new Font("Microsoft Sans Serif", 14.2499981F, FontStyle.Italic, GraphicsUnit.Point, 2);
             lb_titulo.ForeColor = Color.FromArgb(234, 234, 234);
             lb_titulo.Location = new Point(193, 204);
             lb_titulo.Margin = new Padding(4, 0, 4, 0);
             lb_titulo.Name = "lb_titulo";
-            lb_titulo.Size = new Size(651, 22);
+            lb_titulo.Size = new Size(1645, 26);
             lb_titulo.TabIndex = 1;
             lb_titulo.Text = "Escolha um Jogo Aleatório da sua Biblioteca Quimera, ou da  Própria Loja ";
             // 
@@ -84,7 +84,7 @@
             txt_user.Location = new Point(193, 391);
             txt_user.Margin = new Padding(4);
             txt_user.Name = "txt_user";
-            txt_user.Size = new Size(651, 23);
+            txt_user.Size = new Size(651, 27);
             txt_user.TabIndex = 2;
             txt_user.Tag = "";
             txt_user.TextChanged += txt_user_TextChanged;
@@ -178,6 +178,7 @@
             // 
             // grp_resultado
             // 
+            grp_resultado.Controls.Add(lb_cate);
             grp_resultado.Controls.Add(btn_jogar);
             grp_resultado.Controls.Add(btn_trailer);
             grp_resultado.Controls.Add(pt_image_jogo);
@@ -226,7 +227,7 @@
             cb_cate.FormattingEnabled = true;
             cb_cate.Location = new Point(463, 295);
             cb_cate.Name = "cb_cate";
-            cb_cate.Size = new Size(123, 27);
+            cb_cate.Size = new Size(123, 30);
             cb_cate.TabIndex = 10;
             // 
             // lb_cate
@@ -236,19 +237,18 @@
             lb_cate.BorderStyle = BorderStyle.Fixed3D;
             lb_cate.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb_cate.ForeColor = Color.FromArgb(234, 234, 234);
-            lb_cate.Location = new Point(477, 271);
+            lb_cate.Location = new Point(467, 267);
             lb_cate.Name = "lb_cate";
-            lb_cate.Size = new Size(95, 21);
+            lb_cate.Size = new Size(119, 25);
             lb_cate.TabIndex = 11;
             lb_cate.Text = "Categorias";
             // 
             // Sorteador
             // 
-            AutoScaleDimensions = new SizeF(9F, 19F);
+            AutoScaleDimensions = new SizeF(17F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
             ClientSize = new Size(1048, 618);
-            Controls.Add(lb_cate);
             Controls.Add(cb_cate);
             Controls.Add(grp_resultado);
             Controls.Add(btn_sortear);
@@ -257,7 +257,7 @@
             Controls.Add(txt_user);
             Controls.Add(lb_titulo);
             Controls.Add(pictureBox1);
-            Font = new Font("SansSerif", 12F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "Sorteador";
@@ -267,6 +267,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).EndInit();
             grp_resultado.ResumeLayout(false);
+            grp_resultado.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

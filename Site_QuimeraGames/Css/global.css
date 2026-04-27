@@ -1,0 +1,183 @@
+.topo-simples {
+    display: flex;
+    justify-content: flex-start;
+    /* Alinha a logo à esquerda */
+    align-items: center;
+    padding: 20px 5%;
+    /* Espaçamento interno */
+    background: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-auth {
+    width: 110px;
+    /* Tamanho ajustado para o canto */
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+    filter: drop-shadow(0 0 8px rgba(229, 9, 20, 0.2));
+}
+
+/* O Efeito "Interessante" ao passar o mouse */
+.logo-auth:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.7));
+}
+
+.topo-universal {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 15px 5% !important;
+    background: rgba(19, 32, 65, 0.95) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 999999 !important;
+}
+
+.topo-universal .logo {
+    width: 100px !important;
+    height: auto !important;
+    border-radius: 12px !important;
+}
+
+.topo-universal .topo-esquerda,
+.topo-universal .topo-direita {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+.topo-universal .btn-nav,
+.topo-universal .btn-login {
+    border: none !important;
+    color: white !important;
+    padding: 12px 24px !important;
+    border-radius: 25px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+}
+
+.topo-universal .btn-nav.active,
+.topo-universal .btn-login:hover {
+    background: #e62429 !important;
+}
+
+/* ÍCONES E USUÁRIO (Para ficar igualzinho à imagem 3) */
+.topo-universal .btn-icon {
+    background: transparent !important;
+    border: none !important;
+    font-size: 26px !important;
+    cursor: pointer !important;
+    color: white !important;
+    padding: 0 !important;
+}
+
+.topo-universal .user-box {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding: 6px 15px !important;
+    border-radius: 25px !important;
+    cursor: pointer !important;
+    position: relative !important;
+    transition: 0.3s !important;
+    /* MUDANÇA: Trava a altura para impedir a caixa gigante */
+    height: 44px !important;
+    box-sizing: border-box !important;
+}
+
+.topo-universal .user-box:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.topo-universal .user-img {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+}
+
+.topo-universal .user-nome {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin: 0 !important;
+    font-family: sans-serif !important;
+}
+
+/* DROPDOWN MENU */
+.topo-universal .user-menu {
+    position: absolute !important;
+    top: 55px !important;
+    /* Descola um pouco do botão */
+    right: 0 !important;
+    background: #13192b !important;
+    border-radius: 12px !important;
+    padding: 8px 0 !important;
+    width: 200px !important;
+    display: none;
+    /* Mantém oculto até o clique */
+    flex-direction: column !important;
+
+    /* Design moderno com borda sutil e sombra escura */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    z-index: 999999 !important;
+}
+
+.topo-universal .user-menu a {
+    padding: 12px 20px !important;
+    color: #d1d5db !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    transition: all 0.2s ease !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    border-left: 0px solid transparent !important;
+}
+
+.topo-universal .user-menu a:hover {
+    background: rgba(230, 36, 41, 0.1) !important;
+    /* Fundo vermelho bem suave */
+    color: white !important;
+    padding-left: 25px !important;
+    /* Empurra o texto levemente pra direita */
+    border-left: 3px solid #e62429 !important;
+}
+
+/* BADGES (Bolinhas Vermelhas) */
+.badge-bolinha {
+    background: #e62429 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    padding: 2px 6px !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+}
+
+/* RODAPÉ BLINDADO */
+.rodape-universal {
+    background: #111823 !important;
+    color: #cdd5e0 !important;
+    text-align: center !important;
+    padding: 30px !important;
+    border-top: 1px solid #30363d !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: auto !important;
+    font-family: sans-serif !important;
+}

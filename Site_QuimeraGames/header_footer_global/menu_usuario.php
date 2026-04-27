@@ -1,4 +1,4 @@
-<div id="user-menu" class="user-menu">
+<div id="user-menu-2" class="user-menu">
     <a href="../Conta/conta.php">Conta</a>
     <a href="../Pagamento/pagamento.php">Pagamento</a>
     <a href="../Usuario_Logado/wishlist.php">

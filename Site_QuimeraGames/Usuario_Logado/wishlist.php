@@ -2,8 +2,12 @@
 session_start();
 require_once '../conexa.php';
 
+// 1. Definições básicas de sessão
+$logado = isset($_SESSION['usuario_nome']);
 $id_user = $_SESSION['id_user'] ?? 0;
+$email_user = $_SESSION['usuario_email'] ?? '';
 
+<<<<<<< HEAD
 $usuario = [];
 
 if ($id_user > 0) {
@@ -12,24 +16,36 @@ if ($id_user > 0) {
     $usuario = $stmt_user->fetch(PDO::FETCH_ASSOC) ?? [];
 }
 
+=======
+// 2. Inicializa variáveis para evitar erros no header
+>>>>>>> 535cc67a270ac6aeb994a59032734eea96fabf79
 $qtd_carrinho = 0;
 $qtd_wishlist = 0;
-if ($id_user > 0) {
-    $stmt_conta_cart = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
-    $stmt_conta_cart->execute([$id_user]);
-    $qtd_carrinho = $stmt_conta_cart->fetchColumn();
+$usuario = ['url_foto' => ''];
 
-    $stmt_conta_wish = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
-    $stmt_conta_wish->execute([$id_user]);
-    $qtd_wishlist = $stmt_conta_wish->fetchColumn();
+if ($logado && $id_user > 0) {
+    // 3. BUSCA OS DADOS ATUALIZADOS DO USUÁRIO (Essencial para a foto de perfil)
+    $stmt_u = $pdo->prepare("SELECT * FROM cadastro WHERE email = ?");
+    $stmt_u->execute([$email_user]);
+    $usuario = $stmt_u->fetch(PDO::FETCH_ASSOC);
+
+    // 4. CONTAGEM PARA O BADGE DO CARRINHO
+    $stmt_c = $pdo->prepare("SELECT COUNT(*) FROM carrinho WHERE id_usuario = ?");
+    $stmt_c->execute([$id_user]);
+    $qtd_carrinho = $stmt_c->fetchColumn();
+
+    // 5. CONTAGEM PARA O BADGE DA LISTA DE DESEJOS
+    $stmt_w = $pdo->prepare("SELECT COUNT(*) FROM lista_desejos WHERE id_user = ?");
+    $stmt_w->execute([$id_user]);
+    $qtd_wishlist = $stmt_w->fetchColumn();
 }
 
-$query = "SELECT j.* FROM jogos j INNER JOIN lista_desejos ld ON j.id_play = ld.id_play WHERE ld.id_user = :u";
-$stmt = $pdo->prepare($query);
-$stmt->execute(['u' => $id_user]);
-$itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// 6. Lógica específica da página (exemplo para a Wishlist)
+$query_itens = "SELECT j.* FROM jogos j INNER JOIN lista_desejos ld ON j.id_play = ld.id_play WHERE ld.id_user = :u";
+$stmt_itens = $pdo->prepare($query_itens);
+$stmt_itens->execute(['u' => $id_user]);
+$itens = $stmt_itens->fetchAll(PDO::FETCH_ASSOC);
 
-$logado = isset($_SESSION['usuario_nome']);
 $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
 ?>
 
@@ -41,10 +57,12 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
     <title>Minha Lista de Desejos - QuimeraGames</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="wishlist_carrinho.css">
+    <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
 
+<<<<<<< HEAD
     <header class="topo-universal">
         <div class="topo-esquerda">
             <a href="<?php echo $link_home; ?>"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
@@ -88,6 +106,10 @@ class="user-img" alt="Avatar">
             <?php endif; ?>
             <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
         </div>
+=======
+    <header>
+        <?php include '../header_footer_global/header.php'; ?>
+>>>>>>> 535cc67a270ac6aeb994a59032734eea96fabf79
     </header>
 
     <div class="wish-container">
@@ -124,20 +146,8 @@ class="user-img" alt="Avatar">
         <?php endif; ?>
     </div>
 
-    <footer class="rodape-universal">QuimeraGames &copy; 2026</footer>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById("user-menu");
-            if (menu) menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-        }
-        document.addEventListener("click", function (e) {
-            const userBox = document.querySelector(".user-box");
-            const menu = document.getElementById("user-menu");
-            if (userBox && menu && !userBox.contains(e.target)) menu.style.display = "none";
-        });
-    </script>
-
+    <?php include '../header_footer_global/footer.php'; ?>
+    <script src="../Usuario_Logado/script.js" defer></script>
 </body>
 
 </html>

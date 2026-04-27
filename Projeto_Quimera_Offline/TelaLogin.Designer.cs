@@ -43,11 +43,11 @@
             // label1
             // 
             label1.BackColor = Color.FromArgb(10, 15, 28);
-            label1.Font = new Font("SansSerif", 20F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            label1.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 2);
             label1.ForeColor = Color.Transparent;
-            label1.Location = new Point(282, 53);
+            label1.Location = new Point(322, 71);
             label1.Name = "label1";
-            label1.Size = new Size(151, 50);
+            label1.Size = new Size(173, 67);
             label1.TabIndex = 0;
             label1.Text = "LOGIN";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -57,9 +57,10 @@
             Login.BackColor = Color.FromArgb(168, 3, 12);
             Login.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Login.ForeColor = SystemColors.ButtonHighlight;
-            Login.Location = new Point(246, 300);
+            Login.Location = new Point(281, 400);
+            Login.Margin = new Padding(3, 4, 3, 4);
             Login.Name = "Login";
-            Login.Size = new Size(88, 38);
+            Login.Size = new Size(101, 51);
             Login.TabIndex = 1;
             Login.Text = "LOGIN";
             Login.UseVisualStyleBackColor = false;
@@ -70,9 +71,10 @@
             button2.BackColor = Color.FromArgb(168, 3, 12);
             button2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(359, 300);
+            button2.Location = new Point(410, 400);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(111, 38);
+            button2.Size = new Size(127, 51);
             button2.TabIndex = 2;
             button2.Text = "CADASTRO";
             button2.UseVisualStyleBackColor = false;
@@ -80,17 +82,19 @@
             // 
             // textEmail
             // 
-            textEmail.Location = new Point(246, 161);
+            textEmail.Location = new Point(281, 215);
+            textEmail.Margin = new Padding(3, 4, 3, 4);
             textEmail.Name = "textEmail";
-            textEmail.Size = new Size(224, 23);
+            textEmail.Size = new Size(255, 27);
             textEmail.TabIndex = 3;
             // 
             // textSenha
             // 
-            textSenha.Location = new Point(246, 251);
+            textSenha.Location = new Point(281, 335);
+            textSenha.Margin = new Padding(3, 4, 3, 4);
             textSenha.Name = "textSenha";
             textSenha.PasswordChar = '*';
-            textSenha.Size = new Size(224, 23);
+            textSenha.Size = new Size(255, 27);
             textSenha.TabIndex = 4;
             textSenha.TextChanged += textSenha_TextChanged;
             // 
@@ -99,9 +103,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(246, 221);
+            label2.Location = new Point(281, 295);
             label2.Name = "label2";
-            label2.Size = new Size(63, 21);
+            label2.Size = new Size(75, 23);
             label2.TabIndex = 5;
             label2.Text = "SENHA";
             // 
@@ -110,18 +114,19 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(246, 131);
+            label3.Location = new Point(281, 175);
             label3.Name = "label3";
-            label3.Size = new Size(111, 21);
+            label3.Size = new Size(139, 23);
             label3.TabIndex = 6;
             label3.Text = "Email ou User";
             // 
             // verSenha
             // 
             verSenha.AutoSize = true;
-            verSenha.Location = new Point(476, 255);
+            verSenha.Location = new Point(544, 340);
+            verSenha.Margin = new Padding(3, 4, 3, 4);
             verSenha.Name = "verSenha";
-            verSenha.Size = new Size(15, 14);
+            verSenha.Size = new Size(18, 17);
             verSenha.TabIndex = 9;
             verSenha.UseVisualStyleBackColor = true;
             verSenha.CheckedChanged += checkBox1_CheckedChanged;
@@ -132,9 +137,9 @@
             esqueciSenha.Cursor = Cursors.Hand;
             esqueciSenha.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
             esqueciSenha.ForeColor = SystemColors.HotTrack;
-            esqueciSenha.Location = new Point(282, 352);
+            esqueciSenha.Location = new Point(322, 469);
             esqueciSenha.Name = "esqueciSenha";
-            esqueciSenha.Size = new Size(137, 15);
+            esqueciSenha.Size = new Size(172, 20);
             esqueciSenha.TabIndex = 10;
             esqueciSenha.Text = "ESQUECI MINHA SENHA";
             esqueciSenha.Visible = false;
@@ -142,10 +147,10 @@
             // 
             // TelaLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 15, 28);
-            ClientSize = new Size(733, 551);
+            ClientSize = new Size(838, 735);
             Controls.Add(esqueciSenha);
             Controls.Add(verSenha);
             Controls.Add(label3);
@@ -156,6 +161,7 @@
             Controls.Add(Login);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "TelaLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaLogin";
