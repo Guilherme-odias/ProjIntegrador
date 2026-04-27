@@ -4,6 +4,14 @@ require_once '../conexa.php';
 
 $id_user = $_SESSION['id_user'] ?? 0;
 
+$usuario = [];
+
+if ($id_user > 0) {
+    $stmt_user = $pdo->prepare("SELECT url_foto FROM cadastro WHERE id_user = ?");
+    $stmt_user->execute([$id_user]);
+    $usuario = $stmt_user->fetch(PDO::FETCH_ASSOC) ?? [];
+}
+
 // CONTAGEM PARA OS BADGES
 $qtd_carrinho = 0;
 $qtd_wishlist = 0;
@@ -57,7 +65,11 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
                 </div>
 
                 <div class="user-box" onclick="toggleMenu()">
-                    <img src="../imagens/aidento.jpg" class="user-img" alt="Avatar">
+                    <img src="<?php echo !empty($usuario['url_foto']) 
+                        ? '../uploads/' . $usuario['url_foto'] . '?v=' . time()
+                         : '../imagens/aidento.jpg'; ?>" 
+                    class="user-img" alt="Avatar">
+
                     <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
                     <div id="user-menu" class="user-menu">
