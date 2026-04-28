@@ -49,7 +49,7 @@ $nomes_categorias = [
 try {
   // ... (Sua lógica try/catch de consulta dos jogos permanece exatamente igual)
   if ($categoria > 0) {
-    $stmt = $pdo->prepare("SELECT j.*, COUNT(c.id_play) as total_vendas FROM jogos j LEFT JOIN compra c ON j.id_play = c.id_play WHERE j.id_categoria = :categoria GROUP BY j.id_play ORDER BY total_vendas DESC LIMIT 20");
+    $stmt = $pdo->prepare("SELECT j.*, COUNT(c.id_play) as total_vendas FROM jogos j LEFT JOIN compra c ON j.id_play = c.id_play WHERE j.id_categoria = :categoria GROUP BY j.id_play ORDER BY total_vendas DESC LIMIT 12");
     $stmt->bindParam(":categoria", $categoria, PDO::PARAM_INT);
   } else {
     $stmt = $pdo->prepare("SELECT j.*, COUNT(c.id_play) as total_vendas FROM jogos j LEFT JOIN compra c ON j.id_play = c.id_play GROUP BY j.id_play ORDER BY total_vendas DESC LIMIT 20");
