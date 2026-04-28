@@ -1,8 +1,98 @@
-<?php
-// O SESSION START DEVE SER A PRIMEIRA LINHA
-session_start();
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - QuimeraGames</title>
+    <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="cStyles.css?v=<?php echo time(); ?>">
+</head>
+
+<body>
+
+    <?php
+    session_start();
 require_once '../conexa.php';
 
+    include '../header_footer_global/header_simples.php'; ?>
+
+    <main class="main-cadastro">
+        <div class="container-animado">
+            <form class="card-cadastro" method="POST" onsubmit="return validarForm()">
+
+                <input type="hidden" id="comum" name="comum" value="comum">
+
+                <h1>Crie sua Conta</h1>
+
+                <div class="input-group">
+                    <input type="email" placeholder=" " id="email" name="email" required autocomplete="off">
+                    <label>Email</label>
+                </div>
+
+                <div class="row-inputs">
+                    <div class="input-group">
+                        <input type="text" placeholder=" " id="nome" name="nome" required autocomplete="off">
+                        <label>Nome</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" placeholder=" " id="user" name="user" required autocomplete="off">
+                        <label>Usuário</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" placeholder=" " id="cpf" name="cpf" maxlength="14" required autocomplete="off">
+                    <label>CPF</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" placeholder=" " id="senha" name="senha" required>
+                    <label>Senha</label>
+
+                    <div class="lembrar-cadastro">
+                        <input type="checkbox" id="togglePassword">
+                        <label for="togglePassword" title="Mostrar Senha" class="label-olho">
+                            <img src="../imagens/olho_fechado.png" id="iconFechado" class="icone-senha visivel"
+                                alt="Oculto">
+                            <span id="iconAberto" class="icone-senha oculto">👁️</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" placeholder=" " id="confirme" name="confirme" required>
+                    <label>Confirmar senha</label>
+                </div>
+
+                <button class="btn" id="btn" type="submit"
+                    onclick="setTimeout(() => this.disabled=true, 10);">Cadastrar</button>
+
+                <div class="footer-voltar">
+                    <button type="button" class="btnVoltar" onclick="window.history.back()">❮</button>
+                    <span class="labelVoltar">Voltar</span>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="primeira_cadastre">
+            <label class="primeira">Já tem uma conta? Faça login para continuar.</label>
+            <button class="cad" onclick="window.location.href='../Entrar/Entrar.php'">Entrar</button>
+        </div>
+
+        <div class="texto">
+            <p>É gratuito e fácil. Descubra milhares de jogos para jogar com milhões de novos amigos.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <?php
 $tipo_comum = "comum";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -88,94 +178,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - QuimeraGames</title>
-    <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="cStyles.css?v=<?php echo time(); ?>">
-</head>
-
-<body>
-
-    <?php include '../header_footer_global/header_simples.php'; ?>
-
-    <main class="main-cadastro">
-        <div class="container-animado">
-            <form class="card-cadastro" method="POST" onsubmit="return validarForm()">
-
-                <input type="hidden" id="comum" name="comum" value="comum">
-
-                <h1>Crie sua Conta</h1>
-
-                <div class="input-group">
-                    <input type="email" placeholder=" " id="email" name="email" required autocomplete="off">
-                    <label>Email</label>
-                </div>
-
-                <div class="row-inputs">
-                    <div class="input-group">
-                        <input type="text" placeholder=" " id="nome" name="nome" required autocomplete="off">
-                        <label>Nome</label>
-                    </div>
-
-                    <div class="input-group">
-                        <input type="text" placeholder=" " id="user" name="user" required autocomplete="off">
-                        <label>Usuário</label>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <input type="text" placeholder=" " id="cpf" name="cpf" maxlength="14" required autocomplete="off">
-                    <label>CPF</label>
-                </div>
-
-                <div class="input-group">
-                    <input type="password" placeholder=" " id="senha" name="senha" required>
-                    <label>Senha</label>
-
-                    <div class="lembrar-cadastro">
-                        <input type="checkbox" id="togglePassword">
-                        <label for="togglePassword" title="Mostrar Senha" class="label-olho">
-                            <img src="../imagens/olho_fechado.png" id="iconFechado" class="icone-senha visivel"
-                                alt="Oculto">
-                            <span id="iconAberto" class="icone-senha oculto">👁️</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <input type="password" placeholder=" " id="confirme" name="confirme" required>
-                    <label>Confirmar senha</label>
-                </div>
-
-                <button class="btn" id="btn" type="submit"
-                    onclick="setTimeout(() => this.disabled=true, 10);">Cadastrar</button>
-
-                <div class="footer-voltar">
-                    <button type="button" class="btnVoltar" onclick="window.history.back()">❮</button>
-                    <span class="labelVoltar">Voltar</span>
-                </div>
-            </form>
-        </div>
-    </main>
-
-    <footer class="rodape">
-        <div class="primeira_cadastre">
-            <label class="primeira">Já tem uma conta? Faça login para continuar.</label>
-            <button class="cad" onclick="window.location.href='../Entrar/Entrar.php'">Entrar</button>
-        </div>
-
-        <div class="texto">
-            <p>É gratuito e fácil. Descubra milhares de jogos para jogar com milhões de novos amigos.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 
     <script>
         const toggle = document.getElementById("togglePassword");
