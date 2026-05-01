@@ -156,16 +156,21 @@
 }
 
 .rodape-universal {
-    background: #111823 !important;
-    color: #cdd5e0 !important;
-    text-align: center !important;
-    padding: 30px !important;
-    border-top: 1px solid #30363d !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-top: auto !important;
-    font-family: sans-serif !important;
+    background: #020817;
+    padding: 30px 20px;
+    text-align: center;
+    border-top: 2px solid #e62429;
+    font-family: 'Poppins', sans-serif;
 }
+.footer-content p { color: #888; margin-bottom: 10px; }
+.footer-links { display: flex; justify-content: center; gap: 20px; }
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.footer-links a:hover { color: #e62429; }
 
 .coin-container {
     display: flex;
