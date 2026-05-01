@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -15,13 +13,13 @@
 
     <?php
     session_start();
-require_once '../conexa.php';
+    require_once '../conexa.php';
 
     include '../header_footer_global/header_simples.php'; ?>
 
     <main class="main-cadastro">
         <div class="container-animado">
-            <form class="card-cadastro" method="POST" onsubmit="return validarForm()">
+            <form class="card-cadastro" method="POST" onsubmit="return validarSenha()">
 
                 <input type="hidden" id="comum" name="comum" value="comum">
 
@@ -93,91 +91,160 @@ require_once '../conexa.php';
     <script src="script.js"></script>
 
     <?php
-$tipo_comum = "comum";
+    $tipo_comum = "comum";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email = $_POST['email'] ?? '';
-    $comum = $_POST['comum'] ?? $tipo_comum;
-    $nome = $_POST['nome'] ?? '';
-    $user = $_POST['user'] ?? '';
-    $cpf = $_POST['cpf'] ?? '';
-    $senha = $_POST['senha'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $comum = $_POST['comum'] ?? $tipo_comum;
+        $nome = $_POST['nome'] ?? '';
+        $user = $_POST['user'] ?? '';
+        $cpf = $_POST['cpf'] ?? '';
+        $senha = $_POST['senha'] ?? '';
 
-    // Validação Email
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE email = ?");
-    $stmt->execute([$email]);
-    if ($stmt->fetchColumn() > 0) {
-        echo "<script>alert('Email já cadastrado!');</script>";
-    } else {
-        // Validação User
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE nome_user = ?");
-        $stmt->execute([$user]);
+        // Validação Email
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE email = ?");
+        $stmt->execute([$email]);
         if ($stmt->fetchColumn() > 0) {
-            echo "<script>alert('Usuário já existe!');</script>";
+            echo "<script>alert('Email já cadastrado!');</script>";
         } else {
-            // Validação CPF
-            $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE cpf = ?");
-            $stmt->execute([$cpf]);
+            // Validação User
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE nome_user = ?");
+            $stmt->execute([$user]);
             if ($stmt->fetchColumn() > 0) {
-                echo "<script>alert('CPF já cadastrado!');</script>";
+                echo "<script>alert('Usuário já existe!');</script>";
             } else {
+                // Validação CPF
+                $stmt = $pdo->prepare("SELECT COUNT(*) FROM cadastro WHERE cpf = ?");
+                $stmt->execute([$cpf]);
+                if ($stmt->fetchColumn() > 0) {
+                    echo "<script>alert('CPF já cadastrado!');</script>";
+                } else {
 
-                // Gerar o codigo
-                $codigo = rand(100000, 999999);
+                    // Gerar o codigo
+                    $codigo = rand(100000, 999999);
 
-                // Salvar os dados em uma sessão
-                $_SESSION['cadastro'] = [
-                    'email' => $email,
-                    'comum' => $comum,
-                    'nome' => $nome,
-                    'user' => $user,
-                    'senha' => $senha,
-                    'cpf' => $cpf
-                ];
+                    // Salvar os dados em uma sessão
+                    $_SESSION['cadastro'] = [
+                        'email' => $email,
+                        'comum' => $comum,
+                        'nome' => $nome,
+                        'user' => $user,
+                        'senha' => $senha,
+                        'cpf' => $cpf
+                    ];
 
-                $_SESSION['codigo_verificacao'] = $codigo;
-                $_SESSION['email_verificacao'] = $email;
+                    $_SESSION['codigo_verificacao'] = $codigo;
+                    $_SESSION['email_verificacao'] = $email;
 
-                require_once '../PHPMailer/src/PHPMailer.php';
-                require_once '../PHPMailer/src/SMTP.php';
-                require_once '../PHPMailer/src/Exception.php';
+                    require_once '../PHPMailer/src/PHPMailer.php';
+                    require_once '../PHPMailer/src/SMTP.php';
+                    require_once '../PHPMailer/src/Exception.php';
 
-                $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+                    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
-                try {
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.gmail.com';
-                    $mail->SMTPAuth = true;
-                    $mail->Username = 'quimeraggames@gmail.com';
-                    $mail->Password = 'okvj nqpq jgqk cexh';
-                    $mail->SMTPSecure = 'tls';
-                    $mail->Port = 587;
+                    $mail->CharSet = 'UTF-8';
 
-                    $mail->setFrom('quimeraggames@gmail.com', 'Quimera');
-                    $mail->addAddress($email);
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host = 'smtp.gmail.com';
+                        $mail->SMTPAuth = true;
+                        $mail->Username = 'quimeraggames@gmail.com';
+                        $mail->Password = 'okvj nqpq jgqk cexh';
+                        $mail->SMTPSecure = 'tls';
+                        $mail->Port = 587;
 
-                    $mail->isHTML(true);
-                    $mail->Subject = 'Verification code';
-                    $mail->Body = "
-                        <h2>Bem-vindo a Quimera 🚀</h2>
-                        <p>Seu código de verificação é:</p>
-                        <h1 style='color:red;'>$codigo</h1>
-                    ";
+                        $mail->setFrom('quimeraggames@gmail.com', 'Quimera');
+                        $mail->addAddress($email);
 
-                    $mail->send();
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Código de verificação - Quimera';
 
-                    header("Location: ../Verificar_email/index.php");
-                    exit;
+                        // 🔥 EMBUTIR A LOGO (CAMINHO ABSOLUTO PRA EVITAR ERRO)
+                        $mail->addEmbeddedImage(__DIR__ . '/../imagens/logo.png', 'logo_cid', 'logo.png');
 
-                } catch (Exception $e) {
-                    echo "<script>alert('Erro ao enviar email: {$mail->ErrorInfo}');</script>";
+                        $mail->Body = "
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+<meta charset='UTF-8'>
+</head>
+
+<body style='margin:0; padding:0; background:#f2f2f2; font-family:Arial, sans-serif;'>
+
+<table width='100%' bgcolor='#f2f2f2' cellpadding='0' cellspacing='0'>
+<tr>
+<td align='center'>
+
+    <!-- CARD -->
+    <table width='500' cellpadding='0' cellspacing='0' style='background:#ffffff; margin-top:40px; border-radius:8px; padding:30px;'>
+
+        <!-- LOGO -->
+        <tr>
+            <td align='center' style='padding-bottom:20px;'>
+                <img src='cid:logo_cid' width='120'>
+            </td>
+        </tr>
+
+        <!-- TITULO -->
+        <tr>
+            <td style='font-size:22px; font-weight:bold; text-align:left; padding-bottom:20px;'>
+                Seu código de verificação
+            </td>
+        </tr>
+
+        <!-- CODIGO -->
+        <tr>
+            <td align='center' style='padding:20px 0;'>
+                <div style='background:#f4f4f4; padding:20px; border-radius:8px; font-size:28px; font-weight:bold; letter-spacing:3px;'>
+                    $codigo
+                </div>
+            </td>
+        </tr>
+
+        <!-- TEXTO -->
+        <tr>
+            <td style='font-size:14px; color:#555; padding-top:10px; line-height:1.6;'>
+                Olá, <b>$nome</b>,<br><br>
+                Você solicitou um código para acessar sua conta na <b>Quimera Games</b>.<br>
+                Use o código acima para concluir o login.<br><br>
+
+                ⚠️ Este código expira em alguns minutos.<br><br>
+
+                Se não foi você, recomendamos alterar sua senha imediatamente.
+            </td>
+        </tr>
+
+        <!-- RODAPE -->
+        <tr>
+            <td style='font-size:12px; color:#999; padding-top:30px; text-align:center;'>
+                © 2026 Quimera Games<br>
+                Todos os direitos reservados.
+            </td>
+        </tr>
+
+    </table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+";
+                        $mail->send();
+
+                        header("Location: ../Verificar_email/index.php");
+                        exit;
+
+                    } catch (Exception $e) {
+                        echo "<script>alert('Erro ao enviar email: {$mail->ErrorInfo}');</script>";
+                    }
                 }
             }
         }
     }
-}
-?>
+    ?>
 
     <script>
         const toggle = document.getElementById("togglePassword");

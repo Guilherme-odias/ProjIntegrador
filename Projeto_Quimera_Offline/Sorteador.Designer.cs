@@ -40,11 +40,11 @@
             lb_resposta = new Label();
             btn_nova = new Button();
             grp_resultado = new GroupBox();
+            lb_cate = new Label();
             btn_jogar = new Button();
             btn_trailer = new Button();
             timer_an = new System.Windows.Forms.Timer(components);
             cb_cate = new ComboBox();
-            lb_cate = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pt_image_jogo).BeginInit();
             grp_resultado.SuspendLayout();
@@ -194,8 +194,22 @@
             grp_resultado.Text = "groupBox1";
             grp_resultado.Visible = false;
             // 
+            // lb_cate
+            // 
+            lb_cate.AutoSize = true;
+            lb_cate.BackColor = Color.FromArgb(168, 3, 12);
+            lb_cate.BorderStyle = BorderStyle.Fixed3D;
+            lb_cate.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lb_cate.ForeColor = Color.FromArgb(234, 234, 234);
+            lb_cate.Location = new Point(467, 267);
+            lb_cate.Name = "lb_cate";
+            lb_cate.Size = new Size(119, 25);
+            lb_cate.TabIndex = 11;
+            lb_cate.Text = "Categorias";
+            // 
             // btn_jogar
             // 
+            btn_jogar.Font = new Font("Segoe UI", 10F);
             btn_jogar.Location = new Point(488, 333);
             btn_jogar.Name = "btn_jogar";
             btn_jogar.Size = new Size(75, 23);
@@ -229,19 +243,6 @@
             cb_cate.Name = "cb_cate";
             cb_cate.Size = new Size(123, 30);
             cb_cate.TabIndex = 10;
-            // 
-            // lb_cate
-            // 
-            lb_cate.AutoSize = true;
-            lb_cate.BackColor = Color.FromArgb(168, 3, 12);
-            lb_cate.BorderStyle = BorderStyle.Fixed3D;
-            lb_cate.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb_cate.ForeColor = Color.FromArgb(234, 234, 234);
-            lb_cate.Location = new Point(467, 267);
-            lb_cate.Name = "lb_cate";
-            lb_cate.Size = new Size(119, 25);
-            lb_cate.TabIndex = 11;
-            lb_cate.Text = "Categorias";
             // 
             // Sorteador
             // 

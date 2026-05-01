@@ -2,8 +2,27 @@
 session_start();
 require_once '../conexa.php';
 
+// 3. Definições de sessão e badges
+$logado = isset($_SESSION['usuario_nome']);
+$id_user_logado = $_SESSION['id_user'] ?? 0;
+$email_user = $_SESSION['usuario_email'] ?? '';
+
 // 1. Pega o ID do jogo da URL
 $id_jogo = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+// --- SISTEMA DE SORTEIO DE COIN (GAMIFICAÇÃO) ---
+$spawn_animal = false;
+if ($logado) {
+    $chance = rand(1, 100);
+    // 30% de chance de aparecer um mascote
+    if ($chance <= 100) {
+       $animais = ['bode.png', 'leao.png', 'cobra.png', 'dragao.png'];
+        $animal_sorteado = $animais[array_rand($animais)];
+        // Caminho da imagem (ajuste para a pasta onde você salvou as fotos deles)
+        $spawn_animal = '../imagens/' . $animal_sorteado;
+    }
+}
+// ------------------------------------------------
 
 if ($id_jogo === 0) {
     die("<h2 style='color:black; text-align:center; margin-top:50px; font-family:sans-serif;'>Jogo não encontrado na URL. Volte para a loja.</h2>");
@@ -19,11 +38,6 @@ try {
 } catch (PDOException $e) {
     $media_nota = '0.0';
 }
-
-// 3. Definições de sessão e badges
-$logado = isset($_SESSION['usuario_nome']);
-$id_user_logado = $_SESSION['id_user'] ?? 0;
-$email_user = $_SESSION['usuario_email'] ?? '';
 
 $link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
 $veio_do_desconto = isset($_GET['desconto']) && $_GET['desconto'] == '1';
@@ -127,6 +141,8 @@ try {
         <?php include '../header_footer_global/header.php'; ?>
         <?php include '../header_footer_global/menu_usuario.php'; ?>
     </header>
+
+    <div id="gamificacao-spawn" data-img="<?php echo $spawn_animal ? $spawn_animal : ''; ?>" style="display: none;"></div>
 
     <div class="container game-page-container">
         <div id="dados-sessao" data-logado="<?php echo $logado ? 'true' : 'false'; ?>"
@@ -291,10 +307,6 @@ try {
                         <p id="msg-cupom"></p>
                     </div>
 
-                    <button class="btn-action btn-steam" style="margin-top: 20px;"
-                        onclick="window.open('https://store.steampowered.com/', '_blank')">
-                        Ativar na Steam
-                    </button>
                     <p class="steam-aviso">Este produto é ativado via <strong>chave de ativação</strong></p>
                 </div>
 
@@ -317,7 +329,7 @@ try {
         </div>
     </div>
 
-<script>
+    <script>
         // Esta função garante que o menu vai abrir ao clicar na foto
         function toggleMenu() {
             const menu = document.getElementById("user-menu");
@@ -335,8 +347,9 @@ try {
             }
         });
     </script>
-    
+
     <script src="Script_jogo.js" defer></script>
     <?php include '../header_footer_global/footer.php'; ?>
 </body>
+
 </html>

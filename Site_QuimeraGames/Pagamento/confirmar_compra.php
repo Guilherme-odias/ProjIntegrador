@@ -3,35 +3,23 @@ session_start();
 require_once '../conexa.php';
 header('Content-Type: application/json');
 
-// Só aceita POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['sucesso' => false, 'msg' => 'Método inválido']);
     exit;
 }
 
-// Usuário precisa estar logado
-if (!isset($_SESSION['id_user'])) {
-    echo json_encode(['sucesso' => false, 'msg' => 'Usuário não autenticado']);
+if (!isset($_SESSION['id_user']) || !isset($_SESSION['id_jogo_compra'])) {
+    echo json_encode(['sucesso' => false, 'msg' => 'Sessão inválida ou não autenticado']);
     exit;
 }
 
-// Jogo precisa estar na sessão (definido em pagamento.php via GET)
-if (!isset($_SESSION['id_jogo_compra'])) {
-    echo json_encode(['sucesso' => false, 'msg' => 'Jogo não encontrado na sessão']);
-    exit;
-}
+$id_user = (int) $_SESSION['id_user'];
+$id_play = (int) $_SESSION['id_jogo_compra'];
+$metodo = trim($_POST['metodo'] ?? '');
+$usar_coins = isset($_POST['usar_coins']) && $_POST['usar_coins'] === '1';
 
-$id_user   = (int) $_SESSION['id_user'];
-$id_play   = (int) $_SESSION['id_jogo_compra'];
-$metodo    = trim($_POST['metodo'] ?? '');
-$codigo    = trim($_POST['codigo'] ?? '');   // código da transação (opcional, para log)
-
-// Mapeia o valor recebido do JS para o formato salvo no banco
-$forma_pgto_map = [
-    'cartao' => 'Crédito',
-    'pix'    => 'Pix',
-    'boleto' => 'Débito'
-];
+// Mapeia pagamento
+$forma_pgto_map = ['cartao' => 'Crédito', 'pix' => 'Pix', 'boleto' => 'Débito', 'coins' => 'Moedas'];
 $forma_pgto = $forma_pgto_map[$metodo] ?? '';
 
 if (empty($forma_pgto)) {
@@ -39,76 +27,54 @@ if (empty($forma_pgto)) {
     exit;
 }
 
-// Verifica se o jogo realmente existe
-try {
-    $stmt_check = $pdo->prepare("SELECT id_play FROM jogos WHERE id_play = :id LIMIT 1");
-    $stmt_check->execute([':id' => $id_play]);
-    if (!$stmt_check->fetch()) {
-        echo json_encode(['sucesso' => false, 'msg' => 'Jogo não encontrado no banco de dados']);
-        exit;
-    }
-} catch (PDOException $e) {
-    echo json_encode(['sucesso' => false, 'msg' => 'Erro ao verificar jogo: ' . $e->getMessage()]);
-    exit;
-}
-
-// Verifica se o usuário já possui esse jogo na biblioteca
-try {
-    $stmt_dup = $pdo->prepare("SELECT id_play FROM minha_biblioteca WHERE id_play = :id_play AND id_user = :id_user LIMIT 1");
-    $stmt_dup->execute([':id_play' => $id_play, ':id_user' => $id_user]);
-    if ($stmt_dup->fetch()) {
-        // Já possui — limpa sessão e responde como sucesso sem duplicar
-        unset($_SESSION['id_jogo_compra'], $_SESSION['preco_compra']);
-        echo json_encode(['sucesso' => true, 'msg' => 'Você já possui este jogo na biblioteca']);
-        exit;
-    }
-} catch (PDOException $e) {
-    echo json_encode(['sucesso' => false, 'msg' => 'Erro ao verificar biblioteca: ' . $e->getMessage()]);
-    exit;
-}
-
-// Insere na tabela compra e na minha_biblioteca dentro de uma transação
 try {
     $pdo->beginTransaction();
 
-    // 1) Registra a compra
-    $stmt_compra = $pdo->prepare("
-        INSERT INTO compra (id_play, id_user, forma_pgto, data_compra)
-        VALUES (:id_play, :id_user, :forma_pgto, NOW())
-    ");
-    $stmt_compra->execute([
-        ':id_play'    => $id_play,
-        ':id_user'    => $id_user,
-        ':forma_pgto' => $forma_pgto,
-    ]);
+    // 1. Busca saldo real do banco
+    $stmt_saldo = $pdo->prepare("SELECT coins FROM cadastro WHERE id_user = ?");
+    $stmt_saldo->execute([$id_user]);
+    $saldo_banco = (int) $stmt_saldo->fetchColumn();
 
-    // Captura o ID gerado pelo AUTO_INCREMENT da tabela compra
+    $preco_original = (float) $_SESSION['preco_compra'];
+    $moedas_usadas = 0;
+    $valor_pago_real = $preco_original;
+
+    if ($usar_coins && $saldo_banco > 0) {
+        $valor_desconto = $saldo_banco * 0.01;
+
+        if ($valor_desconto >= $preco_original) {
+            $moedas_usadas = ceil($preco_original / 0.01);
+            $valor_pago_real = 0;
+        } else {
+            $moedas_usadas = $saldo_banco;
+            $valor_pago_real = $preco_original - $valor_desconto;
+        }
+    }
+
+    // 2. REGISTRA A COMPRA NO BANCO
+    $stmt_compra = $pdo->prepare("INSERT INTO compra (id_play, id_user, forma_pgto, data_compra) VALUES (?, ?, ?, NOW())");
+    $stmt_compra->execute([$id_play, $id_user, $forma_pgto]);
     $id_compra = (int) $pdo->lastInsertId();
 
-    // 2) Adiciona o jogo à biblioteca do usuário, linkando ao id_compra
-    $stmt_bib = $pdo->prepare("
-        INSERT IGNORE INTO minha_biblioteca (id_play, id_user, id_compra)
-        VALUES (:id_play, :id_user, :id_compra)
-    ");
-    $stmt_bib->execute([
-        ':id_play'   => $id_play,
-        ':id_user'   => $id_user,
-        ':id_compra' => $id_compra,
-    ]);
+    // 3. ENVIA O JOGO PARA A MINHA BIBLIOTECA
+    $stmt_bib = $pdo->prepare("INSERT IGNORE INTO minha_biblioteca (id_play, id_user) VALUES (?, ?)");
+    $stmt_bib->execute([$id_play, $id_user]);
+
+    // Opcional: Se o jogo estiver no carrinho, limpa ele após a compra
+    $stmt_limpa_carrinho = $pdo->prepare("DELETE FROM carrinho WHERE id_usuario = ? AND id_play = ?");
+    $stmt_limpa_carrinho->execute([$id_user, $id_play]);
+
+    // 4. ATUALIZAÇÃO FINAL DAS MOEDAS
+    $moedas_ganhas = floor($valor_pago_real);
+    $novo_saldo = ($saldo_banco - $moedas_usadas) + $moedas_ganhas;
+
+    $stmt_update = $pdo->prepare("UPDATE cadastro SET coins = ? WHERE id_user = ?");
+    $stmt_update->execute([$novo_saldo, $id_user]);
 
     $pdo->commit();
-
-    // Limpa dados temporários da sessão
-    unset($_SESSION['id_jogo_compra'], $_SESSION['preco_compra']);
-
-    echo json_encode([
-        'sucesso' => true,
-        'msg'     => 'Compra registrada com sucesso',
-        'codigo'  => $codigo   // devolve o código para o JS poder exibir se quiser
-    ]);
-
-} catch (PDOException $e) {
+    echo json_encode(['sucesso' => true, 'msg' => 'Compra realizada com sucesso!']);
+} catch (Exception $e) {
     $pdo->rollBack();
-    echo json_encode(['sucesso' => false, 'msg' => 'Erro ao registrar compra: ' . $e->getMessage()]);
+    echo json_encode(['sucesso' => false, 'msg' => 'Erro: ' . $e->getMessage()]);
 }
 ?>

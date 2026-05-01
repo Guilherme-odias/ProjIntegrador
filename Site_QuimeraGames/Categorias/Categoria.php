@@ -249,7 +249,7 @@ try {
     </div>
 
     <?php include '../header_footer_global/footer.php'; ?>
-    <script src="script_categorias.js"></script>
+    <script src="Script_categorias.js"></script>
     <script src="../Index/Script.js" defer></script>
 </body>
 

@@ -226,8 +226,6 @@ try {
 
   </div>
 
-
-
   <script src="script.js" defer></script>
   <script>
     function toggleMenu() {

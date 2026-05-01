@@ -1,10 +1,8 @@
 .topo-simples {
     display: flex;
     justify-content: flex-start;
-    /* Alinha a logo à esquerda */
     align-items: center;
     padding: 20px 5%;
-    /* Espaçamento interno */
     background: transparent;
     width: 100%;
     box-sizing: border-box;
@@ -16,14 +14,12 @@
 
 .logo-auth {
     width: 110px;
-    /* Tamanho ajustado para o canto */
     height: auto;
     border-radius: 10px;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
     filter: drop-shadow(0 0 8px rgba(229, 9, 20, 0.2));
 }
 
-/* O Efeito "Interessante" ao passar o mouse */
 .logo-auth:hover {
     transform: scale(1.08);
     filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.7));
@@ -72,7 +68,6 @@
     background: #e62429 !important;
 }
 
-/* ÍCONES E USUÁRIO (Para ficar igualzinho à imagem 3) */
 .topo-universal .btn-icon {
     background: transparent !important;
     border: none !important;
@@ -92,7 +87,6 @@
     cursor: pointer !important;
     position: relative !important;
     transition: 0.3s !important;
-    /* MUDANÇA: Trava a altura para impedir a caixa gigante */
     height: 44px !important;
     box-sizing: border-box !important;
 }
@@ -117,21 +111,16 @@
     font-family: sans-serif !important;
 }
 
-/* DROPDOWN MENU */
 .topo-universal .user-menu {
     position: absolute !important;
     top: 55px !important;
-    /* Descola um pouco do botão */
     right: 0 !important;
     background: #13192b !important;
     border-radius: 12px !important;
     padding: 8px 0 !important;
     width: 200px !important;
     display: none;
-    /* Mantém oculto até o clique */
     flex-direction: column !important;
-
-    /* Design moderno com borda sutil e sombra escura */
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     z-index: 999999 !important;
@@ -152,14 +141,11 @@
 
 .topo-universal .user-menu a:hover {
     background: rgba(230, 36, 41, 0.1) !important;
-    /* Fundo vermelho bem suave */
     color: white !important;
     padding-left: 25px !important;
-    /* Empurra o texto levemente pra direita */
     border-left: 3px solid #e62429 !important;
 }
 
-/* BADGES (Bolinhas Vermelhas) */
 .badge-bolinha {
     background: #e62429 !important;
     color: white !important;
@@ -169,7 +155,6 @@
     font-weight: bold !important;
 }
 
-/* RODAPÉ BLINDADO */
 .rodape-universal {
     background: #111823 !important;
     color: #cdd5e0 !important;
@@ -180,4 +165,92 @@
     box-sizing: border-box !important;
     margin-top: auto !important;
     font-family: sans-serif !important;
+}
+
+.coin-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: default;
+    transition: 0.3s;
+}
+
+.coin-container:hover {
+    background: rgba(255, 215, 0, 0.2);
+}
+
+.coin-icon {
+    font-size: 18px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+}
+
+.coin-anim {
+    animation: coinPop 0.6s ease;
+}
+
+@keyframes coinPop {
+    0% {
+        transform: scale(1);
+        color: #ffd700;
+    }
+
+    50% {
+        transform: scale(1.5);
+        color: #fff;
+        text-shadow: 0 0 15px #fff;
+    }
+
+    100% {
+        transform: scale(1);
+        color: #ffd700;
+    }
+}
+
+.dust-effect {
+    opacity: 0 !important;
+    filter: blur(10px) grayscale(100%) !important;
+    transform: translateY(-50px) scale(1.2) !important;
+}
+
+.coin-tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.coin-tooltip {
+    visibility: hidden;
+    width: 260px;
+    background-color: #13192b;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px;
+    position: absolute;
+    z-index: 9999999;
+    top: 130%;
+    right: 0;
+    border: 1px solid #ffd700;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.3s, top 0.3s;
+}
+
+.coin-tooltip strong {
+    color: #ffd700;
+    font-size: 14px;
+}
+
+.coin-tooltip-container:hover .coin-tooltip {
+    visibility: visible;
+    opacity: 1;
+    top: 110%;
 }
