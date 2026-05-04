@@ -296,7 +296,7 @@ function simularPagamentoPix() {
                 document.getElementById('pix-body').innerHTML = `
                     <div class="check-circle">&#10003;</div>
                     <h2 style="color:#22c55e">Pix confirmado!</h2>
-                    <p>Pagamento recebido na hora.</p>
+                    <p>${resultado.msg}</p>
                     <button class="btn-modal-primary" onclick="window.location.href='../Usuario_Logado/meus_pedidos.php'">Concluir</button>
                 `;
             } else {
@@ -318,7 +318,7 @@ function fluxoBoleto() {
         if (resultado && resultado.sucesso) {
             document.getElementById('boleto-body').innerHTML = `
                 <h2>Boleto gerado!</h2>
-                <p>O seu boleto foi processado e salvo nos seus pedidos.</p>
+                <p>${resultado.msg}</p>
                 <button class="btn-modal-primary" onclick="window.location.href='../Usuario_Logado/meus_pedidos.php'">Concluir</button>
             `;
         } else {

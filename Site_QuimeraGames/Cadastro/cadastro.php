@@ -15,11 +15,14 @@
     session_start();
     require_once '../conexa.php';
 
-    include '../header_footer_global/header_simples.php'; ?>
+    // === CORREÇÃO DA LOGO: Avisa para o header para onde o clique deve ir ===
+    $link_home = '../Index/index.php';
+    include '../header_footer_global/header_simples.php';
+    ?>
 
     <main class="main-cadastro">
         <div class="container-animado">
-            <form class="card-cadastro" method="POST" onsubmit="return validarSenha()">
+            <form class="card-cadastro" method="POST" onsubmit="return validarForm()">
 
                 <input type="hidden" id="comum" name="comum" value="comum">
 
@@ -66,8 +69,7 @@
                     <label>Confirmar senha</label>
                 </div>
 
-                <button class="btn" id="btn" type="submit"
-                    onclick="setTimeout(() => this.disabled=true, 10);">Cadastrar</button>
+                <button class="btn" id="btn" type="submit">Cadastrar</button>
 
                 <div class="footer-voltar">
                     <button type="button" class="btnVoltar" onclick="window.history.back()">❮</button>
@@ -121,10 +123,8 @@
                     echo "<script>alert('CPF já cadastrado!');</script>";
                 } else {
 
-                    // Gerar o codigo
                     $codigo = rand(100000, 999999);
 
-                    // Salvar os dados em uma sessão
                     $_SESSION['cadastro'] = [
                         'email' => $email,
                         'comum' => $comum,
@@ -142,7 +142,6 @@
                     require_once '../PHPMailer/src/Exception.php';
 
                     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-
                     $mail->CharSet = 'UTF-8';
 
                     try {
@@ -154,84 +153,46 @@
                         $mail->SMTPSecure = 'tls';
                         $mail->Port = 587;
 
+                        // === CORREÇÃO DO CARREGAMENTO INFINITO (SPINNING) ===
+                        // Isso impede que o XAMPP bloqueie a conexão SMTP com o Google
+                        $mail->SMTPOptions = array(
+                            'ssl' => array(
+                                'verify_peer' => false,
+                                'verify_peer_name' => false,
+                                'allow_self_signed' => true
+                            )
+                        );
+                        $mail->Timeout = 15; // Impede que a tela fique rodando para sempre se a internet cair
+                        // ===================================================
+    
                         $mail->setFrom('quimeraggames@gmail.com', 'Quimera');
                         $mail->addAddress($email);
 
                         $mail->isHTML(true);
                         $mail->Subject = 'Código de verificação - Quimera';
 
-                        // 🔥 EMBUTIR A LOGO (CAMINHO ABSOLUTO PRA EVITAR ERRO)
                         $mail->addEmbeddedImage(__DIR__ . '/../imagens/logo.png', 'logo_cid', 'logo.png');
 
                         $mail->Body = "
 <!DOCTYPE html>
 <html lang='pt-BR'>
-<head>
-<meta charset='UTF-8'>
-</head>
-
+<head><meta charset='UTF-8'></head>
 <body style='margin:0; padding:0; background:#f2f2f2; font-family:Arial, sans-serif;'>
-
 <table width='100%' bgcolor='#f2f2f2' cellpadding='0' cellspacing='0'>
 <tr>
 <td align='center'>
-
-    <!-- CARD -->
     <table width='500' cellpadding='0' cellspacing='0' style='background:#ffffff; margin-top:40px; border-radius:8px; padding:30px;'>
-
-        <!-- LOGO -->
-        <tr>
-            <td align='center' style='padding-bottom:20px;'>
-                <img src='cid:logo_cid' width='120'>
-            </td>
-        </tr>
-
-        <!-- TITULO -->
-        <tr>
-            <td style='font-size:22px; font-weight:bold; text-align:left; padding-bottom:20px;'>
-                Seu código de verificação
-            </td>
-        </tr>
-
-        <!-- CODIGO -->
-        <tr>
-            <td align='center' style='padding:20px 0;'>
-                <div style='background:#f4f4f4; padding:20px; border-radius:8px; font-size:28px; font-weight:bold; letter-spacing:3px;'>
-                    $codigo
-                </div>
-            </td>
-        </tr>
-
-        <!-- TEXTO -->
-        <tr>
-            <td style='font-size:14px; color:#555; padding-top:10px; line-height:1.6;'>
-                Olá, <b>$nome</b>,<br><br>
-                Você solicitou um código para acessar sua conta na <b>Quimera Games</b>.<br>
-                Use o código acima para concluir o login.<br><br>
-
-                ⚠️ Este código expira em alguns minutos.<br><br>
-
-                Se não foi você, recomendamos alterar sua senha imediatamente.
-            </td>
-        </tr>
-
-        <!-- RODAPE -->
-        <tr>
-            <td style='font-size:12px; color:#999; padding-top:30px; text-align:center;'>
-                © 2026 Quimera Games<br>
-                Todos os direitos reservados.
-            </td>
-        </tr>
-
+        <tr><td align='center' style='padding-bottom:20px;'><img src='cid:logo_cid' width='120'></td></tr>
+        <tr><td style='font-size:22px; font-weight:bold; text-align:left; padding-bottom:20px;'>Seu código de verificação</td></tr>
+        <tr><td align='center' style='padding:20px 0;'><div style='background:#f4f4f4; padding:20px; border-radius:8px; font-size:28px; font-weight:bold; letter-spacing:3px;'>$codigo</div></td></tr>
+        <tr><td style='font-size:14px; color:#555; padding-top:10px; line-height:1.6;'>Olá, <b>$nome</b>,<br><br>Você solicitou um código para acessar sua conta na <b>Quimera Games</b>.<br>Use o código acima para concluir o login.<br><br>⚠️ Este código expira em alguns minutos.<br><br>Se não foi você, recomendamos alterar sua senha imediatamente.</td></tr>
+        <tr><td style='font-size:12px; color:#999; padding-top:30px; text-align:center;'>© 2026 Quimera Games<br>Todos os direitos reservados.</td></tr>
     </table>
-
 </td>
 </tr>
 </table>
-
 </body>
-</html>
-";
+</html>";
                         $mail->send();
 
                         header("Location: ../Verificar_email/index.php");

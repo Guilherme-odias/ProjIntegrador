@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$host = "localhost"; 
+$host = "10.37.44.28"; 
 $db = "projeto_quimera";
 $usuario = "root";
 $senha = "";
