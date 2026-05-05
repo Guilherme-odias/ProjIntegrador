@@ -138,38 +138,46 @@ if ($id_user > 0) {
         <!-- HISTORIA -->
         <section class="historia">
 
-            <h2>A Origem da Quimera</h2>
+            <div class="historia-texto">
+                <h2>A Origem da Quimera</h2>
 
-            <p class="destaque">
-                Nem todo projeto nasce com propósito. O nosso nasceu com identidade.
-            </p>
+                <p class="destaque">
+                    Nem todo projeto nasce com propósito. O nosso nasceu com identidade.
+                </p>
 
-            <p>
-                A Quimera Games surgiu da união de quatro desenvolvedores que não queriam entregar apenas mais um
-                sistema.
-                Desde o início, a intenção nunca foi fazer o básico.
-            </p>
+                <p>
+                    A Quimera Games surgiu da união de quatro desenvolvedores que não queriam entregar apenas mais um
+                    sistema.
+                    Desde o início, a intenção nunca foi fazer o básico. A inspiração da nossa logo veio da capa de um
+                    músico de hiphop, idealizamos uma quimera e a arte do álbum dele foi a mais interessante a partir
+                    disso criamos a nossa.
+                </p>
 
-            <p>
-                Queríamos algo que tivesse presença. Algo que fosse lembrado.
-            </p>
+                <p>
+                    Queríamos algo que tivesse presença. Algo que fosse lembrado.
+                </p>
 
-            <p>
-                Inspirados por plataformas como Steam, Epic Games e Nuuvem,
-                seguimos por outro caminho: não copiar — mas reinterpretar.
-            </p>
+                <p>
+                    Inspirados por plataformas como Steam, Epic Games e Nuuvem,
+                    seguimos por outro caminho: não copiar — mas reinterpretar.
+                </p>
 
-            <p>
-                Cada integrante trouxe uma força diferente. Lógica, criatividade, adaptação e execução.
-            </p>
+                <p>
+                    Cada integrante trouxe uma força diferente. Lógica, criatividade, adaptação e execução.
+                </p>
 
-            <p>
-                Separados, funcionam. Juntos, se tornam algo maior.
-            </p>
+                <p>
+                    Separados, funcionam. Juntos, se tornam algo maior.
+                </p>
 
-            <p>
-                Essa é a Quimera.
-            </p>
+                <p>
+                    Essa é a Quimera.
+                </p>
+            </div>
+
+            <div class="historia-imagem">
+                <img src="../imagens/ref.png" alt="Origem Quimera">
+            </div>
 
         </section>
 
