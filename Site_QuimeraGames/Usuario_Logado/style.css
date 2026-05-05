@@ -865,9 +865,9 @@ body {
   .jogos-grid{
     display:grid !important;
     grid-template-columns:repeat(2, 1fr);
-    gap:-10px;
+    gap:-5px;
     padding:-30px;
-    margin-right: 40px;
+    margin-right: 0px;
   }
 
   /* CARD visível */
