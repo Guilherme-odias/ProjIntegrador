@@ -68,7 +68,7 @@ $nomes_categorias = [
 <body>
 
     <?php include '../header_footer_global/header.php'; ?>
-    
+
 
     <main class="container" style="margin-top: 100px; min-height: 70vh;">
 
@@ -81,9 +81,14 @@ $nomes_categorias = [
                     <option value="Ação">Ação</option>
                     <option value="Aventura">Aventura</option>
                     <option value="Corrida">Corrida</option>
+                    <option value="Estratégia">Estratégia</option>
+                    <option value="Esporte">Esporte</option>
                     <option value="FPS">FPS</option>
-                    <option value="RPG">RPG</option>
+                    <option value="Luta">Luta</option>
                     <option value="Terror">Terror</option>
+                    <option value="Sobrevivência">Sobrevivência</option>
+                    <option value="RPG">RPG</option>
+                    <option value="Outros">Outros</option>
                 </select>
             </div>
         </div>
