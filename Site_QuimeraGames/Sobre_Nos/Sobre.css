@@ -107,13 +107,24 @@ body {
     background: linear-gradient(90deg, transparent, rgba(230, 36, 41, 0.25), transparent);
     transform: skewX(-25deg);
     animation: luzVitral 4s infinite;
-    pointer-events: none; /* Deixa o clique atravessar o brilho */
+    pointer-events: none;
+    /* Deixa o clique atravessar o brilho */
 }
 
 @keyframes luzVitral {
-    0% { left: -150%; }
-    50% { left: 150%; }
-    100% { left: 150%; } /* Dá uma pausa antes de repetir a animação */
+    0% {
+        left: -150%;
+    }
+
+    50% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+
+    /* Dá uma pausa antes de repetir a animação */
 }
 
 .card-front img {
@@ -179,10 +190,22 @@ body {
 /* ================= HISTORIA ================= */
 .historia {
     margin-top: 90px;
-    text-align: center;
-    max-width: 850px;
+    display: flex;
+    align-items: center;
+    justify-content: 沟通;
+    gap: 40px;
+    /* Espaço entre o texto e a imagem */
+    max-width: 1200px;
+    /* Mesma largura do vitral-grid para alinhar perfeitamente */
     margin-left: auto;
     margin-right: auto;
+}
+
+.historia-texto {
+    flex: 1;
+    text-align: left;
+    text-align: justify;
+    /* Justifica o texto à esquerda */
 }
 
 .historia h2 {
@@ -200,6 +223,17 @@ body {
     font-weight: bold;
     font-size: 1.1rem;
     margin-bottom: 20px;
+}
+
+.historia-imagem img {
+    width: 400px;
+    /* Ajuste o tamanho conforme necessário */
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    /* Bordas arredondadas no quadrado */
+    border: 2px solid #e62429;
+    /* Opcional: borda para combinar com os cards */
 }
 
 /* ================= MVV ================= */

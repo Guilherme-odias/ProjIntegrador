@@ -162,15 +162,28 @@
     border-top: 2px solid #e62429;
     font-family: 'Poppins', sans-serif;
 }
-.footer-content p { color: #888; margin-bottom: 10px; }
-.footer-links { display: flex; justify-content: center; gap: 20px; }
+
+.footer-content p {
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 .footer-links a {
     color: white;
     text-decoration: none;
     font-weight: 600;
     transition: 0.3s;
 }
-.footer-links a:hover { color: #e62429; }
+
+.footer-links a:hover {
+    color: #e62429;
+}
 
 .coin-container {
     display: flex;
