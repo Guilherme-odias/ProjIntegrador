@@ -36,13 +36,14 @@ if (isset($_POST['reenviar'])) {
     $email = $_SESSION['email_verificacao'] ?? '';
     $codigo = rand(100000, 999999);
     $_SESSION['codigo_verificacao'] = $codigo;
+    $nome = $_SESSION['cadastro']['nome'] ?? '';
 
     require_once '../PHPMailer/src/PHPMailer.php';
     require_once '../PHPMailer/src/SMTP.php';
     require_once '../PHPMailer/src/Exception.php';
 
     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-
+    $mail->CharSet = 'UTF-8';
     try {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
@@ -56,12 +57,28 @@ if (isset($_POST['reenviar'])) {
         $mail->addAddress($email);
 
         $mail->isHTML(true);
-        $mail->Subject = 'Código de Verificação';
+        $mail->Subject = 'Código de verificação - Quimera';
+        $mail->addEmbeddedImage(__DIR__ . '/../imagens/logo.png', 'logo_cid', 'logo.png');
         $mail->Body = "
-            <h2>Bem-vindo à QuimeraGames 🚀</h2>
-            <p>Seu código de verificação é:</p>
-            <h1 style='color:#e62429; font-size: 32px; letter-spacing: 5px;'>$codigo</h1>
-        ";
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head><meta charset='UTF-8'></head>
+<body style='margin:0; padding:0; background:#f2f2f2; font-family:Arial, sans-serif;'>
+<table width='100%' bgcolor='#f2f2f2' cellpadding='0' cellspacing='0'>
+<tr>
+<td align='center'>
+    <table width='500' cellpadding='0' cellspacing='0' style='background:#ffffff; margin-top:40px; border-radius:8px; padding:30px;'>
+        <tr><td align='center' style='padding-bottom:20px;'><img src='cid:logo_cid' width='120'></td></tr>
+        <tr><td style='font-size:22px; font-weight:bold; text-align:left; padding-bottom:20px;'>Seu código de verificação</td></tr>
+        <tr><td align='center' style='padding:20px 0;'><div style='background:#f4f4f4; padding:20px; border-radius:8px; font-size:28px; font-weight:bold; letter-spacing:3px;'>$codigo</div></td></tr>
+        <tr><td style='font-size:14px; color:#555; padding-top:10px; line-height:1.6;'>Olá, <b>$nome</b>,<br><br>Você solicitou um código para acessar sua conta na <b>Quimera Games</b>.<br>Use o código acima para concluir o login.<br><br>⚠️ Este código expira em alguns minutos.<br><br>Se não foi você, recomendamos alterar sua senha imediatamente.</td></tr>
+        <tr><td style='font-size:12px; color:#999; padding-top:30px; text-align:center;'>© 2026 Quimera Games<br>Todos os direitos reservados.</td></tr>
+    </table>
+</td>
+</tr>
+</table>
+</body>
+</html>";
         $mail->send();
     } catch (Exception $e) {
         echo "<script>alert('Erro ao enviar email: {$mail->ErrorInfo}');</script>";
@@ -99,7 +116,7 @@ if (isset($_POST['reenviar'])) {
                         required autocomplete="off">
 
                     <button type="submit" name="verificar" class="btn-verificar">Verificar Conta</button>
-                    <button type="submit" name="reenviar" class="btn-reenviar">Não recebeu? <span>Reenviar
+                    <button type="submit" name="reenviar" id="reenviar" class="btn-reenviar" formnovalidate>Não recebeu? <span>Reenviar
                             código</span></button>
                 </div>
 
