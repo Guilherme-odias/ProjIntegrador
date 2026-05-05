@@ -843,65 +843,156 @@ body {
   flex: 1;
 }
 
-/* COLE NO FINAL DO CSS */
+/* ==========================================
+MOBILE - 3 VISUAIS
+1 metade esquerda + 1 inteiro centro + 1 metade direita
+com seta sobre imagem
+COLE NO FINAL DO CSS
+========================================== */
 
 @media screen and (max-width: 768px) {
 
-  /* tira carrossel */
-  .carousel-container {
-    display: none !important;
+  /* remove carrossel principal */
+  .carousel-container{
+    display:none !important;
   }
 
-  /* sobe seção descontos */
-  .secao {
-    margin-top: 20px !important;
-    padding-top: 10px !important;
+  .secao{
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
   }
 
-  /* 2 linhas de 3 jogos */
-  .jogos-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 12px !important;
+  .secao h2{
+    font-size: 20px;
+    margin-bottom: 14px;
+    padding-left: 8px;
   }
 
-  .thumb-wrapper {
-    height: 150px !important;
+  /* faixa horizontal */
+  .jogos-grid{
+    display:flex !important;
+    overflow-x:auto;
+    overflow-y:hidden;
+    gap:14px;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    padding: 0 calc(50% - 90px) 18px calc(50% - 90px);
   }
 
-  .card-info-texto h4 {
-    font-size: 13px !important;
+  .jogos-grid::-webkit-scrollbar{
+    display:none;
   }
 
-  .precos-card,
-  .v-new,
-  .v-old,
-  .v-gratis {
-    font-size: 12px !important;
+  /* card central = 180px */
+  .card-jogo-container{
+    min-width:180px;
+    max-width:180px;
+    flex:0 0 auto;
+    scroll-snap-align:center;
+    border-radius:14px;
+    overflow:hidden;
+    background:#13192b;
+    box-shadow:0 8px 18px rgba(0,0,0,.35);
+  }
+
+  .thumb-wrapper{
+    height:240px;
+    position:relative;
+  }
+
+   .thumb-wrapper::after{
+    display:none !important;
+    content:none !important;
+  }
+
+  .thumb-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .card-info-texto{
+    padding:10px;
+  }
+
+  .card-info-texto h4{
+    font-size:13px;
+    line-height:1.3;
+    height:34px;
+    overflow:hidden;
+  }
+
+  .v-new{
+    font-size:16px;
+    font-weight:800;
+  }
+
+  .v-old{
+    font-size:11px;
+  }
+
+  /* sombra lateral pra mostrar corte */
+  .secao::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:40px;
+    width:30px;
+    height:100%;
+    background:linear-gradient(to right,#0b1320,transparent);
+    z-index:8;
+    pointer-events:none;
+  }
+
+  .secao::after{
+    content:"";
+    position:absolute;
+    right:0;
+    top:40px;
+    width:30px;
+    height:100%;
+    background:linear-gradient(to left,#0b1320,transparent);
+    z-index:8;
+    pointer-events:none;
+  }
+
+  /* seta dentro da imagem */
+  .thumb-wrapper::after{
+    content:"❯";
+    position:absolute;
+    right:8px;
+    top:50%;
+    transform:translateY(-50%);
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:rgba(0,0,0,.75);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    z-index:6;
   }
 
 }
 
-/* celulares menores */
-@media screen and (max-width: 480px) {
 
-  .jogos-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px !important;
-    width: 450px;
-    height: 400px;
+/* telas menores */
+@media screen and (max-width:430px){
+
+  .jogos-grid{
+    padding:0 calc(50% - 80px) 18px calc(50% - 80px);
   }
 
-  .thumb-wrapper {
-    height: 120px !important;
+  .card-jogo-container{
+    min-width:160px;
+    max-width:160px;
   }
 
-  .card-info-texto {
-    padding: 8px !important;
-  }
-
-  .card-info-texto h4 {
-    font-size: 11px !important;
+  .thumb-wrapper{
+    height:215px;
   }
 
 }
