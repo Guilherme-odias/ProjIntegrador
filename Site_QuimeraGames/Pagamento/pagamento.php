@@ -61,14 +61,16 @@ if (isset($_GET['id_jogo'], $_GET['preco'])) {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Pagamento - QuimeraGames</title>
     <link rel="stylesheet" href="pagamento.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
+</head>
     <script>
         const PRECO_JOGO = <?php echo number_format($preco_raw, 2, '.', ''); ?>;
         const SALDO_COINS_INICIAL = <?php echo $saldo_coins; ?>;
     </script>
-</head>
 
 <body>
     <header><?php include '../header_footer_global/header.php'; ?></header>
