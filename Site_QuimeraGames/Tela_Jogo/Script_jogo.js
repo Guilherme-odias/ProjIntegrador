@@ -298,3 +298,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2000); // Demora 2 segundos para aparecer após abrir a página
     }
 });
+
+document.getElementById('btn-add-lista')?.addEventListener('click', () => {
+        
+            window.location.href = '../Usuario_Logado/meus_pedidos.php';
+            return;
+        
+
+    });
