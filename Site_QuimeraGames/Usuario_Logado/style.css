@@ -843,3 +843,65 @@ body {
   flex: 1;
 }
 
+/* COLE NO FINAL DO CSS */
+
+@media screen and (max-width: 768px) {
+
+  /* tira carrossel */
+  .carousel-container {
+    display: none !important;
+  }
+
+  /* sobe seção descontos */
+  .secao {
+    margin-top: 20px !important;
+    padding-top: 10px !important;
+  }
+
+  /* 2 linhas de 3 jogos */
+  .jogos-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .thumb-wrapper {
+    height: 150px !important;
+  }
+
+  .card-info-texto h4 {
+    font-size: 13px !important;
+  }
+
+  .precos-card,
+  .v-new,
+  .v-old,
+  .v-gratis {
+    font-size: 12px !important;
+  }
+
+}
+
+/* celulares menores */
+@media screen and (max-width: 480px) {
+
+  .jogos-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    width: 450px;
+    height: 400px;
+  }
+
+  .thumb-wrapper {
+    height: 120px !important;
+  }
+
+  .card-info-texto {
+    padding: 8px !important;
+  }
+
+  .card-info-texto h4 {
+    font-size: 11px !important;
+  }
+
+}
