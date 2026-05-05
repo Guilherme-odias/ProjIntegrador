@@ -35,11 +35,12 @@ if ($id_user > 0) {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós - Quimera Games</title>
     <link rel="stylesheet" href="Sobre.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
+    <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
     <script defer src="Sobre.js"></script>
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 

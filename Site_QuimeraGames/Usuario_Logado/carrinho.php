@@ -51,10 +51,12 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Carrinho - QuimeraGames</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="wishlist_carrinho.css">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
+    <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
 
 <body>

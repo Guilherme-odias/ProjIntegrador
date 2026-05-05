@@ -77,6 +77,7 @@ try {
   <title>QuimeraGames - logado</title>
   <link rel="stylesheet" href="../Usuario_Logado/style.css">
   <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
+  <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
 
 <body>

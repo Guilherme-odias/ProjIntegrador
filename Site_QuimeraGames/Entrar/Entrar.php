@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Entrar - QuimeraGames</title>
-
+    <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="styless.css?v=<?php echo time(); ?>">
 </head>
