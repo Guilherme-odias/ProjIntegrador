@@ -121,6 +121,19 @@ try {
 } catch (PDOException $e) {
     die("<h2 style='color:black;'>Erro na consulta: " . $e->getMessage() . "</h2>");
 }
+
+
+    
+$sql = "SELECT COUNT(*) FROM compra 
+        WHERE id_user = ? AND id_play = ?";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$id_user_logado, $id_jogo]);
+
+$jaComprou = $stmt->fetchColumn() > 0;
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -275,13 +288,19 @@ try {
                         <?php endif; ?>
                     </div>
 
+                    <?php if ($jaComprou): ?>
+
+                    <button class="btn-action btn-cart" id="btn-add-lista">Minha lista</button>
+
+                        <?php else: ?>
+
                     <button class="btn-action btn-buy" id="btn-comprar-agora">
                         Comprar
                     </button>
                     <button class="btn-action btn-cart" id="btn-add-carrinho">Carrinho</button>
 
-                    <button class="btn-action btn-epic-wishlist <?php echo $ta_na_lista ? 'active' : ''; ?>"
-                        id="btn-add-wishlist">
+                    <button class="btn-action btn-epic-wishlist <?php echo $ta_na_lista ? 'active' : ''; ?>"id="btn-add-wishlist">
+
                         <?php if ($ta_na_lista): ?>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="#e62429" stroke="#e62429" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -296,7 +315,7 @@ try {
                             Lista de desejo
                         <?php endif; ?>
                     </button>
-
+                            <?php endif; ?>
                     <div class="cupom-area">
                         <p class="cupom-titulo"> Sugestão de Cupom: <strong><?php echo $cupom_sugerido; ?></strong>
                         </p>
