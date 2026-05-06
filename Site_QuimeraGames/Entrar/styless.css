@@ -309,3 +309,11 @@ input{
 }
 
 }
+
+@media screen and (min-width: 712px) and (max-width: 1180px) {
+
+.h1box{
+ transform: scale(1.3);
+}
+
+}
