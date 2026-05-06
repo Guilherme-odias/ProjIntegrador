@@ -624,3 +624,263 @@ html, body {
         line-height: 1.5 !important;
     }
 }
+
+/* ========================================================
+   ESTILOS DO BOLETO SIMULADO - PADRÃO REAL (DOCUMENTO)
+======================================================== */
+.boleto-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+}
+
+.boleto-visual-real {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    border-radius: 0; /* Boleto real não tem borda arredondada */
+    min-width: 650px; 
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 8px 20px rgba(0,0,0,0.6); /* Sombra de papel */
+    text-align: left;
+}
+
+.boleto-header-real {
+    display: flex;
+    border-bottom: 4px solid #000; /* Linha grossa do cabeçalho */
+    padding-bottom: 5px;
+    margin-bottom: 0;
+    align-items: flex-end;
+}
+
+.boleto-banco {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-right: 15px;
+    border-right: 2px solid #000;
+}
+
+.codigo-banco {
+    font-size: 1.3rem;
+    margin-left: 15px;
+}
+
+.boleto-linha-digitavel-real {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.05rem;
+    padding-left: 15px;
+}
+
+.boleto-body-real {
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.boleto-row {
+    display: flex;
+    border-top: 2px solid #000;
+    margin: 0; /* Remove margens que possam quebrar a linha */
+}
+
+.boleto-cell {
+    padding: 5px 8px;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #ffffff; /* Fundo estritamente branco */
+}
+
+.boleto-cell label {
+    font-size: 0.60rem;
+    color: #000; /* Texto do label em preto */
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Utilitários da Tabela do Boleto */
+.border-right { border-right: 2px solid #000; }
+.border-bottom { border-bottom: 2px solid #000; }
+
+.col-70 { width: 70%; }
+.col-30 { width: 30%; }
+.col-25 { width: 25%; }
+.col-20 { width: 20%; }
+.col-15 { width: 15%; }
+.col-10 { width: 10%; }
+
+.boleto-cell.instructions p {
+    margin: 3px 0;
+    font-size: 0.8rem;
+    color: #000;
+}
+
+.boleto-cell.values {
+    padding: 0; 
+}
+
+.inner-row {
+    padding: 5px 8px;
+    height: 33.33%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.boleto-footer-real {
+    margin-top: 15px;
+    padding-top: 10px;
+}
+
+.boleto-codigo-barras {
+    display: flex;
+    height: 55px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1px;
+}
+
+.boleto-codigo-barras .bar { background-color: #000; height: 100%; }
+.bar-1 { width: 1px; }
+.bar-2 { width: 2px; }
+.bar-3 { width: 3px; }
+.bar-4 { width: 4px; }
+
+/* Botões do Boleto Repaginados (Menores e Espaçados) */
+.boleto-actions {
+    display: flex;
+    flex-direction: column; /* Empilha os botões */
+    gap: 14px; /* Espaçamento exato entre os botões (evita que grudem) */
+    margin-top: 10px;
+}
+
+/* Classe unificadora para deixar os botões mais finos e elegantes */
+.btn-sm {
+    margin: 0 !important; /* Força a anular margens antigas que causavam o bug */
+    padding: 10px !important; /* Botão mais fino */
+    font-size: 0.9rem !important; /* Letra ligeiramente menor */
+    width: 100%;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+@media screen and (min-width: 768px) {
+    /* No desktop, se quiser que fiquem lado a lado */
+    .boleto-actions {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .boleto-actions button {
+        flex: 1;
+    }
+}
+
+/* ========================================================
+   RESPONSIVIDADE DOS MODAIS (PIX, CARTÃO E BOLETO)
+   Abrange Tablets e todos os Smartphones (iOS e Android)
+======================================================== */
+
+/* TABLETS E SMARTPHONES GRANDES (Até 768px) */
+@media screen and (max-width: 768px) {
+    /* 1. Ajustes gerais do Modal para não encostar nas bordas */
+    .modal {
+        width: 95% !important;
+        padding: 25px 15px !important;
+        margin: 10px;
+        max-height: 90vh; /* Se a tela for muito baixa, o modal não é cortado */
+        overflow-y: auto; /* Permite rolar o conteúdo do modal para baixo */
+    }
+
+    /* 2. Cartão de Crédito - Bolinhas de progresso (Steps) */
+    .steps {
+        gap: 5px;
+        margin-bottom: 20px;
+    }
+    .step {
+        width: 25px;
+        height: 25px;
+        font-size: 11px;
+    }
+
+    /* 3. PIX - Reduz o QR Code suavemente */
+    .qr-container img {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* 4. BOLETO - Ajustes finos para caber mais na tela */
+    .boleto-visual-real {
+        min-width: 550px; /* Reduz a largura mínima, exigindo menos scroll pro lado */
+        padding: 15px;
+    }
+    .boleto-banco {
+        font-size: 0.95rem;
+    }
+    .codigo-banco {
+        font-size: 1.1rem;
+    }
+    .boleto-linha-digitavel-real {
+        font-size: 0.9rem;
+    }
+    .boleto-cell {
+        padding: 4px 6px;
+    }
+    .boleto-cell label {
+        font-size: 0.55rem;
+    }
+    .boleto-cell.instructions p {
+        font-size: 0.75rem;
+    }
+}
+
+/* SMARTPHONES PEQUENOS (Até 480px - Ex: iPhone SE, celulares mais estreitos) */
+@media screen and (max-width: 480px) {
+    /* Deixa o modal um pouco mais compacto nas laterais */
+    .modal {
+        padding: 20px 12px !important;
+    }
+    
+    .modal h2 {
+        font-size: 1.2rem;
+    }
+
+    /* PIX - QR Code ainda menor para telas muito pequenas */
+    .qr-container img {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* BOLETO - Adaptação extrema */
+    .boleto-visual-real {
+        min-width: 480px; 
+        padding: 10px;
+    }
+    /* Diminui a linha digitável para tentar manter em uma linha só */
+    .boleto-linha-digitavel-real {
+        font-size: 0.75rem; 
+        padding-left: 5px;
+    }
+    .boleto-banco {
+        font-size: 0.85rem;
+        padding-right: 5px;
+    }
+    .codigo-banco {
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+    .boleto-codigo-barras {
+        height: 45px; /* Código de barras mais baixinho */
+    }
+}
