@@ -261,3 +261,13 @@ cursor: pointer;
   transition: 0.5s;
   box-shadow: 0 4px 15px rgba(230, 36, 41, 0.4);
 }
+
+@media screen and (max-width: 768px){
+
+  .h1box{
+    transform: scale(1.44);
+    transform-origin: center top;
+    margin-top: 60px;
+  }
+
+}
