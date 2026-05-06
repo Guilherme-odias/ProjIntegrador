@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - Quimera Games</title>
-    <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="cStyles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
     <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
 
@@ -18,9 +18,10 @@
 
     // === CORREÇÃO DA LOGO: Avisa para o header para onde o clique deve ir ===
     $link_home = '../Index/index.php';
-    include '../header_footer_global/header_simples.php';
     ?>
-
+    <a href="../Index/index.php" class="logo-link">
+        <img class="logo-auth" src="../imagens/logo.png" alt="QuimeraGames Logo">
+    </a>
     <main class="main-cadastro">
         <div class="container-animado">
             <form class="card-cadastro" method="POST" onsubmit="return validarForm()">
