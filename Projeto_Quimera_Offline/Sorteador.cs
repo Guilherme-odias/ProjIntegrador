@@ -315,40 +315,46 @@ namespace Projeto_integrador
         {
             try
             {
+                string caminhoBase = Application.StartupPath;
 
-                string caminhoDoom = Path.Combine(
-                    Application.StartupPath,
-                    @"..\..\..\managed-doom-master\managed-doom-master\ManagedDoom\bin\Debug\net8.0\managed-doom.exe"
-                );
-
-                caminhoDoom = Path.GetFullPath(caminhoDoom);
+                string caminhoDoom = Path.Combine(caminhoBase, "managed-doom.exe");
+                string caminhoWad = Path.Combine(caminhoBase, "WADs", "doom1.wad");
 
                 if (!File.Exists(caminhoDoom))
                 {
-                    MessageBox.Show("O executável do Doom não foi encontrado em:\n" + caminhoDoom,
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("managed-doom.exe não encontrado em:\n" + caminhoDoom);
                     return;
                 }
 
+                if (!File.Exists(caminhoWad))
+                {
+                    MessageBox.Show("doom1.wad não encontrado em:\n" + caminhoWad);
+                    return;
+                }
 
                 Process process = new Process();
                 process.StartInfo.FileName = caminhoDoom;
-                process.EnableRaisingEvents = true;
+                process.StartInfo.Arguments = $"-iwad \"{caminhoWad}\"";
 
+                // 🔥 ESSAS LINHAS ESCONDEM O TERMINAL
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+                process.StartInfo.WorkingDirectory = caminhoBase;
+                process.EnableRaisingEvents = true;
 
                 process.Exited += (sender2, e2) =>
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
                         btn_jogar.Visible = false;
-                        this.Show(); 
+                        this.Show();
                         MessageBox.Show("Jogo finalizado! Voltando ao sorteador.");
                     });
                 };
 
-
                 process.Start();
-
                 this.Hide();
             }
             catch (Exception ex)
