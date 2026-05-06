@@ -249,3 +249,125 @@ button[type="submit"]:hover {
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.05);
 }
+
+/* ==================================================
+   MOBILE - CONTA RESPONSIVA
+   cola no FINAL do seu style.css
+================================================== */
+
+@media screen and (max-width: 768px) {
+
+    body{
+        overflow-x: hidden;
+    }
+
+    .container{
+        padding: 20px 12px !important;
+        align-items: flex-start !important;
+    }
+
+    .card-conta{
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 25px 18px !important;
+        border-radius: 22px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+
+    /* PERFIL */
+    .perfil{
+        width: 100% !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 18px !important;
+    }
+
+    .perfil-esquerda{
+        width: 100% !important;
+    }
+
+    .avatar{
+        width: 150px !important;
+        height: 150px !important;
+        border-radius: 18px !important;
+    }
+
+    .cpf{
+        font-size: 12px !important;
+        text-align: center !important;
+        margin-top: 10px !important;
+    }
+
+    .trocarfoto_salvar{
+        width: 100% !important;
+        margin-top: 0 !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        flex-wrap: wrap !important;
+    }
+
+    .btn-foto{
+        width: 100px !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+
+    /* INFO */
+    .info{
+        width: 100% !important;
+        gap: 14px !important;
+    }
+
+    .info h2{
+        font-size: 24px !important;
+        text-align: center !important;
+        margin-bottom: 10px !important;
+    }
+
+    .form-info{
+        gap: 14px !important;
+    }
+
+    .campo label{
+        font-size: 13px !important;
+    }
+
+    input{
+        width: 100% !important;
+        padding: 13px 14px !important;
+        font-size: 16px !important;
+    }
+
+    button[type="submit"]{
+        width: 100% !important;
+        padding: 14px !important;
+        font-size: 16px !important;
+    }
+
+    .msg{
+        font-size: 14px !important;
+    }
+}
+
+
+/* CELULARES PEQUENOS */
+@media screen and (max-width: 420px){
+
+    .avatar{
+        width: 130px !important;
+        height: 130px !important;
+    }
+
+    .info h2{
+        font-size: 21px !important;
+    }
+
+    .btn-foto{
+        width: 100% !important;
+    }
+
+}

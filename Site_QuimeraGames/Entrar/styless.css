@@ -261,3 +261,44 @@ cursor: pointer;
   transition: 0.5s;
   box-shadow: 0 4px 15px rgba(230, 36, 41, 0.4);
 }
+
+@media (max-width:768px){
+
+.h1box{
+ width:95%;
+ padding:35px 20px;
+ transform: scale(0.94);
+ margin-top: -30px;
+ margin-bottom: -50px;
+}
+
+h1{
+ font-size:24px;
+}
+
+input{
+ font-size:16px;
+ padding:14px;
+}
+
+.iniciar_sessao{
+ padding:14px;
+ font-size:17px;
+}
+
+.cad{
+  font-size: 15px;
+  width: 150px;
+}
+
+.primeira{
+  font-size: 20px;
+  text-align: center;
+}
+
+.texto{
+  font-size: 15px;
+}
+
+}
+

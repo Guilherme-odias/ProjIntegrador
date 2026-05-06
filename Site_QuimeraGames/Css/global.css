@@ -376,9 +376,38 @@ html, body {
         gap: 8px !important;
     }
     
-    /* Oculta os números das moedas e deixa só a moedinha para economizar espaço crítico */
+    /* Cursor de clique para a moeda */
+    .coin-container {
+        cursor: pointer !important;
+    }
+
+    /* Oculta os números das moedas por padrão */
     #coin-counter {
         display: none !important;
+    }
+
+    /* MÁGICA: O balão flutuante ativado pelo clique */
+    #coin-counter.mostrar-mobile {
+        display: block !important;
+        position: absolute;
+        top: 45px; /* Fica logo abaixo da moeda */
+        left: 50%;
+        transform: translateX(-50%); /* Centraliza perfeitamente */
+        background: #0b1120;
+        border: 1px solid #ffd700;
+        color: #ffd700;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.2);
+        z-index: 999999;
+        white-space: nowrap;
+    }
+
+    /* Bônus: Adiciona a palavra "moedas" na frente do número para ficar bem explicado */
+    #coin-counter.mostrar-mobile::after {
+        content: " moedas";
     }
 
     /* Reduz um pouco mais o botão de suporte */
