@@ -26,7 +26,7 @@
 
       <?php if (isset($_SESSION['id_user'])): ?>
         <div class="coin-tooltip-container">
-          <div class="coin-container" id="box-coins">
+          <div class="coin-container" id="box-coins" onclick="toggleMoedasMobile()">
             <span class="coin-icon">🪙</span>
             <span id="coin-counter"><?php echo $saldo_header; ?></span>
           </div>
@@ -67,3 +67,20 @@
     <a href="../Sac/Suporte.php" style="text-decoration: none;"><button class="btn-login">Suporte</button></a>
   </div>
 </header>
+
+<script>
+function toggleMoedasMobile() {
+    // Só ativa a função se estiver na tela de celular pequeno (onde os números somem)
+    if (window.innerWidth <= 400) {
+        const counter = document.getElementById('coin-counter');
+        if (counter) {
+            counter.classList.toggle('mostrar-mobile');
+            
+            // Oculta o balão automaticamente após 3 segundos para não atrapalhar
+            setTimeout(() => {
+                counter.classList.remove('mostrar-mobile');
+            }, 3000);
+        }
+    }
+}
+</script>

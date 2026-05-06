@@ -21,16 +21,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 100px 20px 40px 20px;
+    padding: 0 20px;
     /* Evita bater no topo global */
 }
+
+
 
 /* Container animação */
 .container-animado {
     animation: fadeUp 0.8s ease;
     width: 100%;
-    max-width: 450px;
+    max-width: 420px;
 }
+
 
 @keyframes fadeUp {
     from {
@@ -49,6 +52,7 @@ body {
    ========================================= */
 .card-cadastro {
     width: 100%;
+    
     padding: 35px 30px;
     border-radius: 16px;
     background: linear-gradient(to top, #132041, #1b3c91);
@@ -301,4 +305,123 @@ body {
 .cad:hover {
     background-color: #e62429;
     box-shadow: 0 0 15px rgba(230, 36, 41, 0.4);
+}
+
+/* =========================================
+   MOBILE COMPLETO (CELULARES)
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    /* Estrutura geral */
+    body {
+        padding: 0;
+    }
+
+    /* Área principal */
+    .main-cadastro {
+        padding: 20px 12px;
+        align-items: flex-start; /* sobe tudo */
+    }
+
+    /* Container */
+    .container-animado {
+        max-width: 100%;
+    }
+
+    /* CARD */
+    .card-cadastro {
+        padding: 25px 15px;
+        border-radius: 14px;
+    }
+
+    /* LOGO*/  
+    .logo {
+        display: flex;
+        margin: 0 auto 100px auto; /* centraliza e separa do título */
+        width: 60px;
+        position: relative; /* remove sobreposição */
+        top: 0;
+        left: 0;
+    }
+
+    /* Título */
+    .card-cadastro h1 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Inputs */
+    .input-group input {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .input-group label {
+        font-size: 13px;
+    }
+
+    /* Inputs lado a lado viram coluna */
+    .row-inputs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Ajuste do ícone de senha */
+    .icone-senha {
+        width: 22px;
+    }
+
+    /* Espaço para o olho */
+    #senha, #confirme {
+        padding-right: 45px !important;
+    }
+
+    /* Botão */
+    .btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    /* Voltar */
+    .btnVoltar {
+        font-size: 14px;
+    }
+
+    /* Rodapé */
+    .rodape {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 25px 15px;
+    }
+
+    .primeira {
+        font-size: 18px;
+    }
+
+    .texto {
+        font-size: 14px;
+    }
+
+    .cad {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+
+
+.rodape {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px 20px; /* antes era 40px (muito alto) */
+    background: linear-gradient(to bottom, #0f2449, #020817);
+    color: white;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    margin-top: auto; /* ESSENCIAL */
 }
