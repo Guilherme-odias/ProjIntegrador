@@ -100,7 +100,9 @@ if (isset($_POST['reenviar'])) {
 
 <body>
 
-    <?php include '../header_footer_global/header_simples.php'; ?>
+    <a href="../Index/index.php" class="logo-link">
+        <img class="logo-auth" src="../imagens/logo.png" alt="QuimeraGames Logo">
+    </a>
 
     <main class="main-centralizado">
         <form method="POST" class="form-verificacao">

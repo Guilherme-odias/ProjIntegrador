@@ -410,6 +410,103 @@ body {
         padding: 10px 20px;
     }
 }
+/* =========================================
+   TABLET COMPLETO (CADASTRO)
+   ========================================= */
+
+@media (max-width: 1024px) {
+
+    /* BODY */
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* MAIN (CORRIGE ESPAÇO EM CIMA) */
+    .main-cadastro {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px 20px 20px; /* menos espaço */
+    }
+
+    /* CONTAINER (CARD MAIOR ✅) */
+    .container-animado {
+        width: 100%;
+        max-width: 550px;
+    }
+
+    /* CARD */
+    .card-cadastro {
+        padding: 35px 30px;
+        border-radius: 16px;
+    }
+
+    .card-cadastro h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* INPUTS */
+    .input-group input {
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    /* INPUTS lado a lado → coluna */
+    .row-inputs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* BOTÃO */
+    .btn {
+        padding: 16px;
+        font-size: 17px;
+    }
+
+    /* OLHO SENHA */
+    .icone-senha {
+        width: 24px;
+    }
+
+    #senha, #confirme {
+        padding-right: 50px !important;
+    }
+
+    /* =========================================
+       RODAPÉ AJUSTADO ✅
+       ========================================= */
+
+    .rodape {
+        margin-top: auto;
+        padding: 20px 15px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .primeira_cadastre {
+        gap: 8px;
+    }
+
+    .primeira {
+        font-size: 18px;
+    }
+
+    .texto {
+        font-size: 14px;
+        max-width: 300px;
+    }
+
+    .cad {
+        font-size: 16px;
+        padding: 8px 20px;
+    }
+}
 
 
 
