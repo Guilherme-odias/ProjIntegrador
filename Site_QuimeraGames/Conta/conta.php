@@ -84,12 +84,8 @@ function mascararCPF($cpf) {
 
 <head>
   <meta charset="UTF-8">
-<<<<<<< Updated upstream
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Conta</title>
-=======
-  <title>Conta - Quimera Games</title>
->>>>>>> Stashed changes
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
   <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
