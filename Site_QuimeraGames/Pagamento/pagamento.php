@@ -66,11 +66,10 @@ if (isset($_GET['id_jogo'], $_GET['preco'])) {
     <title>Pagamento - QuimeraGames</title>
     <link rel="stylesheet" href="pagamento.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
-<<<<<<< Updated upstream
+
 </head>
-=======
+
     <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
->>>>>>> Stashed changes
     <script>
         const PRECO_JOGO = <?php echo number_format($preco_raw, 2, '.', ''); ?>;
         const SALDO_COINS_INICIAL = <?php echo $saldo_coins; ?>;
