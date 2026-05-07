@@ -4,7 +4,7 @@ require_once '../conexa.php';
 
 $logado = isset($_SESSION['usuario_nome']);
 $id_user = $_SESSION['id_user'] ?? 0;
-$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+$link_home = $logado ? '../usuario_logado/usuariologado.php' : '../index/index.php';
 
 // --- SISTEMA DE SORTEIO DE COIN (GAMIFICAÇÃO) ---
 $spawn_animal = false;
@@ -38,7 +38,7 @@ if ($id_user > 0) {
 // DADOS DO JOGO
 $preco_jogo = "0,00";
 $preco_raw = 0;
-$imagem_jogo = "../imagens/logo.png";
+$imagem_jogo = "../Imagens/logo.png";
 $titulo_jogo = "Jogo não encontrado";
 
 if (isset($_GET['id_jogo'], $_GET['preco'])) {
