@@ -4,14 +4,14 @@ require_once("../conexa.php");
 
 // Proteção de acesso
 if (!isset($_SESSION['usuario_nome'])) {
-  header("Location: ../Entrar/Entrar.php");
+  header("Location: ../entrar/entrar.php");
   exit;
 }
 
 $email = $_SESSION['usuario_email'];
 $id_user = $_SESSION['id_user'] ?? 0;
 $logado = true;
-$link_home = '../usuario_Logado/usuariologado.php';
+$link_home = '../usuario_logado/usuariologado.php';
 
 // --- INÍCIO DA LÓGICA DE DADOS (Unificada) ---
 
