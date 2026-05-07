@@ -95,18 +95,40 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================
-// REGISTRO DE COMPRA (MOCK - SIMULAÇÃO FRONTEND)
+// REGISTRO DE COMPRA REAL (INTEGRAÇÃO COM PHP)
 // ==========================================================
 function registrarCompra(metodo, codigo) {
-    // Como é uma simulação, retornamos uma Promise que "finge" uma
-    // requisição ao servidor e devolve sucesso após 1 segundo.
-    return new Promise(function(resolve) {
-        setTimeout(function() {
-            resolve({ 
-                sucesso: true, 
-                msg: 'Compra simulada com sucesso!' 
-            });
-        }, 1000); // Aguarda 1 segundo para dar tempo de ver a animação de "A processar"
+    // Verifica se a opção de usar coins está marcada
+    const chkCoins = document.getElementById('chk-usar-coins');
+    const usarCoins = (chkCoins && chkCoins.checked) ? '1' : '0';
+
+    // Monta os dados que serão enviados via POST
+    const formData = new FormData();
+    formData.append('metodo', metodo);
+    formData.append('usar_coins', usarCoins);
+
+    // Envia a requisição para o PHP
+    return fetch('confirmar_compra.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        // Tenta converter a resposta do PHP para JSON
+        if (!response.ok) {
+            throw new Error('Erro na resposta do servidor');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // data.sucesso virá como true ou false do seu PHP
+        return data; 
+    })
+    .catch(error => {
+        console.error('Erro na requisição:', error);
+        return { 
+            sucesso: false, 
+            msg: 'Erro ao se comunicar com o servidor. Tente novamente.' 
+        };
     });
 }
 
@@ -287,7 +309,7 @@ function fluxoPix() {
     setTimeout(function () {
         document.getElementById('pix-body').innerHTML = `
             <h2>Pague com Pix</h2>
-            <div class="qr-container"><img src="../Pagamento/Img/qrcode-pix.png" width="190" height="190" alt="QR Code Pix"></div>
+            <div class="qr-container"><img src="../pagamento/img/qrcode-pix.png" width="190" height="190" alt="QR Code Pix"></div>
             <button class="btn-modal-primary" onclick="simularPagamentoPix()">&#10003; Já fiz o pagamento</button>
             <button class="btn-modal-ghost" onclick="fecharTudo()">Cancelar</button>
         `;
@@ -303,7 +325,7 @@ function simularPagamentoPix() {
                     <div class="check-circle">&#10003;</div>
                     <h2 style="color:#22c55e">Pix confirmado!</h2>
                     <p>${resultado.msg}</p>
-                    <button class="btn-modal-primary" onclick="window.location.href='../Usuario_Logado/meus_pedidos.php'">Concluir</button>
+                    <button class="btn-modal-primary" onclick="window.location.href='../usuario_logado/meus_pedidos.php'">Concluir</button>
                 `;
             } else {
                 document.getElementById('pix-body').innerHTML = `
