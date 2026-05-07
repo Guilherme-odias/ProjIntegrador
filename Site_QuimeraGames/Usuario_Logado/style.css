@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
- 
+
 body {
   background: #0b1320;
   font-family: 'Segoe UI', sans-serif;
@@ -12,13 +12,13 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
 }
- 
+
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
- 
+
 /* --- HEADER E BUSCA (MANTIDOS) --- */
 .topo {
   display: flex;
@@ -30,7 +30,7 @@ body {
   position: relative;
   z-index: 1000;
 }
- 
+
 .user-box {
   display: flex;
   align-items: center;
@@ -39,27 +39,27 @@ body {
   padding: 6px 12px;
   border-radius: 20px;
 }
- 
+
 .user-img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   object-fit: cover;
 }
- 
+
 .logo {
   width: 100px;
   height: auto;
   border-radius: 12px;
 }
- 
+
 .topo-esquerda,
 .topo-direita {
   display: flex;
   align-items: center;
   gap: 20px;
 }
- 
+
 .btn-nav,
 .btn-login {
   border: none;
@@ -71,15 +71,15 @@ body {
   transition: 0.3s;
   background: rgba(255, 255, 255, 0.05);
 }
- 
+
 .btn-nav.active {
   background: #e50914;
 }
- 
+
 .btn-login:hover {
   background: #e50914;
 }
- 
+
 .menu-busca {
   display: flex;
   align-items: center;
@@ -87,7 +87,7 @@ body {
   padding: 20px 0;
   margin-bottom: 20px;
 }
- 
+
 .busca-input {
   width: 360px;
   background: rgba(42, 58, 90, 0.8);
@@ -96,7 +96,7 @@ body {
   display: flex;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
- 
+
 .busca-input input {
   background: transparent;
   border: none;
@@ -104,7 +104,7 @@ body {
   width: 100%;
   outline: none;
 }
- 
+
 .btn-dropdown {
   background: transparent;
   border: 2px solid #e50914;
@@ -113,7 +113,7 @@ body {
   color: white;
   cursor: pointer;
 }
- 
+
 /* --- CARROSSEL: CORREÇÃO DE SOBREPOSIÇÃO --- */
 .carousel-container {
   width: 100%;
@@ -123,13 +123,13 @@ body {
   margin-top: 20px;
   padding-bottom: 60px;
 }
- 
+
 .slides {
   position: relative;
   width: 100%;
   height: 100%;
 }
- 
+
 .slide {
   position: absolute;
   /* Fixa todos os slides no mesmo ponto inicial */
@@ -145,7 +145,7 @@ body {
   transition: opacity 0.6s ease;
   z-index: 1;
 }
- 
+
 /* Mostra apenas o slide selecionado pelo rádio botão */
 #s1:checked~.slides #slide1,
 #s2:checked~.slides #slide2,
@@ -158,7 +158,7 @@ body {
   visibility: visible;
   z-index: 2;
 }
- 
+
 /* Estrutura Interna (Proporções mantidas como na foto) */
 .content-box {
   width: 70%;
@@ -169,20 +169,20 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   transition: all 0.4s ease;
 }
- 
+
 .poster-box {
   width: 50%;
   height: 100%;
   transition: 0.4s;
 }
- 
+
 .poster-box img {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover;
   display: block;
 }
- 
+
 .info-box {
   width: 50%;
   padding: 40px;
@@ -191,26 +191,26 @@ body {
   justify-content: center;
   transition: 0.4s;
 }
- 
+
 /* Lógica de Expansão (MANTIDA) */
 .slide.cenario-ativo .poster-box {
   width: 100% !important;
 }
- 
+
 .slide.cenario-ativo .info-box {
   width: 0% !important;
   padding: 0 !important;
   opacity: 0 !important;
   visibility: hidden !important;
 }
- 
+
 .side-box {
   width: 30%;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
- 
+
 .side-box img {
   width: 100% !important;
   height: calc(50% - 7.5px) !important;
@@ -219,7 +219,7 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
- 
+
 /* TEXTOS E DOTS */
 .label-disponivel {
   font-size: 11px;
@@ -228,28 +228,28 @@ body {
   letter-spacing: 2px;
   margin-bottom: 10px;
 }
- 
+
 .titulo-jogo {
   font-size: 28px;
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 15px;
 }
- 
+
 .descricao-jogo {
   font-size: 14px;
   color: #aaa;
   margin-bottom: 30px;
   line-height: 1.6;
 }
- 
+
 .precos-container {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 25px;
 }
- 
+
 .badge-desconto {
   background: #0074e4;
   padding: 5px 10px;
@@ -261,19 +261,19 @@ body {
   z-index: 5;
   font-size: 12px;
 }
- 
+
 .v-antigo {
   text-decoration: line-through;
   color: #777;
   font-size: 14px;
 }
- 
+
 .v-novo {
   font-weight: bold;
   font-size: 24px;
   color: white;
 }
- 
+
 .btn-comprar-carrossel {
   background: white;
   color: black;
@@ -284,7 +284,7 @@ body {
   text-transform: uppercase;
   cursor: pointer;
 }
- 
+
 /* DOTS (CORRIGIDOS) */
 .dots {
   display: flex;
@@ -295,7 +295,7 @@ body {
   width: 100%;
   z-index: 10;
 }
- 
+
 .dots label {
   width: 12px;
   height: 12px;
@@ -304,7 +304,7 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
- 
+
 #s1:checked~.dots label[for="s1"],
 #s2:checked~.dots label[for="s2"],
 #s3:checked~.dots label[for="s3"],
@@ -315,7 +315,7 @@ body {
   background: #e50914;
   transform: scale(1.3);
 }
- 
+
 /* --- GRADE DE DESCONTOS (MANTIDA INTEGRALMENTE) --- */
 .jogos-grid {
   display: grid;
@@ -323,7 +323,7 @@ body {
   gap: 20px;
   padding: 20px 0;
 }
- 
+
 .card-jogo-container {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
@@ -331,28 +331,28 @@ body {
   transition: 0.3s;
   cursor: pointer;
 }
- 
+
 .card-jogo-container:hover {
   transform: translateY(-10px);
   background: rgba(255, 255, 255, 0.1);
 }
- 
+
 .thumb-wrapper {
   position: relative;
   height: 280px;
   overflow: hidden;
 }
- 
+
 .thumb-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
- 
+
 .card-info-texto {
   padding: 15px;
 }
- 
+
 .card-plataforma {
   display: flex;
   align-items: center;
@@ -361,30 +361,30 @@ body {
   color: #aaa;
   margin-bottom: 10px;
 }
- 
+
 .v-old {
   text-decoration: line-through;
   color: #666;
   font-size: 12px;
 }
- 
+
 .v-new {
   font-weight: bold;
   font-size: 16px;
   color: white;
 }
- 
+
 input[type="radio"] {
   display: none;
 }
- 
+
 .rodape {
   background: rgba(19, 32, 65, 0.95);
   padding: 30px;
   text-align: center;
   margin-top: 60px;
 }
- 
+
 .user-box {
   display: flex;
   align-items: center;
@@ -396,11 +396,11 @@ input[type="radio"] {
   position: relative;
   transition: 0.3s;
 }
- 
+
 .user-box:active {
   background: rgba(255, 255, 255, 0.247);
 }
- 
+
 .user-menu {
   position: absolute;
   top: 45px;
@@ -414,7 +414,7 @@ input[type="radio"] {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 9999;
 }
- 
+
 .user-menu a {
   padding: 10px 15px;
   color: white;
@@ -423,11 +423,11 @@ input[type="radio"] {
   transition: 0.2s;
   text-align: center;
 }
- 
+
 .user-menu a:hover {
   background: #1f2a44;
 }
- 
+
 .btn-icon {
   background: transparent;
   border: none;
@@ -436,16 +436,16 @@ input[type="radio"] {
   color: white;
   transition: 0.3s;
 }
- 
+
 .btn-icon:hover {
   transform: scale(1.2);
 }
- 
+
 .user-nome {
   font-size: 14px;
   font-weight: 600;
 }
- 
+
 /* --- ESTILOS DOS PAINÉIS DROPDOWN --- */
 .painel-dropdown {
   background-color: #0b1120;
@@ -459,7 +459,7 @@ input[type="radio"] {
   z-index: 1000;
   box-sizing: border-box;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.1);
- 
+
   /* CORREÇÃO DO BLOQUEIO DOS CLIQUES E VISIBILIDADE */
   opacity: 0;
   transform: translateY(-15px) scale(0.98);
@@ -467,27 +467,27 @@ input[type="radio"] {
   pointer-events: none;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
- 
+
 .painel-dropdown.show {
   opacity: 1;
   transform: translateY(0) scale(1);
   visibility: visible;
   pointer-events: auto;
- 
+
   /* Novo Brilho: 3 camadas de sombra vermelha e uma borda leve */
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9),
     0 0 40px rgba(229, 9, 20, 0.3),
     0 0 80px rgba(229, 9, 20, 0.15);
   border: 1px solid rgba(229, 9, 20, 0.4);
 }
- 
+
 .titulo-painel {
   color: white;
   margin-bottom: 20px;
   font-size: 1.3rem;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
- 
+
 /* Painel Explorar */
 .banner-explorar-container {
   position: relative;
@@ -500,7 +500,7 @@ input[type="radio"] {
   justify-content: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
- 
+
 .img-banner-explorar {
   position: absolute;
   width: 100%;
@@ -508,7 +508,7 @@ input[type="radio"] {
   object-fit: cover;
   transition: transform 0.5s ease;
 }
- 
+
 .overlay-banner {
   position: absolute;
   top: 0;
@@ -518,11 +518,11 @@ input[type="radio"] {
   background: linear-gradient(to top, rgba(11, 17, 32, 0.9), rgba(11, 17, 32, 0.3));
   z-index: 1;
 }
- 
+
 .banner-explorar-container:hover .img-banner-explorar {
   transform: scale(1.05);
 }
- 
+
 .btn-mais-vendidos-banner {
   position: relative;
   z-index: 2;
@@ -537,13 +537,13 @@ input[type="radio"] {
   box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
   transition: all 0.3s ease;
 }
- 
+
 .btn-mais-vendidos-banner:hover {
   background-color: #e50914;
   box-shadow: 0 0 25px rgba(229, 9, 20, 0.8);
   transform: translateY(-2px);
 }
- 
+
 /* Painel Categorias com Carrossel */
 .carousel-categorias-wrapper {
   display: flex;
@@ -551,7 +551,7 @@ input[type="radio"] {
   position: relative;
   gap: 10px;
 }
- 
+
 .seta-cat {
   background: rgba(229, 9, 20, 0.8);
   color: white;
@@ -570,13 +570,13 @@ input[type="radio"] {
   transition: all 0.3s ease;
   box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
 }
- 
+
 .seta-cat:hover {
   background: #e50914;
   box-shadow: 0 0 20px rgba(229, 9, 20, 1);
   transform: scale(1.1);
 }
- 
+
 .categorias-painel-grid {
   display: flex;
   gap: 15px;
@@ -584,11 +584,11 @@ input[type="radio"] {
   scroll-behavior: smooth;
   padding: 15px 5px;
 }
- 
+
 .categorias-painel-grid::-webkit-scrollbar {
   display: none;
 }
- 
+
 .card-cat-item {
   display: flex;
   flex-direction: column;
@@ -601,7 +601,7 @@ input[type="radio"] {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
- 
+
 .img-cat-wrapper {
   width: 100%;
   border-radius: 6px;
@@ -611,7 +611,7 @@ input[type="radio"] {
   position: relative;
   transition: all 0.3s ease;
 }
- 
+
 .card-cat-item img {
   width: 100%;
   height: auto;
@@ -622,22 +622,22 @@ input[type="radio"] {
   transition: transform 0.5s ease, filter 0.3s ease;
   filter: brightness(0.9);
 }
- 
+
 .card-cat-item:hover {
   transform: translateY(-8px);
 }
- 
+
 .card-cat-item:hover .img-cat-wrapper {
   transform: scale(1.05);
   /* Dá um leve zoom na imagem */
   filter: brightness(1.1);
 }
- 
+
 .card-cat-item:hover img {
   transform: scale(1.1);
   filter: brightness(1.1);
 }
- 
+
 .card-cat-item span {
   color: #e5e5e5;
   font-size: 1.15rem;
@@ -647,11 +647,11 @@ input[type="radio"] {
   transition: color 0.3s ease;
   padding-left: 2px;
 }
- 
+
 .card-cat-item:hover span {
   color: white;
 }
- 
+
 /* 1. O Overlay que vai escurecer a página inteira */
 .fundo-escuro {
   position: fixed;
@@ -669,24 +669,24 @@ input[type="radio"] {
   visibility: hidden;
   transition: all 0.4s ease;
 }
- 
+
 .fundo-escuro.ativo {
   opacity: 1;
   visibility: visible;
 }
- 
+
 #resultados-busca {
   padding-top: 20px;
   min-height: 500px;
   /* Garante que o rodapé não suba demais */
 }
- 
+
 .erro-busca h2 {
   color: #999;
   text-align: center;
   margin-top: 50px;
 }
- 
+
 /* Balãozinho do Carrinho */
 .badge-carrinho {
   position: absolute;
@@ -703,7 +703,7 @@ input[type="radio"] {
   pointer-events: none;
   /* Impede de clicar no balão sem querer */
 }
- 
+
 /* Balãozinho da Lista de Desejos (Dentro do Menu) */
 .badge-wishlist {
   background-color: #e62429;
@@ -714,7 +714,7 @@ input[type="radio"] {
   font-weight: bold;
   margin-left: 10px;
 }
- 
+
 .header-biblioteca {
     display: flex;
     justify-content: space-between;
@@ -723,7 +723,7 @@ input[type="radio"] {
     padding-bottom: 20px;
     margin-bottom: 30px;
 }
- 
+
 .filtro-biblioteca select {
     background: #13192b;
     color: white;
@@ -735,19 +735,19 @@ input[type="radio"] {
     cursor: pointer;
     font-weight: 600;
 }
- 
+
 .filtro-biblioteca select:hover {
     border-color: #e62429;
 }
- 
+
 /* Espaçamento extra no fundo para não colar no rodapé */
 .lista-pedidos {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    padding-bottom: 80px;
+    padding-bottom: 80px; 
 }
- 
+
 /* Design Premium do Card */
 .pedido-card {
     display: flex;
@@ -760,13 +760,13 @@ input[type="radio"] {
     border: 1px solid rgba(255,255,255,0.05);
     transition: transform 0.3s ease, border-color 0.3s ease; /* Animação suave */
 }
- 
+
 /* Efeito ao passar o mouse */
 .pedido-card:hover {
     transform: translateY(-5px);
     border-color: rgba(229, 9, 20, 0.5); /* Borda brilha em vermelho */
 }
- 
+
 .pedido-card img.capa-jogo {
     width: 140px;
     height: 190px;
@@ -774,20 +774,20 @@ input[type="radio"] {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
- 
+
 .info-jogo {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
- 
+
 .info-jogo h3 {
     font-size: 28px;
     color: white;
     margin-bottom: 15px;
 }
- 
+
 /* A Caixinha da Steam e Windows */
 .plataforma-info-bib {
     display: flex;
@@ -799,19 +799,19 @@ input[type="radio"] {
     border-radius: 8px;
     border: 1px solid rgba(255,255,255,0.05);
 }
- 
+
 .plataforma-info-bib span {
     color: #ccc;
     font-size: 14px;
 }
- 
+
 .plataforma-info-bib strong {
     color: white;
 }
- 
+
 /* Botão Resgatar mais elegante */
 .btn-resgatar {
-    background-color: #2a475e;
+    background-color: #2a475e; 
     color: white;
     padding: 12px 28px;
     text-decoration: none;
@@ -823,12 +823,12 @@ input[type="radio"] {
     align-items: center;
     gap: 8px;
 }
- 
+
 .btn-resgatar:hover {
     background-color: #17202d;
     box-shadow: 0 4px 15px rgba(42, 71, 94, 0.6);
 }
- 
+
 html,
 body {
   min-height: 100vh;
@@ -836,31 +836,31 @@ body {
   flex-direction: column;
   margin: 0;
 }
- 
+
 .container,
 .main-pagamento,
 .categoria-container {
   flex: 1;
 }
- 
+
 @media screen and (max-width: 767px) {
- 
+
   /* remove carrossel desktop */
   .carousel-container{
     display:none !important;
   }
- 
+
   /* seção */
   .secao{
     margin-top:10px;
   }
- 
+
   .secao h2{
     font-size:20px;
     margin-bottom:14px;
     padding-left:10px;
   }
- 
+
   /* 2 colunas / 3 linhas */
   .jogos-grid{
     display:grid !important;
@@ -869,7 +869,7 @@ body {
     padding:-30px;
     margin-right: 0px;
   }
- 
+
   /* CARD visível */
   .card-jogo-container{
     width:100%;
@@ -877,88 +877,88 @@ body {
     opacity:1 !important;
     visibility:visible !important;
     transform:none !important;
- 
+
     background:#13192b;
     border-radius:14px;
     overflow:hidden;
     box-shadow:0 6px 16px rgba(0,0,0,.35);
   }
- 
+
   /* imagem */
   .thumb-wrapper{
     width:100%;
     height:190px;
     overflow:hidden;
   }
- 
+
   .thumb-wrapper img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
   }
- 
+
   /* texto */
   .card-info-texto{
     padding:10px;
   }
- 
+
   .card-info-texto h4{
     font-size:13px;
     line-height:1.3;
     min-height:34px;
     margin-bottom:6px;
   }
- 
+
   .v-new{
     font-size:15px;
     font-weight:700;
   }
- 
+
   .v-old{
     font-size:11px;
   }
- 
+
   .menu-busca{
     display:none !important;
   }
 }
- 
+
 @media screen and (max-width:430px){
- 
+
   .jogos-grid{
     gap:10px;
     padding:8px;
   }
- 
+
   .thumb-wrapper{
     height:170px;
   }
- 
+
   .card-info-texto h4{
     font-size:12px;
   }
- 
+
 }
- 
+
 @media screen and (min-width: 768px) and (max-width: 1024px) {
- 
+
   /* remove carrossel desktop */
   .carousel-container{
     display:none !important;
   }
- 
+
   /* seção */
   .secao{
     margin-top:10px;
   }
- 
+
   .secao h2{
     font-size:20px;
     margin-bottom:14px;
     padding-left:10px;
   }
- 
+
   /* 2 colunas / 3 linhas */
   .jogos-grid{
     display:grid !important;
@@ -967,7 +967,7 @@ body {
     padding:-30px;
     margin-right: 0px;
   }
- 
+
   /* CARD visível */
   .card-jogo-container{
     width:100%;
@@ -975,72 +975,71 @@ body {
     opacity:1 !important;
     visibility:visible !important;
     transform:none !important;
- 
+
     background:#13192b;
     border-radius:14px;
     overflow:hidden;
     box-shadow:0 6px 16px rgba(0,0,0,.35);
   }
- 
+
   /* imagem */
   .thumb-wrapper{
     width:100%;
     height:450px;
     overflow:hidden;
   }
- 
+
   .thumb-wrapper img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
   }
- 
+
   /* texto */
   .card-info-texto{
     padding:10px;
   }
- 
+
   .card-info-texto h4{
     font-size:13px;
     line-height:1.3;
     min-height:34px;
     margin-bottom:6px;
   }
- 
+
   .v-new{
     font-size:15px;
     font-weight:700;
   }
- 
+
   .v-old{
     font-size:11px;
   }
+
+
+
+
  
- 
- 
- 
- 
- 
+
 .categorias-painel-grid {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
   gap: 20px;
- 
+
   padding: 0;
   scroll-snap-type: x mandatory;
 }
- 
+
 .card-cat-item {
   flex: 0 0 calc(50% - 10px);
   min-width: unset;
- 
+
   scroll-snap-align: start;
 }
- 
- 
- 
- 
-}
 
+
+
+
+}
