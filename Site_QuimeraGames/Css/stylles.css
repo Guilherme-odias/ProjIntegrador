@@ -769,7 +769,7 @@ body {
     font-size:11px;
   }
 
-  .menu-busca{
+   .btn-dropdown{
     display:none !important;
   }
 }
