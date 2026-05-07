@@ -188,3 +188,12 @@ display: flex;
   color: #00ff88;
   font-weight: bold;
 }
+
+@media screen and (max-width: 1024px) {
+
+  .grid-jogos {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+  }
+
+}
