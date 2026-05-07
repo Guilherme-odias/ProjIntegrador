@@ -238,11 +238,11 @@ try {
                     <button class="btn-filtro-toggle">Preço <span class="seta">v</span></button>
                     <div class="filtro-conteudo ativo">
                         <label><input type="checkbox" id="chk-gratis" class="filtro-checkbox"> <span
-                                class="checkbox-custom"></span> Gratuitos</label>
+                                class="checkbox-custom"></span>Gratuitos</label>
                         <label><input type="checkbox" id="chk-ate50" class="filtro-checkbox"> <span
-                                class="checkbox-custom"></span> Até R$ 50,00</label>
+                                class="checkbox-custom"></span>Até R$ 50,00</label>
                         <label><input type="checkbox" id="chk-desconto" class="filtro-checkbox"> <span
-                                class="checkbox-custom"></span> Com Desconto</label>
+                                class="checkbox-custom"></span>Com Desconto</label>
                     </div>
                 </div>
             </aside>
