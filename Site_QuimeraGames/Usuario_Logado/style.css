@@ -1239,36 +1239,3 @@ body::before {
     }
 }
 
-/* ========================================================
-   FUNDO COM PATTERN (DIAGONAL E TRANSPARENTE)
-======================================================== */
-body {
-    background-color: #0b1320; /* Cor de fundo base do site */
-    position: relative;
-    z-index: 0;
-}
-
-/* Cria uma camada invisível apenas para segurar e girar a textura */
-body::before {
-    content: "";
-    position: fixed; /* Fixa o fundo para a tela não bugar ao rolar */
-    top: -50%;
-    left: -50%;
-    width: 200%; /* Tamanho extra grande para cobrir a tela ao girar */
-    height: 200%;
-    
-    /* Coloque o caminho da sua imagem aqui */
-    background-image: url('../imagens/logo.png');
-    background-repeat: repeat;
-    background-size: 150px; /* Tamanho da logo */
-    
-    /* Gira a textura em 30 graus na diagonal */
-    transform: rotate(-30deg);
-    
-    /* TRANSPARÊNCIA: Ajuste de 0.0 (invisível) até 1.0 (totalmente visível) */
-    opacity: 0.05; 
-    
-    /* Joga essa camada para trás de tudo e impede que ela bloqueie os cliques */
-    z-index: -1;
-    pointer-events: none;
-}
