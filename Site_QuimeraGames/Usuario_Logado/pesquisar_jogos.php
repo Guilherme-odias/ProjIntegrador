@@ -14,7 +14,7 @@ if (isset($_SESSION['id_user'])) {
     $qtd_wishlist = $stmt_wish->fetchColumn();
 }
 $logado = isset($_SESSION['usuario_nome']);
-$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+$link_home = $logado ? '../usuario_logado/usuariologado.php' : '../index/index.php';
 
 
 // Pega o que o usuário digitou na barra de pesquisa
@@ -51,7 +51,7 @@ try {
 
             // O Cartão do jogo (Igual aos descontos em destaque) apontando para a Tela do Jogo
             echo '
-            <a href="../Tela_Jogo/index_jogo.php?id=' . $id . '" style="text-decoration: none; color: inherit; display: block;">
+            <a href="../tela_jogo/index_jogo.php?id=' . $id . '" style="text-decoration: none; color: inherit; display: block;">
                 <div class="card-jogo-container">
                     <div class="thumb-wrapper">
                         <img src="' . $imagem . '" alt="' . $titulo . '">

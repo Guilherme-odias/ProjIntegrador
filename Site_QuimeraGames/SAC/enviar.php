@@ -8,9 +8,9 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 header('Content-Type: application/json');
 
 try {
-    require_once '../PHPMailer/src/PHPMailer.php';
-    require_once '../PHPMailer/src/SMTP.php';
-    require_once '../PHPMailer/src/Exception.php';
+    require_once '../phpmailer/src/phpmailer.php';
+    require_once '../phpmailer/src/smtp.php';
+    require_once '../phpmailer/src/exception.php';
     require_once '../conexa.php';
 } catch (Throwable $e) {
     ob_end_clean();

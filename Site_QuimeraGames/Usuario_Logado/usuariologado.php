@@ -3,7 +3,7 @@ session_start();
 
 // se não estiver logado, volta pro login
 if (!isset($_SESSION['usuario_nome'])) {
-  header("Location: ../Entrar/Entrar.php");
+  header("Location: ../entrar/entrar.php");
   exit;
 }
 
@@ -75,7 +75,7 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QuimeraGames - logado</title>
-  <link rel="stylesheet" href="../Usuario_Logado/style.css">
+  <link rel="stylesheet" href="../usuario_logado/style.css">
   <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
   <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
@@ -143,7 +143,7 @@ try {
           <div class="slide" id="slide<?php echo $i + 1; ?>">
             <div class="content-box">
               <div class="poster-box">
-                <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>">
+                <a href="../tela_jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>">
                   <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" id="mainImg<?php echo $i + 1; ?>"
                     data-capa="<?php echo $jogo['Imagens_jogos']; ?>" class="capa-poster">
                 </a>
@@ -168,7 +168,7 @@ try {
                     <span class="v-gratis">Gratuito</span>
                   <?php endif; ?>
                 </div>
-                <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration: none;">
+                <a href="../tela_jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration: none;">
                   <button class="btn-comprar-carrossel">COMPRAR AGORA</button>
                 </a>
               </div>
@@ -195,7 +195,7 @@ try {
       <h2>Descontos em destaque ></h2>
       <div class="jogos-grid">
         <?php foreach ($jogos_descontos as $jogo): ?>
-          <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1"
+          <a href="../tela_jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1"
             style="text-decoration: none; color: inherit; display: block;">
             <div class="card-jogo-container">
               <div class="thumb-wrapper">

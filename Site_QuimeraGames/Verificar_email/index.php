@@ -25,7 +25,7 @@ if (isset($_POST['verificar'])) {
         // Limpa a sessão
         session_destroy();
 
-        header("Location: ../Usuario_Logado/usuariologado.php");
+        header("Location: ../usuario_logado/usuariologado.php");
         exit;
     } else {
         echo "<script>alert('Código inválido!');</script>";
@@ -38,9 +38,9 @@ if (isset($_POST['reenviar'])) {
     $_SESSION['codigo_verificacao'] = $codigo;
     $nome = $_SESSION['cadastro']['nome'] ?? '';
 
-    require_once '../PHPMailer/src/PHPMailer.php';
-    require_once '../PHPMailer/src/SMTP.php';
-    require_once '../PHPMailer/src/Exception.php';
+    require_once '../phpmailer/src/phpmailer.php';
+    require_once '../phpmailer/src/smtp.php';
+    require_once '../phpmailer/src/exception.php';
 
     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
     $mail->CharSet = 'UTF-8';
@@ -100,7 +100,7 @@ if (isset($_POST['reenviar'])) {
 
 <body>
 
-    <a href="../Index/index.php" class="logo-link">
+    <a href="../index/index.php" class="logo-link">
         <img class="logo-auth" src="../imagens/logo.png" alt="QuimeraGames Logo">
     </a>
 

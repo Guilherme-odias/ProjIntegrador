@@ -15,11 +15,11 @@ if (isset($_SESSION['id_user'])) {
   $qtd_wishlist = $stmt_wish->fetchColumn();
 }
 $logado = isset($_SESSION['usuario_nome']);
-$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+$link_home = $logado ? '../usuario_logado/usuariologado.php' : '../index/index.php';
 
 
 if (isset($_SESSION['id_user'])) {
-  header("Location: ../Usuario_Logado/usuariologado.php");
+  header("Location: ../usuario_logado/usuariologado.php");
   exit;
 }
 
@@ -68,7 +68,7 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quimera Games</title>
-  <link rel="stylesheet" href="../Css/stylles.css">
+  <link rel="stylesheet" href="../css/stylles.css">
   <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
   <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
@@ -110,7 +110,7 @@ try {
             <?php foreach ($categorias_bd as $cat): ?>
               <?php $nome_cat = isset($nomes_categorias[$cat['id_categoria']]) ? $nomes_categorias[$cat['id_categoria']] : 'Outros'; ?>
 
-              <a href="../Categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
+              <a href="../categorias/categoria.php?id=<?php echo $cat['id_categoria']; ?>" class="card-cat-item"
                 style="text-decoration: none; color: inherit;">
                 <div class="img-cat-wrapper">
                   <img src="<?php echo htmlspecialchars($cat['capa']); ?>" alt="<?php echo $nome_cat; ?>">
@@ -135,7 +135,7 @@ try {
           <div class="slide" id="slide<?php echo $i + 1; ?>">
             <div class="content-box">
               <div class="poster-box">
-                <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>">
+                <a href="../tela_jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>">
                   <img src="<?php echo htmlspecialchars($jogo['Imagens_jogos']); ?>" id="mainImg<?php echo $i + 1; ?>"
                     data-capa="<?php echo $jogo['Imagens_jogos']; ?>" class="capa-poster">
                 </a>
@@ -160,7 +160,7 @@ try {
                     <span class="v-gratis">Gratuito</span>
                   <?php endif; ?>
                 </div>
-                <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration: none;">
+                <a href="../tela_jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration: none;">
                   <button class="btn-comprar-carrossel">
                     COMPRAR AGORA
                   </button>
@@ -189,7 +189,7 @@ try {
       <h2>Descontos em destaque ></h2>
       <div class="jogos-grid">
         <?php foreach ($jogos_descontos as $jogo): ?>
-          <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1"
+          <a href="../tela_jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>&desconto=1"
             style="text-decoration: none; color: inherit; display: block;">
             <div class="card-jogo-container">
               <div class="thumb-wrapper">
@@ -223,7 +223,7 @@ try {
 
   <?php include '../header_footer_global/footer.php'; ?>
 
-  <script src="Script.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

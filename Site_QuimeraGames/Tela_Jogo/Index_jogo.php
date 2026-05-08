@@ -39,7 +39,7 @@ try {
     $media_nota = '0.0';
 }
 
-$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+$link_home = $logado ? '../usuario_logado/usuariologado.php' : '../index/index.php';
 $veio_do_desconto = isset($_GET['desconto']) && $_GET['desconto'] == '1';
 
 // Variáveis essenciais para o Header funcionar!
@@ -143,10 +143,10 @@ $jaComprou = $stmt->fetchColumn() > 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($jogo['titulo']); ?> - QuimeraGames</title>
-    <link rel="stylesheet" href="../Css/stylles.css">
-    <link rel="stylesheet" href="../Css/Styles.css">
+    <link rel="stylesheet" href="../css/stylles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="StylesTelaJogo.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="stylestelajogo.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -368,7 +368,7 @@ $jaComprou = $stmt->fetchColumn() > 0;
         });
     </script>
 
-    <script src="Script_jogo.js" defer></script>
+    <script src="script_jogo.js" defer></script>
     <?php include '../header_footer_global/footer.php'; ?>
 </body>
 
