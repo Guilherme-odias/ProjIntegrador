@@ -43,7 +43,7 @@ $stmt->execute(['u' => $id_user]);
 $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $total = 0;
-$link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
+$link_home = $logado ? 'usuariologado.php' : '../index/index.php';
 ?>
 
 <!DOCTYPE html>
@@ -98,14 +98,14 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
                 <div class="summary-row" style="font-weight: bold; font-size: 19px;"><span>Subtotal</span> <span>R$
                         <?= number_format($total, 2, ',', '.') ?></span></div>
                 <button class="btn-checkout"
-                    onclick="window.location.href='../Pagamento/pagamento.php?id_jogo=<?= $id_checkout ?>&preco=<?= $total ?>'">Finalizar
+                    onclick="window.location.href='../pagamento/pagamento.php?id_jogo=<?= $id_checkout ?>&preco=<?= $total ?>'">Finalizar
                     compra</button>
             </div>
         <?php endif; ?>
     </div>
 
     <?php include '../header_footer_global/footer.php'; ?>
-    <script src="../Usuario_Logado/script.js" defer></script>
+    <script src="../usuario_logado/script.js" defer></script>
 </body>
 
 </html>

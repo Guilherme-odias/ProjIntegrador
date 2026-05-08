@@ -28,7 +28,7 @@ if ($logado && $id_user > 0) {
   $qtd_wishlist = $stmt_wish->fetchColumn();
 }
 
-$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+$link_home = $logado ? '../usuario_logado/usuariologado.php' : '../index/index.php';
 
 // 3. Lógica das Categorias
 $categoria = isset($_GET['categoria']) ? (int) $_GET['categoria'] : 0;
@@ -111,7 +111,7 @@ try {
 
   <div class="grid-jogos">
     <?php foreach ($jogos as $jogo): ?>
-      <a href="../Tela_Jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration:none; color:white;">
+      <a href="../tela_jogo/index_jogo.php?id=<?php echo $jogo['id_play']; ?>" style="text-decoration:none; color:white;">
         <div class="card-jogo">
 
           <div class="badge">

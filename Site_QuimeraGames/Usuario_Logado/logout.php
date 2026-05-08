@@ -2,5 +2,5 @@
 session_start();
 session_destroy();
 
-header("Location: ../Index/index.php");
+header("Location: ../index/index.php");
 exit;

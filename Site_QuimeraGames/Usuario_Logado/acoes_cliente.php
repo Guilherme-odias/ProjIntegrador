@@ -12,7 +12,7 @@ if (!isset($_SESSION['id_user']) && isset($_SESSION['usuario_email'])) {
 }
 
 if (empty($_SESSION['id_user'])) {
-    header("Location: ../Entrar/Entrar.php");
+    header("Location: ../entrar/entrar.php");
     exit;
 }
 
@@ -21,7 +21,7 @@ $id_play = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $acao = $_GET['acao'] ?? '';
 
 // Grava a página exata de onde o usuário clicou
-$pagina_anterior = $_SERVER['HTTP_REFERER'] ?? '../Usuario_Logado/usuariologado.php';
+$pagina_anterior = $_SERVER['HTTP_REFERER'] ?? '../usuario_logado/usuariologado.php';
 
 if ($id_play > 0) {
 

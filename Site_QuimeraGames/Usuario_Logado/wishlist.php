@@ -42,7 +42,7 @@ $stmt_itens = $pdo->prepare($query_itens);
 $stmt_itens->execute(['u' => $id_user]);
 $itens = $stmt_itens->fetchAll(PDO::FETCH_ASSOC);
 
-$link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
+$link_home = $logado ? 'usuariologado.php' : '../index/index.php';
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +99,7 @@ $link_home = $logado ? 'usuariologado.php' : '../Index/index.php';
     </div>
 
     <?php include '../header_footer_global/footer.php'; ?>
-    <script src="../Usuario_Logado/script.js" defer></script>
+    <script src="../usuario_logado/script.js" defer></script>
 </body>
 
 </html>

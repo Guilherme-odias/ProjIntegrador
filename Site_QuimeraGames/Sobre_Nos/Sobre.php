@@ -6,7 +6,7 @@ $logado = isset($_SESSION['usuario_nome']);
 $id_user = $_SESSION['id_user'] ?? 0;
 
 // Define para onde a Logo vai mandar (Home logada ou deslogada)
-$link_home = $logado ? '../Usuario_Logado/usuariologado.php' : '../Index/index.php';
+$link_home = $logado ? '../usuario_logado/usuariologado.php' : '../index/index.php';
 
 // Inicializa variáveis para o header não dar erro
 $qtd_carrinho = 0;
@@ -37,7 +37,7 @@ if ($id_user > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós - Quimera Games</title>
-    <link rel="stylesheet" href="Sobre.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="sobre.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
     <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
     <script defer src="Sobre.js"></script>

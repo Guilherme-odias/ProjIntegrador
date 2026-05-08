@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // =======================================================
     const gerenciarAcao = (acao) => {
         if (!logado) {
-            window.location.href = '../Entrar/Entrar.php';
+            window.location.href = '../entrar/entrar.php';
         } else {
-            window.location.href = `../Usuario_Logado/acoes_cliente.php?id=${idJogo}&acao=${acao}`;
+            window.location.href = `../usuario_logado/acoes_cliente.php?id=${idJogo}&acao=${acao}`;
         }
     };
 
@@ -22,12 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('btn-comprar-agora')?.addEventListener('click', () => {
         if (!logado) {
-            window.location.href = '../Entrar/Entrar.php';
+            window.location.href = '../entrar/entrar.php';
             return;
         }
         const precoEl = document.getElementById('preco-final');
         const preco = precoEl ? precoEl.getAttribute('data-valor') : '0.00';
-        window.location.href = `../Pagamento/pagamento.php?id_jogo=${idJogo}&preco=${preco}`;
+        window.location.href = `../pagamento/pagamento.php?id_jogo=${idJogo}&preco=${preco}`;
     });
 
     // =======================================================
@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById('btn-add-lista')?.addEventListener('click', () => {
         
-            window.location.href = '../Usuario_Logado/meus_pedidos.php';
+            window.location.href = '../usuario_logado/meus_pedidos.php';
             return;
         
 
