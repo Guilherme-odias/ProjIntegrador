@@ -747,59 +747,82 @@ input[type="radio"] {
     gap: 25px;
     padding-bottom: 80px; 
 }
+<<<<<<< Updated upstream
 
 /* Design Premium do Card */
-.pedido-card {
+=======
+ 
+/* --- ESTILOS DA TELA MEUS PEDIDOS (MINHA BIBLIOTECA) ATUALIZADOS --- */
+
+.lista-pedidos {
     display: flex;
-    background: linear-gradient(145deg, #13192b, #0b1120); /* Fundo com leve degradê */
-    padding: 20px;
-    border-radius: 12px;
-    align-items: center;
-    gap: 30px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* Sombra mais difusa */
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: transform 0.3s ease, border-color 0.3s ease; /* Animação suave */
+    flex-direction: column;
+    gap: 25px;
+    padding-bottom: 80px;
+    width: 100%; /* Garante que a lista use toda a largura */
 }
 
+>>>>>>> Stashed changes
+.pedido-card {
+    display: flex;
+    flex-direction: row; /* Mantém imagem ao lado do texto */
+    background: linear-gradient(145deg, #13192b, #0b1120);
+    padding: 30px; /* Mais espaço interno */
+    border-radius: 16px;
+    align-items: center;
+    gap: 50px; /* Aumenta o espaço entre a capa e o texto */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    width: 1000px; /* FAZ O CARD FICAR LARGO */
+}
+
+<<<<<<< Updated upstream
 /* Efeito ao passar o mouse */
+=======
+>>>>>>> Stashed changes
 .pedido-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(229, 9, 20, 0.5); /* Borda brilha em vermelho */
+    border-color: #e50914; /* Brilho vermelho no hover */
 }
 
 .pedido-card img.capa-jogo {
-    width: 140px;
-    height: 190px;
+    width: 150px; /* Capa maior para não parecer "sumida" no card largo */
+    height: 200px;
     object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    flex-shrink: 0; /* Impede a imagem de amassar */
 }
 
 .info-jogo {
-    flex-grow: 1;
+    flex-grow: 1; /* Faz o texto ocupar todo o espaço central */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
 .info-jogo h3 {
-    font-size: 28px;
+    font-size: 36px; /* Título bem grande e imponente */
     color: white;
     margin-bottom: 15px;
 }
 
+<<<<<<< Updated upstream
 /* A Caixinha da Steam e Windows */
+=======
+>>>>>>> Stashed changes
 .plataforma-info-bib {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 25px;
-    background: rgba(0, 0, 0, 0.3); /* Fundinho mais escuro */
+    background: rgba(255, 255, 255, 0.05); /* Fundinho sutil */
     padding: 10px 15px;
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
 }
 
+<<<<<<< Updated upstream
 .plataforma-info-bib span {
     color: #ccc;
     font-size: 14px;
@@ -812,21 +835,25 @@ input[type="radio"] {
 /* Botão Resgatar mais elegante */
 .btn-resgatar {
     background-color: #2a475e; 
+=======
+.btn-resgatar {
+    background-color: #e50914; /* Vermelho padrão do seu site */
+>>>>>>> Stashed changes
     color: white;
-    padding: 12px 28px;
+    padding: 14px 35px;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-weight: bold;
     transition: 0.3s;
-    font-size: 15px;
+    font-size: 17px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .btn-resgatar:hover {
-    background-color: #17202d;
-    box-shadow: 0 4px 15px rgba(42, 71, 94, 0.6);
+    background-color: #b20710;
+    box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4);
 }
 
 html,
@@ -1039,7 +1066,125 @@ body {
   scroll-snap-align: start;
 }
 
+<<<<<<< Updated upstream
 
 
 
+=======
+/* ========================================================
+   FUNDO COM PATTERN (DIAGONAL E TRANSPARENTE)
+======================================================== */
+body {
+    background-color: #0b1320; /* Cor de fundo base do site */
+    position: relative;
+    z-index: 0;
+}
+
+/* Cria uma camada invisível apenas para segurar e girar a textura */
+body::before {
+    content: "";
+    position: fixed; /* Fixa o fundo para a tela não bugar ao rolar */
+    top: -50%;
+    left: -50%;
+    width: 200%; /* Tamanho extra grande para cobrir a tela ao girar */
+    height: 200%;
+    
+    /* Coloque o caminho da sua imagem aqui */
+    background-image: url('../imagens/logo.png');
+    background-repeat: repeat;
+    background-size: 150px; /* Tamanho da logo */
+    
+    /* Gira a textura em 30 graus na diagonal */
+    transform: rotate(-30deg);
+    
+    /* TRANSPARÊNCIA: Ajuste de 0.0 (invisível) até 1.0 (totalmente visível) */
+    opacity: 0.05; 
+    
+    /* Joga essa camada para trás de tudo e impede que ela bloqueie os cliques */
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ========================================================
+   ✅ RESPONSIVIDADE: MINHA BIBLIOTECA (meus_pedidos.php)
+   Modelos: Samsung S24, iPhone 15, Xiaomi, Motorola e Tablets
+======================================================== */
+
+@media screen and (max-width: 1024px) {
+    .pedido-card {
+        width: 100%; /* Remove a largura fixa de 1000px */
+        max-width: 900px;
+        margin: 0 auto;
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header-biblioteca {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .pedido-card {
+        flex-direction: row; /* Mantém horizontal no tablet */
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .pedido-card img.capa-jogo {
+        width: 120px;
+        height: 160px;
+    }
+
+    .info-jogo h3 {
+        font-size: 24px;
+    }
+}
+
+/* Smartphones: Apple (iPhone), Samsung (Galaxy), Xiaomi e Motorola */
+@media screen and (max-width: 580px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .pedido-card {
+        flex-direction: column; /* Vira card vertical no celular */
+        text-align: center;
+        align-items: center;
+        padding: 25px 15px;
+    }
+
+    .pedido-card img.capa-jogo {
+        width: 140px;
+        height: 190px;
+        margin-bottom: 10px;
+    }
+
+    .info-jogo {
+        align-items: center; /* Centraliza textos e botão */
+        width: 100%;
+    }
+
+    .info-jogo h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .plataforma-info-bib {
+        justify-content: center;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .btn-resgatar {
+        width: 100%; /* Botão ocupa toda a largura no celular */
+        justify-content: center;
+        padding: 15px;
+    }
+    
+    .filtro-biblioteca, .filtro-biblioteca select {
+        width: 100%; /* Filtro ocupa a tela toda no mobile */
+    }
+>>>>>>> Stashed changes
 }

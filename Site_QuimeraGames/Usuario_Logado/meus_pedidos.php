@@ -64,6 +64,7 @@ $nomes_categorias = [
     <title>Minha Biblioteca</title>
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="meus_pedidos.css?v=<?php echo time(); ?>">
     <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
 
@@ -141,7 +142,7 @@ $nomes_categorias = [
         }
     </script>
 
-    <script src="../Usuario_Logado/script.js" defer></script>
+    <script src="../usuario_logado/script.js" defer></script>
     <?php include '../header_footer_global/footer.php'; ?>
 
 </body>
