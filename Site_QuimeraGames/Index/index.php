@@ -222,6 +222,24 @@ try {
   </div>
 
   <?php include '../header_footer_global/footer.php'; ?>
+  <script type="module">
+  import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js'
+
+  Typebot.initBubble({
+    typebot: "faq-zjqkf4x",
+
+    theme: {
+      button: {
+        
+        size: "65px",
+         backgroundColor: "transparent",
+        customIconSrc:
+          "http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/imagens/cerberus.png"
+      }
+    }
+  });
+</script>
+
 
   <script src="script.js" defer></script>
 </body>

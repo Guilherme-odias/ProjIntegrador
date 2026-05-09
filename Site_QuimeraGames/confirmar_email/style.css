@@ -1,0 +1,207 @@
+/* =========================================
+   ESTRUTURA GERAL (Para colar o rodapé no fundo)
+   ========================================= */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0b0f1a;
+  /* Fundo escuro padrão do site */
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-centralizado {
+  flex: 1;
+  /* Faz o meio da página expandir, empurrando o footer pra baixo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 60px;
+  /* Evita bater na logo do header_simples */
+}
+
+/* =========================================
+   ESTILO PREMIUM DO CARTÃO DE VERIFICAÇÃO
+   ========================================= */
+.form-verificacao {
+  width: 100%;
+  max-width: 420px;
+}
+
+.card-moderno {
+  background: #13192b;
+  /* Azul marinho escuro */
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  /* Mantém as bordas arredondadas do cartão */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho do Cartão (Gradiente) */
+.card-header {
+  background: linear-gradient(145deg, #1f2b48, #13192b);
+  padding: 40px 30px 25px;
+  text-align: center;
+  border-bottom: 2px solid #e62429;
+  /* Linha de destaque vermelha */
+}
+
+.icon-email {
+  font-size: 45px;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card-header h2 {
+  color: white;
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+.card-header p {
+  color: #a0aec0;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Corpo do Cartão (Onde fica o Input) */
+.card-body {
+  padding: 35px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Input do Código Moderno */
+.input-codigo {
+  width: 80%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  letter-spacing: 8px;
+  /* Dá aquele visual de código 1 2 3 4 5 */
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-codigo:focus {
+  border-color: #e62429;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(230, 36, 41, 0.3);
+}
+
+.email_user {
+  width: 80%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(126, 126, 126);
+  text-align: center;
+  letter-spacing: 1px;
+  /* Dá aquele visual de código 1 2 3 4 5 */
+  outline: none;
+  transition: 0.3s;
+}
+
+.email_user:focus {
+  border-color: #e62429;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(230, 36, 41, 0.3);
+  color:rgb(255, 255, 255)
+}
+
+/* Botão Principal Brilhante */
+.btn-verificar {
+  background: #e62429;
+  color: white;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-verificar:hover {
+  background: #c0181d;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(230, 36, 41, 0.4);
+}
+
+/* Botão Reenviar Discreto */
+.btn-reenviar {
+  background: transparent;
+  border: none;
+  color: #a0aec0;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-reenviar span {
+  color: white;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.btn-reenviar:hover span {
+  color: #e62429;
+}
+
+/* Rodapé Interno do Cartão (Para o Voltar) */
+.card-footer {
+  background: #0d121f;
+  /* Azul quase preto, contrasta bem */
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-voltar {
+  background: transparent;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+  transition: 0.3s;
+}
+
+.btn-voltar:hover {
+  color: #e62429;
+}
+
+.btn-voltar .seta {
+  background: #e62429;
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
