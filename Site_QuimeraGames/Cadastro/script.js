@@ -110,3 +110,38 @@ function validarForm() {
 
     return true;
 }
+function senhaFraca() {
+        const senhaInput = document.getElementById("confirme");
+        const forcaTexto = document.getElementById("forcaSenha");
+ 
+        senhaInput.addEventListener("input", function () {
+ 
+            const senha = senhaInput.value;
+ 
+            let forca = 0;
+ 
+            // critérios
+            if (senha.length >= 8) forca++;
+            if (/[A-Z]/.test(senha)) forca++;
+            if (/[0-9]/.test(senha)) forca++;
+            if (/[^A-Za-z0-9]/.test(senha)) forca++;
+ 
+            // resultado
+            if (senha.length === 0) {
+                forcaTexto.innerText = "";
+            }
+            else if (forca <= 1) {
+                forcaTexto.innerText = "Senha fraca";
+                forcaTexto.style.color = "red";
+            }
+            else if (forca == 2 || forca == 3) {
+                forcaTexto.innerText = "Senha média";
+                forcaTexto.style.color = "orange";
+            }
+            else {
+                forcaTexto.innerText = "Senha forte";
+                forcaTexto.style.color = "limegreen";
+            }
+ 
+        });
+        }
