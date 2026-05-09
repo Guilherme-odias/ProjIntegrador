@@ -176,13 +176,27 @@ cursor: pointer;
 .problemas_iniciar {
   text-align: center;
   color: #a0aec0;
-  margin-top: 20px;
+  margin-top: 5px;
   font-size: 14px;
   text-decoration: none;
   transition: 0.3s;
 }
 
 .problemas_iniciar:hover {
+  color: #e62429;
+  text-decoration: underline;
+}
+
+.esqueceu_senha {
+  text-align: center;
+  color: #a0aec0;
+  margin-top: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.esqueceu_senha:hover {
   color: #e62429;
   text-decoration: underline;
 }

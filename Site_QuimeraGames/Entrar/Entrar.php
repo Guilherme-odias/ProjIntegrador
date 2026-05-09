@@ -92,6 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div> <button type="submit" class="iniciar_sessao">Iniciar Sessão</button>
                 </form>
 
+               <a href="#" class="esqueceu_senha" onclick="verificarEmail(event)">Esqueci a senha</a>
+            
+
                 <a href="../sac/suporte.php" class="problemas_iniciar">Problemas para iniciar sessão?</a>
             </div>
         </div>
@@ -142,6 +145,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }, 5000);
     </script>
+
+<script>
+function mostrarErro(msg) {
+
+    const antigo = document.getElementById("erro-msg");
+    if (antigo) antigo.remove();
+
+    const div = document.createElement("div");
+    div.id = "erro-msg";
+    div.className = "erro-msg";
+    div.innerText = msg;
+
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+        div.style.opacity = "0";
+
+        setTimeout(() => {
+            div.remove();
+        }, 500);
+
+    }, 5000);
+}
+
+
+function verificarEmail(event) {
+    event.preventDefault();
+
+    const usuario = document.querySelector('input[name="usuario"]').value.trim();
+
+    if (usuario === "") {
+        mostrarErro("Digite seu email primeiro.");
+        return;
+    }
+
+    fetch("email_verificar.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "usuario=" + encodeURIComponent(usuario)
+    })
+    .then(res => res.text())
+    .then(resposta => {
+
+        if (resposta === "ok") {
+            window.location.href = "../confirmar_email/confirmar.php";
+        } else {
+            mostrarErro("Esse email ainda não foi cadastrado.");
+        }
+
+    });
+}</script>
 
 </body>
 

@@ -4,18 +4,32 @@
     padding: 0;
 }
 
+/* Garante que o body ocupe no mínimo a altura total da tela */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
+    display: flex;
+    flex-direction: column;
     background-color: #0d121a;
     color: #ffffff;
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-
-/* CONTAINER */
+/* O container principal cresce para ocupar o espaço disponível, empurrando o footer para baixo */
 .container {
+    flex: 1 0 auto; /* O container vai crescer (flex-grow: 1) para ocupar o espaço */
     max-width: 1100px;
     margin: 0 auto;
     padding: 40px 20px;
+    width: 100%;
+}
+
+/* Garante que o footer não encolha e fique sempre na base */
+footer {
+    flex-shrink: 0;
 }
 
 .menu-busca {
