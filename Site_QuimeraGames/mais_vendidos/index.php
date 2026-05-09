@@ -69,14 +69,14 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mais Vendidos - QuimeraGames</title>
-  <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
   <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
   <link rel="stylesheet" href="stylee.css?v=<?php echo time(); ?>">
+  <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
 
 <body>
 
-  <header class="topo-universal">
+  <header>
     <?php include '../header_footer_global/header.php'; ?>
   </header>
 
