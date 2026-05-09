@@ -147,6 +147,7 @@ $jaComprou = $stmt->fetchColumn() > 0;
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="stylestelajogo.css?v=<?php echo time(); ?>">
+    <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
 
 <body>
