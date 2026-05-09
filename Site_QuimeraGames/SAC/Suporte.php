@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suporte ao Cliente - QuimeraGames</title>
+    <title>Suporte ao Cliente</title>
+    <link rel="stylesheet" href="suporte.css">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="suporte.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
 
 <body>
-
-    <?php include '../header_footer_global/header_simples.php'; ?>
+    <header>
+        <?php include '../header_footer_global/header_simples.php'; ?>
+    </header>
 
     <main class="main-suporte">
         <div class="card-suporte">
@@ -26,36 +26,37 @@
             <form id="formSuporte" action="enviar.php" method="POST">
 
                 <div class="input-group">
-                    <input type="text" name="nome" id="name" required placeholder=" " autocomplete="off">
-                    <label>Nome</label>
+                    <input type="text" name="nome" id="name" placeholder=" " required>
+                    <label for="name">Nome</label>
                 </div>
 
                 <div class="input-group">
-                    <input type="email" name="email" id="email" required placeholder=" " autocomplete="off">
-                    <label>Email</label>
+                    <input type="email" name="email" id="email" placeholder=" " required>
+                    <label for="email">Email</label>
                 </div>
 
                 <div class="input-group">
-                    <input type="text" name="cpf" id="cpf" maxlength="14" required placeholder=" " autocomplete="off">
-                    <label>CPF</label>
+                    <input type="text" name="cpf" id="cpf" maxlength="14" placeholder=" " required>
+                    <label for="cpf">CPF</label>
                 </div>
 
-                <div class="input-group textarea-group">
-                    <textarea name="reclamacao" id="reclamacao" required placeholder=" "></textarea>
-                    <label>Escreva sua reclamação/sugestão aqui...</label>
-                    <button type="submit" id="bntContinuar" class="btnEnviar">➤</button>
+                <div class="input-group">
+                    <textarea name="reclamacao" id="reclamacao" placeholder=" " required></textarea>
+                    <label for="reclamacao">Escreva sua reclamação/sugestão aqui...</label>
+                    <button type="submit" id="bntContinuar" class="btnEnviar">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
                 </div>
 
                 <div class="footer-voltar">
-                    <button type="button" class="btnVoltar" onclick="window.history.back()">❮</button>
-                    <span class="labelVoltar" onclick="window.history.back()">Voltar</span>
+                    <a class="btnVoltar" href="../usuario_logado/usuariologado.php" style="text-decoration: none;">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <span class="labelVoltar">Voltar</span>
+                    </a>
                 </div>
-
             </form>
         </div>
     </main>
-
-    <?php include '../header_footer_global/footer.php'; ?>
 
     <div id="modalSucesso" class="modal-overlay">
         <div class="modal-content">
@@ -63,12 +64,15 @@
                 <i class="fa-solid fa-circle-check"></i>
             </div>
             <h2>Solicitação Enviada</h2>
-            <p>Seu protocolo de atendimento é: <br><strong id="numeroProtocolo"></strong></p>
-            <button id="btnFecharModal">Entendi</button>
+            <p>Seu protocolo é: <br> <strong id="numeroProtocolo"></strong></p>
+            <button id="btnFecharModal">OK</button>
         </div>
     </div>
 
-    <script src="../js/suporte.js" defer></script>
+    <?php include '../header_footer_global/footer.php'; ?>
+
+
+    <script src="suporte.js" defer></script>
 </body>
 
 </html>
