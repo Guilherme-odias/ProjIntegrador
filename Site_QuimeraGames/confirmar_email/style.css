@@ -205,3 +205,35 @@ body {
   justify-content: center;
   font-size: 12px;
 }
+
+.erro-msg {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e62429;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 9999;
+  opacity: 1;
+  transition: 0.5s;
+  box-shadow: 0 4px 15px rgba(230, 36, 41, 0.4);
+}
+
+.sucesso-msg{
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00b86b;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 9999;
+  opacity: 1;
+  transition: 0.5s;
+  box-shadow: 0 4px 15px rgba(0,184,107,.4);
+}
