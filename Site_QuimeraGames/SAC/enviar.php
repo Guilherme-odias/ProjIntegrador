@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-set_error_handler(function($errno, $errstr, $errfile, $errline) {
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 });
 
@@ -22,10 +22,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // ===== CONFIGURAÇÕES — edite só aqui =====
-$SMTP_USUARIO   = 'quimeraggames@gmail.com';
-$SMTP_SENHA     = 'okvjnqpqjgqkcexh';
-$EMAIL_COPIA    = 'quimeraggames@gmail.com';
-$BASE_URL       = 'http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/Suporte';
+$SMTP_USUARIO = 'quimeraggames@gmail.com';
+$SMTP_SENHA = 'okvjnqpqjgqkcexh';
+$EMAIL_COPIA = 'quimeraggames@gmail.com';
+$BASE_URL = 'http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/sac';
 $ZEROBOUNCE_KEY = '82781732b188490e9ae27a327541db8d'; // https://zerobounce.net (100 gratis/mes)
 // =========================================
 
@@ -35,19 +35,20 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit;
 }
 
-function validarEmailCompleto($email, $apiKey) {
+function validarEmailCompleto($email, $apiKey)
+{
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return "Formato de e-mail invalido.";
     }
 
     $url = 'https://api.zerobounce.net/v2/validate?' . http_build_query([
-        'api_key'    => $apiKey,
-        'email'      => $email,
+        'api_key' => $apiKey,
+        'email' => $email,
         'ip_address' => $_SERVER['REMOTE_ADDR'] ?? '',
     ]);
 
-    $ctx      = stream_context_create(['http' => ['timeout' => 8]]);
+    $ctx = stream_context_create(['http' => ['timeout' => 8]]);
     $resposta = @file_get_contents($url, false, $ctx);
 
     if ($resposta === false) {
@@ -60,7 +61,7 @@ function validarEmailCompleto($email, $apiKey) {
         return true;
     }
 
-    $status    = strtolower($dados['status']);
+    $status = strtolower($dados['status']);
     $subStatus = strtolower($dados['sub_status'] ?? '');
 
     switch ($status) {
@@ -83,33 +84,37 @@ function validarEmailCompleto($email, $apiKey) {
     }
 }
 
-$nome  = trim($_POST['nome'] ?? '');
+$nome = trim($_POST['nome'] ?? '');
 $email = trim($_POST['email'] ?? '');
-$cpf   = preg_replace('/\D/', '', $_POST['cpf'] ?? '');
-$msg   = trim($_POST['reclamacao'] ?? '');
+$cpf = preg_replace('/\D/', '', $_POST['cpf'] ?? '');
+$msg = trim($_POST['reclamacao'] ?? '');
 
 if (strlen($nome) < 3) {
     ob_end_clean();
-    echo json_encode(['sucesso' => false, 'erro' => 'Nome invalido']); exit;
+    echo json_encode(['sucesso' => false, 'erro' => 'Nome invalido']);
+    exit;
 }
 
 $validacaoEmail = validarEmailCompleto($email, $ZEROBOUNCE_KEY);
 if ($validacaoEmail !== true) {
     ob_end_clean();
-    echo json_encode(['sucesso' => false, 'erro' => $validacaoEmail]); exit;
+    echo json_encode(['sucesso' => false, 'erro' => $validacaoEmail]);
+    exit;
 }
 
 if (strlen($cpf) != 11) {
     ob_end_clean();
-    echo json_encode(['sucesso' => false, 'erro' => 'CPF invalido']); exit;
+    echo json_encode(['sucesso' => false, 'erro' => 'CPF invalido']);
+    exit;
 }
 
 if (strlen($msg) < 20) {
     ob_end_clean();
-    echo json_encode(['sucesso' => false, 'erro' => 'Mensagem muito curta']); exit;
+    echo json_encode(['sucesso' => false, 'erro' => 'Mensagem muito curta']);
+    exit;
 }
 
-$token     = bin2hex(random_bytes(32));
+$token = bin2hex(random_bytes(32));
 $protocolo = strtoupper(substr(bin2hex(random_bytes(8)), 0, 8));
 
 try {
@@ -119,12 +124,12 @@ try {
         VALUES (:nome, :email, :cpf, :msg, :protocolo, :token, 0, NOW())
     ");
     $stmt->execute([
-        ':nome'      => $nome,
-        ':email'     => $email,
-        ':cpf'       => $cpf,
-        ':msg'       => $msg,
+        ':nome' => $nome,
+        ':email' => $email,
+        ':cpf' => $cpf,
+        ':msg' => $msg,
         ':protocolo' => $protocolo,
-        ':token'     => $token
+        ':token' => $token
     ]);
 } catch (PDOException $e) {
     ob_end_clean();
@@ -136,14 +141,14 @@ $mail = new PHPMailer(true);
 
 try {
     $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'quimeraggames@gmail.com';
-    $mail->Password   = 'cyrsiodgwwzvwuqx';
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'quimeraggames@gmail.com';
+    $mail->Password = 'cyrsiodgwwzvwuqx';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
-    $mail->CharSet    = 'UTF-8';
-    $mail->Timeout    = 15;
+    $mail->Port = 587;
+    $mail->CharSet = 'UTF-8';
+    $mail->Timeout = 15;
 
     $mail->setFrom($SMTP_USUARIO, 'QuimeraGames');
     $mail->addAddress($email, $nome);
@@ -152,9 +157,9 @@ try {
     $mail->isHTML(true);
     $mail->Subject = "Recebemos sua solicitacao - Protocolo: $protocolo";
 
-    $nomeSeguro      = htmlspecialchars($nome, ENT_QUOTES, 'UTF-8');
+    $nomeSeguro = htmlspecialchars($nome, ENT_QUOTES, 'UTF-8');
     $textoReclamacao = nl2br(htmlspecialchars($msg, ENT_QUOTES, 'UTF-8'));
-    $link            = $BASE_URL . "/confirmar.php?token=$token";
+    $link = $BASE_URL . "/confirmar.php?token=$token";
 
     $mail->Body = "
     <div style='font-family: Arial, sans-serif; max-width:600px; color:#222;'>

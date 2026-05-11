@@ -59,8 +59,23 @@ if ($id_play > 0) {
         header("Location: " . $pagina_anterior);
         exit;
     }
+    elseif ($acao == 'move_to_cart') {
+        // 1. Adiciona o item na tabela do carrinho
+        $sqlInsert = "INSERT IGNORE INTO carrinho (id_usuario, id_play) VALUES (?, ?)";
+        $pdo->prepare($sqlInsert)->execute([$id_user, $id_play]);
+
+        // 2. Remove o item da tabela da lista de desejos
+        $sqlDelete = "DELETE FROM lista_desejos WHERE id_user = ? AND id_play = ?";
+        $pdo->prepare($sqlDelete)->execute([$id_user, $id_play]);
+
+        // Redireciona o usuário para o carrinho para finalizar a compra
+        header("Location: carrinho.php");
+        exit;
+    }
 }
 
 // Redirecionamento de segurança final
 header("Location: " . $pagina_anterior);
+
+
 exit;

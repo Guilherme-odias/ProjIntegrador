@@ -1,4 +1,3 @@
-
 <header class="topo-universal">
   <div class="topo-esquerda">
     <a href="<?php echo $link_home; ?>"><img class="logo" src="../imagens/logo.png" alt="Logo"></a>
@@ -14,6 +13,7 @@
             style="position: absolute; top: -8px; right: -12px; pointer-events: none;"><?php echo $qtd_carrinho; ?></span>
         <?php endif; ?>
       </div>
+
       <?php
       // Busca o saldo atualizado sempre que o cabeçalho carregar
       $saldo_header = 0;
@@ -40,27 +40,35 @@
       <?php endif; ?>
 
       <div class="user-box" onclick="toggleMenu()">
-
-        <img src="<?php echo !empty($usuario['url_foto'])
-          ? '../uploads/' . $usuario['url_foto'] . '?v=' . time()
-          : '../imagens/aidento.jpg'; ?>" class="user-img">
-
+        <img
+          src="<?php echo !empty($usuario['url_foto']) ? '../uploads/' . $usuario['url_foto'] . '?v=' . time() : '../imagens/aidento.jpg'; ?>"
+          class="user-img">
         <span class="user-nome"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
 
         <div id="user-menu" class="user-menu">
           <a href="../conta/conta.php">Conta</a>
           <a href="../pagamento/pagamento.php">Pagamento</a>
+          <a href="../sorteador/sorteador.php">🎰 Sorteador</a>
+
           <a href="../usuario_logado/wishlist.php">
             Lista de desejo
-            <?php if ($qtd_wishlist > 0): ?>
+            <?php if (isset($qtd_wishlist) && $qtd_wishlist > 0): ?>
               <span class="badge-bolinha"><?php echo $qtd_wishlist; ?></span>
             <?php endif; ?>
           </a>
           <a href="../usuario_logado/meus_pedidos.php">Meus Pedidos</a>
+
+          <?php if (isset($_SESSION['tipo_user']) && $_SESSION['tipo_user'] === 'adm'): ?>
+            <a href="../admin/admin_jogos.php"
+              style="color: #e62429; font-weight: bold; border-top: 1px solid rgba(255,255,255,0.1);">⚙️ Cadastrar Jogo</a>
+          <?php endif; ?>
+
           <a href="../usuario_logado/logout.php">Sair</a>
         </div>
       </div>
     <?php else: ?>
+      <a href="../sorteador/sorteador.php" style="text-decoration: none;"><button class="btn-login"
+          style="color: #e62429;">🎰 Sorteador</button></a>
       <a href="../entrar/entrar.php" style="text-decoration: none;"><button class="btn-login">Entrar</button></a>
     <?php endif; ?>
 
@@ -69,18 +77,18 @@
 </header>
 
 <script>
-function toggleMoedasMobile() {
+  function toggleMoedasMobile() {
     // Só ativa a função se estiver na tela de celular pequeno (onde os números somem)
     if (window.innerWidth <= 400) {
-        const counter = document.getElementById('coin-counter');
-        if (counter) {
-            counter.classList.toggle('mostrar-mobile');
-            
-            // Oculta o balão automaticamente após 3 segundos para não atrapalhar
-            setTimeout(() => {
-                counter.classList.remove('mostrar-mobile');
-            }, 3000);
-        }
+      const counter = document.getElementById('coin-counter');
+      if (counter) {
+        counter.classList.toggle('mostrar-mobile');
+
+        // Oculta o balão automaticamente após 3 segundos para não atrapalhar
+        setTimeout(() => {
+          counter.classList.remove('mostrar-mobile');
+        }, 3000);
+      }
     }
-}
+  }
 </script>

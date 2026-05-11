@@ -72,6 +72,8 @@
                     <input type="password" placeholder=" " id="confirme" name="confirme" required>
                     <label>Confirmar senha</label>
                 </div>
+                <p id="forcaSenha" style="font-size:15px; margin:5px; "></p>
+        
 
                 <button class="btn" id="btn" type="submit">Cadastrar</button>
 
@@ -233,6 +235,9 @@
             }
         });
     </script>
+    <script>
+    senhaFraca();
+</script>
 </body>
 
 </html>

@@ -30,12 +30,12 @@ if (isset($_POST['verificar'])) {
         header("Location: ../usuario_logado/usuariologado.php");
         exit;
     } else {
-        echo "<script>alert('Código inválido!');</script>";
-    }
+    $erro = "Código inválido!";
+}
 }
 
-if (isset($_POST['reenviar'])) {
-    $email = $_SESSION['email_verificacao'] ?? '';
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reenviar'])) {
+    $email = $_SESSION['email_recuperacao'] ?? '';
     $codigo = rand(100000, 999999);
     $_SESSION['codigo_verificacao'] = $codigo;
     $nome = $_SESSION['cadastro']['nome'] ?? '';
@@ -59,31 +59,74 @@ if (isset($_POST['reenviar'])) {
         $mail->addAddress($email);
 
         $mail->isHTML(true);
-        $mail->Subject = 'Código de verificação - Quimera';
+        $mail->Subject = 'Código de recuperação de senha - QuimeraGames';
         $mail->addEmbeddedImage(__DIR__ . '/../imagens/logo.png', 'logo_cid', 'logo.png');
         $mail->Body = "
 <!DOCTYPE html>
 <html lang='pt-BR'>
 <head><meta charset='UTF-8'></head>
+
 <body style='margin:0; padding:0; background:#f2f2f2; font-family:Arial, sans-serif;'>
+
 <table width='100%' bgcolor='#f2f2f2' cellpadding='0' cellspacing='0'>
 <tr>
 <td align='center'>
-    <table width='500' cellpadding='0' cellspacing='0' style='background:#ffffff; margin-top:40px; border-radius:8px; padding:30px;'>
-        <tr><td align='center' style='padding-bottom:20px;'><img src='cid:logo_cid' width='120'></td></tr>
-        <tr><td style='font-size:22px; font-weight:bold; text-align:left; padding-bottom:20px;'>Seu código de verificação</td></tr>
-        <tr><td align='center' style='padding:20px 0;'><div style='background:#f4f4f4; padding:20px; border-radius:8px; font-size:28px; font-weight:bold; letter-spacing:3px;'>$codigo</div></td></tr>
-        <tr><td style='font-size:14px; color:#555; padding-top:10px; line-height:1.6;'>Olá, <b>$nome</b>,<br><br>Você solicitou um código para acessar sua conta na <b>Quimera Games</b>.<br>Use o código acima para concluir o login.<br><br>⚠️ Este código expira em alguns minutos.<br><br>Se não foi você, recomendamos alterar sua senha imediatamente.</td></tr>
-        <tr><td style='font-size:12px; color:#999; padding-top:30px; text-align:center;'>© 2026 Quimera Games<br>Todos os direitos reservados.</td></tr>
-    </table>
+
+<table width='500' cellpadding='0' cellspacing='0'
+style='background:#ffffff; margin-top:40px; border-radius:8px; padding:30px;'>
+
+<tr>
+<td align='center' style='padding-bottom:20px;'>
+<img src='cid:logo_cid' width='120'>
+</td>
+</tr>
+
+<tr>
+<td style='font-size:22px; font-weight:bold; text-align:left; padding-bottom:20px;'>
+Recuperação de senha
+</td>
+</tr>
+
+<tr>
+<td align='center' style='padding:20px 0;'>
+<div style='background:#f4f4f4; padding:20px; border-radius:8px; font-size:28px; font-weight:bold; letter-spacing:3px;'>
+$codigo
+</div>
+</td>
+</tr>
+
+<tr>
+<td style='font-size:14px; color:#555; padding-top:10px; line-height:1.6;'>
+
+Olá, <b>$nome</b>,<br><br>
+
+Recebemos uma solicitação para redefinir sua senha da <b>Quimera Games</b>.<br>
+
+Use o código acima para continuar a recuperação da conta.<br><br>
+
+⚠️ Se não foi você, ignore este email.
+
+</td>
+</tr>
+
+<tr>
+<td style='font-size:12px; color:#999; padding-top:30px; text-align:center;'>
+© 2026 Quimera Games<br>
+Todos os direitos reservados.
+</td>
+</tr>
+
+</table>
+
 </td>
 </tr>
 </table>
+
 </body>
 </html>";
         $mail->send();
     } catch (Exception $e) {
-        echo "<script>alert('Erro ao enviar email: {$mail->ErrorInfo}');</script>";
+
     }
 }
 ?>
@@ -101,6 +144,18 @@ if (isset($_POST['reenviar'])) {
 </head>
 
 <body>
+
+<?php if (isset($sucesso)): ?>
+<div id="sucesso-msg" class="sucesso-msg">
+    <?php echo $sucesso; ?>
+</div>
+<?php endif; ?>
+
+<?php if (isset($erro)): ?>
+    <div id="erro-msg" class="erro-msg">
+        <?php echo $erro; ?>
+    </div>
+<?php endif; ?>
 
     <a href="../index/index.php" class="logo-link">
         <img class="logo-auth" src="../imagens/logo.png" alt="QuimeraGames Logo">
@@ -123,8 +178,7 @@ if (isset($_POST['reenviar'])) {
                         required autocomplete="off">
 
                     <button type="submit" name="verificar" class="btn-verificar">Confirmar Conta</button>
-                    <button type="submit" name="reenviar" id="reenviar" class="btn-reenviar" formnovalidate>Não recebeu? <span>Reenviar
-                            código</span></button>
+                    <button type="submit" name="reenviar" value="1" class="btn-reenviar" formnovalidate> Não recebeu? <span>Reenviar código</span></button>
                 </div>
 
                 <div class="card-footer">
@@ -138,6 +192,20 @@ if (isset($_POST['reenviar'])) {
     </main>
 
     <?php include '../header_footer_global/footer.php'; ?>
+
+<script>
+setTimeout(() => {
+    const erro = document.getElementById("erro-msg");
+
+    if (erro) {
+        erro.style.opacity = "0";
+
+        setTimeout(() => {
+            erro.remove();
+        }, 500);
+    }
+}, 5000);
+</script>
 
 </body>
 

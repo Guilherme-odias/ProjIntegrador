@@ -212,19 +212,22 @@ if ($id_user > 0) {
     </main>
 
     <?php include '../header_footer_global/footer.php'; ?>
-     <script type="module">
-  import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js'
+<script type="module">
+  import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js';
 
   Typebot.initBubble({
     typebot: "faq-zjqkf4x",
-
     theme: {
       button: {
-        
         size: "65px",
-         backgroundColor: "transparent",
-        customIconSrc:
-          "http://localhost/GitHub/ProjIntegrador/Site_QuimeraGames/imagens/cerberus.png"
+        backgroundColor: "transparent",
+        customIconSrc: "https://quimera-games.gamer.gd/Site_QuimeraGames/imagens/cerberus.png"
+      },
+      placement: {
+        bottom: "20px" /* Distância do mascote para o rodapé */
+      },
+      chatWindow: {
+        maxHeight: "65vh" /* A MÁGICA AQUI: Limita a janela a 75% da altura da tela */
       }
     }
   });
