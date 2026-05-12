@@ -26,7 +26,7 @@
     </a>
     <main class="main-cadastro">
         <div class="container-animado">
-            <form class="card-cadastro" method="POST" onsubmit="return validarForm()">
+            <form class="card-cadastro" method="POST" onsubmit="return validarForm()" >
 
                 <input type="hidden" id="comum" name="comum" value="comum">
 
@@ -65,6 +65,8 @@
                                 alt="Oculto">
                             <span id="iconAberto" class="icone-senha oculto">👁️</span>
                         </label>
+
+
                     </div>
                 </div>
 
@@ -97,6 +99,16 @@
     </footer>
 
     <script src="script.js"></script>
+
+
+    <div id="popupErro" class="popup" style="display:none;">
+    <div class="popup-conteudo">
+         <button onclick="fecharPopup()" class="popfecha">X</button>
+        <h2>⚠ Erro no cadastro</h2>
+        <ul id="listaErros"></ul>
+       
+    </div>
+</div>
 
     <?php
     $tipo_comum = "comum";

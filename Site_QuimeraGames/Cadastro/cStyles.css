@@ -522,3 +522,48 @@ body {
 
     margin-top: auto; /* ESSENCIAL */
 }
+
+.popup {
+    position: fixed; /* MUITO IMPORTANTE */
+    top: 20px;       /* distancia do topo */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background: linear-gradient(to bottom, #0f2449, #020817);
+    padding: 20px 25px;
+    border-radius: 12px;
+
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+
+    z-index: 9999; /* fica acima de tudo */
+
+    display: none;
+    min-width: 300px;
+}
+
+.popup-conteudo {
+    position: relative; /* IMPORTANTE */
+}
+
+.popfecha { 
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+    padding: 0;
+}
+
+.popfecha:hover {
+    color: #e62429;
+}
