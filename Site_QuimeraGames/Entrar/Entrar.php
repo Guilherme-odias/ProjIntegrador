@@ -194,6 +194,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 .then(res => res.text())
                 .then(resposta => {
 
+                resposta = resposta.trim();
+
                     if (resposta === "ok") {
                         window.location.href = "../confirmar_email/confirmar.php";
                     } else {

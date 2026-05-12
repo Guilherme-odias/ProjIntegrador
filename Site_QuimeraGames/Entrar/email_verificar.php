@@ -4,12 +4,21 @@ require_once("../conexa.php");
 
 $usuario = strtolower(trim($_POST['usuario'] ?? ''));
 
-$stmt = $pdo->prepare("SELECT email, nome FROM cadastro WHERE LOWER(email) = ?");
-$stmt->execute([$usuario]);
+$stmt = $pdo->prepare("
+SELECT email, nome 
+FROM cadastro 
+WHERE LOWER(email) = ? 
+   OR LOWER(nome_user) = ?
+");
+
+$stmt->execute([$usuario, $usuario]);
 
 $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
 if ($dados) {
+
+    $nome = $dados['nome'];
 
     $_SESSION['email_recuperacao'] = $dados['email'];
 
@@ -38,6 +47,7 @@ if ($dados) {
 
         $mail->isHTML(true);
         $mail->Subject = 'Código de recuperação - QuimeraGames';
+        $mail->addEmbeddedImage(__DIR__ . '/../imagens/logo.png', 'logo_cid', 'logo.png');
 
         $mail->Body = "
 <!DOCTYPE html>
