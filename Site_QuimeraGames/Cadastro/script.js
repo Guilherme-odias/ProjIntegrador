@@ -15,45 +15,135 @@ function mostrarSenha() {
 function validarSenha() {
     const senha = document.getElementById("senha").value;
     const confirmar = document.getElementById("confirme").value;
-    
-if (senha.length < 8) {
-        alert("A senha deve ter no mínimo 8 caracteres.");
-        return false;
+
+    let erros = [];
+
+    if (senha.length < 8) {
+        erros.push("A senha deve ter no mínimo 8 caracteres.");
     }
 
     if (!/[A-Z]/.test(senha)) {
-        alert("A senha deve conter pelo menos uma letra MAIÚSCULA.");
-        return false;
+        erros.push("A senha precisa de uma letra maiúscula.");
     }
 
     if (!/[a-z]/.test(senha)) {
-        alert("A senha deve conter pelo menos uma letra minúscula.");
-        return false;
+        erros.push("A senha precisa de uma letra minúscula.");
     }
 
     if (!/[0-9]/.test(senha)) {
-        alert("A senha deve conter pelo menos um número.");
-        return false;
+        erros.push("A senha precisa de um número.");
     }
 
     if (!/[\W]/.test(senha)) {
-        alert("A senha deve conter pelo menos um caractere especial.");
-        return false;
+        erros.push("A senha precisa de um caractere especial.");
     }
 
     if (senha !== confirmar) {
-        alert("As senhas não coincidem!");
+        erros.push("As senhas não coincidem.");
+    }
+
+    // Se tiver erro, mostra popup
+    if (erros.length > 0) {
+
+        const lista = document.getElementById("listaErros");
+        lista.innerHTML = "";
+
+        erros.forEach(function (erro) {
+            const li = document.createElement("li");
+            li.textContent = erro;
+            lista.appendChild(li);
+        });
+
+        document.getElementById("popupErro").style.display = "flex";
+
         return false;
     }
 
     return true;
 }
 
+function fecharPopup() {
+    document.getElementById("popupErro").style.display = "none";
+}
+
+
 
 function voltarPagina(){
     window.location.href = "../index/index.php";
 }
+const cpfInput = document.getElementById("cpf");
 
+cpfInput.addEventListener("input", function () {
+
+    let valor = cpfInput.value.replace(/\D/g, "");
+
+    if (valor.length > 11) {
+        valor = valor.slice(0, 11);
+    }
+
+    // máscara 000.000.000-00
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    cpfInput.value = valor;
+
+    // 🔥 valida enquanto digita
+    validarCPFVisual(valor);
+});
+
+
+// =========================
+// FUNÇÃO DE VALIDAR CPF
+// =========================
+function validaCPF(cpf) {
+    cpf = cpf.replace(/[^\d]+/g, '');
+
+    if (cpf.length !== 11) return false;
+    if (/^(\d)\1+$/.test(cpf)) return false;
+
+    let soma = 0;
+    let resto;
+
+    for (let i = 1; i <= 9; i++)
+        soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
+
+    if (resto !== parseInt(cpf.substring(9, 10))) return false;
+
+    soma = 0;
+
+    for (let i = 1; i <= 10; i++)
+        soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
+
+    return resto === parseInt(cpf.substring(10, 11));
+}
+
+
+// =========================
+// VALIDAÇÃO VISUAL
+// =========================
+function validarCPFVisual(cpf) {
+
+    const input = document.getElementById("txtCPF");
+    const cpfLimpo = cpf.replace(/\D/g, "");
+
+    if (cpfLimpo.length < 11) {
+        input.style.border = "2px solid orange";
+        return;
+    }
+
+    if (validaCPF(cpfLimpo)) {
+        input.style.border = "2px solid green";
+    } else {
+        input.style.border = "2px solid red";
+    }
+}
 function validaCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, '');
 
@@ -83,6 +173,7 @@ function validaCPF(cpf) {
     if (resto !== parseInt(cpf.substring(10, 11))) return false;
 
     return true;
+
 }
 
 function validarEmail() {
