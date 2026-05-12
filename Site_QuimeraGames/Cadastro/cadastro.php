@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - Quimera Games</title>
-    <link rel="stylesheet" href="cstyles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="cstyles.css?v=<?php echo time(); ?>">
     <link rel="icon" type="image/x-icon" href="/GitHub/ProjIntegrador/Site_QuimeraGames/favicon.ico">
 </head>
 
 <body>
+
+    
 
     <?php
     session_start();
@@ -20,7 +22,7 @@
     $link_home = '../index/index.php';
     ?>
     <a href="../index/index.php" class="logo-link">
-        <img class="logo-auth" src="../imagens/logo.png" alt="QuimeraGames Logo">
+        <?php include '../header_footer_global/header_simples.php'; ?>
     </a>
     <main class="main-cadastro">
         <div class="container-animado">

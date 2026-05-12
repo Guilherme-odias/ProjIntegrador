@@ -1,0 +1,357 @@
+/* =========================================
+   ESTRUTURA GERAL DA PÁGINA
+   ========================================= */
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0b0f1a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-login {
+  flex: 1;
+  /* Ocupa o espaço livre e empurra o rodapé para baixo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  /* Evita sobrepor a logo do header */
+}
+
+/* =========================================
+   CAIXA DE LOGIN (UPGRADE PREMIUM)
+   ========================================= */
+.h1box {
+width: 100%;
+    max-width: 440px;
+    /* RESTAURADO: Degradê original do time */
+    background: linear-gradient(to top, #132041, #1b3c91);
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 0 30px 0;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 26px;
+  margin: 0 0 25px 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.conteudo {
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Campos de Formulário */
+.div1,
+.div2 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+label {
+  color: #a0aec0;
+  /* Cinza claro moderno */
+  font-size: 15px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #e62429;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Container da Senha com Olhinho */
+.input-senha-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input-senha-container input {
+  padding-right: 45px;
+  /* Espaço pro olhinho não sobrepor o texto */
+}
+
+.lembrar {
+  position: absolute;
+  right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.lembrar input[type="checkbox"] {
+  display: none;
+  /* Esconde a caixinha feia */
+}
+
+.lembrar label {
+cursor: pointer;
+    font-size: 20px;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.lembrar label:hover {
+    transform: scale(1.2);
+}
+
+.lembrar input[type="checkbox"]:checked+label {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.label-olho {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.label-olho:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.icone-senha {
+    width: 22px; /* Ajuste esse valor para o tamanho ideal da sua imagem */
+    height: auto;
+    font-size: 20px; /* Tamanho caso seja o emoji */
+}
+
+.oculto { display: none; }
+.visivel { display: block; }
+
+/* Botão Principal */
+.iniciar_sessao {
+  width: 100%;
+  color: #ffffff;
+  background-color: #e62429;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.iniciar_sessao:hover {
+  background-color: #c0181d;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(230, 36, 41, 0.4);
+}
+
+/* Link de Problemas */
+.problemas_iniciar {
+  text-align: center;
+  color: #a0aec0;
+  margin-top: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.problemas_iniciar:hover {
+  color: #e62429;
+  text-decoration: underline;
+}
+
+.esqueceu_senha {
+  text-align: center;
+  color: #a0aec0;
+  margin-top: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.esqueceu_senha:hover {
+  color: #e62429;
+  text-decoration: underline;
+}
+
+/* =========================================
+   RODAPÉ CUSTOMIZADO (.tudoai)
+   ========================================= */
+.tudoai {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* Espalha os itens de forma responsiva */
+  width: 100%;
+  box-sizing: border-box;
+  /* Garante que não crie scroll horizontal */
+  background: linear-gradient(to bottom, #0d162a, #020817);
+  padding: 40px 20px;
+  color: white;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.primeira_cadastre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centraliza botão e texto */
+  gap: 15px;
+}
+
+.primeira {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.cad {
+  background-color: transparent;
+  color: white;
+  border: 2px solid #e62429;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cad:hover {
+  background-color: #e62429;
+  box-shadow: 0 0 15px rgba(230, 36, 41, 0.4);
+}
+
+.texto {
+  max-width: 400px;
+  font-size: 16px;
+  color: #a0aec0;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* =========================================
+   MENSAGEM DE ERRO
+   ========================================= */
+.erro-msg {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e62429;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 9999;
+  opacity: 1;
+  transition: 0.5s;
+  box-shadow: 0 4px 15px rgba(230, 36, 41, 0.4);
+}
+
+@media (max-width:768px){
+
+.h1box{
+ width:95%;
+ padding:35px 20px;
+ transform: scale(0.94);
+ margin-top: -30px;
+ margin-bottom: -50px;
+}
+
+h1{
+ font-size:24px;
+}
+
+input{
+ font-size:16px;
+ padding:14px;
+}
+
+.iniciar_sessao{
+ padding:14px;
+ font-size:17px;
+}
+
+.cad{
+  font-size: 15px;
+  width: 150px;
+}
+
+.primeira{
+  font-size: 20px;
+  text-align: center;
+}
+
+.texto{
+  font-size: 15px;
+}
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1180px) {
+
+.h1box{
+ transform: scale(1.4);
+}
+
+}
+
+@media screen and (min-width: 712px) and (max-width: 1180px) {
+
+.h1box{
+ transform: scale(1.3);
+}
+
+}
+
+.email_user {
+  width: 80%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(85, 85, 85);
+  text-align: center;
+  letter-spacing: 1px;
+  /* Dá aquele visual de código 1 2 3 4 5 */
+  outline: none;
+  transition: 0.3s;
+  gap: 4px;
+}
+
+.email_user:focus {
+  border-color: #e62429;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(230, 36, 41, 0.3);
+  color:rgb(255, 255, 255)
+}

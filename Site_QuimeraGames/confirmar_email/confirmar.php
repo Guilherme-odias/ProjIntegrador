@@ -98,7 +98,7 @@ $codigo
 <tr>
 <td style='font-size:14px; color:#555; padding-top:10px; line-height:1.6;'>
 
-Olá, <br><br>
+Olá, <b>$nome</b>,<br><br>
 
 Recebemos uma solicitação para redefinir sua senha da <b>Quimera Games</b>.<br>
 
