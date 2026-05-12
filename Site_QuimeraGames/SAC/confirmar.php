@@ -38,6 +38,7 @@ if (!$token) {
 
     <link rel="stylesheet" href="../css/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/Site_QuimeraGames/favicon.ico">
 
     <?php if ($status === 'sucesso'): ?>
         <meta http-equiv="refresh" content="5;url=../index/index.php">
