@@ -19,6 +19,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     elseif ($senha1 !== $senha2) {
         $erro = "As senhas devem ser iguais.";
     }
+    elseif (strlen($senha1) < 8) {
+        $erro = "A senha deve ter no mínimo 8 caracteres.";
+    }
+    elseif (!preg_match('/[A-Z]/', $senha1)) {
+        $erro = "A senha precisa de uma letra maiúscula.";
+    }
+    elseif (!preg_match('/[a-z]/', $senha1)) {
+        $erro = "A senha precisa de uma letra minúscula.";
+    }
+    elseif (!preg_match('/[0-9]/', $senha1)) {
+        $erro = "A senha precisa de um número.";
+    }
+    elseif (!preg_match('/[\W]/', $senha1)) {
+        $erro = "A senha precisa de um caractere especial.";
+    }
     else {
 
         $stmt = $pdo->prepare("UPDATE cadastro SET senha = ? WHERE email = ?");
@@ -102,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         </div>
                     </div> 
+                    <p id="forcaSenha" style="font-size:15px; margin:8px 0;"></p>
                     <button type="submit" class="iniciar_sessao">Atualizar Senha</button>
                 </form>
 
@@ -149,6 +165,86 @@ document.querySelectorAll(".input-senha-container").forEach(container => {
 <?php include '../header_footer_global/footer.php'; ?>
 
 <script>
+function validarSenhaVisual() {
+
+    const senha = document.getElementById("senha1").value;
+    const confirmar = document.getElementById("senha2").value;
+
+    let erros = [];
+
+    if (senha.length < 8)
+        erros.push("A senha deve ter no mínimo 8 caracteres.");
+
+    if (!/[A-Z]/.test(senha))
+        erros.push("A senha precisa de uma letra maiúscula.");
+
+    if (!/[a-z]/.test(senha))
+        erros.push("A senha precisa de uma letra minúscula.");
+
+    if (!/[0-9]/.test(senha))
+        erros.push("A senha precisa de um número.");
+
+    if (!/[\W]/.test(senha))
+        erros.push("A senha precisa de um caractere especial.");
+
+    if (senha !== confirmar)
+        erros.push("As senhas não coincidem.");
+
+    if (erros.length > 0) {
+
+        let texto = erros.join("<br>");
+        document.getElementById("erro-msg").innerHTML = texto;
+        document.getElementById("erro-msg").style.display = "block";
+
+        return false;
+    }
+
+    return true;
+}
+
+document.querySelector("form").onsubmit = function () {
+    return validarSenhaVisual();
+};
+
+function senhaFraca() {
+
+    const senhaInput = document.getElementById("senha1");
+    const forcaTexto = document.getElementById("forcaSenha");
+
+    senhaInput.addEventListener("input", function () {
+
+        const senha = senhaInput.value;
+        let forca = 0;
+
+        if (senha.length >= 8) forca++;
+        if (/[A-Z]/.test(senha)) forca++;
+        if (/[0-9]/.test(senha)) forca++;
+        if (/[^A-Za-z0-9]/.test(senha)) forca++;
+
+        if (senha.length == 0) {
+            forcaTexto.innerText = "";
+        }
+        else if (forca <= 1) {
+            forcaTexto.innerText = "Senha fraca";
+            forcaTexto.style.color = "red";
+        }
+        else if (forca <= 3) {
+            forcaTexto.innerText = "Senha média";
+            forcaTexto.style.color = "orange";
+        }
+        else {
+            forcaTexto.innerText = "Senha forte";
+            forcaTexto.style.color = "limegreen";
+        }
+
+    });
+}
+
+senhaFraca();
+</script>
+
+<script>
+    
 setTimeout(() => {
     const erro = document.getElementById("erro-msg");
 

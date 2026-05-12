@@ -7,30 +7,18 @@ $emailMostrado = $_GET['email'] ?? '';
 if (isset($_POST['verificar'])) {
     $codigoDigitado = $_POST['codigo'];
 
+    if (isset($_POST['verificar'])) {
+    $codigoDigitado = $_POST['codigo'];
+
     if ($codigoDigitado == $_SESSION['codigo_verificacao']) {
-        require_once '../conexa.php';
 
-        $dados = $_SESSION['cadastro'];
-
-        $sql = "INSERT INTO cadastro (email, tipo_user, nome, nome_user, senha, cpf) 
-                VALUES (?, 'comum', ?, ?, ?, ?)";
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            $dados['email'],
-            $dados['nome'],
-            $dados['user'],
-            $dados['senha'],
-            $dados['cpf']
-        ]);
-
-        // Limpa a sessão
-        session_destroy();
-
-        header("Location: ../usuario_logado/usuariologado.php");
+        // ✅ só redireciona pra tela mudar senha
+        header("Location: ../esqueci_senha/mudarsenha.php");
         exit;
+
     } else {
-    $erro = "Código inválido!";
+        $erro = "Código inválido!";
+    }
 }
 }
 
